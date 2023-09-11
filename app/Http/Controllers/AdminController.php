@@ -80,5 +80,11 @@ class AdminController extends Controller
         $admin->save();
         return redirect()->back()->withInput()->withErrors(['suc' => 'Đổi mật khẩu thành công']);
     }
+
+    public function listproductpage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        return view('admin/page/Listproductpage', compact('admin'));
+    }
 }
 

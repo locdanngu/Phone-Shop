@@ -27,5 +27,6 @@ Route::prefix('/admin')->group(function () {
         Route::post('/logoutadmin', [AdminController::class, 'logoutadmin'])->name('logoutadmin');
         Route::get('/changepasswordpage', [AdminController::class, 'changepasswordpage'])->name('adminchangepassword.page');
         Route::post('/changepassword', [AdminController::class, 'changepassword'])->name('adminchangepassword');
+        Route::get('/listproductpage', [AdminController::class, 'listproductpage'])->name('listproduct.page');
     });
 });

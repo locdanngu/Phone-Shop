@@ -1,6 +1,6 @@
 @extends('admin.layouts.Adminlayout')
 
-@section('title', 'Admin Change Password')
+@section('title', 'Đổi mật khẩu Admin')
 <!-- Content Wrapper. Contains page content -->
 @section('body')
 <div class="content-wrapper">

@@ -1,6 +1,6 @@
 @extends('admin.layouts.Adminlayout')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Trang chủ Admin')
 
 @section('body')
 <div class="content-wrapper">

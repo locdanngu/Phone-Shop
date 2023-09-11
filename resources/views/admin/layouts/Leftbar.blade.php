@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link {{ request()->is('don-dang-ky-tu-van', 'don-tra-loi-tu-van', 'danh-sach-don-tu-van') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('admin/listproductpage', 'don-tra-loi-tu-van') ? 'active' : '' }}">
                         <i class="nav-icon bi-box-seam-fill"></i>
                         <p>
                             Quản lý sản phẩm
@@ -41,8 +41,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href=""
-                                class="nav-link {{ request()->is('don-dang-ky-tu-van') ? 'active' : '' }}">
+                            <a href="{{ route('listproduct.page') }}"
+                                class="nav-link {{ request()->is('admin/listproductpage') ? 'active' : '' }}">
                                 <i class="bi-card-list nav-icon"></i>
                                 <p>Danh sách sản phẩm</p>
                             </a>

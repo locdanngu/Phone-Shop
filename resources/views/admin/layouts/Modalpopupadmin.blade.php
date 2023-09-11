@@ -1,7 +1,7 @@
 <!-- Modal đăng xuất -->
 <div class="modal fade" id="modal-logout">
     <div class="modal-dialog">
-        <form class="modal-content fix" action="" method="post">
+        <form class="modal-content fix" action="{{ route('logoutadmin') }}" method="post">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Đăng xuất khỏi hệ thống</h4>

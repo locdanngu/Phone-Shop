@@ -41,5 +41,11 @@ class AdminController extends Controller
             return redirect()->route('adminlogin.page')->withErrors(['adminname' => 'Sai tên đăng nhập hoặc mật khẩu!!!']);
         }
     }
+
+    public function logoutadmin(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('adminlogin.page');
+    }
 }
 

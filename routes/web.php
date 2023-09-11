@@ -21,5 +21,6 @@ Route::prefix('/admin')->group(function () {
     Route::get('/loginpage', [AdminController::class, 'loginpage'])->name('adminlogin.page');
     Route::get('/homepage', [AdminController::class, 'homepage'])->name('adminhome.page');
     Route::post('/loginadmin', [AdminController::class, 'loginadmin'])->name('loginadmin');
+    Route::post('/logoutadmin', [AdminController::class, 'logoutadmin'])->name('logoutadmin');
     // Thêm các route khác ở đây nếu cần
 });

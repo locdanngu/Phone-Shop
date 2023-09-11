@@ -79,10 +79,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="aiz-pagination">
-                            {{ $product->appends(['searchproduct' => $searchproduct])->render('pagination::Custom') }}
-
+                        <div class="pagination">
+                            {{ $product->links() }}
                         </div>
+
                     </div>
                     <!-- /.card-body -->
                 </div>

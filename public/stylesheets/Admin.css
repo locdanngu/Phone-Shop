@@ -8,7 +8,7 @@ td {
     margin-left: 1em;
 }
 
-.card-footer{
+.card-footer {
     background-color: transparent !important;
 }
 
@@ -36,7 +36,7 @@ td {
     border: 1px solid black;
 }
 
-.user-panel img{
+.user-panel img {
     width: 2.1rem !important;
     height: 2.1rem !important;
 }
@@ -46,13 +46,13 @@ td {
     width: auto;
 }
 
-.col-5{
+.col-5 {
     width: 48% !important;
     max-width: none !important;
     flex: none !important;
 }
 
-td p{
+td p {
     margin: 0 !important;
 }
 
@@ -63,11 +63,11 @@ td p{
     border-radius: 50%;
 }
 
-input[type="file"]{
+input[type="file"] {
     cursor: pointer;
 }
 
-.tox.tox-tinymce{
+.tox.tox-tinymce {
     width: 85% !important;
 }
 
@@ -76,15 +76,45 @@ input[type="file"]{
 }
 
 [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-treeview {
-    background-color: rgba(255,255,255,.1);
+    background-color: rgba(255, 255, 255, .1);
 }
 
+.flex.justify-between.flex-1 {
+    display: none;
+}
 
+.bg-white {
+    display: none;
+}
+
+.text-sm.text-gray-700.leading-5 {
+    display: none;
+}
+
+.relative.inline-flex.items-center.px-4.py-2.-ml-px.text-sm.font-medium.text-gray-700.bg-white.border.border-gray-300.leading-5 {
+    display: unset;
+}
+
+.relative.inline-flex.items-center.px-4.py-2.-ml-px.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.cursor-default.leading-5 {
+    display: unset;
+}
+
+.pagination{
+    margin-top: 1em;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+}
+
+.relative.inline-flex.hover:text-gray-400.focus:z-10 .focus:outline-none .focus:ring .ring-gray-300 .focus:border-blue-300 .active:bg-gray-100 .active:text-gray-500
+.transition .ease-in-out .duration-150 .items-center .px-2 .py-2 .-ml-px .text-sm .font-medium .text-gray-500 .bg-white .border .border-gray-300 .rounded-r-md .leading-5 {
+    display: none;
+}
 @media screen and (max-width: 767px) {
     #inputGroup-sizing-default {
         width: 30% !important;
     }
-    
+
     .tox.tox-tinymce {
         width: 100% !important;
     }
@@ -94,18 +124,19 @@ input[type="file"]{
         width: 100% !important;
         left: 0%;
     }
-    .col-12.d-flex.justify-content-between.p-3{
+
+    .col-12.d-flex.justify-content-between.p-3 {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
-    
-    .col-5{
+
+    .col-5 {
         width: 100% !important;
         max-width: none !important;
         flex: none !important;
     }
-    
+
 }
 
 

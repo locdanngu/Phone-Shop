@@ -31,3 +31,4 @@ Route::prefix('/admin')->group(function () {
         Route::get('/', [AdminController::class, 'listproductpage'])->name('searchproduct');
     });
 });
+

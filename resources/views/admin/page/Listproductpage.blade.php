@@ -30,12 +30,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng :  Sản phẩm</h3>
+                        <h3 class="card-title">Tổng cộng : Sản phẩm</h3>
                         <div class="card-tools" style="width: 45%;">
-                            <div class="input-group input-group-sm">
-                                <input type="text" name="table_search" class="form-control float-right"
-                                    placeholder="Tìm kiếm" id="search">
-                            </div>
+                            <form action="{{ route('searchproduct') }}" method="get" class="input-group input-group-sm">
+                                <input type="text" name="searchproduct" class="form-control float-right"
+                                    placeholder="Tìm kiếm" value="{{ request('searchproduct')}}">
+                            </form>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -44,25 +44,26 @@
                             <thead>
                                 <tr>
                                     <th>Tên sản phẩm</th>
-                                    <th>Sản phẩm</th>
-                                    <th>Giá cũ</th>
-                                    <th>Giá mới($)</th>
-                                    <th>Giá mới(VND)</th>
+                                    <th class="text-center">Sản phẩm</th>
+                                    <th class="text-center">Giá cũ($)</th>
+                                    <th class="text-center">Giá mới($)</th>
+                                    <th class="text-center">Giá mới(VND)</th>
                                     <th>Mô tả sản phẩm</th>
-                                    <th>Hãng</th>
+                                    <th class="text-center">Hãng</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @foreach($product as $row)
                                 <tr>
-                                    <td style="color:red;font-weight:800"></td>
-                                    <td><img src="" alt="" height="50"></td>
-                                    <td></td>
-                                    <td class="font-weight-bold" style="color:red"> $</td>
-                                    <td class="font-weight-bold" style="color:red"> đ</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td class="font-weight-bold" style="color:red">{{ $row->nameproduct }}</td>
+                                    <td class="text-center"><img src="{{ $row->imageproduct }}" alt="" height="50"></td>
+                                    <td class="text-center">{{ $row->oldprice }} $</td>
+                                    <td class="font-weight-bold text-center" style="color:red">{{ $row->price }} $</td>
+                                    <td class="font-weight-bold text-center" style="color:red">
+                                        {{ number_format($row->price * 23000, 0, ',', '.') }} đ</td>
+                                    <td>{{ $row->detail }}</td>
+                                    <td class="font-weight-bold text-center">{{ $row->category->namecategory }}</td>
                                     <td>
                                         <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
                                             data-target="#modal-change-brief">
@@ -75,9 +76,13 @@
                                         </button>
                                     </td>
                                 </tr>
-
+                                @endforeach
                             </tbody>
                         </table>
+                        <div class="aiz-pagination">
+                            {{ $product->appends(['searchproduct' => $searchproduct])->render('pagination::Custom') }}
+
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -237,7 +242,7 @@ $(document).ready(function() {
     });
 
 
-    
+
 });
 </script>
 

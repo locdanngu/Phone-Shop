@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Hash;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\User;
 use Mail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -84,7 +87,18 @@ class AdminController extends Controller
     public function listproductpage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        return view('admin/page/Listproductpage', compact('admin'));
+        $limit = $request->limit ?? 1;
+        $product = new Product();
+        $searchproduct = $request['searchproduct'];
+        if ($searchproduct) {
+            $product = $product->where(function($query) use ($searchproduct) {
+                $query->where('nameproduct', 'like', '%' . $searchproduct . '%')
+                      ->orWhere('price', 'like', '%' . $searchproduct . '%');
+            })->orderBy('idproduct', 'desc');
+        }
+        $product = $product->where('isdelete', '!=' , 1)->orderBy('idproduct', 'desc')->paginate($limit);
+
+        return view('admin/page/Listproductpage', compact('admin','product','searchproduct'));
     }
 }
 

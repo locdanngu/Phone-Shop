@@ -45,7 +45,7 @@
                 <i class="bi bi-person"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="" class="dropdown-item">
+                <a href="{{ route('adminchangepassword.page') }}" class="dropdown-item">
                     Đổi mật khẩu
                 </a>
                 <div class="dropdown-divider"></div>

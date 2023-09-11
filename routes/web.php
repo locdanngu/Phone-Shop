@@ -25,5 +25,6 @@ Route::prefix('/admin')->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::get('/homepage', [AdminController::class, 'homepage'])->name('adminhome.page');
         Route::post('/logoutadmin', [AdminController::class, 'logoutadmin'])->name('logoutadmin');
+        Route::get('/changepasswordpage', [AdminController::class, 'changepasswordpage'])->name('adminchangepassword.page');
     });
 });

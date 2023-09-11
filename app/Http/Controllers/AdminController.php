@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function loginadmin(Request $request){
         $this->validate($request, [
             'adminname' => 'required',
-            'password' => 'required|min:6'
+            'password' => 'required'
         ]);
         
         // Lấy thông tin đăng nhập từ đầu vào
@@ -46,6 +46,12 @@ class AdminController extends Controller
     {
         Auth::guard('admin')->logout();
         return redirect()->route('adminlogin.page');
+    }
+
+    public function changepasswordpage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        return view('admin/page/Changepasswordpage', compact('admin'));
     }
 }
 

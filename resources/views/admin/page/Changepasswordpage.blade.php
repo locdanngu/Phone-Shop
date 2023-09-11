@@ -28,10 +28,9 @@
                     </div> -->
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="" method="post">
+                    <form action="{{ route('adminchangepassword') }}" method="post">
                         @csrf
                         <div class="card-body">
-
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mật khẩu hiện tại</label>
                                 <input type="password" name="passold" class="form-control" id="passold" value=""
@@ -47,6 +46,11 @@
                                 <input type="password" name="passnew" class="form-control" id="passnew" value=""
                                     autocomplete="off" required>
                             </div>
+                            @error('passnewshort')
+                            <div class="input-group">
+                                <p style="color:red">{{ $message }}</p>
+                            </div>
+                            @enderror
                             @error('passnew')
                             <div class="input-group">
                                 <p style="color:red">{{ $message }}</p>

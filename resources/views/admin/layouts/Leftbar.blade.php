@@ -14,7 +14,7 @@
                 <img src="" class="img-circle elevation-2" alt="">
             </div>
             <div class="info">
-                <a href="" class="d-block">{{ $admin->name }}</a>
+                <a href="#" class="d-block">{{ $admin->name }}</a>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{ route('adminhome.page') }}"
                         class="nav-link {{ request()->is('Admin-home-page') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-house-door-fill"></i>
                         <p>Trang điều hành</p>
@@ -32,7 +32,7 @@
                 <li class="nav-item">
                     <a href="#"
                         class="nav-link {{ request()->is('don-dang-ky-tu-van', 'don-tra-loi-tu-van', 'danh-sach-don-tu-van') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-card-text"></i>
+                        <i class="nav-icon bi-box-seam-fill"></i>
                         <p>
                             Quản lý sản phẩm
                             <i class="bi bi-arrow-left right"></i>
@@ -43,14 +43,14 @@
                         <li class="nav-item">
                             <a href=""
                                 class="nav-link {{ request()->is('don-dang-ky-tu-van') ? 'active' : '' }}">
-                                <i class="bi bi-envelope nav-icon"></i>
+                                <i class="bi-card-list nav-icon"></i>
                                 <p>Danh sách sản phẩm</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href=""
                                 class="nav-link {{ request()->is('don-tra-loi-tu-van') ? 'active' : '' }}">
-                                <i class="bi bi-envelope-check-fill nav-icon"></i>
+                                <i class="bi bi-file-x nav-icon"></i>
                                 <p>Sản phẩm đã bị xóa</p>
                             </a>
                         </li>
@@ -58,7 +58,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link {{ request()->is('dauvao', 'daura') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-wallet"></i>
+                        <i class="nav-icon bi bi-ui-checks-grid"></i>
                         <p>
                             Quản lý hãng
                             <i class="bi bi-arrow-left right"></i>
@@ -68,14 +68,14 @@
                         <li class="nav-item">
                             <a href=""
                                 class="nav-link {{ request()->is('dauvao') ? 'active' : '' }}">
-                                <i class="bi bi-piggy-bank nav-icon"></i>
+                                <i class="bi bi-list-columns nav-icon"></i>
                                 <p>Danh sách hãng</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href=""
                                 class="nav-link {{ request()->is('daura') ? 'active' : '' }}">
-                                <i class="bi bi-wrench nav-icon"></i>
+                                <i class="bi-file-x nav-icon"></i>
                                 <p>Hãng đã xóa</p>
                             </a>
                         </li>
@@ -83,7 +83,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link {{ request()->is('dauvao', 'daura') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-wallet"></i>
+                        <i class="nav-icon bi bi-badge-vo"></i>
                         <p>
                             Quản lý mã khuyến mãi
                             <i class="bi bi-arrow-left right"></i>
@@ -93,14 +93,14 @@
                         <li class="nav-item">
                             <a href=""
                                 class="nav-link {{ request()->is('dauvao') ? 'active' : '' }}">
-                                <i class="bi bi-piggy-bank nav-icon"></i>
+                                <i class="bi bi-list-stars nav-icon"></i>
                                 <p>Danh sách mã giảm giá</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href=""
                                 class="nav-link {{ request()->is('daura') ? 'active' : '' }}">
-                                <i class="bi bi-wrench nav-icon"></i>
+                                <i class="bi bi-file-x nav-icon"></i>
                                 <p>Mã hết hạn</p>
                             </a>
                         </li>
@@ -108,7 +108,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link {{ request()->is('dauvao', 'daura') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-wallet"></i>
+                        <i class="nav-icon bi bi-person-circle"></i>
                         <p>
                             Quản lý người dùng
                         </p>

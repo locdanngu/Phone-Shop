@@ -55,5 +55,30 @@ class AdminController extends Controller
         $admin = Auth::guard('admin')->user();
         return view('admin/page/Changepasswordpage', compact('admin'));
     }
+
+    public function changepassword(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        if (!Hash::check($request['passold'], $admin->password)) {
+            return redirect()->back()->withInput()->withErrors(['passold' => 'Mật khẩu bạn nhập vào không khớp']);
+        }
+        
+        if (strlen($request->input('passnew')) < 6) {
+            return redirect()->back()->withInput()->withErrors(['passnewshort' => 'Mật khẩu yêu cầu nhiều hơn hoặc bằng 6 kí tự']);
+        }
+        
+        if ($request['passold'] ===  $request['passnew']) {
+            return redirect()->back()->withInput()->withErrors(['passnew' => 'Mật khẩu mới không được giống mật khẩu cũ']);
+        } 
+
+        if ($request['passnew'] !== $request['passconfirm']) {
+            return redirect()->back()->withInput()->withErrors(['passcon' => 'Mật khẩu xác nhận không khớp']);
+        } 
+        
+        $admin->password = Hash::make($request['passnew']);
+
+        $admin->save();
+        return redirect()->back()->withInput()->withErrors(['suc' => 'Đổi mật khẩu thành công']);
+    }
 }
 

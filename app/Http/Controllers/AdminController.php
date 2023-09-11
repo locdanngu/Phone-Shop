@@ -22,4 +22,22 @@ class AdminController extends Controller
     {
         return view('admin/page/Homepage');
     }
+
+    public function login(Request $request){
+        $this->validate($request, [
+            'adminname' => 'required',
+            'password' => 'required|min:6'
+        ]);
+        
+        // Lấy thông tin đăng nhập từ đầu vào
+        $credentials = $request->only('adminname', 'password');
+        
+        if (Auth::guard('admin')->attempt($credentials)) {
+            // Người dùng admin đã được xác thực
+            return redirect()->route('adminhome.page');
+        } else {
+            return redirect()->route('adminlogin.page')->withErrors(['adminname' => 'Sai tên đăng nhập hoặc mật khẩu!!!']);
+        }
+    }
 }
+

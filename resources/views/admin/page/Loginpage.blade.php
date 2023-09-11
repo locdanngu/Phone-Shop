@@ -19,11 +19,11 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Đăng nhập để bắt đầu phiên làm việc</p>
 
-                <form action="" method="post">
+                <form action="{{ route('loginadmin') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email" name="email" required
-                            value="{{ old('email') }}">
+                        <input type="text" class="form-control" placeholder="Tên đăng nhập" name="adminname" required
+                            value="{{ old('adminname') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <i class="bi bi-envelope"></i>
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    @error('email')
+                    @error('adminname')
                     <div class="input-group">
                         <p style="color:red">{{ $message }}</p>
                     </div>

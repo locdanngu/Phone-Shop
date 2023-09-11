@@ -26,10 +26,12 @@ class AdminController extends Controller
     }
 
     public function loginadmin(Request $request){
-        $this->validate($request, [
-            'adminname' => 'required',
-            'password' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'adminname' => 'required',
+        //     'password' => 'required'
+        // ]);
+        $this->validate($request, ['adminname' => 'required',
+                                    'password' => 'required']);
         
         // Lấy thông tin đăng nhập từ đầu vào
         $credentials = $request->only('adminname', 'password');

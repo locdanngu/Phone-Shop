@@ -22,8 +22,7 @@
                 <form action="{{ route('loginadmin') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Tên đăng nhập" name="adminname" required
-                            value="{{ old('adminname') }}">
+                        <input type="text" class="form-control" placeholder="Tên đăng nhập" name="adminname" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <i class="bi bi-person"></i>

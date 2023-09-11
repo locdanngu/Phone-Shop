@@ -26,7 +26,7 @@
                             value="{{ old('adminname') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <i class="bi bi-envelope"></i>
+                                <i class="bi bi-person"></i>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
             <!-- /.login-card-body -->
         </div>
     </div>
-  
+
 </body>
 
 </html>

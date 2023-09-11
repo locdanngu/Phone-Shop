@@ -14,7 +14,7 @@
                 <img src="" class="img-circle elevation-2" alt="">
             </div>
             <div class="info">
-                <a href="" class="d-block">Trần Lộc</a>
+                <a href="" class="d-block">{{ $admin->name }}</a>
             </div>
         </div>
 

@@ -11,19 +11,21 @@ class AdminController extends Controller
 {
     public function loginpage(Request $request)
     {
-        if (Auth::check()) {
-            return redirect()->route('adminhome.page');
-        }else{
+        if (Auth::guard('admin')->check()) {
+            $admin = Auth::guard('admin')->user();
+            return redirect()->route('adminhome.page', compact('admin'));
+        } else {
             return view('admin/page/Loginpage');
         }
     }
 
     public function homepage(Request $request)
     {
-        return view('admin/page/Homepage');
+        $admin = Auth::guard('admin')->user();
+        return view('admin/page/Homepage', compact('admin'));
     }
 
-    public function login(Request $request){
+    public function loginadmin(Request $request){
         $this->validate($request, [
             'adminname' => 'required',
             'password' => 'required|min:6'

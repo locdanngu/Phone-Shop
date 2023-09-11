@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Log in</title>
-    @include('layouts.Linkadmin')
+    @include('admin.layouts.Linkadmin')
 </head>
 
 <body class="hold-transition login-page">
@@ -71,7 +71,7 @@
         <a href="forgot-password.html">Tôi quên mật khẩu</a>
       </p> -->
                 <!-- <p class="mt-3 d-flex justify-content-center">
-                    <a href="{{ route('adminregister.page')}} " class="text-center">Chuyển đến trang đăng ký</a>
+                    <a href=" " class="text-center">Chuyển đến trang đăng ký</a>
                 </p> -->
             </div>
             <!-- /.login-card-body -->

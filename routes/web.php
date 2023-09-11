@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('/admin')->group(function () {
-    Route::get('/loginpage', [AdminController::class, 'loginformadmin'])->name('adminlogin.page');
+    Route::get('/loginpage', [AdminController::class, 'loginpage'])->name('adminlogin.page');
 
     // Thêm các route khác ở đây nếu cần
 });

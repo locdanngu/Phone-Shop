@@ -46,7 +46,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <a href="" class="dropdown-item">
-                    Cài đặt thông tin
+                    Đổi mật khẩu
                 </a>
                 <div class="dropdown-divider"></div>
                 <!-- <a href="#" class="dropdown-item">

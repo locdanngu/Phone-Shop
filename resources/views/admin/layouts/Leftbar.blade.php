@@ -24,7 +24,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('adminhome.page') }}"
-                        class="nav-link {{ request()->is('Admin-home-page') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('admin/homepage') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-house-door-fill"></i>
                         <p>Trang điều hành</p>
                     </a>

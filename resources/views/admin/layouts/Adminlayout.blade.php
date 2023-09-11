@@ -5,27 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    @include('layouts.Linkadmin')
+    @include('admin.layouts.Linkadmin')
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        @include('layouts.Headeradmin')
+        @include('admin.layouts.Headeradmin')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include('layouts.Leftbar')
+        @include('admin.layouts.Leftbar')
 
         
         @yield('body')
 
 
-        @include('layouts.Modalpopupadmin')
-        @include('layouts.Footeradmin')
+        @include('admin.layouts.Modalpopupadmin')
+        @include('admin.layouts.Footeradmin')
     </div>
 
-    @include('layouts.Linkscript')
+    @include('admin.layouts.Linkscript')
     @yield('popup')
     @yield('js')
 </body>

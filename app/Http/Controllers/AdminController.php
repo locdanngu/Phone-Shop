@@ -17,4 +17,9 @@ class AdminController extends Controller
             return view('admin/page/Loginpage');
         }
     }
+
+    public function homepage(Request $request)
+    {
+        return view('admin/page/Homepage');
+    }
 }

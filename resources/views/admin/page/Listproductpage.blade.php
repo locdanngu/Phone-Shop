@@ -134,14 +134,37 @@
                         aria-describedby="inputGroup-sizing-default" required name="nameproduct">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Giá cũ($)</span>
-                    <input type="number" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="oldprice">
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Giá cũ($)</span>
+                        <input type="number" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" required name="oldprice" id="oldpricedola">
+                    </div>
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Giá cũ(đ)</span>
+                        <input type="number" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" id="oldpricevnd">
+                    </div>
                 </div>
-                <div class="input-group mb-3">
+                <!-- <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Giá mới($)</span>
                     <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="price">
+                </div> -->
+                <div class="input-group mb-3">
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Giá mới($)</span>
+                        <input type="number" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" required name="price" id="pricedola">
+                    </div>
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Giá mới(đ)</span>
+                        <input type="number" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" required name="price" id="pricevnd">
+                    </div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Mô
@@ -152,8 +175,8 @@
                         style="height:8em"></textarea>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default"
-                        style="width: 100% !important;">Danh mục</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Danh
+                        mục</span>
                     <select style="width: 100%;padding-left:1em;height:2.5em" name="idcategory">
                         @foreach($category as $ca)
                         <option value="{{ $ca->idcategory }}" style="height:2.5em">{{ $loop->iteration }}.
@@ -214,8 +237,8 @@
                         style="height:8em"></textarea>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default"
-                        style="width: 100% !important;">Danh mục</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Danh
+                        mục</span>
                     <select style="width: 100%;padding-left:1em;height:2.5em" name="idcategory">
                         @foreach($category as $ca)
                         <option value="{{ $ca->idcategory }}" style="height:2.5em">{{ $loop->iteration }}.
@@ -364,7 +387,39 @@ $(document).ready(function() {
         modal.find('img.imageblog2').attr('src', image);
     });
 
+    $("#oldpricedola").on("input", function() {
+        // Lấy giá trị của input thứ nhất
+        var inputValue1 = $(this).val();
 
+        // Tính giá trị mới cho input thứ hai bằng cách nhân với 23000
+        var newValue = inputValue1 * 23000;
+
+        // Cập nhật giá trị của input thứ hai
+        $("#oldpricevnd").val(newValue);
+    });
+
+    $("#oldpricevnd").on("input", function() {
+        // Lấy giá trị của input thứ nhất
+        var inputValue1 = $(this).val();
+
+        // Tính giá trị mới cho input thứ hai bằng cách nhân với 23000
+        var newValue = (inputValue1 / 23000).toFixed(2);
+
+        // Cập nhật giá trị của input thứ hai
+        $("#oldpricedola").val(newValue);
+    });
+
+    $("#pricedola").on("input", function() {
+        var inputValue1 = $(this).val();
+        var newValue = inputValue1 * 23000;
+        $("#pricevnd").val(newValue);
+    });
+
+    $("#pricevnd").on("input", function() {
+        var inputValue1 = $(this).val();
+        var newValue = (inputValue1 / 23000).toFixed(2);
+        $("#pricedola").val(newValue);
+    });
 
 });
 </script>

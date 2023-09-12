@@ -163,7 +163,7 @@
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá mới(đ)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" required name="price" id="pricevnd">
+                            aria-describedby="inputGroup-sizing-default" id="pricevnd">
                     </div>
                 </div>
                 <div class="input-group mb-3">

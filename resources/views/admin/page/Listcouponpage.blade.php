@@ -43,31 +43,77 @@
                         </div>
                     </div>
                     <div class="card-header d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-center col-2">
+                        <div class="d-flex flex-column align-items-center phantu">
                             <span class="font-weight-bold">Áp dụng cho</span>
                             <div class="d-flex justify-content-between w-100">
                                 <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="option" value="option1" class="mr-1">
+                                    <input type="radio" name="applicable_to" value="option1" class="mr-1">
                                     Sản phẩm
                                 </label>
 
                                 <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="option" value="option2" class="mr-1">
+                                    <input type="radio" name="applicable_to" value="option2" class="mr-1">
                                     Đơn hàng
                                 </label>
                             </div>
                         </div>
-                        <div class="d-flex flex-column align-items-center col-2">
+                        <hr class="vertical">
+                        <div class="d-flex flex-column align-items-center phantu">
                             <span class="font-weight-bold">Người dùng</span>
                             <div class="d-flex justify-content-between w-100">
                                 <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="option" value="option1" class="mr-1">
+                                    <input type="radio" name="iduser" value="option1" class="mr-1">
                                     Cá nhân
+                                </label>
+
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="iduser" value="option2" class="mr-1">
+                                    Tất cả
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="vertical">
+                        <div class="d-flex flex-column align-items-center phantu">
+                            <span class="font-weight-bold">Sản phẩm</span>
+                            <div class="d-flex justify-content-between w-100">
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="product_list" value="option1" class="mr-1">
+                                    Danh sách
                                 </label>
                                 
                                 <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="option" value="option2" class="mr-1">
+                                    <input type="radio" name="product_list" value="option2" class="mr-1">
                                     Tất cả
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="vertical">
+                        <div class="d-flex flex-column align-items-center phantu">
+                            <span class="font-weight-bold">Danh mục</span>
+                            <div class="d-flex justify-content-between w-100">
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="category_list" value="option1" class="mr-1">
+                                    Danh sách
+                                </label>
+                                
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="category_list" value="option2" class="mr-1">
+                                    Tất cả
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="vertical">
+                        <div class="d-flex flex-column align-items-center phantu">
+                            <span class="font-weight-bold">Kiểu</span>
+                            <div class="d-flex justify-content-between w-100">
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="category_list" value="option1" class="mr-1">
+                                    Phần trăm
+                                </label>
+                                
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="category_list" value="option2" class="mr-1">
+                                    Giá
                                 </label>
                             </div>
                         </div>

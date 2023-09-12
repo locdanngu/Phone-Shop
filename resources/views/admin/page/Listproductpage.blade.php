@@ -51,7 +51,7 @@
                                         <th class="text-center">Giá mới($)</th>
                                         <th class="text-center">Giá mới(VND)</th>
                                         <th>Mô tả sản phẩm</th>
-                                        <th class="text-center">Hãng</th>
+                                        <th class="text-center">Danh mục</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default"
-                        style="width: 100% !important;">Hãng</span>
+                        style="width: 100% !important;">Danh mục</span>
                     <select style="width: 100%;padding-left:1em;height:2.5em" name="idcategory">
                         @foreach($category as $ca)
                         <option value="{{ $ca->idcategory }}" style="height:2.5em">{{ $loop->iteration }}.
@@ -215,7 +215,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default"
-                        style="width: 100% !important;">Hãng</span>
+                        style="width: 100% !important;">Danh mục</span>
                     <select style="width: 100%;padding-left:1em;height:2.5em" name="idcategory">
                         @foreach($category as $ca)
                         <option value="{{ $ca->idcategory }}" style="height:2.5em">{{ $loop->iteration }}.
@@ -279,7 +279,7 @@
                     <span name="detail" class="spanpopup"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Hãng</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
                     <span name="namecategory" class="spanpopup font-weight-bold"></span>
                 </div>
                 <div class="input-group mb-3 d-flex align-items-center">

@@ -1,6 +1,6 @@
 @extends('admin.layouts.Adminlayout')
 
-@section('title', 'Danh sách hãng')
+@section('title', 'Danh sách danh mục')
 <!-- Content Wrapper. Contains page content -->
 @section('body')
 <div class="content-wrapper">
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Quản lý hãng</h1>
+                    <h1 class="m-0">Quản lý danh mục</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-center mb-3">
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#modal-add"><i
-                        class="bi bi-plus-circle-fill"></i> Thêm 1 hãng mới</button>
+                        class="bi bi-plus-circle-fill"></i> Thêm 1 danh mục mới</button>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng : {{ $countcategory }} hãng</h3>
+                        <h3 class="card-title">Tổng cộng : {{ $countcategory }} danh mục</h3>
                         <div class="card-tools" style="width: 45%;">
                             <form action="{{ route('searchcategory') }}" method="get"
                                 class="input-group input-group-sm">
@@ -46,8 +46,8 @@
                             <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Tên hãng</th>
-                                        <th class="text-center">Logo hãng</th>
+                                        <th>Tên danh mục</th>
+                                        <th class="text-center">Logo danh mục</th>
                                         <th class="text-center">Số sản phẩm</th>
                                         <th></th>
                                     </tr>
@@ -106,14 +106,14 @@
         <form class="modal-content" action="{{ route('category.add') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Tạo hãng</h4>
+                <h4 class="modal-title">Tạo danh mục</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên hãng</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="namecategory">
                 </div>
@@ -140,7 +140,7 @@
         <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Chỉnh sửa hãng</h4>
+                <h4 class="modal-title">Chỉnh sửa danh mục</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -148,7 +148,7 @@
             <input type="hidden" name="idcategory">
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên hãng</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="namecategory">
                 </div>
@@ -183,7 +183,7 @@
         <form class="modal-content" action="{{ route('category.delete') }}" method="post">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Xóa 1 hãng</h4>
+                <h4 class="modal-title">Xóa 1 danh mục</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -191,7 +191,7 @@
             <input type="hidden" name="idcategory">
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên hãng</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
                     <span name="namecategory" class="spanpopup"></span>
                 </div>
                 <div class="input-group mb-3 d-flex align-items-center">

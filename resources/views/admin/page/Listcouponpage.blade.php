@@ -64,7 +64,7 @@
                                     <input type="radio" name="option" value="option1" class="mr-1">
                                     Cá nhân
                                 </label>
-
+                                
                                 <label class="font-weight-normal d-flex">
                                     <input type="radio" name="option" value="option2" class="mr-1">
                                     Tất cả

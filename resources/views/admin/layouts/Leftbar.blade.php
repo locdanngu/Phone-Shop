@@ -60,7 +60,7 @@
                         class="nav-link {{ request()->routeIs('listcategory.page', 'searchcategory') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-ui-checks-grid"></i>
                         <p>
-                            Quản lý hãng
+                            Quản lý danh mục
                             <i class="bi bi-arrow-left right"></i>
                         </p>
                     </a>
@@ -69,7 +69,7 @@
                             <a href="{{ route('listcategory.page') }}"
                                 class="nav-link {{ request()->routeIs('listcategory.page', 'searchcategory') ? 'active' : '' }}">
                                 <i class="bi bi-list-columns nav-icon"></i>
-                                <p>Danh sách hãng</p>
+                                <p>Danh sách danh mục</p>
                             </a>
                         </li>
                         <!-- <li class="nav-item">

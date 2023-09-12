@@ -6,6 +6,7 @@ use Hash;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Coupon;
 use Mail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -240,8 +241,8 @@ class AdminController extends Controller
     public function listcouponpage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
+        
 
-
-        return view('admin/page/Listcouponpage');
+        return view('admin/page/Listcouponpage', compact('admin'));
     }
 }

@@ -33,7 +33,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng :  hãng</h3>
+                        <h3 class="card-title">Tổng cộng :  mã</h3>
                         <div class="card-tools" style="width: 45%;">
                             <form action="{{ route('searchcategory') }}" method="get"
                                 class="input-group input-group-sm">

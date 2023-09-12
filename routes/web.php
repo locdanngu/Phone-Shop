@@ -27,6 +27,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/logoutadmin', [AdminController::class, 'logoutadmin'])->name('logoutadmin');
         Route::get('/changepasswordpage', [AdminController::class, 'changepasswordpage'])->name('adminchangepassword.page');
         Route::post('/changepassword', [AdminController::class, 'changepassword'])->name('adminchangepassword');
+
         Route::get('/listproductpage', [AdminController::class, 'listproductpage'])->name('listproduct.page');
         Route::get('/listproductpage/search', [AdminController::class, 'listproductpage'])->name('searchproduct');
         Route::post('/addproduct', [AdminController::class, 'addproduct'])->name('product.add');
@@ -38,6 +39,8 @@ Route::prefix('/admin')->group(function () {
         Route::post('/addcategory', [AdminController::class, 'addcategory'])->name('category.add');
         Route::post('/changecategory', [AdminController::class, 'changecategory'])->name('category.change');
         Route::post('/deletecategory', [AdminController::class, 'deletecategory'])->name('category.delete');
+
+        Route::get('/listcouponpage', [AdminController::class, 'listcouponpage'])->name('listcoupon.page');
     });
 });
 

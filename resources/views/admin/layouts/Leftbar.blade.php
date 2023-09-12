@@ -14,14 +14,13 @@
                 <img src="/image/admin.png" class="img-circle elevation-2" alt="">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ $admin->name }}</a>
+                <a href="{{ route('adminhome.page') }}" class="d-block">{{ $admin->name }}</a>
             </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
                 <li class="nav-item">
                     <a href="{{ route('adminhome.page') }}"
                         class="nav-link {{ request()->is('admin/homepage') ? 'active' : '' }}">
@@ -92,7 +91,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link {{ request()->is('dauvao') ? 'active' : '' }}">
+                            <a href="{{ route('listcoupon.page') }}" class="nav-link {{ request()->is('dauvao') ? 'active' : '' }}">
                                 <i class="bi bi-list-stars nav-icon"></i>
                                 <p>Danh sách mã giảm giá</p>
                             </a>
@@ -112,6 +111,54 @@
                             Quản lý người dùng
                         </p>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#"
+                        class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                        <i class="nav-icon bi-receipt"></i>
+                        <p>
+                            Quản lý đơn
+                            <!-- <i class="bi bi-arrow-left right"></i> -->
+                            <!-- <span class="badge badge-info right">6</span> -->
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href=""
+                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                                <i class="bi-receipt-cutoff nav-icon"></i>
+                                <p>Đơn đặt hàng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href=""
+                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                                <i class="bi-file-earmark-check nav-icon"></i>
+                                <p>Đơn đã chấp nhận</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href=""
+                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                                <i class="bi-file-earmark-excel nav-icon"></i>
+                                <p>Đơn đã hủy</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href=""
+                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                                <i class="bi-file-earmark-check-fill nav-icon"></i>
+                                <p>Đơn đã hoàn thành</p>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a href=""
+                                class="nav-link {{ request()->is('don-tra-loi-tu-van') ? 'active' : '' }}">
+                                <i class="bi bi-file-x nav-icon"></i>
+                                <p>Sản phẩm đã bị xóa</p>
+                            </a>
+                        </li> -->
+                    </ul>
                 </li>
             </ul>
         </nav>

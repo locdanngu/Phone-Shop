@@ -236,4 +236,12 @@ class AdminController extends Controller
         $category->delete();
         return redirect()->route('listcategory.page');
     }
+
+    public function listcouponpage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+
+
+        return view('admin/page/Listcouponpage');
+    }
 }

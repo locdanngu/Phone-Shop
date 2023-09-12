@@ -66,7 +66,11 @@
                                         </td>
                                         <td class="font-weight-bold text-center" style="color:red">
                                             {{ number_format($row->price * 23000, 0, ',', '.') }} đ</td>
+                                        @if(strlen($row->detail) > 30)
+                                        <td>{!! mb_substr(strip_tags($row->detail), 0, 30) !!}...</td>
+                                        @else
                                         <td>{{ $row->detail }}</td>
+                                        @endif
                                         <td class="font-weight-bold text-center"><a
                                                 href="{{ route('searchcategory', ['searchcategory' => $row->category->namecategory]) }}">{{ $row->category->namecategory }}</a>
                                         </td>

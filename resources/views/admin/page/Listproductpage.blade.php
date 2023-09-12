@@ -42,8 +42,6 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="height: 65vh;">
                         <div class="d-flex flex-column justify-content-between" style="height: 95%;">
-
-
                             <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                     <tr>
@@ -72,12 +70,20 @@
                                         <td class="font-weight-bold text-center">{{ $row->category->namecategory }}</td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-change-brief">
+                                                data-target="#modal-change-brief" data-id="{{ $row->idproduct }}"
+                                                data-name="{{ $row->nameproduct }}" data-old="{{ $row->oldprice }}"
+                                                data-new="{{ $row->price }}" data-detail="{{ $row->detail }}"
+                                                data-idcate="{{ $row->idcategory }}"
+                                                data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-pencil"></i>
                                                 Sửa
                                             </button>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-delete-brief">
+                                                data-target="#modal-delete-brief" data-id="{{ $row->idproduct }}"
+                                                data-name="{{ $row->nameproduct }}" data-old="{{ $row->oldprice }}"
+                                                data-new="{{ $row->price }}" data-detail="{{ $row->detail }}"
+                                                data-idcate="{{ $row->idcategory }}"
+                                                data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-trash"></i> Xóa
                                             </button>
                                         </td>
@@ -106,30 +112,50 @@
 <!-- Modal trả lời đơn tư vấn -->
 <div class="modal fade" id="modal-add-brief">
     <div class="modal-dialog">
-        <form class="modal-content" action="" method="post">
+        <form class="modal-content" action="" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Tạo dịch vụ brief</h4>
+                <h4 class="modal-title">Tạo thêm sản phẩm mới</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên brief</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên sản phẩm</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="name">
+                        aria-describedby="inputGroup-sizing-default" required name="nameproduct">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Nội dung brief</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Giá cũ</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="content">
+                        aria-describedby="inputGroup-sizing-default" required name="oldprice">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tiêu đề brief</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Giá mới</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="title">
+                        aria-describedby="inputGroup-sizing-default" required name="price">
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Mô tả</span>
+           
+                    <textarea type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="detail" style="height:8em"></textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Hãng</span>
+                    <select style="width: 100%;padding-left:1em;height:2.5em" name="idservice">
+                        @foreach($category as $ca)
+                        <option value="{{ $ca->idcategory }}" style="height:2.5em">{{ $loop->iteration }}. {{ $ca->namecategory }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
+                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
+                        onchange="previewImage(event)" name="image" required>
+                </div>
+                <img id="preview" src="" alt="" style="height:100px">
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -144,7 +170,7 @@
 
 <div class="modal fade" id="modal-change-brief">
     <div class="modal-dialog">
-        <form class="modal-content" action="" method="post">
+        <form class="modal-content" action="" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Chỉnh sửa brief</h4>
@@ -165,10 +191,11 @@
                         aria-describedby="inputGroup-sizing-default" required name="content">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tiêu đề brief</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="title">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh sản phẩm</span>
+                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
+                        onchange="previewImage2(event)" name="image" required class="imageblog1">
                 </div>
+                <img id="preview2" src="" alt="" style="height:100px">
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -220,6 +247,27 @@
 
 @section('js')
 <script>
+function previewImage(event) {
+    const preview = document.getElementById('preview');
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function() {
+        preview.src = reader.result;
+    }
+    reader.readAsDataURL(file);
+}
+
+function previewImage2(event) {
+    const preview = document.getElementById('preview2');
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function() {
+        preview.src = reader.result;
+    }
+    reader.readAsDataURL(file);
+}
+
+
 $(document).ready(function() {
     $('#modal-change-brief').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn

@@ -151,7 +151,7 @@
                         aria-describedby="inputGroup-sizing-default" required name="namecategory">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
                     <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
                         onchange="previewImage2(event)" name="image" required class="imageblog1">
                 </div>

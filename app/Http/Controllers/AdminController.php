@@ -97,8 +97,9 @@ class AdminController extends Controller
             })->orderBy('idproduct', 'desc');
         }
         $product = $product->orderBy('idproduct', 'desc')->paginate($limit);
+        $category = Category::all();
 
-        return view('admin/page/Listproductpage', compact('admin','product','searchproduct'));
+        return view('admin/page/Listproductpage', compact('admin','product','searchproduct','category'));
     }
 
     public function listcategorypage(Request $request)

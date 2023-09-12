@@ -18,8 +18,8 @@
     <div class="content">
         <div class="row">
             <div class="col-12 d-flex justify-content-center mb-3">
-                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                    data-target="#modal-add"><i class="bi bi-plus-circle-fill"></i> Thêm 1 sản phẩm mới</button>
+                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#modal-add"><i
+                        class="bi bi-plus-circle-fill"></i> Thêm 1 sản phẩm mới</button>
             </div>
         </div>
     </div>
@@ -137,21 +137,25 @@
                         aria-describedby="inputGroup-sizing-default" required name="price">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Mô tả</span>
-           
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Mô
+                        tả</span>
+
                     <textarea type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="detail" style="height:8em"></textarea>
+                        aria-describedby="inputGroup-sizing-default" required name="detail"
+                        style="height:8em"></textarea>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Hãng</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default"
+                        style="width: 100% !important;">Hãng</span>
                     <select style="width: 100%;padding-left:1em;height:2.5em" name="idcategory">
                         @foreach($category as $ca)
-                        <option value="{{ $ca->idcategory }}" style="height:2.5em">{{ $loop->iteration }}. {{ $ca->namecategory }}</option>
+                        <option value="{{ $ca->idcategory }}" style="height:2.5em">{{ $loop->iteration }}.
+                            {{ $ca->namecategory }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh sản phẩm</span>
                     <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
                         onchange="previewImage(event)" name="image" required>
                 </div>
@@ -170,10 +174,10 @@
 
 <div class="modal fade" id="modal-change">
     <div class="modal-dialog">
-        <form class="modal-content" action="" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('product.change') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Chỉnh sửa brief</h4>
+                <h4 class="modal-title">Chỉnh sửa sản phẩm</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -210,27 +214,39 @@
 
 <div class="modal fade" id="modal-delete">
     <div class="modal-dialog">
-        <form class="modal-content" action="" method="post">
+        <form class="modal-content" action="{{ route('product.delete') }}" method="post">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Xóa dịch vụ brief</h4>
+                <h4 class="modal-title">Xóa 1 sản phẩm</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input type="hidden" name="id">
+            <input type="hidden" name="idproduct">
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên brief</span>
-                    <span name="name" class="spanpopup"></span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên sản phẩm</span>
+                    <span name="nameproduct" class="spanpopup font-weight-bold" style="color:red"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Nội dung brief</span>
-                    <span name="content" class="spanpopup"></span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Giá cũ($)</span>
+                    <span name="oldprice" class="spanpopup"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tiêu đề brief</span>
-                    <span name="title" class="spanpopup"></span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Giá mới($)</span>
+                    <span name="price" class="spanpopup font-weight-bold" style="color:red"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Mô tả</span>
+                    <span name="detail" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Hãng</span>
+                    <span name="namecategory" class="spanpopup font-weight-bold"></span>
+                </div>
+                <div class="input-group mb-3 d-flex align-items-center">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh sản phẩm</span>
+                    <img src="" alt="" style="height:100px;margin-left:1em" class="imageblog2">
                 </div>
             </div>
             <div class="modal-footer justify-align-content-end">
@@ -273,32 +289,38 @@ $(document).ready(function() {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
         var name = button.data('name');
-        var oldprice = button.data('oldprice');
-        var price = button.data('price');
+        var oldprice = button.data('old');
+        var price = button.data('new');
         var detail = button.data('detail');
         var category = button.data('cate');
         var image = button.data('image');
         var modal = $(this);
-        modal.find('input[name="name"]').val(name);
-        modal.find('input[name="id"]').val(id);
-        modal.find('input[name="content"]').val(content);
-        modal.find('input[name="title"]').val(title);
+        modal.find('input[name="nameproduct"]').val(name);
+        modal.find('input[name="idproduct"]').val(id);
+        modal.find('input[name="oldprice"]').val(oldprice);
+        modal.find('input[name="price"]').val(price);
+        modal.find('textarea[name="detail"]').val(detail);
+        modal.find('input[name="namecategory"]').val(category);
+        modal.find('img.imageblog').attr('src', image);
     });
 
     $('#modal-delete').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
         var name = button.data('name');
-        var oldprice = button.data('oldprice');
-        var price = button.data('price');
+        var oldprice = button.data('old');
+        var price = button.data('new');
         var detail = button.data('detail');
         var category = button.data('cate');
         var image = button.data('image');
         var modal = $(this);
-        modal.find('span[name="name"]').text(name);
-        modal.find('input[name="id"]').val(id);
-        modal.find('span[name="content"]').text(content);
-        modal.find('span[name="title"]').text(title);
+        modal.find('span[name="nameproduct"]').text(name);
+        modal.find('input[name="idproduct"]').val(id);
+        modal.find('span[name="oldprice"]').text(oldprice);
+        modal.find('span[name="price"]').text(price);
+        modal.find('span[name="detail"]').text(detail);
+        modal.find('span[name="namecategory"]').text(category);
+        modal.find('img.imageblog2').attr('src', image);
     });
 
 

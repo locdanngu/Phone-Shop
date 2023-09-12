@@ -18,8 +18,8 @@
     <div class="content">
         <div class="row">
             <div class="col-12 d-flex justify-content-center mb-3">
-                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                    data-target="#modal-add"><i class="bi bi-plus-circle-fill"></i> Thêm 1 hãng mới</button>
+                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#modal-add"><i
+                        class="bi bi-plus-circle-fill"></i> Thêm 1 hãng mới</button>
             </div>
         </div>
     </div>
@@ -173,7 +173,7 @@
         <form class="modal-content" action="{{ route('category.delete') }}" method="post">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Xóa dịch vụ brief</h4>
+                <h4 class="modal-title">Xóa 1 hãng</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -186,8 +186,7 @@
                 </div>
                 <div class="input-group mb-3 d-flex align-items-center">
                     <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
-                    <img id="preview2" src="" alt="" style="height:100px;   margin-left:1em"
-                        class="imageblog2">
+                    <img src="" alt="" style="height:100px;margin-left:1em" class="imageblog2">
                 </div>
             </div>
             <div class="modal-footer justify-align-content-end">

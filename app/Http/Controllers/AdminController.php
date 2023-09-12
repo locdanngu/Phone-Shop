@@ -152,7 +152,7 @@ class AdminController extends Controller
     public function deleteproduct(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $product = Product::where('idcategory', $request['idproduct'])->first();
+        $product = Product::where('idproduct', $request['idproduct'])->first();
         $product->delete();
         return redirect()->route('listproduct.page');
     }

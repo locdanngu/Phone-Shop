@@ -22,6 +22,9 @@ class CouponSeeder extends Seeder
             'minimum_order_amoun' => 100,
             'max_discount_amount' => 50,
             'discount_amount' => 20,
+            'used' => 0,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

@@ -117,16 +117,6 @@ input[type="file"] {
     justify-content: center;
 }
 
-.phantu{
-    width: 15%;
-}
-
-.vertical{
-    border: 0.5px solid black;
-    height: auto;
-    padding: 0 !important;
-    margin: 0 !important;
-}
 
 
 .relative.inline-flex.hover:text-gray-400.focus:z-10 .focus:outline-none .focus:ring .ring-gray-300 .focus:border-blue-300 .active:bg-gray-100 .active:text-gray-500

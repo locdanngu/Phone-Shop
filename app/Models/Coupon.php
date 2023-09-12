@@ -22,6 +22,7 @@ class Coupon extends Model
         'minimum_order_amoun',          //Giá thấp nhất để áp dụng
         'max_discount_amount',          //Lượng giảm giá cao nhất
         'discount_amount',              //Mức giảm giá
+        'used',
     ];
 
     // Thiết lập kiểu dữ liệu của các trường timestamp

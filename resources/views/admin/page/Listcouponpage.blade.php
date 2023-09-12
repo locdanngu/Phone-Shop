@@ -42,83 +42,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card-header d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-center phantu">
-                            <span class="font-weight-bold">Áp dụng cho</span>
-                            <div class="d-flex justify-content-between w-100">
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="applicable_to" value="option1" class="mr-1">
-                                    Sản phẩm
-                                </label>
 
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="applicable_to" value="option2" class="mr-1">
-                                    Đơn hàng
-                                </label>
-                            </div>
-                        </div>
-                        <hr class="vertical">
-                        <div class="d-flex flex-column align-items-center phantu">
-                            <span class="font-weight-bold">Người dùng</span>
-                            <div class="d-flex justify-content-between w-100">
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="iduser" value="option1" class="mr-1">
-                                    Cá nhân
-                                </label>
-
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="iduser" value="option2" class="mr-1">
-                                    Tất cả
-                                </label>
-                            </div>
-                        </div>
-                        <hr class="vertical">
-                        <div class="d-flex flex-column align-items-center phantu">
-                            <span class="font-weight-bold">Sản phẩm</span>
-                            <div class="d-flex justify-content-between w-100">
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="product_list" value="option1" class="mr-1">
-                                    Danh sách
-                                </label>
-                                
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="product_list" value="option2" class="mr-1">
-                                    Tất cả
-                                </label>
-                            </div>
-                        </div>
-                        <hr class="vertical">
-                        <div class="d-flex flex-column align-items-center phantu">
-                            <span class="font-weight-bold">Danh mục</span>
-                            <div class="d-flex justify-content-between w-100">
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="category_list" value="option1" class="mr-1">
-                                    Danh sách
-                                </label>
-                                
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="category_list" value="option2" class="mr-1">
-                                    Tất cả
-                                </label>
-                            </div>
-                        </div>
-                        <hr class="vertical">
-                        <div class="d-flex flex-column align-items-center phantu">
-                            <span class="font-weight-bold">Kiểu</span>
-                            <div class="d-flex justify-content-between w-100">
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="category_list" value="option1" class="mr-1">
-                                    Phần trăm
-                                </label>
-                                
-                                <label class="font-weight-normal d-flex">
-                                    <input type="radio" name="category_list" value="option2" class="mr-1">
-                                    Giá
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="height: 65vh;">
                         <div class="d-flex flex-column justify-content-between" style="height: 95%;">
@@ -126,17 +50,63 @@
                                 <thead>
                                     <tr>
                                         <th>Mã giảm giá</th>
-                                        <th class="text-center">Ngày bắt đầu</th>
-                                        <th class="text-center">Ngày hết hạn</th>
+                                        <th class="text-center">Áp dụng</th>
+                                        <!-- <th class="text-center">Người dùng</th>
+                                        <th class="text-center">Sản phẩm</th>
+                                        <th class="text-center">Danh mục</th> -->
+                                        <th class="text-center">Kiểu</th>
+                                        <th>Bắt đầu</th>
+                                        <th>Hết hạn</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($coupon as $row)
                                     <tr>
-                                        <td>{{ $row->code }}</td>
+                                        <td class="font-weight-bold" style="color: red">{{ $row->code }}</td>
+                                        @if($row->applicable_to == 'cart')
+                                        <td class="text-center">Đơn hàng</td>
+                                        @else
+                                        <td class="text-center">Sản phẩm</td>
+                                        @endif
+                                        <!-- @if($row->id_user)
+                                        <td class="text-center font-weight-bold">{{ $row->id_user }}</td>
+                                        @else   
+                                        <td class="text-center font-weight-bold">Tất cả</td>  
+                                        @endif
+                                        @if($row->product_list = 1)
+                                        <td class="text-center">Danh sách</td>
+                                        @else   
+                                        <td class="text-center">Tất cả</td>  
+                                        @endif
+                                        @if($row->category_list = 1)
+                                        <td class="text-center">Danh sách</td>
+                                        @else   
+                                        <td class="text-center">Tất cả</td>  
+                                        @endif -->
+                                        @if($row->discount_type = 'percentage')
+                                        <td class="text-center">Phần trăm</td>
+                                        @else
+                                        <td class="text-center">Mức tiền</td>
+                                        @endif
                                         <td>{{ $row->starttime }}</td>
                                         <td>{{ $row->endtime }}</td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-in4">
+                                                <i class="bi bi-info-lg"></i>
+                                                Thông tin
+                                            </button>
+                                            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-change">
+                                                <i class="bi bi-pencil"></i>
+                                                Sửa
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-delete">
+                                                <i class="bi bi-trash"></i> Xóa
+                                            </button>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

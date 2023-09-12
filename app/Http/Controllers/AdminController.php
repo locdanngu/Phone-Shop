@@ -111,7 +111,8 @@ class AdminController extends Controller
             $category = $category->where('namecategory', 'like', '%' . $searchcategory . '%')->orderBy('idcategory', 'desc');
         }
         $category = $category->orderBy('idcategory', 'desc')->paginate($limit);
-        return view('admin/page/Listcategorypage', compact('admin','category','searchcategory'));
+        $countcategory = $category->count();
+        return view('admin/page/Listcategorypage', compact('admin','category','searchcategory','countcategory'));
     }
 
     public function addcategory(Request $request)
@@ -151,6 +152,14 @@ class AdminController extends Controller
         }
         $category->save();
 
+        return redirect()->route('listcategory.page');
+    }
+
+    public function deletecategory(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $category = Category::where('idcategory', $request['idcategory'])->first();
+        $category->delete();
         return redirect()->route('listcategory.page');
     }
 }

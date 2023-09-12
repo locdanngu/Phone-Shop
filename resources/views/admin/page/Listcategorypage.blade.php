@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng : Sản phẩm</h3>
+                        <h3 class="card-title">Tổng cộng : hãng</h3>
                         <div class="card-tools" style="width: 45%;">
                             <form action="{{ route('searchcategory') }}" method="get"
                                 class="input-group input-group-sm">
@@ -97,30 +97,26 @@
 <!-- Modal trả lời đơn tư vấn -->
 <div class="modal fade" id="modal-add-brief">
     <div class="modal-dialog">
-        <form class="modal-content" action="" method="post">
+        <form class="modal-content" action="{{ route('category.add') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Tạo dịch vụ brief</h4>
+                <h4 class="modal-title">Tạo hãng</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên brief</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên hãng</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="name">
+                        aria-describedby="inputGroup-sizing-default" required name="namecategory">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Nội dung brief</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="content">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
+                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
+                        onchange="previewImage(event)" name="image" required>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tiêu đề brief</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="title">
-                </div>
+                <img id="preview" src="" alt="" style="height:100px">
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -135,10 +131,10 @@
 
 <div class="modal fade" id="modal-change-brief">
     <div class="modal-dialog">
-        <form class="modal-content" action="" method="post">
+        <form class="modal-content" action="" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Chỉnh sửa brief</h4>
+                <h4 class="modal-title">Chỉnh sửa hãng</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -146,20 +142,16 @@
             <input type="hidden" name="id">
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên brief</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên hãng</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="name">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Nội dung brief</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="content">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
+                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
+                        onchange="previewImage2(event)" name="image" required>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tiêu đề brief</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="title">
-                </div>
+                <img id="preview2" src="" alt="" style="height:100px">
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -211,6 +203,26 @@
 
 @section('js')
 <script>
+function previewImage(event) {
+    const preview = document.getElementById('preview');
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function() {
+        preview.src = reader.result;
+    }
+    reader.readAsDataURL(file);
+}
+
+function previewImage2(event) {
+    const preview = document.getElementById('preview2');
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function() {
+        preview.src = reader.result;
+    }
+    reader.readAsDataURL(file);
+}
+
 $(document).ready(function() {
     $('#modal-change-brief').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn

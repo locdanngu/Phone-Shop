@@ -113,5 +113,25 @@ class AdminController extends Controller
         $category = $category->orderBy('idcategory', 'desc')->paginate($limit);
         return view('admin/page/Listcategorypage', compact('admin','category','searchcategory'));
     }
+
+    public function addcategory(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $category = new Category();
+
+        $category->namecategory = $request['namecategory'];
+        $category->product_count = 0;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('image/category/');
+            $image->move($path, $filename);
+            $category->imagecategory = '/image/category/' . $filename;
+        }
+        $category->save();
+
+        return redirect()->route('listcategory.page');
+    }
 }
 

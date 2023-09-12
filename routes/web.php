@@ -32,6 +32,7 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/listcategorypage', [AdminController::class, 'listcategorypage'])->name('listcategory.page');
         Route::get('/listcategorypage/search', [AdminController::class, 'listcategorypage'])->name('searchcategory');
+        Route::post('/addcategory', [AdminController::class, 'addcategory'])->name('category.add');
     });
 });
 

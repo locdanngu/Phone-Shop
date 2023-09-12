@@ -150,12 +150,20 @@
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="namecategory">
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
-                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
-                        onchange="previewImage2(event)" name="image" required class="imageblog1">
+                <div class="w-100 d-flex">
+                    <div class="w-100 mb-3 d-flex flex-column align-items-center">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width:100% !important">Logo
+                            hiện tại</span>
+                        <img src="" alt="" style="height:100px;width: fit-content;margin-top: 2.5em" class="imageblog1">
+                    </div>
+                    <div class="w-100 mb-3 d-flex flex-column align-items-center">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width:100% !important">Logo
+                            mới</span>
+                        <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
+                            onchange="previewImage2(event)" name="image">
+                        <img id="preview2" src="" alt="" style="height:100px">
+                    </div>
                 </div>
-                <img id="preview2" src="" alt="" style="height:100px">
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>

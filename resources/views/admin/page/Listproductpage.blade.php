@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng : Sản phẩm</h3>
+                        <h3 class="card-title">Tổng cộng : {{ $countproduct }} Sản phẩm</h3>
                         <div class="card-tools" style="width: 45%;">
                             <form action="{{ route('searchproduct') }}" method="get" class="input-group input-group-sm">
                                 <input type="text" name="searchproduct" class="form-control float-right"

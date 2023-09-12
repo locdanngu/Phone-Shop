@@ -58,7 +58,9 @@
                                         <td class="font-weight-bold" style="color:red">{{ $row->namecategory }}</td>
                                         <td class="text-center"><img src="{{ $row->imagecategory }}" alt="" height="50">
                                         </td>
-                                        <td class="text-center font-weight-bold">{{ $row->product_count }}</td>
+                                        <td class="text-center font-weight-bold"><a
+                                                href="{{ route('searchproduct', ['searchproduct' => $row->namecategory]) }}">{{ $row->product_count }}</a>
+                                        </td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-change" data-id="{{ $row->idcategory }}"

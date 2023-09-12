@@ -90,16 +90,25 @@ class AdminController extends Controller
         $limit = $request->limit ?? 5;
         $product = new Product();
         $searchproduct = $request['searchproduct'];
+        // if ($searchproduct) {
+        //     $product = $product->where(function($query) use ($searchproduct) {
+        //         $query->where('nameproduct', 'like', '%' . $searchproduct . '%')
+        //               ->orWhere('price', 'like', '%' . $searchproduct . '%');
+        //     })->orderBy('idproduct', 'desc');
+        // }
         if ($searchproduct) {
-            $product = $product->where(function($query) use ($searchproduct) {
-                $query->where('nameproduct', 'like', '%' . $searchproduct . '%')
-                      ->orWhere('price', 'like', '%' . $searchproduct . '%');
-            })->orderBy('idproduct', 'desc');
+            $product = $product->where('nameproduct', 'like', '%' . $searchproduct . '%')
+                ->orWhereHas('category', function($query) use ($searchproduct) {
+                    $query->where('namecategory', 'like', '%' . $searchproduct . '%');
+                })
+                ->orderBy('idproduct', 'desc');
         }
+        
         $product = $product->orderBy('idproduct', 'desc')->paginate($limit);
+        $countproduct = $product->count();
         $category = Category::all();
 
-        return view('admin/page/Listproductpage', compact('admin','product','searchproduct','category'));
+        return view('admin/page/Listproductpage', compact('admin','product','searchproduct','category','countproduct'));
     }
 
     public function addproduct(Request $request)
@@ -228,4 +237,3 @@ class AdminController extends Controller
         return redirect()->route('listcategory.page');
     }
 }
-

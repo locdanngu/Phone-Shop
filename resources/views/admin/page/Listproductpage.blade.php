@@ -73,7 +73,7 @@
                                                 data-target="#modal-change" data-id="{{ $row->idproduct }}"
                                                 data-name="{{ $row->nameproduct }}" data-old="{{ $row->oldprice }}"
                                                 data-new="{{ $row->price }}" data-detail="{{ $row->detail }}"
-                                                data-cate="{{ $row->category->namecategory }}"
+                                                data-cate="{{ $row->idcategory }}"
                                                 data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-pencil"></i>
                                                 Sửa
@@ -185,21 +185,52 @@
             <input type="hidden" name="id">
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên brief</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên sản phẩm</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="name">
+                        aria-describedby="inputGroup-sizing-default" required name="nameproduct">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Nội dung brief</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Giá cũ($)</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="content">
+                        aria-describedby="inputGroup-sizing-default" required name="oldprice">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh sản phẩm</span>
-                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
-                        onchange="previewImage2(event)" name="image" required class="imageblog1">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Giá mới($)</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="price">
                 </div>
-                <img id="preview2" src="" alt="" style="height:100px">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Mô
+                        tả</span>
+                    <textarea type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="detail"
+                        style="height:8em"></textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default"
+                        style="width: 100% !important;">Hãng</span>
+                    <select style="width: 100%;padding-left:1em;height:2.5em" name="idcategory">
+                        @foreach($category as $ca)
+                        <option value="{{ $ca->idcategory }}" style="height:2.5em">{{ $loop->iteration }}.
+                            {{ $ca->namecategory }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="w-100 d-flex">
+                    <div class="w-100 mb-3 d-flex flex-column align-items-center">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width:100% !important">Ảnh
+                            hiện tại</span>
+                        <img src="" alt="" style="height:100px;width: fit-content;margin-top: 2.5em" class="imageblog1">
+                    </div>
+                    <div class="w-100 mb-3 d-flex flex-column align-items-center">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width:100% !important">Ảnh
+                            sản phẩm mới</span>
+                        <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
+                            onchange="previewImage2(event)" name="image">
+                        <img id="preview2" src="" alt="" style="height:100px">
+                    </div>
+
+                </div>
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -300,8 +331,9 @@ $(document).ready(function() {
         modal.find('input[name="oldprice"]').val(oldprice);
         modal.find('input[name="price"]').val(price);
         modal.find('textarea[name="detail"]').val(detail);
-        modal.find('input[name="namecategory"]').val(category);
-        modal.find('img.imageblog').attr('src', image);
+        // modal.find('input[name="namecategory"]').val(category);
+        modal.find('select[name="idcategory"] option[value="' + category + '"]').prop('selected', true);
+        modal.find('img.imageblog1').attr('src', image);
     });
 
     $('#modal-delete').on('shown.bs.modal', function(event) {

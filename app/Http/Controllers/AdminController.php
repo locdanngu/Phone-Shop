@@ -96,9 +96,23 @@ class AdminController extends Controller
                       ->orWhere('price', 'like', '%' . $searchproduct . '%');
             })->orderBy('idproduct', 'desc');
         }
-        $product = $product->where('isdelete', '!=' , 1)->orderBy('idproduct', 'desc')->paginate($limit);
+        $product = $product->orderBy('idproduct', 'desc')->paginate($limit);
 
         return view('admin/page/Listproductpage', compact('admin','product','searchproduct'));
+    }
+
+    public function listcategorypage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $limit = $request->limit ?? 5;
+        $category = new Category();
+        $searchcategory = $request['searchcategory'];
+        if ($searchcategory) {
+            $category = $category->where('namecategory', 'like', '%' . $searchcategory . '%')->orderBy('idcategory', 'desc');
+        }
+        $category = $category->orderBy('idcategory', 'desc')->paginate($limit);
+
+        return view('admin/page/Listcategorypage', compact('admin','category','searchcategory'));
     }
 }
 

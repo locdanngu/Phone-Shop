@@ -23,6 +23,7 @@ class CouponSeeder extends Seeder
             'max_discount_amount' => 50,
             'discount_amount' => 20,
             'used' => 0,
+            'isdelete' => 0,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

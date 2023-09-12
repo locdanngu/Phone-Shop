@@ -23,6 +23,7 @@ class Coupon extends Model
         'max_discount_amount',          //Lượng giảm giá cao nhất
         'discount_amount',              //Mức giảm giá
         'used',
+        'isdelete',
     ];
 
     // Thiết lập kiểu dữ liệu của các trường timestamp

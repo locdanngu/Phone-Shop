@@ -111,7 +111,6 @@ class AdminController extends Controller
             $category = $category->where('namecategory', 'like', '%' . $searchcategory . '%')->orderBy('idcategory', 'desc');
         }
         $category = $category->orderBy('idcategory', 'desc')->paginate($limit);
-
         return view('admin/page/Listcategorypage', compact('admin','category','searchcategory'));
     }
 }

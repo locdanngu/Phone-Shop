@@ -11,14 +11,16 @@ class CategorySeeder extends Seeder
     {
         DB::table('category')->insert([
             'namecategory' => 'Apple',
-            'imagecategory' => 'apple.png',
+            'imagecategory' => '/image/category/apple.png',
+            'product_count' => 0,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('category')->insert([
             'namecategory' => 'Samsung',
-            'imagecategory' => 'samsung.png',
+            'imagecategory' => '/image/category/samsung.png',
+            'product_count' => 0,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

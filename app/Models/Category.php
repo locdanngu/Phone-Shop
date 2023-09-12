@@ -12,6 +12,7 @@ class Category extends Model
     protected $fillable = [
         'namecategory',
         'imagecategory',
+        'product_count'
     ];
 
     // Các quan hệ nếu có

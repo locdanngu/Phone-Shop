@@ -47,26 +47,17 @@
                             <thead>
                                 <tr>
                                     <th>Tên hãng</th>
-                                    <th class="text-center">Sản phẩm</th>
-                                    <th class="text-center">Giá cũ($)</th>
-                                    <th class="text-center">Giá mới($)</th>
-                                    <th class="text-center">Giá mới(VND)</th>
-                                    <th>Mô tả sản phẩm</th>
-                                    <th class="text-center">Hãng</th>
+                                    <th class="text-center">Logo hãng</th>
+                                    <th class="text-center">Số sản phẩm</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($category as $row)
                                 <tr>
-                                    <td class="font-weight-bold" style="color:red">{{ $row->nameproduct }}</td>
-                                    <td class="text-center"><img src="{{ $row->imageproduct }}" alt="" height="50"></td>
-                                    <td class="text-center">{{ $row->oldprice }} $</td>
-                                    <td class="font-weight-bold text-center" style="color:red">{{ $row->price }} $</td>
-                                    <td class="font-weight-bold text-center" style="color:red">
-                                        {{ number_format($row->price * 23000, 0, ',', '.') }} đ</td>
-                                    <td>{{ $row->detail }}</td>
-                                    <td class="font-weight-bold text-center">{{ $row->category->namecategory }}</td>
+                                    <td class="font-weight-bold" style="color:red">{{ $row->namecategory }}</td>
+                                    <td class="text-center"><img src="{{ $row->imagecategory }}" alt="" height="50"></td>
+                                    <td class="text-center">{{ $row->product_count }}</td>
                                     <td>
                                         <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
                                             data-target="#modal-change-brief">
@@ -83,7 +74,7 @@
                             </tbody>
                         </table>
                         <div class="pagination">
-                            {{ $product->links() }}
+                            {{ $category->links() }}
                         </div>
                         </div>
                     </div>

@@ -47,17 +47,17 @@
                                 <p>Danh sách sản phẩm</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href=""
                                 class="nav-link {{ request()->is('don-tra-loi-tu-van') ? 'active' : '' }}">
                                 <i class="bi bi-file-x nav-icon"></i>
                                 <p>Sản phẩm đã bị xóa</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('dauvao', 'daura') ? 'active' : '' }}">
+                    <a href="" class="nav-link {{ request()->is('dauvao', 'daura') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-ui-checks-grid"></i>
                         <p>
                             Quản lý hãng
@@ -66,19 +66,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href=""
+                            <a href="{{ route('listcategory.page') }}"
                                 class="nav-link {{ request()->is('dauvao') ? 'active' : '' }}">
                                 <i class="bi bi-list-columns nav-icon"></i>
                                 <p>Danh sách hãng</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href=""
                                 class="nav-link {{ request()->is('daura') ? 'active' : '' }}">
                                 <i class="bi-file-x nav-icon"></i>
                                 <p>Hãng đã xóa</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item">

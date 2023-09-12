@@ -19,7 +19,7 @@ class Coupon extends Model
         'iduser',                       //Người dùng ( 1 hoặc all )
         'product_list',                 //Danh sách product ( true / false )
         'discount_type',                //Loại giảm giá ( % hoặc $ )
-        'minimum_order_amoun',          //Giá thấp nhất để áp dụng
+        'minimum_order_amount',          //Giá thấp nhất để áp dụng
         'max_discount_amount',          //Lượng giảm giá cao nhất
         'discount_amount',              //Mức giảm giá
         'used',

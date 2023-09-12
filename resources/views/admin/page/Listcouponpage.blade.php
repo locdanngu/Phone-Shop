@@ -142,14 +142,90 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="namecategory">
+                        aria-describedby="inputGroup-sizing-default" required name="code">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
-                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
-                        onchange="previewImage(event)" name="image" required>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Áp dụng cho</span>
+                    <div class="d-flex align-items-center">
+                        <label class="label">
+                            <input type="radio" name="applicable_to" value="product">
+                            Sản phẩm
+                        </label>
+                        <label class="label">
+                            <input type="radio" name="applicable_to" value="cart">
+                            Đơn hàng
+                        </label>
+                    </div>
                 </div>
-                <img id="preview" src="" alt="" style="height:100px">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Người dùng</span>
+                    <div class="d-flex align-items-center">
+                        <label class="label">
+                            <input type="radio" name="iduser" value="product">
+                            Cá nhân
+                        </label>
+                        <label class="label">
+                            <input type="radio" name="iduser" value="cart">
+                            Tất cả
+                        </label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
+                    <div class="d-flex align-items-center">
+                        <label class="label">
+                            <input type="radio" name="product_list" value="product">
+                            Danh sách
+                        </label>
+                        <label class="label">
+                            <input type="radio" name="product_list" value="cart">
+                            Tất cả
+                        </label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
+                    <div class="d-flex align-items-center">
+                        <label class="label">
+                            <input type="radio" name="category_list" value="product">
+                            Danh sách
+                        </label>
+                        <label class="label">
+                            <input type="radio" name="category_list" value="cart">
+                            Tất cả
+                        </label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm</span>
+                    <div class="d-flex align-items-center">
+                        <label class="label">
+                            <input type="radio" name="discount_type" value="product">
+                            Phần trăm
+                        </label>
+                        <label class="label">
+                            <input type="radio" name="discount_type" value="cart">
+                            Mức tiền
+                        </label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Y/c tối thiểu</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="minimum_order_amount">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tối đa giảm</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="max_discount_amount">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Số tiền giảm</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="discount_amount">
+                </div>
+
+
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -240,26 +316,6 @@
 
 @section('js')
 <script>
-function previewImage(event) {
-    const preview = document.getElementById('preview');
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function() {
-        preview.src = reader.result;
-    }
-    reader.readAsDataURL(file);
-}
-
-function previewImage2(event) {
-    const preview = document.getElementById('preview2');
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function() {
-        preview.src = reader.result;
-    }
-    reader.readAsDataURL(file);
-}
-
 $(document).ready(function() {
     $('#modal-change').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn

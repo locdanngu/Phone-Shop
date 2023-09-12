@@ -133,14 +133,14 @@
         <form class="modal-content" action="{{ route('category.add') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Tạo hãng</h4>
+                <h4 class="modal-title">Tạo mã giảm giá</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên hãng</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="namecategory">
                 </div>

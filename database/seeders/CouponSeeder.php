@@ -27,5 +27,23 @@ class CouponSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('coupon')->insert([
+            'code' => 'TEST456',
+            'starttime' => now(),
+            'endtime' => now()->addDays(30),
+            'applicable_to' => 'product',
+            'iduser' => null,
+            'product_list' => 0,
+            'category_list' => 0,
+            'discount_type' => 'amount',
+            'minimum_order_amoun' => 0,
+            'max_discount_amount' => 50,
+            'discount_amount' => 50,
+            'used' => 0,
+            'isdelete' => 0,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

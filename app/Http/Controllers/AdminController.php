@@ -133,7 +133,7 @@ class AdminController extends Controller
     {
         $admin = Auth::guard('admin')->user();
         $product = Product::where('idproduct', $request['idproduct'])->first();
-        
+
         $product->nameproduct = $request['nameproduct'];
         $product->oldprice = $request['oldprice'];
         $product->price = $request['price'];
@@ -157,6 +157,12 @@ class AdminController extends Controller
         $admin = Auth::guard('admin')->user();
         $product = Product::where('idproduct', $request['idproduct'])->first();
         $product->delete();
+        
+        $category = Category::where('idcategory', $request['idcategory'])->first();
+
+        $category->product_count = $category->product_count - 1;
+        $category->save();
+
         return redirect()->route('listproduct.page');
     }
 

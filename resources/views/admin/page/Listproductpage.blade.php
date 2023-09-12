@@ -80,8 +80,9 @@
                                             </button>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-delete" data-id="{{ $row->idproduct }}"
-                                                data-name="{{ $row->nameproduct }}" data-old="{{ $row->oldprice }}"
-                                                data-new="{{ $row->price }}" data-detail="{{ $row->detail }}"
+                                                data-id2="{{ $row->idcategory }}" data-name="{{ $row->nameproduct }}"
+                                                data-old="{{ $row->oldprice }}" data-new="{{ $row->price }}"
+                                                data-detail="{{ $row->detail }}"
                                                 data-cate="{{ $row->category->namecategory }}"
                                                 data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-trash"></i> Xóa
@@ -128,12 +129,12 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Giá cũ($)</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="oldprice">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Giá mới($)</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="price">
                 </div>
                 <div class="input-group mb-3">
@@ -191,12 +192,12 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Giá cũ($)</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="oldprice">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Giá mới($)</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="price">
                 </div>
                 <div class="input-group mb-3">
@@ -253,6 +254,7 @@
                 </button>
             </div>
             <input type="hidden" name="idproduct">
+            <input type="hidden" name="idcategory">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Tên sản phẩm</span>
@@ -338,6 +340,7 @@ $(document).ready(function() {
     $('#modal-delete').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
+        var id2 = button.data('id2');
         var name = button.data('name');
         var oldprice = button.data('old');
         var price = button.data('new');
@@ -347,6 +350,7 @@ $(document).ready(function() {
         var modal = $(this);
         modal.find('span[name="nameproduct"]').text(name);
         modal.find('input[name="idproduct"]').val(id);
+        modal.find('input[name="idcategory"]').val(id2);
         modal.find('span[name="oldprice"]').text(oldprice);
         modal.find('span[name="price"]').text(price);
         modal.find('span[name="detail"]').text(detail);

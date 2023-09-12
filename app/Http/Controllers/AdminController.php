@@ -87,7 +87,7 @@ class AdminController extends Controller
     public function listproductpage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $limit = $request->limit ?? 1;
+        $limit = $request->limit ?? 5;
         $product = new Product();
         $searchproduct = $request['searchproduct'];
         if ($searchproduct) {

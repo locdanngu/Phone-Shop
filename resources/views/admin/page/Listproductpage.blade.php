@@ -40,6 +40,9 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="height: 65vh;">
+                    <div class="d-flex flex-column justify-content-between" style="height: 95%;">
+
+                    
                         <table class="table table-head-fixed text-nowrap">
                             <thead>
                                 <tr>
@@ -82,7 +85,7 @@
                         <div class="pagination">
                             {{ $product->links() }}
                         </div>
-
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

@@ -241,8 +241,10 @@ class AdminController extends Controller
     public function listcouponpage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        
+        $coupon = Coupon::where('endtime', '>', Carbon::now())->get();
 
-        return view('admin/page/Listcouponpage', compact('admin'));
+
+
+        return view('admin/page/Listcouponpage', compact('admin','coupon'));
     }
 }

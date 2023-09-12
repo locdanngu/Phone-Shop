@@ -22,7 +22,7 @@
                         class="bi bi-plus-circle-fill"></i> Thêm 1 mã giảm giá</button>
             </div>
             <div class="col-12 d-flex justify-content-center mb-2">
-                
+
             </div>
         </div>
     </div>
@@ -33,20 +33,69 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng :  mã</h3>
+                        <h3 class="card-title">Tổng cộng : mã</h3>
                         <div class="card-tools" style="width: 45%;">
                             <form action="{{ route('searchcategory') }}" method="get"
                                 class="input-group input-group-sm">
                                 <input type="text" name="searchcategory" class="form-control float-right"
                                     placeholder="Tìm kiếm" value="{{ request('searchcategory')}}">
-                                <button class="btn-success" type="submit">Tìm</button>
                             </form>
                         </div>
+                    </div>
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="d-flex flex-column align-items-center col-2">
+                            <span class="font-weight-bold">Áp dụng cho</span>
+                            <div class="d-flex justify-content-between w-100">
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="option" value="option1" class="mr-1">
+                                    Sản phẩm
+                                </label>
+
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="option" value="option2" class="mr-1">
+                                    Đơn hàng
+                                </label>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column align-items-center col-2">
+                            <span class="font-weight-bold">Người dùng</span>
+                            <div class="d-flex justify-content-between w-100">
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="option" value="option1" class="mr-1">
+                                    Cá nhân
+                                </label>
+
+                                <label class="font-weight-normal d-flex">
+                                    <input type="radio" name="option" value="option2" class="mr-1">
+                                    Tất cả
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="height: 65vh;">
                         <div class="d-flex flex-column justify-content-between" style="height: 95%;">
-                            
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Mã giảm giá</th>
+                                        <th class="text-center">Ngày bắt đầu</th>
+                                        <th class="text-center">Ngày hết hạn</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($coupon as $row)
+                                    <tr>
+                                        <td>{{ $row->code }}</td>
+                                        <td>{{ $row->starttime }}</td>
+                                        <td>{{ $row->endtime }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                     <!-- /.card-body -->

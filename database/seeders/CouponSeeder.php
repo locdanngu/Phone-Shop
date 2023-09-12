@@ -17,6 +17,7 @@ class CouponSeeder extends Seeder
             'applicable_to' => 'cart',
             'iduser' => null,
             'product_list' => 0,
+            'category_list' => 0,
             'discount_type' => 'percentage',
             'minimum_order_amoun' => 100,
             'max_discount_amount' => 50,

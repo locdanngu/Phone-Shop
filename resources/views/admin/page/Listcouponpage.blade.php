@@ -157,18 +157,24 @@
                         </label>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Người dùng</span>
-                    <div class="d-flex align-items-center">
-                        <label class="label">
-                            <input type="radio" name="iduser" value="product">
-                            Cá nhân
-                        </label>
-                        <label class="label">
-                            <input type="radio" name="iduser" value="cart">
-                            Tất cả
-                        </label>
+                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser">
+                    <div class="w-50 d-flex fixmobileuser2">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 30% !important;">Người dùng</span>
+                        <div class="d-flex align-items-center">
+                            <label class="label">
+                                <input type="radio" name="iduser" value="product" id="user-radio">
+                                Cá nhân
+                            </label>
+                            <label class="label">
+                                <input type="radio" name="iduser" value="cart">
+                                Tất cả
+                            </label>
+                        </div>
                     </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="in4user"
+                        placeholder="Nhập Id, username, email hoặc số điện thoại" style="width: 50%;" id="user-input">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
@@ -211,21 +217,31 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Y/c tối thiểu</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="minimum_order_amount">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Tối đa giảm</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="max_discount_amount">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Số tiền giảm</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="discount_amount">
                 </div>
-
-
+                <div class="input-group mb-3" style="width: 100% !important;">
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Ngày bắt đầu</span>
+                        <input type="datetime-local" name="starttime" style="width: 100%">
+                    </div>
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Ngày kết thúc</span>
+                        <input type="datetime-local" name="endtime" style="width: 100%">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -337,6 +353,17 @@ $(document).ready(function() {
         modal.find('span[name="namecategory"]').text(name);
         modal.find('input[name="idcategory"]').val(id);
         modal.find('img.imageblog2').attr('src', image);
+    });
+    $("#user-input").hide();
+
+    $("input[name='iduser']").change(function() {
+        if ($(this).val() === "product") {
+            // Nếu radio button "Cá nhân" được chọn, hiển thị ô input
+            $("#user-input").show();
+        } else {
+            // Nếu radio button khác được chọn, ẩn ô input
+            $("#user-input").hide();
+        }
     });
 });
 </script>

@@ -29,6 +29,11 @@ td {
     right: 50% !important;
 }
 
+.modal-content.fix {
+    width: 100% !important;
+    right: 0% !important;
+}
+
 .inputpopup {
     width: 85%;
     padding-left: 1em;
@@ -157,6 +162,20 @@ input[type="file"] {
         width: 100% !important;
         max-width: none !important;
         flex: none !important;
+    }
+
+    .fixmobileuser{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #user-input{
+        margin-top: 1em;
+        width: 100% !important;
+    }
+
+    .fixmobileuser2{
+        width: 100% !important;
     }
 
 }

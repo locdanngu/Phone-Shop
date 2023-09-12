@@ -32,50 +32,53 @@
                     <div class="card-header">
                         <h3 class="card-title">Tổng cộng : Sản phẩm</h3>
                         <div class="card-tools" style="width: 45%;">
-                            <form action="{{ route('searchcategory') }}" method="get" class="input-group input-group-sm">
+                            <form action="{{ route('searchcategory') }}" method="get"
+                                class="input-group input-group-sm">
                                 <input type="text" name="searchcategory" class="form-control float-right"
-                                    placeholder="Tìm kiếm" value="{{ request('searchproduct')}}">
+                                    placeholder="Tìm kiếm" value="{{ request('searchcategory')}}">
+                                <button class="btn-success" type="submit">Tìm</button>
                             </form>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="height: 65vh;">
-                    <div class="d-flex flex-column justify-content-between" style="height: 95%;">
+                        <div class="d-flex flex-column justify-content-between" style="height: 95%;">
 
-                    
-                        <table class="table table-head-fixed text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Tên hãng</th>
-                                    <th class="text-center">Logo hãng</th>
-                                    <th class="text-center">Số sản phẩm</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($category as $row)
-                                <tr>
-                                    <td class="font-weight-bold" style="color:red">{{ $row->namecategory }}</td>
-                                    <td class="text-center"><img src="{{ $row->imagecategory }}" alt="" height="50"></td>
-                                    <td class="text-center">{{ $row->product_count }}</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                                            data-target="#modal-change-brief">
-                                            <i class="bi bi-pencil"></i>
-                                            Sửa
-                                        </button>
-                                        <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
-                                            data-target="#modal-delete-brief">
-                                            <i class="bi bi-trash"></i> Xóa
-                                        </button>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <div class="pagination">
-                            {{ $category->links() }}
-                        </div>
+
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Tên hãng</th>
+                                        <th class="text-center">Logo hãng</th>
+                                        <th class="text-center">Số sản phẩm</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($category as $row)
+                                    <tr>
+                                        <td class="font-weight-bold" style="color:red">{{ $row->namecategory }}</td>
+                                        <td class="text-center"><img src="{{ $row->imagecategory }}" alt="" height="50">
+                                        </td>
+                                        <td class="text-center">{{ $row->product_count }}</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-change-brief">
+                                                <i class="bi bi-pencil"></i>
+                                                Sửa
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-delete-brief">
+                                                <i class="bi bi-trash"></i> Xóa
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="pagination">
+                                {{ $category->links() }}
+                            </div>
                         </div>
                     </div>
                     <!-- /.card-body -->

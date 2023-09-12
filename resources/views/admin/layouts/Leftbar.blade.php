@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link {{ request()->is('admin/listproductpage', 'don-tra-loi-tu-van') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
                         <i class="nav-icon bi-box-seam-fill"></i>
                         <p>
                             Quản lý sản phẩm
@@ -42,7 +42,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('listproduct.page') }}"
-                                class="nav-link {{ request()->is('admin/listproductpage') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
                                 <i class="bi-card-list nav-icon"></i>
                                 <p>Danh sách sản phẩm</p>
                             </a>
@@ -57,7 +57,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ request()->is('dauvao', 'daura') ? 'active' : '' }}">
+                    <a href=""
+                        class="nav-link {{ request()->routeIs('listcategory.page', 'searchcategory') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-ui-checks-grid"></i>
                         <p>
                             Quản lý hãng
@@ -67,7 +68,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('listcategory.page') }}"
-                                class="nav-link {{ request()->is('dauvao') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('listcategory.page', 'searchcategory') ? 'active' : '' }}">
                                 <i class="bi bi-list-columns nav-icon"></i>
                                 <p>Danh sách hãng</p>
                             </a>
@@ -91,15 +92,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href=""
-                                class="nav-link {{ request()->is('dauvao') ? 'active' : '' }}">
+                            <a href="" class="nav-link {{ request()->is('dauvao') ? 'active' : '' }}">
                                 <i class="bi bi-list-stars nav-icon"></i>
                                 <p>Danh sách mã giảm giá</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href=""
-                                class="nav-link {{ request()->is('daura') ? 'active' : '' }}">
+                            <a href="" class="nav-link {{ request()->is('daura') ? 'active' : '' }}">
                                 <i class="bi bi-file-x nav-icon"></i>
                                 <p>Mã hết hạn</p>
                             </a>

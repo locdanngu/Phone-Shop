@@ -182,7 +182,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input type="hidden" name="id">
+            <input type="hidden" name="idproduct">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Tên sản phẩm</span>
@@ -229,7 +229,6 @@
                             onchange="previewImage2(event)" name="image">
                         <img id="preview2" src="" alt="" style="height:100px">
                     </div>
-
                 </div>
             </div>
             <div class="modal-footer justify-align-content-end">

@@ -133,16 +133,19 @@ class AdminController extends Controller
     {
         $admin = Auth::guard('admin')->user();
         $product = Product::where('idproduct', $request['idproduct'])->first();
-
-        $product->nameproduct = $request['namecategory'];
-        $product->product_count = 0;
+        
+        $product->nameproduct = $request['nameproduct'];
+        $product->oldprice = $request['oldprice'];
+        $product->price = $request['price'];
+        $product->detail = $request['detail'];
+        $product->idcategory = $request['idcategory'];
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $path = public_path('image/product/');
             $image->move($path, $filename);
-            $product->imagecategory = '/image/product/' . $filename;
+            $product->imageproduct = '/image/product/' . $filename;
         }
         $product->save();
 

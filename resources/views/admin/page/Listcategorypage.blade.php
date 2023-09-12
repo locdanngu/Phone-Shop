@@ -43,8 +43,6 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="height: 65vh;">
                         <div class="d-flex flex-column justify-content-between" style="height: 95%;">
-
-
                             <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                     <tr>
@@ -248,9 +246,6 @@ $(document).ready(function() {
         modal.find('input[name="idcategory"]').val(id);
         modal.find('img.imageblog2').attr('src', image);
     });
-
-
-
 });
 </script>
 

@@ -67,7 +67,9 @@
                                         <td class="font-weight-bold text-center" style="color:red">
                                             {{ number_format($row->price * 23000, 0, ',', '.') }} đ</td>
                                         <td>{{ $row->detail }}</td>
-                                        <td class="font-weight-bold text-center">{{ $row->category->namecategory }}</td>
+                                        <td class="font-weight-bold text-center"><a
+                                                href="{{ route('searchcategory', ['searchcategory' => $row->category->namecategory]) }}">{{ $row->category->namecategory }}</a>
+                                        </td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-change" data-id="{{ $row->idproduct }}"

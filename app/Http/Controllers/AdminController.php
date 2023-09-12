@@ -102,6 +102,61 @@ class AdminController extends Controller
         return view('admin/page/Listproductpage', compact('admin','product','searchproduct','category'));
     }
 
+    public function addproduct(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $product = new Product();
+
+        $product->nameproduct = $request['nameproduct'];
+        $product->oldprice = $request['oldprice'];
+        $product->price = $request['price'];
+        $product->detail = $request['detail'];
+        $product->idcategory = $request['idcategory'];
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('image/product/');
+            $image->move($path, $filename);
+            $product->imageproduct = '/image/product/' . $filename;
+        }
+        $product->save();
+
+        $category = Category::where('idcategory', $request['idcategory'])->first();
+        $category->product_count += 1;
+        $category->save();
+
+        return redirect()->route('listproduct.page');
+    }
+
+    public function changeproduct(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $product = Product::where('idproduct', $request['idproduct'])->first();
+
+        $product->nameproduct = $request['namecategory'];
+        $product->product_count = 0;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('image/product/');
+            $image->move($path, $filename);
+            $product->imagecategory = '/image/product/' . $filename;
+        }
+        $product->save();
+
+        return redirect()->route('listproduct.page');
+    }
+
+    public function deleteproduct(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $product = Product::where('idcategory', $request['idproduct'])->first();
+        $product->delete();
+        return redirect()->route('listproduct.page');
+    }
+
     public function listcategorypage(Request $request)
     {
         $admin = Auth::guard('admin')->user();

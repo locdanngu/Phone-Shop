@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-center mb-3">
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                    data-target="#modal-add-brief"><i class="bi bi-plus-circle-fill"></i> Thêm 1 hãng mới</button>
+                    data-target="#modal-add"><i class="bi bi-plus-circle-fill"></i> Thêm 1 hãng mới</button>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
                                         <td class="text-center">{{ $row->product_count }}</td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-change-brief" data-id="{{ $row->idcategory }}"
+                                                data-target="#modal-change" data-id="{{ $row->idcategory }}"
                                                 data-name="{{ $row->namecategory }}"
                                                 data-image="{{ $row->imagecategory }}"
                                                 data-count="{{ $row->product_count }}">
@@ -69,7 +69,7 @@
                                                 Sửa
                                             </button>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-delete-brief" data-id="{{ $row->idcategory }}"
+                                                data-target="#modal-delete" data-id="{{ $row->idcategory }}"
                                                 data-name="{{ $row->namecategory }}"
                                                 data-image="{{ $row->imagecategory }}"
                                                 data-count="{{ $row->product_count }}">
@@ -99,7 +99,7 @@
 
 @section('popup')
 <!-- Modal trả lời đơn tư vấn -->
-<div class="modal fade" id="modal-add-brief">
+<div class="modal fade" id="modal-add">
     <div class="modal-dialog">
         <form class="modal-content" action="{{ route('category.add') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -133,7 +133,7 @@
 </div>
 
 
-<div class="modal fade" id="modal-change-brief">
+<div class="modal fade" id="modal-change">
     <div class="modal-dialog">
         <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -168,7 +168,7 @@
 </div>
 
 
-<div class="modal fade" id="modal-delete-brief">
+<div class="modal fade" id="modal-delete">
     <div class="modal-dialog">
         <form class="modal-content" action="{{ route('category.delete') }}" method="post">
             @csrf
@@ -225,7 +225,7 @@ function previewImage2(event) {
 }
 
 $(document).ready(function() {
-    $('#modal-change-brief').on('shown.bs.modal', function(event) {
+    $('#modal-change').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
         var name = button.data('name');
@@ -236,7 +236,7 @@ $(document).ready(function() {
         modal.find('img.imageblog1').attr('src', image);
     });
 
-    $('#modal-delete-brief').on('shown.bs.modal', function(event) {
+    $('#modal-delete').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
         var name = button.data('name');

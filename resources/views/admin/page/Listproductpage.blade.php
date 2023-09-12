@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-center mb-3">
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                    data-target="#modal-add-brief"><i class="bi bi-plus-circle-fill"></i> Thêm 1 sản phẩm mới</button>
+                    data-target="#modal-add"><i class="bi bi-plus-circle-fill"></i> Thêm 1 sản phẩm mới</button>
             </div>
         </div>
     </div>
@@ -70,19 +70,19 @@
                                         <td class="font-weight-bold text-center">{{ $row->category->namecategory }}</td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-change-brief" data-id="{{ $row->idproduct }}"
+                                                data-target="#modal-change" data-id="{{ $row->idproduct }}"
                                                 data-name="{{ $row->nameproduct }}" data-old="{{ $row->oldprice }}"
                                                 data-new="{{ $row->price }}" data-detail="{{ $row->detail }}"
-                                                data-idcate="{{ $row->idcategory }}"
+                                                data-cate="{{ $row->category->namecategory }}"
                                                 data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-pencil"></i>
                                                 Sửa
                                             </button>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-delete-brief" data-id="{{ $row->idproduct }}"
+                                                data-target="#modal-delete" data-id="{{ $row->idproduct }}"
                                                 data-name="{{ $row->nameproduct }}" data-old="{{ $row->oldprice }}"
                                                 data-new="{{ $row->price }}" data-detail="{{ $row->detail }}"
-                                                data-idcate="{{ $row->idcategory }}"
+                                                data-cate="{{ $row->category->namecategory }}"
                                                 data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-trash"></i> Xóa
                                             </button>
@@ -110,9 +110,9 @@
 
 @section('popup')
 <!-- Modal trả lời đơn tư vấn -->
-<div class="modal fade" id="modal-add-brief">
+<div class="modal fade" id="modal-add">
     <div class="modal-dialog">
-        <form class="modal-content" action="" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('product.add') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Tạo thêm sản phẩm mới</h4>
@@ -127,12 +127,12 @@
                         aria-describedby="inputGroup-sizing-default" required name="nameproduct">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Giá cũ</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Giá cũ($)</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="oldprice">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Giá mới</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Giá mới($)</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="price">
                 </div>
@@ -144,7 +144,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Hãng</span>
-                    <select style="width: 100%;padding-left:1em;height:2.5em" name="idservice">
+                    <select style="width: 100%;padding-left:1em;height:2.5em" name="idcategory">
                         @foreach($category as $ca)
                         <option value="{{ $ca->idcategory }}" style="height:2.5em">{{ $loop->iteration }}. {{ $ca->namecategory }}</option>
                         @endforeach
@@ -168,7 +168,7 @@
 </div>
 
 
-<div class="modal fade" id="modal-change-brief">
+<div class="modal fade" id="modal-change">
     <div class="modal-dialog">
         <form class="modal-content" action="" method="post" enctype="multipart/form-data">
             @csrf
@@ -208,7 +208,7 @@
 </div>
 
 
-<div class="modal fade" id="modal-delete-brief">
+<div class="modal fade" id="modal-delete">
     <div class="modal-dialog">
         <form class="modal-content" action="" method="post">
             @csrf
@@ -269,12 +269,15 @@ function previewImage2(event) {
 
 
 $(document).ready(function() {
-    $('#modal-change-brief').on('shown.bs.modal', function(event) {
+    $('#modal-change').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
         var name = button.data('name');
-        var content = button.data('content');
-        var title = button.data('title');
+        var oldprice = button.data('oldprice');
+        var price = button.data('price');
+        var detail = button.data('detail');
+        var category = button.data('cate');
+        var image = button.data('image');
         var modal = $(this);
         modal.find('input[name="name"]').val(name);
         modal.find('input[name="id"]').val(id);
@@ -282,12 +285,15 @@ $(document).ready(function() {
         modal.find('input[name="title"]').val(title);
     });
 
-    $('#modal-delete-brief').on('shown.bs.modal', function(event) {
+    $('#modal-delete').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
         var name = button.data('name');
-        var content = button.data('content');
-        var title = button.data('title');
+        var oldprice = button.data('oldprice');
+        var price = button.data('price');
+        var detail = button.data('detail');
+        var category = button.data('cate');
+        var image = button.data('image');
         var modal = $(this);
         modal.find('span[name="name"]').text(name);
         modal.find('input[name="id"]').val(id);

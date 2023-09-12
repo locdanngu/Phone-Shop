@@ -29,6 +29,9 @@ Route::prefix('/admin')->group(function () {
         Route::post('/changepassword', [AdminController::class, 'changepassword'])->name('adminchangepassword');
         Route::get('/listproductpage', [AdminController::class, 'listproductpage'])->name('listproduct.page');
         Route::get('/listproductpage/search', [AdminController::class, 'listproductpage'])->name('searchproduct');
+        Route::post('/addproduct', [AdminController::class, 'addproduct'])->name('product.add');
+        Route::post('/changeproduct', [AdminController::class, 'changeproduct'])->name('product.change');
+        Route::post('/deleteproduct', [AdminController::class, 'deleteproduct'])->name('product.delete');
 
         Route::get('/listcategorypage', [AdminController::class, 'listcategorypage'])->name('listcategory.page');
         Route::get('/listcategorypage/search', [AdminController::class, 'listcategorypage'])->name('searchcategory');

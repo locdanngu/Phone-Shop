@@ -169,9 +169,13 @@ input[type="file"] {
         flex-direction: column;
     }
 
-    #user-input{
+    #user-input, #cate-input{
         margin-top: 1em;
         width: 100% !important;
+    }
+
+    #cate-input{
+        height: 2em;
     }
 
     .fixmobileuser2{

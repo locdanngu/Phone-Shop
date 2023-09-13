@@ -189,8 +189,8 @@
                         </label>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
+                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser">
+                    <!-- <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
                     <div class="d-flex align-items-center">
                         <label class="label">
                             <input type="radio" name="category_list" value="product">
@@ -200,18 +200,33 @@
                             <input type="radio" name="category_list" value="cart">
                             Tất cả
                         </label>
+                    </div> -->
+                    <div class="w-50 d-flex fixmobileuser2">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 30% !important;">Danh mục</span>
+                        <div class="d-flex align-items-center">
+                            <label class="label">
+                                <input type="radio" name="category_list" value="1" id="cate-radio">
+                                Danh sách
+                            </label>
+                            <label class="label">
+                                <input type="radio" name="category_list" value="0">
+                                Tất cả
+                            </label>
+                        </div>
                     </div>
+                    <p class="btn btn-secondary" id="cate-input">Chọn danh sách</p>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm</span>
                     <div class="d-flex align-items-center">
                         <label class="label">
                             <input type="radio" name="discount_type" value="product">
-                            Phần trăm
+                            Phần trăm(%)
                         </label>
                         <label class="label">
                             <input type="radio" name="discount_type" value="cart">
-                            Mức tiền
+                            Mức tiền($)
                         </label>
                     </div>
                 </div>
@@ -354,7 +369,7 @@ $(document).ready(function() {
         modal.find('input[name="idcategory"]').val(id);
         modal.find('img.imageblog2').attr('src', image);
     });
-    $("#user-input").hide();
+    $("#user-input, #cate-input").hide();
 
     $("input[name='iduser']").change(function() {
         if ($(this).val() === "product") {
@@ -363,6 +378,16 @@ $(document).ready(function() {
         } else {
             // Nếu radio button khác được chọn, ẩn ô input
             $("#user-input").hide();
+        }
+    });
+
+    $("input[name='category_list']").change(function() {
+        if ($(this).val() === "1") {
+            // Nếu radio button "Cá nhân" được chọn, hiển thị ô input
+            $("#cate-input").show();
+        } else {
+            // Nếu radio button khác được chọn, ẩn ô input
+            $("#cate-input").hide();
         }
     });
 });

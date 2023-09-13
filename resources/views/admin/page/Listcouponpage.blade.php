@@ -51,9 +51,6 @@
                                         <th>Mã giảm giá</th>
                                         <th class="text-center">Áp dụng</th>
                                         <th class="text-center">Người dùng</th>
-                                        <!-- 
-                                        <th class="text-center">Sản phẩm</th>
-                                        <th class="text-center">Danh mục</th> -->
                                         <th class="text-center">Kiểu</th>
                                         <th>Bắt đầu</th>
                                         <th>Hết hạn</th>
@@ -74,17 +71,6 @@
                                         @else
                                         <td class="text-center font-weight-bold">Tất cả</td>
                                         @endif
-                                        <!-- 
-                                        @if($row->product_list = 1)
-                                        <td class="text-center">Danh sách</td>
-                                        @else   
-                                        <td class="text-center">Tất cả</td>  
-                                        @endif
-                                        @if($row->category_list = 1)
-                                        <td class="text-center">Danh sách</td>
-                                        @else   
-                                        <td class="text-center">Tất cả</td>  
-                                        @endif -->
                                         @if($row->discount_type = 'percentage')
                                         <td class="text-center">Phần trăm(%)</td>
                                         @else
@@ -198,17 +184,6 @@
 
                 </div>
                 <div class="input-group mb-3 d-flex justify-content-between fixmobileuser">
-                    <!-- <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
-                    <div class="d-flex align-items-center">
-                        <label class="label">
-                            <input type="radio" name="product_list" value="product">
-                            Danh sách
-                        </label>
-                        <label class="label">
-                            <input type="radio" name="product_list" value="cart">
-                            Tất cả
-                        </label>
-                    </div> -->
                     <div class="w-50 d-flex fixmobileuser2">
                         <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30% !important;">Sản
                             phẩm</span>
@@ -397,10 +372,12 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
                     <span name="product_list" class="spanpopup"></span>
+                    <button class="btn btn-secondary ml-3" id="in4listpro">Danh sách sản phẩm</button>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
                     <span name="category_list" class="spanpopup"></span>
+                    <button class="btn btn-secondary ml-3" id="in4listcate">Danh sách danh mục</button>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm giá</span>
@@ -528,17 +505,7 @@ $(document).ready(function() {
             iduser = 'Tất cả';
         }
         var pro = button.data('pro');
-        if (pro == 1) {
-
-        } else {
-            pro = 'Tất cả sản phẩm'
-        }
         var cate = button.data('cate');
-        if (cate == 1) {
-
-        } else {
-            cate = 'Tất cả sản phẩm'
-        }
         var dis = button.data('dis');
         if (dis == 'percentage') {
             dis = 'Theo phần trăm';
@@ -555,8 +522,24 @@ $(document).ready(function() {
         modal.find('span[name="endtime"]').text(end);
         modal.find('span[name="applicable_to"]').text(app);
         modal.find('span[name="iduser"]').text(iduser);
-        modal.find('span[name="product_list"]').text(pro);
-        modal.find('span[name="category_list"]').text(cate);
+        if (pro == 1) {
+            modal.find('span[name="product_list"]').hide();
+            modal.find('#in4listpro').attr('data-idcoupon', id)
+            modal.find('#in4listpro').show();
+        } else {
+            modal.find('#in4listpro').hide();
+            modal.find('span[name="product_list"]').text('Tất cả sản phẩm');
+            modal.find('span[name="product_list"]').show();
+        }
+        if (cate == 1) {
+            modal.find('span[name="category_list"]').hide();
+            modal.find('#in4listcate').attr('data-idcoupon', id)
+            modal.find('#in4listcate').show();
+        } else {
+            modal.find('#in4listcate').hide();
+            modal.find('span[name="category_list"]').text('Tất cả sản phẩm');
+            modal.find('span[name="category_list"]').show();
+        }
         modal.find('span[name="discount_type"]').text(dis);
         modal.find('span[name="minimum_order_amount"]').text(mini);
         modal.find('span[name="max_discount_amount"]').text(max);
@@ -619,10 +602,7 @@ $(document).ready(function() {
     });
 
     $("#cate-input").click(function() {
-        // Ẩn modal-addcate
         $("#modal-add").modal('hide');
-        // Hiển thị modal-add
-        // $("#modal-add").modal('show');
     });
 
     $("#product-input").click(function() {

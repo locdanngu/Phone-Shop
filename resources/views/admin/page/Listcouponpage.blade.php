@@ -72,8 +72,8 @@
                                         @endif
                                         @if($row->id_user)
                                         <td class="text-center font-weight-bold">{{ $row->id_user }}</td>
-                                        @else   
-                                        <td class="text-center font-weight-bold">Tất cả</td>  
+                                        @else
+                                        <td class="text-center font-weight-bold">Tất cả</td>
                                         @endif
                                         <!-- 
                                         @if($row->product_list = 1)
@@ -176,9 +176,15 @@
                             </label>
                         </div>
                     </div>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="in4user"
-                        placeholder="Nhập Id, username, email hoặc số điện thoại" style="width: 50%;" id="user-input">
+                    <div class="d-flex w-50 align-items-center">
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" required name="in4user"
+                            placeholder="Nhập Id, username, email hoặc số điện thoại" style="width: 90%;"
+                            id="user-input">
+                            <i class="bi bi-x-circle-fill ml-3" id="not" style="color:red"></i>
+                            <i class="bi bi-check-circle-fill ml-3" id="yes" style="color: #007bff"></i>
+                    </div>
+
                 </div>
                 <div class="input-group mb-3 d-flex justify-content-between fixmobileuser">
                     <!-- <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
@@ -445,7 +451,7 @@ $(document).ready(function() {
         modal.find('input[name="idcategory"]').val(id);
         modal.find('img.imageblog2').attr('src', image);
     });
-    $("#user-input, #cate-input, #product-input").hide();
+    $("#user-input, #cate-input, #product-input, #not, #yes").hide();
 
     $("input[name='iduser']").change(function() {
         if ($(this).val() === "product") {
@@ -538,6 +544,40 @@ $(document).ready(function() {
 
         $("#modal-add").modal('show');
         $("#modal-addproduct").modal('hide');
+    });
+
+    $("#user-input").on("input", function() {
+        var inputValue = $(this).val();
+
+        // Kiểm tra nếu giá trị không rỗng
+        if (inputValue.trim() !== "") {
+            // Gửi yêu cầu Ajax
+            $.ajax({
+                url: '{{ route("user.search") }}', // Thay thế bằng URL của máy chủ của bạn
+                type: "POST", // Hoặc "GET" tùy vào yêu cầu của bạn
+                data: { 
+                    _token: '{{ csrf_token() }}',
+                    searchuser: inputValue 
+                },
+                success: function(response) {
+                    var re = response.re;
+                    if(re == 'yes'){
+                        $("#yes").show();
+                        $("#not").hide();
+                    }else{
+                        $("#not").show();
+                        $("#yes").hide();
+                    }
+                },
+                error: function(error) {
+                    // Xử lý lỗi (nếu có)
+                    console.error(error);
+                }
+            });
+        }else{
+            $("#yes").hide();
+            $("#not").hide();
+        }
     });
 });
 </script>

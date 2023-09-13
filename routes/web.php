@@ -41,6 +41,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/deletecategory', [AdminController::class, 'deletecategory'])->name('category.delete');
 
         Route::get('/listcouponpage', [AdminController::class, 'listcouponpage'])->name('listcoupon.page');
+        Route::post('/searchuser', [AdminController::class, 'searchuser'])->name('user.search');
     });
 });
 

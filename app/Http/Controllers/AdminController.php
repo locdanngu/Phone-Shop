@@ -244,9 +244,25 @@ class AdminController extends Controller
         $coupon = Coupon::where('endtime', '>', Carbon::now())->where('isdelete', 0)->get();
         $category = Category::all();
         $product = Product::orderBy('idcategory')->get();
-
-
-
         return view('admin/page/Listcouponpage', compact('admin','coupon','category','product'));
+    }
+
+    public function searchuser(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $user = User::where('iduser', $request['searchuser'])
+                  ->orWhere('username', $request['searchuser']) 
+                  ->orWhere('email', $request['searchuser']) 
+                  ->orWhere('phone', $request['searchuser']) 
+                  ->first();
+        if($user){
+            return response()->json([
+                're' => 'yes',
+            ]);
+        }else{
+            return response()->json([
+                're' => 'no',
+            ]);
+        }
     }
 }

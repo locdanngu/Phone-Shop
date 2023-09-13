@@ -51,7 +51,8 @@
                                     <tr>
                                         <th>Mã giảm giá</th>
                                         <th class="text-center">Áp dụng</th>
-                                        <!-- <th class="text-center">Người dùng</th>
+                                        <th class="text-center">Người dùng</th>
+                                        <!-- 
                                         <th class="text-center">Sản phẩm</th>
                                         <th class="text-center">Danh mục</th> -->
                                         <th class="text-center">Kiểu</th>
@@ -69,11 +70,12 @@
                                         @else
                                         <td class="text-center">Sản phẩm</td>
                                         @endif
-                                        <!-- @if($row->id_user)
+                                        @if($row->id_user)
                                         <td class="text-center font-weight-bold">{{ $row->id_user }}</td>
                                         @else   
                                         <td class="text-center font-weight-bold">Tất cả</td>  
                                         @endif
+                                        <!-- 
                                         @if($row->product_list = 1)
                                         <td class="text-center">Danh sách</td>
                                         @else   
@@ -85,9 +87,9 @@
                                         <td class="text-center">Tất cả</td>  
                                         @endif -->
                                         @if($row->discount_type = 'percentage')
-                                        <td class="text-center">Phần trăm</td>
+                                        <td class="text-center">Phần trăm(%)</td>
                                         @else
-                                        <td class="text-center">Số tiền</td>
+                                        <td class="text-center">Số tiền($)</td>
                                         @endif
                                         <td>{{ $row->starttime }}</td>
                                         <td>{{ $row->endtime }}</td>
@@ -384,28 +386,29 @@
                 <h4 class="modal-title">Chọn danh sách sản phẩm</h4>
             </div>
             <div class="modal-body">
-                <table class="table table-head-fixed text-nowrap">
-                    <thead>
-                        <tr>
-                            <th>Tên</th>
-                            <th class="text-center">Sản phẩm</th>
-                            <th>Hãng</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($product as $pr)
-                        <tr>
-                            <td class="font-weight-bold" style="color:red">{{ $pr->nameproduct }}</td>
-                            <td class="text-center"><img src="{{ $pr->imageproduct }} " alt="" height="50"></td>
-                            <td class="font-weight-bold">{{ $pr->category->namecategory }}</td>
-                            <td><input type="checkbox" name="listproduct" value="{{ $pr->idproduct }}"
-                                    class="listproduct-checkbox"></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
+                <div class="card-body table-responsive p-0" style="height: 65vh;">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Tên</th>
+                                <th class="text-center">Sản phẩm</th>
+                                <th>Hãng</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($product as $pr)
+                            <tr>
+                                <td class="font-weight-bold" style="color:red">{{ $pr->nameproduct }}</td>
+                                <td class="text-center"><img src="{{ $pr->imageproduct }} " alt="" height="50"></td>
+                                <td class="font-weight-bold">{{ $pr->category->namecategory }}</td>
+                                <td><input type="checkbox" name="listproduct" value="{{ $pr->idproduct }}"
+                                        class="listproduct-checkbox"></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="submit" class="btn btn-success" id="listproductbtn">Đồng ý</button>

@@ -132,7 +132,8 @@
 <!-- Modal trả lời đơn tư vấn -->
 <div class="modal fade" id="modal-add">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('coupon.add') }}" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('coupon.add') }}" method="post" enctype="multipart/form-data"
+            id="coupon-form">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Tạo mã giảm giá</h4>
@@ -452,6 +453,7 @@ $(document).ready(function() {
         modal.find('input[name="idcategory"]').val(id);
         modal.find('img.imageblog2').attr('src', image);
     });
+
     $("#user-input, #cate-input, #product-input, #not, #yes").hide();
 
     $("input[name='iduser']").change(function() {
@@ -497,6 +499,7 @@ $(document).ready(function() {
         $("#modal-add").modal('show');
     });
 
+    //lấy danh sách danh mục(nếu có)
     $("#listcatebtn").click(function() {
         // Tạo một mảng để lưu giá trị của các checkbox đã chọn
         var selectedValues = [];
@@ -522,6 +525,7 @@ $(document).ready(function() {
         $("#modal-addcate").modal('hide');
     });
 
+    //lấy danh sách sản phẩm(nếu có)
     $("#listproductbtn").click(function() {
         // Tạo một mảng để lưu giá trị của các checkbox đã chọn
         var selectedValues = [];
@@ -547,15 +551,14 @@ $(document).ready(function() {
         $("#modal-addproduct").modal('hide');
     });
 
+    //kiểm tra người dùng
     $("#user-input").on("input", function() {
         var inputValue = $(this).val();
 
-        // Kiểm tra nếu giá trị không rỗng
         if (inputValue.trim() !== "") {
-            // Gửi yêu cầu Ajax
             $.ajax({
-                url: '{{ route("user.search") }}', // Thay thế bằng URL của máy chủ của bạn
-                type: "POST", // Hoặc "GET" tùy vào yêu cầu của bạn
+                url: '{{ route("user.search") }}',
+                type: "POST",
                 data: {
                     _token: '{{ csrf_token() }}',
                     searchuser: inputValue
@@ -575,13 +578,39 @@ $(document).ready(function() {
 
                 },
                 error: function(error) {
-                    // Xử lý lỗi (nếu có)
                     console.error(error);
                 }
             });
         } else {
             $("#yes").hide();
             $("#not").hide();
+        }
+    });
+
+    $("#coupon-form").submit(function(event) {
+        // Thực hiện kiểm tra điều kiện của bạn ở đây
+        if ($("#user-radio").is(":checked") && $("#sendiduser").val() == "") {
+            // Điều kiện không đáp ứng, ngăn gửi biểu mẫu
+            event.preventDefault();
+            toastr.error(
+                '<b>Vui lòng nhập đúng thông tin người dùng</b>'
+            )
+        }
+
+        if ($("#product-radio").is(":checked") && $("#listproduct").val() == "") {
+            // Điều kiện không đáp ứng, ngăn gửi biểu mẫu
+            event.preventDefault();
+            toastr.error(
+                '<b>Vui lòng chọn ít nhất 1 sản phẩm</b>'
+            )
+        }
+
+        if ($("#cate-radio").is(":checked") && $("#listcate").val() == "") {
+            // Điều kiện không đáp ứng, ngăn gửi biểu mẫu
+            event.preventDefault();
+            toastr.error(
+                '<b>Vui lòng chọn ít nhất 1 danh mục</b>'
+            )
         }
     });
 });

@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Coupon;
+use App\Models\Product_coupon;
+use App\Models\Category_coupon;
 use Mail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -282,8 +284,40 @@ class AdminController extends Controller
     public function addcoupon(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        dd($request);
+        
+        $coupon = new Coupon();
+        $coupon->code = $request['code'];
+        $coupon->applicable_to = $request['applicable_to'];
+        $coupon->starttime = $request['starttime'];
+        $coupon->endtime = $request['endtime'];
+        $coupon->iduser = $request['sendiduser'];
+        if($request['listproduct'] !== ''){
+            $coupon->product_list = 1;
+        }else{
+            $coupon->product_list = 0;
+        }
+        if($request['listcategory'] !== ''){
+            $coupon->category_list = 1;
+        }else{
+            $coupon->category_list = 0;
+        }
+        $coupon->discount_type = $request['discount_type'];
+        $coupon->minimum_order_amount = $request['minimum_order_amount'];
+        $coupon->max_discount_amount = $request['max_discount_amount'];
+        $coupon->discount_amount = $request['discount_amount'];
+        $coupon->used = 0;
+        $coupon->isdelete = 0;
+        $coupon->save();
 
+        if($request['listcategory'] !== ''){
+            dd($request['listcategory']);
+            $category_coupon = new Category_coupon();
+        }
+
+        if($request['listproduct'] !== ''){
+           
+
+        }
 
 
         return redirect()->route('listcoupon.page');

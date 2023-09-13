@@ -497,6 +497,7 @@ $(document).ready(function() {
 
     $("#modal-addcate, #modal-addproduct").on('hidden.bs.modal', function() {
         $("#modal-add").modal('show');
+        $(".sidebar-mini").addClass("modal-open");
     });
 
     //lấy danh sách danh mục(nếu có)
@@ -520,7 +521,7 @@ $(document).ready(function() {
         } else {
             $("#cate-input").text("Chưa chọn mục nào");
         }
-
+     
         $("#modal-add").modal('show');
         $("#modal-addcate").modal('hide');
     });
@@ -546,7 +547,7 @@ $(document).ready(function() {
         } else {
             $("#product-input").text("Chưa chọn sản phẩm nào");
         }
-
+        
         $("#modal-add").modal('show');
         $("#modal-addproduct").modal('hide');
     });

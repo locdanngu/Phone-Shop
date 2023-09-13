@@ -26,12 +26,6 @@ class Coupon extends Model
         'isdelete',
     ];
 
-    // Thiết lập kiểu dữ liệu của các trường timestamp
-    // protected $casts = [
-    //     'starttime' => 'datetime',
-    //     'endtime' => 'datetime',
-    // ];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'iduser');

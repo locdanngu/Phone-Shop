@@ -94,7 +94,16 @@
                                         <td>{{ $row->endtime }}</td>
                                         <td>
                                             <button class="btn btn-info btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-in4">
+                                                data-target="#modal-in4" data-id="{{ $row->idcoupon }}"
+                                                data-start="{{ $row->starttime }}" data-end="{{ $row->endtime }}"
+                                                data-appli="{{ $row->applicable_to }}" data-iduser="{{ $row->iduser }}"
+                                                data-pro="{{ $row->product_list }}"
+                                                data-cate="{{ $row->category_list }}"
+                                                data-dis="{{ $row->discount_type }}"
+                                                data-mini="{{ $row->minimum_order_amount }}"
+                                                data-max="{{ $row->max_discount_amount }}"
+                                                data-amo="{{ $row->discount_amount }}" data-used="{{ $row->used }}"
+                                                data-code="{{ $row->code }}">
                                                 <i class="bi bi-info-lg"></i>
                                                 Thông tin
                                             </button>
@@ -361,6 +370,76 @@
     <!-- /.modal-dialog -->
 </div>
 
+
+<div class="modal fade" id="modal-in4">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Thông tin mã giảm giá</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <input type="hidden" name="idcategory">
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
+                    <span name="code" class="spanpopup font-weight-bold" style="color:red"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Áp dụng</span>
+                    <span name="applicable_to" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Người dùng</span>
+                    <span name="iduser" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
+                    <span name="product_list" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
+                    <span name="category_list" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm giá</span>
+                    <span name="discount_type" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Yêu cầu($)</span>
+                    <span name="minimum_order_amount" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tối đa($)</span>
+                    <span name="max_discount_amount" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Mức giảm(%/$)</span>
+                    <span name="discount_amount" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Đã sử dụng</span>
+                    <span name="used" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Ngày bắt đầu</span>
+                    <span name="starttime" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Ngày kết thúc</span>
+                    <span name="endtime" class="spanpopup"></span>
+                </div>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <div class="modal fade" id="modal-addcate" data-backdrop="static" data-keyboard="false">
     <!-- Không đóng popup khi nhấn bên ngoài -->
     <div class="modal-dialog">
@@ -432,6 +511,61 @@
 @section('js')
 <script>
 $(document).ready(function() {
+    $('#modal-in4').on('shown.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Nút "Change" được nhấn
+        var id = button.data('id');
+        var code = button.data('code');
+        var start = button.data('start');
+        var end = button.data('end');
+        var app = button.data('appli');
+        if (app == 'cart') {
+            app = 'Đơn hàng';
+        } else {
+            app = 'Sản phẩm';
+        }
+        var iduser = button.data('iduser');
+        if (iduser == '') {
+            iduser = 'Tất cả';
+        }
+        var pro = button.data('pro');
+        if (pro == 1) {
+
+        } else {
+            pro = 'Tất cả sản phẩm'
+        }
+        var cate = button.data('cate');
+        if (cate == 1) {
+
+        } else {
+            cate = 'Tất cả sản phẩm'
+        }
+        var dis = button.data('dis');
+        if (dis == 'percentage') {
+            dis = 'Theo phần trăm';
+        } else {
+            dis = 'Theo mức tiền';
+        }
+        var mini = button.data('mini');
+        var max = button.data('max');
+        var amo = button.data('amo');
+        var used = button.data('used');
+        var modal = $(this);
+        modal.find('span[name="code"]').text(code);
+        modal.find('span[name="starttime"]').text(start);
+        modal.find('span[name="endtime"]').text(end);
+        modal.find('span[name="applicable_to"]').text(app);
+        modal.find('span[name="iduser"]').text(iduser);
+        modal.find('span[name="product_list"]').text(pro);
+        modal.find('span[name="category_list"]').text(cate);
+        modal.find('span[name="discount_type"]').text(dis);
+        modal.find('span[name="minimum_order_amount"]').text(mini);
+        modal.find('span[name="max_discount_amount"]').text(max);
+        modal.find('span[name="discount_amount"]').text(amo);
+        modal.find('span[name="used"]').text(used + ' lần');
+
+    });
+
+
     $('#modal-change').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
@@ -614,14 +748,14 @@ $(document).ready(function() {
         var endDatetime = new Date($("input[name='endtime']").val());
         var currentDate = new Date();
 
-        if (endDatetime <= startDatetime){
+        if (endDatetime <= startDatetime) {
             event.preventDefault();
             toastr.error(
                 '<b>Ngày kết thúc không được sớm hơn ngày bắt đầu</b>'
             )
         }
 
-        if(endDatetime <= currentDate){
+        if (endDatetime <= currentDate) {
             event.preventDefault();
             toastr.error(
                 '<b>Ngày kết thúc không được sớm hơn thời gian hiện tại</b>'

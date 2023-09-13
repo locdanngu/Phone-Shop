@@ -296,7 +296,7 @@ class AdminController extends Controller
         }else{
             $coupon->product_list = 0;
         }
-        if($request['listcategory'] !== ''){
+        if($request['listcate'] !== ''){
             $coupon->category_list = 1;
         }else{
             $coupon->category_list = 0;
@@ -309,17 +309,40 @@ class AdminController extends Controller
         $coupon->isdelete = 0;
         $coupon->save();
 
-        if($request['listcategory'] !== ''){
-            dd($request['listcategory']);
-            $category_coupon = new Category_coupon();
+        if($request['listcate'] !== ''){
+            $listCate = explode(',', $request['listcate']);
+            foreach ($listCate as $idcate) {
+                $category_coupon = new Category_coupon();
+                $category_coupon->idcategory = $idcate;
+                $category_coupon->idcoupon = $coupon->idcoupon;
+                $category_coupon->save();
+            }
         }
 
         if($request['listproduct'] !== ''){
-           
-
+            $listPro = explode(',', $request['listproduct']);
+            foreach ($listPro as $idproduct) {
+                $product_coupon = new Product_coupon();
+                $product_coupon->idproduct = $idproduct;
+                $product_coupon->idcoupon = $coupon->idcoupon;
+                $product_coupon->save();
+            }
         }
-
-
         return redirect()->route('listcoupon.page');
+    }
+
+    public function checkcode(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $coupon = Coupon::where('code', $request['searchcode'])->first();
+        if($coupon){
+            return response()->json([
+                're' => 'no',
+            ]);
+        }else{
+            return response()->json([
+                're' => 'yes',
+            ]);
+        }
     }
 }

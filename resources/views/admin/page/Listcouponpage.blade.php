@@ -35,8 +35,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Tổng cộng : {{ $countcoupon }} mã</h3>
                         <div class="card-tools" style="width: 45%;">
-                            <form action="{{ route('searchcoupon') }}" method="get"
-                                class="input-group input-group-sm">
+                            <form action="{{ route('searchcoupon') }}" method="get" class="input-group input-group-sm">
                                 <input type="text" name="searchcoupon" class="form-control float-right"
                                     placeholder="Tìm kiếm" value="{{ request('searchcoupon')}}">
                             </form>
@@ -148,8 +147,9 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="code">
+                        aria-describedby="inputGroup-sizing-default" required name="code" id="code-input">
                 </div>
+                <p class="font-weight-bold checkcode" style="color:red">Mã đã tồn tại! Vui lòng nhập mã khác</p>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Áp dụng cho</span>
                     <div class="d-flex align-items-center">
@@ -239,27 +239,27 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm</span>
                     <div class="d-flex align-items-center">
                         <label class="label">
-                            <input type="radio" name="discount_type" value="product" required>
+                            <input type="radio" name="discount_type" value="percentage" required>
                             Phần trăm
                         </label>
                         <label class="label">
-                            <input type="radio" name="discount_type" value="cart" required>
+                            <input type="radio" name="discount_type" value="amount" required>
                             Số tiền
                         </label>
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Y/c tối thiểu</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Y/c tối thiểu($)</span>
                     <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="minimum_order_amount">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tối đa giảm</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tối đa giảm($)</span>
                     <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="max_discount_amount">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Số tiền giảm</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Lượng giảm(%/$)</span>
                     <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="discount_amount">
                 </div>
@@ -521,7 +521,7 @@ $(document).ready(function() {
         } else {
             $("#cate-input").text("Chưa chọn mục nào");
         }
-     
+
         $("#modal-add").modal('show');
         $("#modal-addcate").modal('hide');
     });
@@ -547,7 +547,7 @@ $(document).ready(function() {
         } else {
             $("#product-input").text("Chưa chọn sản phẩm nào");
         }
-        
+
         $("#modal-add").modal('show');
         $("#modal-addproduct").modal('hide');
     });
@@ -576,7 +576,6 @@ $(document).ready(function() {
                         $("#not").show();
                         $("#yes").hide();
                     }
-
                 },
                 error: function(error) {
                     console.error(error);
@@ -614,6 +613,44 @@ $(document).ready(function() {
             )
         }
     });
+
+    $("#code-input").on("input", function() {
+        var inputValue = $(this).val();
+        
+        if (inputValue.trim() !== "") {
+            if (inputValue.length < 6) {
+                $(".checkcode").text("Mã phải chứa ít nhất 6 kí tự");
+                $(".checkcode").show();
+            } else {
+                $.ajax({
+                    url: '{{ route("code.check") }}',
+                    type: "POST",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        searchcode: inputValue
+                    },
+                    success: function(response) {
+                        var re = response.re;
+                        if (re == 'yes') {
+                            $(".checkcode").text("Mã có thể sử dụng");
+                            $(".checkcode").show();
+                        } else {
+                            $(".checkcode").text("Mã đã tồn tại! Vui lòng nhập mã khác");
+                            $(".checkcode").show();
+                        }
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+        } else {
+            $(".checkcode").hide();
+        }
+    });
+
+
 });
 </script>
 

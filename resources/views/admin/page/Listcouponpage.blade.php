@@ -87,7 +87,7 @@
                                         @if($row->discount_type = 'percentage')
                                         <td class="text-center">Phần trăm</td>
                                         @else
-                                        <td class="text-center">Mức tiền</td>
+                                        <td class="text-center">Số tiền</td>
                                         @endif
                                         <td>{{ $row->starttime }}</td>
                                         <td>{{ $row->endtime }}</td>
@@ -138,6 +138,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <input type="hidden" name="listproduct" id="listproduct">
+            <input type="hidden" name="listcate" id="listcate">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
@@ -215,18 +217,19 @@
                             </label>
                         </div>
                     </div>
-                    <p class="btn btn-secondary" id="cate-input">Chọn danh sách</p>
+                    <p class="btn btn-secondary" id="cate-input" type="button" data-toggle="modal"
+                        data-target="#modal-addcate">Chưa chọn mục nào</p>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm</span>
                     <div class="d-flex align-items-center">
                         <label class="label">
                             <input type="radio" name="discount_type" value="product">
-                            Phần trăm(%)
+                            Phần trăm
                         </label>
                         <label class="label">
                             <input type="radio" name="discount_type" value="cart">
-                            Mức tiền($)
+                            Số tiền
                         </label>
                     </div>
                 </div>
@@ -342,6 +345,31 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade" id="modal-addcate" data-backdrop="static" data-keyboard="false">    
+<!-- Không đóng popup khi nhấn bên ngoài -->
+    <div class="modal-dialog">
+        <div class="modal-content" action="" method="post">
+            <div class="modal-header">
+                <h4 class="modal-title">Chọn danh sách danh mục</h4>
+            </div>
+            <div class="modal-body fixgrid">
+                @foreach($category as $ca)
+                <label for="" class="d-flex flex-column align-items-center">
+                    <img src="{{ $ca->imagecategory }}" alt="" height="50" style="width:fit-content">
+                    {{ $ca->namecategory }}
+                    <input type="checkbox" name="listcate" value="{{ $ca->idcategory }}" class="listcate-checkbox">
+                </label>
+                @endforeach
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="submit" class="btn btn-success" id="listcatebtn">Đồng ý</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection
 
 
@@ -389,6 +417,43 @@ $(document).ready(function() {
             // Nếu radio button khác được chọn, ẩn ô input
             $("#cate-input").hide();
         }
+    });
+
+    $("#cate-input").click(function() {
+        // Ẩn modal-addcate
+        $("#modal-add").modal('hide');
+        // Hiển thị modal-add
+        // $("#modal-add").modal('show');
+    });
+
+    $("#modal-addcate").on('hidden.bs.modal', function() {
+        $("#modal-add").modal('show');
+    });
+
+    $("#listcatebtn").click(function() {
+        // Tạo một mảng để lưu giá trị của các checkbox đã chọn
+        var selectedValues = [];
+
+        // Lặp qua tất cả các checkbox đã chọn và thêm giá trị vào mảng
+        $(".listcate-checkbox:checked").each(function() {
+            selectedValues.push($(this).val());
+        });
+
+        // Cập nhật giá trị của trường input ẩn
+        $("#listcate").val(selectedValues.join(","));
+
+
+        var selectedCount = selectedValues.length;
+
+        // Thay đổi nội dung thẻ <p> "Chọn danh sách"
+        if (selectedCount > 0) {
+            $("#cate-input").text("Đã chọn " + selectedCount + " mục");
+        } else {
+            $("#cate-input").text("Chưa chọn mục nào");
+        }
+
+        $("#modal-add").modal('show');
+        $("#modal-addcate").modal('hide');
     });
 });
 </script>

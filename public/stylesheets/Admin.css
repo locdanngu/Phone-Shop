@@ -132,11 +132,28 @@ input[type="file"] {
     margin-right: .25em;
 }
 
+.fixgrid{
+    grid-template-columns: repeat(5, 1fr); /* Ba cột bằng nhau */
+    gap: 1em;
+    display: grid;
+}
+
+#cate-input{
+    margin: 0em !important;
+}
+
 
 .relative.inline-flex.hover:text-gray-400.focus:z-10 .focus:outline-none .focus:ring .ring-gray-300 .focus:border-blue-300 .active:bg-gray-100 .active:text-gray-500
 .transition .ease-in-out .duration-150 .items-center .px-2 .py-2 .-ml-px .text-sm .font-medium .text-gray-500 .bg-white .border .border-gray-300 .rounded-r-md .leading-5 {
     display: none;
 }
+
+@media screen and (max-width: 460px) {
+    body{
+        font-size: .75em !important;
+    }
+}
+
 @media screen and (max-width: 767px) {
     #inputGroup-sizing-default {
         width: 30% !important;
@@ -176,10 +193,17 @@ input[type="file"] {
 
     #cate-input{
         height: 2em;
+        margin-top: 1em !important;
     }
 
     .fixmobileuser2{
         width: 100% !important;
+    }
+
+    .fixgrid{
+        grid-template-columns: repeat(3, 1fr); /* Ba cột bằng nhau */
+        gap: 1em;
+        display: grid;
     }
 
 }
@@ -195,6 +219,31 @@ input[type="file"] {
     .modal-content {
         width: 100% !important;
         left: 0%;
+    }
+
+    .fixgrid{
+        grid-template-columns: repeat(3, 1fr); /* Ba cột bằng nhau */
+        gap: 1em;
+        display: grid;
+    }
+
+    .fixmobileuser{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #user-input, #cate-input{
+        margin-top: 1em;
+        width: 100% !important;
+    }
+
+    #cate-input{
+        height: 2em;
+        margin-top: 1em !important;
+    }
+
+    .fixmobileuser2{
+        width: 100% !important;
     }
 
 }

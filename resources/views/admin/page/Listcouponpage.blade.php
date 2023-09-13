@@ -259,7 +259,7 @@
                         aria-describedby="inputGroup-sizing-default" required name="max_discount_amount">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Lượng giảm(%/$)</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Mức giảm(%/$)</span>
                     <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="discount_amount">
                 </div>
@@ -598,7 +598,6 @@ $(document).ready(function() {
         }
 
         if ($("#product-radio").is(":checked") && $("#listproduct").val() == "") {
-            // Điều kiện không đáp ứng, ngăn gửi biểu mẫu
             event.preventDefault();
             toastr.error(
                 '<b>Vui lòng chọn ít nhất 1 sản phẩm</b>'
@@ -606,17 +605,34 @@ $(document).ready(function() {
         }
 
         if ($("#cate-radio").is(":checked") && $("#listcate").val() == "") {
-            // Điều kiện không đáp ứng, ngăn gửi biểu mẫu
             event.preventDefault();
             toastr.error(
                 '<b>Vui lòng chọn ít nhất 1 danh mục</b>'
             )
         }
+        var startDatetime = new Date($("input[name='starttime']").val());
+        var endDatetime = new Date($("input[name='endtime']").val());
+        var currentDate = new Date();
+
+        if (endDatetime <= startDatetime){
+            event.preventDefault();
+            toastr.error(
+                '<b>Ngày kết thúc không được sớm hơn ngày bắt đầu</b>'
+            )
+        }
+
+        if(endDatetime <= currentDate){
+            event.preventDefault();
+            toastr.error(
+                '<b>Ngày kết thúc không được sớm hơn thời gian hiện tại</b>'
+            )
+        }
+
     });
 
     $("#code-input").on("input", function() {
         var inputValue = $(this).val();
-        
+
         if (inputValue.trim() !== "") {
             if (inputValue.length < 6) {
                 $(".checkcode").text("Mã phải chứa ít nhất 6 kí tự");

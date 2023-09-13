@@ -138,7 +138,7 @@ input[type="file"] {
     display: grid;
 }
 
-#cate-input{
+#cate-input, #product-input{
     margin: 0em !important;
 }
 
@@ -186,15 +186,15 @@ input[type="file"] {
         flex-direction: column;
     }
 
-    #user-input, #cate-input{
-        margin-top: 1em;
+    #user-input, #cate-input, #product-input{
+        margin-top: 1em !important;
         width: 100% !important;
     }
 
-    #cate-input{
+    /* #cate-input,#product-input{
         height: 2em;
         margin-top: 1em !important;
-    }
+    } */
 
     .fixmobileuser2{
         width: 100% !important;
@@ -233,14 +233,14 @@ input[type="file"] {
     }
 
     #user-input, #cate-input{
-        margin-top: 1em;
+        margin-top: 1em !important;
         width: 100% !important;
     }
 
-    #cate-input{
+    /* #cate-input,#product-input{
         height: 2em;
         margin-top: 1em !important;
-    }
+    } */
 
     .fixmobileuser2{
         width: 100% !important;

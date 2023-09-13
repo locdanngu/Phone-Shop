@@ -243,8 +243,9 @@ class AdminController extends Controller
         $admin = Auth::guard('admin')->user();
         $coupon = Coupon::where('endtime', '>', Carbon::now())->where('isdelete', 0)->get();
         $category = Category::all();
+        $product = Product::all();
 
 
-        return view('admin/page/Listcouponpage', compact('admin','coupon','category'));
+        return view('admin/page/Listcouponpage', compact('admin','coupon','category','product'));
     }
 }

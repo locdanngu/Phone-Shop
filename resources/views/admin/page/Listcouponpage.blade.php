@@ -178,8 +178,8 @@
                         aria-describedby="inputGroup-sizing-default" required name="in4user"
                         placeholder="Nhập Id, username, email hoặc số điện thoại" style="width: 50%;" id="user-input">
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
+                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser">
+                    <!-- <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
                     <div class="d-flex align-items-center">
                         <label class="label">
                             <input type="radio" name="product_list" value="product">
@@ -189,20 +189,25 @@
                             <input type="radio" name="product_list" value="cart">
                             Tất cả
                         </label>
+                    </div> -->
+                    <div class="w-50 d-flex fixmobileuser2">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 30% !important;">Sản phẩm</span>
+                        <div class="d-flex align-items-center">
+                            <label class="label">
+                                <input type="radio" name="product_list" value="1" id="product-radio">
+                                Danh sách
+                            </label>
+                            <label class="label">
+                                <input type="radio" name="product_list" value="0">
+                                Tất cả
+                            </label>
+                        </div>
                     </div>
+                    <p class="btn btn-secondary" id="product-input" type="button" data-toggle="modal"
+                        data-target="#modal-addproduct">Chưa chọn sản phẩm nào</p>
                 </div>
                 <div class="input-group mb-3 d-flex justify-content-between fixmobileuser">
-                    <!-- <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
-                    <div class="d-flex align-items-center">
-                        <label class="label">
-                            <input type="radio" name="category_list" value="product">
-                            Danh sách
-                        </label>
-                        <label class="label">
-                            <input type="radio" name="category_list" value="cart">
-                            Tất cả
-                        </label>
-                    </div> -->
                     <div class="w-50 d-flex fixmobileuser2">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 30% !important;">Danh mục</span>
@@ -370,6 +375,27 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade" id="modal-addproduct" data-backdrop="static" data-keyboard="false">    
+<!-- Không đóng popup khi nhấn bên ngoài -->
+    <div class="modal-dialog">
+        <div class="modal-content" action="" method="post">
+            <div class="modal-header">
+                <h4 class="modal-title">Chọn danh sách sản phẩm</h4>
+            </div>
+            <div class="modal-body fixgrid">
+                @foreach($product as $pr)
+                
+                @endforeach
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="submit" class="btn btn-success" id="listproductbtn">Đồng ý</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection
 
 
@@ -397,7 +423,7 @@ $(document).ready(function() {
         modal.find('input[name="idcategory"]').val(id);
         modal.find('img.imageblog2').attr('src', image);
     });
-    $("#user-input, #cate-input").hide();
+    $("#user-input, #cate-input, #product-input").hide();
 
     $("input[name='iduser']").change(function() {
         if ($(this).val() === "product") {
@@ -419,6 +445,14 @@ $(document).ready(function() {
         }
     });
 
+    $("input[name='product_list']").change(function() {
+        if ($(this).val() === "1") {
+            $("#product-input").show();
+        } else {
+            $("#product-input").hide();
+        }
+    });
+
     $("#cate-input").click(function() {
         // Ẩn modal-addcate
         $("#modal-add").modal('hide');
@@ -426,9 +460,17 @@ $(document).ready(function() {
         // $("#modal-add").modal('show');
     });
 
-    $("#modal-addcate").on('hidden.bs.modal', function() {
+    $("#product-input").click(function() {
+        $("#modal-add").modal('hide');
+    });
+
+    $("#modal-addcate, #modal-addproduct").on('hidden.bs.modal', function() {
         $("#modal-add").modal('show');
     });
+
+    // $("#modal-addproduct").on('hidden.bs.modal', function() {
+    //     $("#modal-add").modal('show');
+    // });
 
     $("#listcatebtn").click(function() {
         // Tạo một mảng để lưu giá trị của các checkbox đã chọn

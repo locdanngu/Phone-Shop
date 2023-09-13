@@ -32,4 +32,8 @@ class Coupon extends Model
     //     'endtime' => 'datetime',
     // ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'iduser');
+    }
 }

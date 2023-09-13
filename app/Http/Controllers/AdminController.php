@@ -241,10 +241,21 @@ class AdminController extends Controller
     public function listcouponpage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $coupon = Coupon::where('endtime', '>', Carbon::now())->where('isdelete', 0)->get();
+        $limit = $request->limit ?? 5;
+        $coupon = new Coupon();
+        $searchcoupon = $request['searchcoupon'];
+        
+        if ($searchcoupon) {
+            $coupon = $coupon->where('endtime', '>', Carbon::now())
+                             ->where('code', 'like', '%' . $searchcoupon . '%')
+                             ->where('isdelete', 0);
+        }
+        $coupon = $coupon->paginate($limit);
         $category = Category::all();
         $product = Product::orderBy('idcategory')->get();
-        return view('admin/page/Listcouponpage', compact('admin','coupon','category','product'));
+        $countcoupon = $coupon->count();
+
+        return view('admin/page/Listcouponpage', compact('admin','coupon','category','product','countcoupon'));
     }
 
     public function searchuser(Request $request)

@@ -152,11 +152,11 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Áp dụng cho</span>
                     <div class="d-flex align-items-center">
                         <label class="label">
-                            <input type="radio" name="applicable_to" value="product">
+                            <input type="radio" name="applicable_to" value="product" required>
                             Sản phẩm
                         </label>
                         <label class="label">
-                            <input type="radio" name="applicable_to" value="cart">
+                            <input type="radio" name="applicable_to" value="cart" required>
                             Đơn hàng
                         </label>
                     </div>
@@ -167,11 +167,11 @@
                             style="width: 30% !important;">Người dùng</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="iduser" value="product" id="user-radio">
+                                <input type="radio" name="iduser" value="product" id="user-radio" required>
                                 Cá nhân
                             </label>
                             <label class="label">
-                                <input type="radio" name="iduser" value="cart">
+                                <input type="radio" name="iduser" value="cart" required>
                                 Tất cả
                             </label>
                         </div>
@@ -203,11 +203,11 @@
                             phẩm</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="product_list" value="1" id="product-radio">
+                                <input type="radio" name="product_list" value="1" id="product-radio" required>
                                 Danh sách
                             </label>
                             <label class="label">
-                                <input type="radio" name="product_list" value="0">
+                                <input type="radio" name="product_list" value="0" required>
                                 Tất cả
                             </label>
                         </div>
@@ -221,11 +221,11 @@
                             style="width: 30% !important;">Danh mục</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="category_list" value="1" id="cate-radio">
+                                <input type="radio" name="category_list" value="1" id="cate-radio" required>
                                 Danh sách
                             </label>
                             <label class="label">
-                                <input type="radio" name="category_list" value="0">
+                                <input type="radio" name="category_list" value="0" required>
                                 Tất cả
                             </label>
                         </div>
@@ -237,11 +237,11 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm</span>
                     <div class="d-flex align-items-center">
                         <label class="label">
-                            <input type="radio" name="discount_type" value="product">
+                            <input type="radio" name="discount_type" value="product" required>
                             Phần trăm
                         </label>
                         <label class="label">
-                            <input type="radio" name="discount_type" value="cart">
+                            <input type="radio" name="discount_type" value="cart" required>
                             Số tiền
                         </label>
                     </div>
@@ -265,12 +265,12 @@
                     <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Ngày bắt đầu</span>
-                        <input type="datetime-local" name="starttime" style="width: 100%">
+                        <input type="datetime-local" name="starttime" style="width: 100%" required>
                     </div>
                     <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Ngày kết thúc</span>
-                        <input type="datetime-local" name="endtime" style="width: 100%">
+                        <input type="datetime-local" name="endtime" style="width: 100%" required>
                     </div>
                 </div>
             </div>

@@ -191,8 +191,8 @@
                         </label>
                     </div> -->
                     <div class="w-50 d-flex fixmobileuser2">
-                        <span class="input-group-text" id="inputGroup-sizing-default"
-                            style="width: 30% !important;">Sản phẩm</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30% !important;">Sản
+                            phẩm</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
                                 <input type="radio" name="product_list" value="1" id="product-radio">
@@ -351,8 +351,8 @@
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="modal-addcate" data-backdrop="static" data-keyboard="false">    
-<!-- Không đóng popup khi nhấn bên ngoài -->
+<div class="modal fade" id="modal-addcate" data-backdrop="static" data-keyboard="false">
+    <!-- Không đóng popup khi nhấn bên ngoài -->
     <div class="modal-dialog">
         <div class="modal-content" action="" method="post">
             <div class="modal-header">
@@ -376,17 +376,36 @@
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="modal-addproduct" data-backdrop="static" data-keyboard="false">    
-<!-- Không đóng popup khi nhấn bên ngoài -->
+<div class="modal fade" id="modal-addproduct" data-backdrop="static" data-keyboard="false">
+    <!-- Không đóng popup khi nhấn bên ngoài -->
     <div class="modal-dialog">
         <div class="modal-content" action="" method="post">
             <div class="modal-header">
                 <h4 class="modal-title">Chọn danh sách sản phẩm</h4>
             </div>
-            <div class="modal-body fixgrid">
-                @foreach($product as $pr)
-                
-                @endforeach
+            <div class="modal-body">
+                <table class="table table-head-fixed text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th class="text-center">Sản phẩm</th>
+                            <th>Hãng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($product as $pr)
+                        <tr>
+                            <td class="font-weight-bold" style="color:red">{{ $pr->nameproduct }}</td>
+                            <td class="text-center"><img src="{{ $pr->imageproduct }} " alt="" height="50"></td>
+                            <td class="font-weight-bold">{{ $pr->category->namecategory }}</td>
+                            <td><input type="checkbox" name="listproduct" value="{{ $pr->idproduct }}"
+                                    class="listproduct-checkbox"></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="submit" class="btn btn-success" id="listproductbtn">Đồng ý</button>
@@ -468,10 +487,6 @@ $(document).ready(function() {
         $("#modal-add").modal('show');
     });
 
-    // $("#modal-addproduct").on('hidden.bs.modal', function() {
-    //     $("#modal-add").modal('show');
-    // });
-
     $("#listcatebtn").click(function() {
         // Tạo một mảng để lưu giá trị của các checkbox đã chọn
         var selectedValues = [];
@@ -484,7 +499,6 @@ $(document).ready(function() {
         // Cập nhật giá trị của trường input ẩn
         $("#listcate").val(selectedValues.join(","));
 
-
         var selectedCount = selectedValues.length;
 
         // Thay đổi nội dung thẻ <p> "Chọn danh sách"
@@ -496,6 +510,31 @@ $(document).ready(function() {
 
         $("#modal-add").modal('show');
         $("#modal-addcate").modal('hide');
+    });
+
+    $("#listproductbtn").click(function() {
+        // Tạo một mảng để lưu giá trị của các checkbox đã chọn
+        var selectedValues = [];
+
+        // Lặp qua tất cả các checkbox đã chọn và thêm giá trị vào mảng
+        $(".listproduct-checkbox:checked").each(function() {
+            selectedValues.push($(this).val());
+        });
+
+        // Cập nhật giá trị của trường input ẩn
+        $("#listproduct").val(selectedValues.join(","));
+
+        var selectedCount = selectedValues.length;
+
+        // Thay đổi nội dung thẻ <p> "Chọn danh sách"
+        if (selectedCount > 0) {
+            $("#product-input").text("Đã chọn " + selectedCount + " sản phẩm");
+        } else {
+            $("#product-input").text("Chưa chọn sản phẩm nào");
+        }
+
+        $("#modal-add").modal('show');
+        $("#modal-addproduct").modal('hide');
     });
 });
 </script>

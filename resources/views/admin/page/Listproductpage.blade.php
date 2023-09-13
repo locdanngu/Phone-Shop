@@ -219,15 +219,43 @@
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="nameproduct">
                 </div>
-                <div class="input-group mb-3">
+                <!-- <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Giá cũ($)</span>
                     <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="oldprice">
-                </div>
+                </div> -->
                 <div class="input-group mb-3">
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Giá cũ($)</span>
+                        <input type="number" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" required name="oldprice" id="oldpricedola2">
+                    </div>
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Giá cũ(đ)</span>
+                        <input type="number" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" name="oldprice2" id="oldpricevnd2">
+                    </div>
+                </div>
+                <!-- <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Giá mới($)</span>
                     <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="price">
+                </div> -->
+                <div class="input-group mb-3">
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Giá mới($)</span>
+                        <input type="number" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" required name="price" id="pricedola">
+                    </div>
+                    <div class="w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="width: 100% !important;">Giá mới(đ)</span>
+                        <input type="number" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" name="price2" id="pricevnd">
+                    </div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Mô
@@ -360,6 +388,8 @@ $(document).ready(function() {
         modal.find('input[name="idproduct"]').val(id);
         modal.find('input[name="oldprice"]').val(oldprice);
         modal.find('input[name="price"]').val(price);
+        modal.find('input[name="oldprice2"]').val(oldprice*23000);
+        modal.find('input[name="price2"]').val(price*23000);
         modal.find('textarea[name="detail"]').val(detail);
         // modal.find('input[name="namecategory"]').val(category);
         modal.find('select[name="idcategory"] option[value="' + category + '"]').prop('selected', true);
@@ -390,22 +420,15 @@ $(document).ready(function() {
     $("#oldpricedola").on("input", function() {
         // Lấy giá trị của input thứ nhất
         var inputValue1 = $(this).val();
-
         // Tính giá trị mới cho input thứ hai bằng cách nhân với 23000
         var newValue = inputValue1 * 23000;
-
         // Cập nhật giá trị của input thứ hai
         $("#oldpricevnd").val(newValue);
     });
 
     $("#oldpricevnd").on("input", function() {
-        // Lấy giá trị của input thứ nhất
         var inputValue1 = $(this).val();
-
-        // Tính giá trị mới cho input thứ hai bằng cách nhân với 23000
         var newValue = (inputValue1 / 23000).toFixed(2);
-
-        // Cập nhật giá trị của input thứ hai
         $("#oldpricedola").val(newValue);
     });
 
@@ -419,6 +442,30 @@ $(document).ready(function() {
         var inputValue1 = $(this).val();
         var newValue = (inputValue1 / 23000).toFixed(2);
         $("#pricedola").val(newValue);
+    });
+
+    $("#oldpricedola2").on("input", function() {
+        var inputValue1 = $(this).val();
+        var newValue = inputValue1 * 23000;
+        $("#oldpricevnd2").val(newValue);
+    });
+
+    $("#oldpricevnd2").on("input", function() {
+        var inputValue1 = $(this).val();
+        var newValue = (inputValue1 / 23000).toFixed(2);
+        $("#oldpricedola2").val(newValue);
+    });
+
+    $("#pricedola2").on("input", function() {
+        var inputValue1 = $(this).val();
+        var newValue = inputValue1 * 23000;
+        $("#pricevnd2").val(newValue);
+    });
+
+    $("#pricevnd2").on("input", function() {
+        var inputValue1 = $(this).val();
+        var newValue = (inputValue1 / 23000).toFixed(2);
+        $("#pricedola2").val(newValue);
     });
 
 });

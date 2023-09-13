@@ -82,7 +82,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('dauvao', 'daura') ? 'active' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->routeIs('listcoupon.page', 'searchcoupon') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-badge-vo"></i>
                         <p>
                             Quản lý mã khuyến mãi
@@ -91,7 +92,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('listcoupon.page') }}" class="nav-link {{ request()->is('dauvao') ? 'active' : '' }}">
+                            <a href="{{ route('listcoupon.page') }}"
+                                class="nav-link {{ request()->routeIs('listcoupon.page', 'searchcoupon') ? 'active' : '' }}">
                                 <i class="bi bi-list-stars nav-icon"></i>
                                 <p>Danh sách mã giảm giá</p>
                             </a>
@@ -114,7 +116,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('listorder.page', 'searchproduct') ? 'active' : '' }}">
                         <i class="nav-icon bi-receipt"></i>
                         <p>
                             Quản lý đơn

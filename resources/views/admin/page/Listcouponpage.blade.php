@@ -132,7 +132,7 @@
 <!-- Modal trả lời đơn tư vấn -->
 <div class="modal fade" id="modal-add">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.add') }}" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('coupon.add') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Tạo mã giảm giá</h4>
@@ -140,6 +140,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <input type="hidden" name="sendiduser" id="sendiduser">
             <input type="hidden" name="listproduct" id="listproduct">
             <input type="hidden" name="listcate" id="listcate">
             <div class="modal-body">
@@ -176,13 +177,13 @@
                             </label>
                         </div>
                     </div>
-                    <div class="d-flex w-50 align-items-center">
+                    <div class="d-flex checkuser align-items-center">
                         <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" required name="in4user"
+                            aria-describedby="inputGroup-sizing-default"
                             placeholder="Nhập Id, username, email hoặc số điện thoại" style="width: 90%;"
                             id="user-input">
-                            <i class="bi bi-x-circle-fill ml-3" id="not" style="color:red"></i>
-                            <i class="bi bi-check-circle-fill ml-3" id="yes" style="color: #007bff"></i>
+                        <i class="bi bi-x-circle-fill ml-3" id="not" style="color:red"></i>
+                        <i class="bi bi-check-circle-fill ml-3" id="yes" style="color: #007bff"></i>
                     </div>
 
                 </div>
@@ -555,26 +556,30 @@ $(document).ready(function() {
             $.ajax({
                 url: '{{ route("user.search") }}', // Thay thế bằng URL của máy chủ của bạn
                 type: "POST", // Hoặc "GET" tùy vào yêu cầu của bạn
-                data: { 
+                data: {
                     _token: '{{ csrf_token() }}',
-                    searchuser: inputValue 
+                    searchuser: inputValue
                 },
                 success: function(response) {
                     var re = response.re;
-                    if(re == 'yes'){
+                    var iduser = response.iduser;
+                    $("#sendiduser").val(response.iduser);
+                    if (re == 'yes') {
                         $("#yes").show();
                         $("#not").hide();
-                    }else{
+
+                    } else {
                         $("#not").show();
                         $("#yes").hide();
                     }
+
                 },
                 error: function(error) {
                     // Xử lý lỗi (nếu có)
                     console.error(error);
                 }
             });
-        }else{
+        } else {
             $("#yes").hide();
             $("#not").hide();
         }

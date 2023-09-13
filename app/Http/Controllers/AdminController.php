@@ -258,11 +258,23 @@ class AdminController extends Controller
         if($user){
             return response()->json([
                 're' => 'yes',
+                'iduser' => $user->iduser,
             ]);
         }else{
             return response()->json([
                 're' => 'no',
+                'iduser' => '',
             ]);
         }
+    }
+
+    public function addcoupon(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        dd($request);
+
+
+
+        return redirect()->route('listcoupon.page');
     }
 }

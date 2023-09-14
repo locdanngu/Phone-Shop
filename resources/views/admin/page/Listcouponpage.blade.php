@@ -66,8 +66,8 @@
                                         @else
                                         <td class="text-center">Sản phẩm</td>
                                         @endif
-                                        @if($row->id_user)
-                                        <td class="text-center font-weight-bold">{{ $row->id_user }}</td>
+                                        @if($row->iduser)
+                                        <td class="text-center font-weight-bold">{{ $row->user->email }}</td>
                                         @else
                                         <td class="text-center font-weight-bold">Tất cả</td>
                                         @endif
@@ -320,11 +320,11 @@
                             style="width: 30% !important;">Người dùng</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="iduser" value="product" id="user-radio" required>
+                                <input type="radio" name="iduser" value="1" id="user-radio" required>
                                 Cá nhân
                             </label>
                             <label class="label">
-                                <input type="radio" name="iduser" value="cart" required>
+                                <input type="radio" name="iduser" value="0" required>
                                 Tất cả
                             </label>
                         </div>
@@ -692,6 +692,14 @@ $(document).ready(function() {
         var modal = $(this);
         modal.find('input[name="code"]').val(code);
         modal.find('input[name="applicable_to"][value="' + app + '"]').prop('checked', true);
+        console.log(iduser);
+        if(iduser == 1){
+            modal.find('input[name="iduser"][value="' + iduser + '"]').prop('checked', true);
+        }else{
+            modal.find('input[name="iduser"][value="0"]').prop('checked', true);
+
+        }
+
     });
 
     $('#modal-delete').on('shown.bs.modal', function(event) {

@@ -479,4 +479,12 @@ class AdminController extends Controller
             'category' => $category,
         ]);
     }
+
+    public function deletecoupon(Request $request)
+    {
+        $coupon = Coupon::where('idcoupon', $request['idcoupon'])->first();
+        $coupon->isdelete = 1;
+        $coupon->save();
+
+        return redirect()->route('listcoupon.page');    }
 }

@@ -50,6 +50,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/checkcode', [AdminController::class, 'checkcode'])->name('code.check');
         Route::post('/addcoupon', [AdminController::class, 'addcoupon'])->name('coupon.add');
         Route::post('/changecoupon', [AdminController::class, 'changecoupon'])->name('coupon.change');
+        Route::post('/deletecoupon', [AdminController::class, 'deletecoupon'])->name('coupon.delete');
         Route::post('/categorylist', [AdminController::class, 'categorylist'])->name('cate.list');
         Route::post('/productlist', [AdminController::class, 'productlist'])->name('product.list');
         Route::post('/categorycount', [AdminController::class, 'categorycount'])->name('cate.count');

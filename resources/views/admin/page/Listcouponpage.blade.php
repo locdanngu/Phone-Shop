@@ -188,6 +188,7 @@ $(document).ready(function() {
             modal.find('#in4listpro').attr('data-idcoupon', id);
             modal.find('#in4listpro').show();
             $(".hidein4").removeClass("hideproduct");
+            $("#hidein4cate").addClass("hideproduct");
         } else {
             modal.find('#in4listpro').hide();
             $(".hidein4").addClass("hideproduct");
@@ -199,6 +200,7 @@ $(document).ready(function() {
             modal.find('#in4listcate').attr('data-idcoupon', id);
             modal.find('#in4listcate').show();
             $(".hidein4").removeClass("hideproduct");
+            $("#hidein4pro").addClass("hideproduct");
         } else {
             modal.find('#in4listcate').hide();
             $(".hidein4").addClass("hideproduct");
@@ -330,12 +332,70 @@ $(document).ready(function() {
     $('#modal-delete').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
-        var name = button.data('name');
-        var image = button.data('image');
+        var code = button.data('code');
+        var start = button.data('start');
+        var end = button.data('end');
+        var app = button.data('appli');
+        if (app == 'cart') {
+            app = 'Đơn hàng';
+        } else {
+            app = 'Sản phẩm';
+        }
+        var iduser = button.data('iduser');
+        if (iduser == '') {
+            iduser = 'Tất cả';
+        }
+        var pro = button.data('pro');
+        var cate = button.data('cate');
+        var dis = button.data('dis');
+        if (dis == 'percentage') {
+            dis = 'Theo phần trăm';
+        } else {
+            dis = 'Theo mức tiền';
+        }
+        var mini = button.data('mini');
+        var max = button.data('max');
+        var amo = button.data('amo');
+        var used = button.data('used');
         var modal = $(this);
-        modal.find('span[name="namecategory"]').text(name);
-        modal.find('input[name="idcategory"]').val(id);
-        modal.find('img.imageblog2').attr('src', image);
+        modal.find('span[name="code"]').text(code);
+        modal.find('span[name="starttime"]').text(start.split(':').slice(0, 2).join(':'));
+        modal.find('span[name="endtime"]').text(end.split(':').slice(0, 2).join(':'));
+        modal.find('span[name="applicable_to"]').text(app);
+        modal.find('span[name="iduser"]').text(iduser);
+        if (pro == 1) {
+            modal.find('span[name="product_list"]').hide();
+            modal.find('#in4listpro').attr('data-idcoupon', id);
+            modal.find('#in4listpro').show();
+            $(".hidein4").removeClass("hideproduct");
+        } else {
+            modal.find('#in4listpro').hide();
+            $(".hidein4").addClass("hideproduct");
+            modal.find('span[name="product_list"]').text('Tất cả sản phẩm');
+            modal.find('span[name="product_list"]').show();
+        }
+        if (cate == 1) {
+            modal.find('span[name="category_list"]').hide();
+            modal.find('#in4listcate').attr('data-idcoupon', id);
+            modal.find('#in4listcate').show();
+            $(".hidein4").removeClass("hideproduct");
+        } else {
+            modal.find('#in4listcate').hide();
+            $(".hidein4").addClass("hideproduct");
+            modal.find('span[name="category_list"]').text('Tất cả sản phẩm');
+            modal.find('span[name="category_list"]').show();
+        }
+        modal.find('span[name="discount_type"]').text(dis);
+        modal.find('span[name="minimum_order_amount"]').text(mini + ' $');
+        modal.find('span[name="max_discount_amount"]').text(max + ' $');
+        if (dis == 'Theo phần trăm') {
+            modal.find('span[name="discount_amount"]').text(amo + ' %');
+        } else {
+            modal.find('span[name="discount_amount"]').text(amo + ' $');
+
+        }
+        modal.find('span[name="used"]').text(used + ' lần');
+        modal.find('input[name="idcoupon"]').text(id);
     });
 
     $("#user-input, #user-input2, #cate-input, #product-input, #not, #yes, #not2, #yes2").hide();

@@ -20,12 +20,12 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Người dùng</span>
                     <span name="iduser" class="spanpopup"></span>
                 </div>
-                <div class="input-group mb-3 hidein4">
+                <div class="input-group mb-3 hidein4" id="hidein4pro">
                     <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
                     <span name="product_list" class="spanpopup"></span>
                     <button class="btn btn-secondary ml-3" id="in4listpro">Danh sách sản phẩm</button>
                 </div>
-                <div class="input-group mb-3 hidein4">
+                <div class="input-group mb-3 hidein4" id="hidein4cate">
                     <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
                     <span name="category_list" class="spanpopup"></span>
                     <button class="btn btn-secondary ml-3" id="in4listcate">Danh sách danh mục</button>

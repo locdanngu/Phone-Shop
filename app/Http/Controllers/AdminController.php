@@ -453,4 +453,22 @@ class AdminController extends Controller
             'html' => $html,
         ]);
     }
+
+    public function productcount(Request $request)
+    {
+        $html = Product_coupon::where('idcoupon', $request['id'])->count();
+
+        return response()->json([
+            'html' => $html,
+        ]);
+    }
+
+    public function categorycount(Request $request)
+    {
+        $html = Category_coupon::where('idcoupon', $request['id'])->count();
+
+        return response()->json([
+            'html' => $html,
+        ]);
+    }
 }

@@ -11,8 +11,8 @@
             </div>
             <input type="hidden" name="sendiduser" id="sendiduser2">
             <input type="hidden" name="idcoupon">
-            <input type="text" name="listproduct" id="listproduct2">
-            <input type="text" name="listcate" id="listcate2">
+            <input type="hidden" name="listproduct" id="listproduct2">
+            <input type="hidden" name="listcate" id="listcate2">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>

@@ -259,6 +259,23 @@ $(document).ready(function() {
         modal.find('input[name="endtime"]').val(end);
 
         if (pro == '1') {
+
+            $.ajax({
+                url: '{{ route("product.count") }}',
+                type: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id,
+                },
+                success: function(response) {
+                    var html = response.html;
+                    $("#product-input2").text('Đã chọn ' + html + ' sản phẩm');
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+
             $("#product-input2").show();
             modal.find('#product-input2').attr('data-idcoupon', id);
             modal.find('input[name="product_list_or_cate_list"][value="1"]').prop('checked', true);
@@ -267,6 +284,23 @@ $(document).ready(function() {
             $("#product-input2").hide();
         }
         if (cate == '1') {
+
+            $.ajax({
+                url: '{{ route("cate.count") }}',
+                type: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id,
+                },
+                success: function(response) {
+                    var html = response.html;
+                    $("#cate-input2").text('Đã chọn ' + html + ' mục');
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+
             $("#cate-input2").show();
             modal.find('#cate-input2').attr('data-idcoupon', id);
             modal.find('input[name="product_list_or_cate_list"][value="3"]').prop('checked', true);

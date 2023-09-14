@@ -21,7 +21,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng : đơn</h3>
+                        <h3 class="card-title">Tổng cộng : {{ $countorder }} đơn</h3>
                         <div class="card-tools" style="width: 45%;">
                             <form action="{{ route('searchcategory') }}" method="get"
                                 class="input-group input-group-sm">
@@ -50,19 +50,25 @@
                                 <tbody>
                                     @foreach($order as $od)
                                     <tr>
-                                        <td>{{ $od->user->username }}</td>
-                                        <td>{{ $od->user->email }}</td>
-                                        <td>{{ $od->user->phone }}</td>
+                                        <td class="font-weight-bold">{{ $od->user->username }}</td>
+                                        <td class="font-weight-bold">{{ $od->user->email }}</td>
+                                        <td class="font-weight-bold">{{ $od->user->phone }}</td>
                                         <td>{{ $od->user->address }}</td>
-                                        <td>{{ $od->totalprice }} $</td>
-                                        @if($od->note =='')
+                                        <td class="font-weight-bold" style="color:red">{{ $od->totalprice }} $</td>
+                                        @if(strlen($od->note) > 30)
+                                        <td>{!! mb_substr(strip_tags($od->note), 0, 30) !!}...</td>
+                                        @elseif(strlen($od->note) == 0)
                                         <td>Trống</td>
                                         @else
                                         <td>{{ $od->note }}</td>
                                         @endif
                                         <td>{{ $od->created_at }}</td>
                                         <td>
-
+                                            <button class="btn btn-info btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-in4" data-id="{{ $od->idorder }}">
+                                                <i class="bi bi-info-lg"></i>
+                                                Xem thông tin
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach

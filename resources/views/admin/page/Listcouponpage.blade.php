@@ -650,17 +650,35 @@ $(document).ready(function() {
 
     $("#cate-input2").on("click", function() {
         var idcoupon = $(this).data("idcoupon");
-
         $.ajax({
-            url: "",
+            url: '{{ route("cate.list") }}',
             type: "POST",
             data: {
                 _token: '{{ csrf_token() }}',
                 idcoupon,
             },
             success: function(response) {
+                var html = response.html;
+                $("#listcategory_coupon").html(html);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
 
-
+    $("#product-input2").on("click", function() {
+        var idcoupon = $(this).data("idcoupon");
+        $.ajax({
+            url: '{{ route("product.list") }}',
+            type: "POST",
+            data: {
+                _token: '{{ csrf_token() }}',
+                idcoupon,
+            },
+            success: function(response) {
+                var html = response.html;
+                $("#listproduct_coupon").html(html);
             },
             error: function(xhr, status, error) {
                 console.error(error);

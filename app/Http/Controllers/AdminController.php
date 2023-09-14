@@ -410,11 +410,47 @@ class AdminController extends Controller
 
     public function categorylist(Request $request)
     {
+        $category = Category::all();
+        $html = ''; // Khởi tạo biến chuỗi HTML
 
+        $listcate = Category_coupon::where('idcoupon', $request['idcoupon'])->pluck('idcategory')->toArray();
+        
+        foreach($category as $ca){
+            $isChecked = in_array($ca->idcategory, $listcate) ? 'checked' : ''; // Kiểm tra xem idcategory có trong danh sách $listcate hay không
+
+            $html .= '<label for="" class="d-flex flex-column align-items-center">';
+            $html .= '<img src="' . $ca->imagecategory . '" alt="" height="50" style="width:fit-content">';
+            $html .= $ca->namecategory;
+            $html .= '<input type="checkbox" name="listcate" value="' . $ca->idcategory . '" class="listcate-checkbox" ' . $isChecked . '>';
+            $html .= '</label>';
+        }
+
+        return response()->json([
+            'html' => $html,
+        ]);
     }
 
     public function productlist(Request $request)
     {
+        $product = Product::all();
+        $html = ''; // Khởi tạo biến chuỗi HTML
 
+        $listproduct = Product_coupon::where('idcoupon', $request['idcoupon'])->pluck('idproduct')->toArray();
+        
+        foreach($product as $pr){
+            $isChecked = in_array($ca->idproduct, $listproduct) ? 'checked' : ''; // Kiểm tra xem idproduct có trong danh sách $listcate hay không
+
+            $html .= '<tr>';
+            $html .= '<td class="font-weight-bold" style="color:red">' . $pr->nameproduct . '</td>';
+            $html .= '<td class="text-center"><img src="' . $pr->imageproduct . '" alt="" height="50"></td>';
+            $html .= '<td class="font-weight-bold" style="color:red">' . $pr->price . ' $</td>';
+            $html .= '<td class="font-weight-bold">' . $pr->category->namecategory . '</td>';
+            $html .= '<td><input type="checkbox" name="listproduct" value="' . $pr->idproduct . '" class="listproduct-checkbox" ' . $isChecked . '></td>';
+            $html .= '</tr>';
+        }
+
+        return response()->json([
+            'html' => $html,
+        ]);
     }
 }

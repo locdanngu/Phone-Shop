@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <p class="btn btn-secondary" id="product-input2" type="button" data-toggle="modal"
-                        data-target="#modal-addproduct">Chưa chọn sản phẩm nào</p>
+                        data-target="#modal-addproduct2">Chưa chọn sản phẩm nào</p>
                 </div>
                 <div class="input-group mb-3 d-flex justify-content-between fixmobileuser productorcate">
                     <div class="w-50 d-flex fixmobileuser2">
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <p class="btn btn-secondary" id="cate-input2" type="button" data-toggle="modal"
-                        data-target="#modal-addcate">Chưa chọn mục nào</p>
+                        data-target="#modal-addcate2">Chưa chọn mục nào</p>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm</span>
@@ -139,6 +139,75 @@
                 <button type="submit" class="btn btn-success">Lưu thay đổi</button>
             </div>
         </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-addcate2" data-backdrop="static" data-keyboard="false">
+    <!-- Không đóng popup khi nhấn bên ngoài -->
+    <div class="modal-dialog">
+        <div class="modal-content" action="" method="post">
+            <div class="modal-header">
+                <h4 class="modal-title">Chọn danh sách danh mục mới</h4>
+            </div>
+            <div class="modal-body fixgrid">
+                @foreach($category as $ca)
+                <label for="" class="d-flex flex-column align-items-center">
+                    <img src="{{ $ca->imagecategory }}" alt="" height="50" style="width:fit-content">
+                    {{ $ca->namecategory }}
+                    <input type="checkbox" name="listcate" value="{{ $ca->idcategory }}" class="listcate-checkbox">
+                </label>
+                @endforeach
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="submit" class="btn btn-success" id="listcatebtn">Đồng ý</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-addproduct2" data-backdrop="static" data-keyboard="false">
+    <!-- Không đóng popup khi nhấn bên ngoài -->
+    <div class="modal-dialog">
+        <div class="modal-content" action="" method="post">
+            <div class="modal-header">
+                <h4 class="modal-title">Chọn danh sách sản phẩm mới</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-body table-responsive p-0" style="height: 65vh;">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Tên</th>
+                                <th class="text-center">Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Hãng</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($product as $pr)
+                            <tr>
+                                <td class="font-weight-bold" style="color:red">{{ $pr->nameproduct }}</td>
+                                <td class="text-center"><img src="{{ $pr->imageproduct }} " alt="" height="50"></td>
+                                <td class="font-weight-bold" style="color:red">{{ $pr->price }} $</td>
+                                <td class="font-weight-bold">{{ $pr->category->namecategory }}</td>
+                                <td><input type="checkbox" name="listproduct" value="{{ $pr->idproduct }}"
+                                        class="listproduct-checkbox"></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="submit" class="btn btn-success" id="listproductbtn">Đồng ý</button>
+            </div>
+        </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->

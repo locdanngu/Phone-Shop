@@ -346,6 +346,19 @@ $(document).ready(function() {
         $(".sidebar-mini").addClass("modal-open");
     });
 
+    $("#cate-input2").click(function() {
+        $("#modal-change").modal('hide');
+    });
+
+    $("#product-input2").click(function() {
+        $("#modal-change").modal('hide');
+    });
+
+    $("#modal-addcate2, #modal-addproduct2").on('hidden.bs.modal', function() {
+        $("#modal-change").modal('show');
+        $(".sidebar-mini").addClass("modal-open");
+    });
+
     //lấy danh sách danh mục(nếu có)
     $("#listcatebtn").click(function() {
         // Tạo một mảng để lưu giá trị của các checkbox đã chọn

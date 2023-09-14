@@ -126,7 +126,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href=""
+                            <a href="{{ route('listorder.page') }}"
                                 class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
                                 <i class="bi-receipt-cutoff nav-icon"></i>
                                 <p>Đơn đặt hàng</p>

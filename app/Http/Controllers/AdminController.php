@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Coupon;
 use App\Models\Product_coupon;
+use App\Models\Order;
+use App\Models\Order_product;
 use App\Models\Category_coupon;
 use Mail;
 use Carbon\Carbon;
@@ -252,7 +254,6 @@ class AdminController extends Controller
                              ->where('code', 'like', '%' . $searchcoupon . '%')
                              ->where('isdelete', 0);
         }
-        // $coupon = $coupon->paginate($limit);
         $coupon = $coupon->where('isdelete', 0)->paginate($limit);
         $category = Category::all();
         $product = Product::orderBy('idcategory')->get();
@@ -524,5 +525,22 @@ class AdminController extends Controller
         return response()->json([
             'html' => $html,
         ]);
+    }
+
+    public function listorderpage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $limit = $request->limit ?? 5;
+        $order = new Order();
+        $searchorder = $request['searchorder'];
+        
+        if ($searchorder) {
+            $order = $order->where('code', 'like', '%' . $searchcoupon . '%')
+                           ->where('status', 'wait');
+        }
+        $order = $order->where('status', 'wait')->paginate($limit);
+        $countorder = $order->count();
+
+        return view('admin/page/Listorderpage', compact('admin','order','countorder'));
     }
 }

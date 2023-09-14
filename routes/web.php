@@ -58,6 +58,9 @@ Route::prefix('/admin')->group(function () {
         Route::post('/categorycount', [AdminController::class, 'categorycount'])->name('cate.count');
         Route::post('/productcount', [AdminController::class, 'productcount'])->name('product.count');
         Route::get('/listcouponpage/search', [AdminController::class, 'listcouponpage'])->name('searchcoupon');
+
+        //Order
+        Route::get('/listorderpage', [AdminController::class, 'listorderpage'])->name('listorder.page');
     });
 });
 

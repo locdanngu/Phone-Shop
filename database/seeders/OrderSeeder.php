@@ -13,6 +13,7 @@ class OrderSeeder extends Seeder
             'iduser' =>  1,
             'status' => 'done',
             'totalprice' => 2000,
+            'note' => 'Giao hàng nhanh',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

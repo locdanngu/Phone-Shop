@@ -117,7 +117,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
+                            <div class="pagination">
+                                {{ $coupon->links() }}
+                            </div>
                         </div>
                     </div>
                     <!-- /.card-body -->

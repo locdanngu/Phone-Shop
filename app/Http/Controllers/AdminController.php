@@ -262,7 +262,6 @@ class AdminController extends Controller
 
     public function searchuser(Request $request)
     {
-        $admin = Auth::guard('admin')->user();
         $user = User::where('iduser', $request['searchuser'])
                   ->orWhere('username', $request['searchuser']) 
                   ->orWhere('email', $request['searchuser']) 
@@ -283,7 +282,6 @@ class AdminController extends Controller
 
     public function addcoupon(Request $request)
     {
-        $admin = Auth::guard('admin')->user();
         $coupon = new Coupon();
         $coupon->code = $request['code'];
         $coupon->applicable_to = $request['applicable_to'];
@@ -340,7 +338,6 @@ class AdminController extends Controller
 
     public function checkcode(Request $request)
     {
-        $admin = Auth::guard('admin')->user();
         $coupon = Coupon::where('code', $request['searchcode'])->first();
         if($coupon){
             return response()->json([
@@ -355,7 +352,6 @@ class AdminController extends Controller
 
     public function changecoupon(Request $request)
     {
-        $admin = Auth::guard('admin')->user();
         $coupon = Coupon::where('idcoupon', $request['idcoupon'])->first();
         $coupon->applicable_to = $request['applicable_to'];
         $coupon->starttime = $request['starttime'];

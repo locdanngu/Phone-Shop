@@ -252,7 +252,8 @@ class AdminController extends Controller
                              ->where('code', 'like', '%' . $searchcoupon . '%')
                              ->where('isdelete', 0);
         }
-        $coupon = $coupon->paginate($limit);
+        // $coupon = $coupon->paginate($limit);
+        $coupon = $coupon->where('isdelete', 0)->paginate($limit);
         $category = Category::all();
         $product = Product::orderBy('idcategory')->get();
         $countcoupon = $coupon->count();

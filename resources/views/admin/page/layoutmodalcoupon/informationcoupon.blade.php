@@ -76,14 +76,13 @@
     <div class="modal-dialog">
         <div class="modal-content" action="" method="post">
             <div class="modal-header">
-                <h4 class="modal-title">Chọn danh sách danh mục mới</h4>
+                <h4 class="modal-title">Danh sách danh mục có thể áp dụng</h4>
             </div>
             <div class="modal-body fixgrid" id="listcategory_couponin4">
                 @foreach($category as $ca)
                 <label for="" class="d-flex flex-column align-items-center">
                     <img src="{{ $ca->imagecategory }}" alt="" height="50" style="width:fit-content">
                     {{ $ca->namecategory }}
-                    <input type="checkbox" name="listcate" value="{{ $ca->idcategory }}" class="listcate-checkbox">
                 </label>
                 @endforeach
             </div>
@@ -101,7 +100,7 @@
     <div class="modal-dialog">
         <div class="modal-content" action="" method="post">
             <div class="modal-header">
-                <h4 class="modal-title">Chọn danh sách sản phẩm mới</h4>
+                <h4 class="modal-title">Danh sách sản phẩm có thế áp dụng</h4>
             </div>
             <div class="modal-body">
                 <div class="card-body table-responsive p-0" style="height: 65vh;">
@@ -112,7 +111,6 @@
                                 <th class="text-center">Sản phẩm</th>
                                 <th>Giá</th>
                                 <th>Hãng</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="listproduct_couponin4">
@@ -122,8 +120,6 @@
                                 <td class="text-center"><img src="{{ $pr->imageproduct }} " alt="" height="50"></td>
                                 <td class="font-weight-bold" style="color:red">{{ $pr->price }} $</td>
                                 <td class="font-weight-bold">{{ $pr->category->namecategory }}</td>
-                                <td><input type="checkbox" name="listproduct" value="{{ $pr->idproduct }}"
-                                        class="listproduct-checkbox"></td>
                             </tr>
                             @endforeach
                         </tbody>

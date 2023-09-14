@@ -53,6 +53,8 @@ Route::prefix('/admin')->group(function () {
         Route::post('/deletecoupon', [AdminController::class, 'deletecoupon'])->name('coupon.delete');
         Route::post('/categorylist', [AdminController::class, 'categorylist'])->name('cate.list');
         Route::post('/productlist', [AdminController::class, 'productlist'])->name('product.list');
+        Route::post('/in4categorylist', [AdminController::class, 'in4categorylist'])->name('in4cate.list');
+        Route::post('/in4productlist', [AdminController::class, 'in4productlist'])->name('in4product.list');
         Route::post('/categorycount', [AdminController::class, 'categorycount'])->name('cate.count');
         Route::post('/productcount', [AdminController::class, 'productcount'])->name('product.count');
         Route::get('/listcouponpage/search', [AdminController::class, 'listcouponpage'])->name('searchcoupon');

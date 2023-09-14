@@ -797,6 +797,44 @@ $(document).ready(function() {
             }
         });
     });
+
+    $("#in4listcate").on("click", function() {
+        var idcoupon = $(this).data("idcoupon");
+        $.ajax({
+            url: '{{ route("in4cate.list") }}',
+            type: "POST",
+            data: {
+                _token: '{{ csrf_token() }}',
+                idcoupon,
+            },
+            success: function(response) {
+                var html = response.html;
+                $("#listcategory_couponin4").html(html);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+    $("#in4listpro").on("click", function() {
+        var idcoupon = $(this).data("idcoupon");
+        $.ajax({
+            url: '{{ route("in4product.list") }}',
+            type: "POST",
+            data: {
+                _token: '{{ csrf_token() }}',
+                idcoupon,
+            },
+            success: function(response) {
+                var html = response.html;
+                $("#listproduct_couponin4").html(html);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
 });
 </script>
 

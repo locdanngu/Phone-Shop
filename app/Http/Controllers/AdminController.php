@@ -420,7 +420,7 @@ class AdminController extends Controller
         foreach($category as $ca){
             $isChecked = in_array($ca->idcategory, $listcate) ? 'checked' : ''; // Kiểm tra xem idcategory có trong danh sách $listcate hay không
 
-            $html .= '<label for="" class="d-flex flex-column align-items-center">';
+            $html .= '<label class="d-flex flex-column align-items-center">';
             $html .= '<img src="' . $ca->imagecategory . '" alt="" height="50" style="width:fit-content">';
             $html .= $ca->namecategory;
             $html .= '<input type="checkbox" name="listcate" value="' . $ca->idcategory . '" class="listcate-checkbox" ' . $isChecked . '>';
@@ -486,5 +486,42 @@ class AdminController extends Controller
         $coupon->isdelete = 1;
         $coupon->save();
 
-        return redirect()->route('listcoupon.page');    }
+        return redirect()->route('listcoupon.page');    
+    }
+
+    public function in4categorylist(Request $request)
+    {
+        $html = ''; 
+
+        $listcate = Category_coupon::where('idcoupon', $request['idcoupon'])->get();
+        
+        foreach($listcate as $ca){
+            $html .= '<label class="d-flex flex-column align-items-center">';
+            $html .= '<img src="' . $ca->category->imagecategory . '" alt="" height="50" style="width:fit-content">';
+            $html .= $ca->category->namecategory;
+            $html .= '</label>';
+        }
+
+        return response()->json([
+            'html' => $html,
+        ]);
+    }
+
+    public function in4productlist(Request $request)
+    {
+        $html = ''; 
+
+        $listproduct = Product_coupon::where('idcoupon', $request['idcoupon'])->get();
+        
+        foreach($listproduct as $ca){
+            $html .= '<label class="d-flex flex-column align-items-center">';
+            $html .= '<img src="' . $ca->product->imagecategory . '" alt="" height="50" style="width:fit-content">';
+            $html .= $ca->product->namecategory;
+            $html .= '</label>';
+        }
+
+        return response()->json([
+            'html' => $html,
+        ]);
+    }
 }

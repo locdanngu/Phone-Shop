@@ -144,7 +144,6 @@
 
 @endsection
 
-
 @section('js')
 <script>
 $(document).ready(function() {
@@ -214,9 +213,7 @@ $(document).ready(function() {
 
         }
         modal.find('span[name="used"]').text(used + ' lần');
-
     });
-
 
     $('#modal-change').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn

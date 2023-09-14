@@ -355,7 +355,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input type="hidden" name="idcategory">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
@@ -369,12 +368,12 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Người dùng</span>
                     <span name="iduser" class="spanpopup"></span>
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group mb-3 hidein4">
                     <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
                     <span name="product_list" class="spanpopup"></span>
                     <button class="btn btn-secondary ml-3" id="in4listpro">Danh sách sản phẩm</button>
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group mb-3 hidein4">
                     <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
                     <span name="category_list" class="spanpopup"></span>
                     <button class="btn btn-secondary ml-3" id="in4listcate">Danh sách danh mục</button>
@@ -524,19 +523,23 @@ $(document).ready(function() {
         modal.find('span[name="iduser"]').text(iduser);
         if (pro == 1) {
             modal.find('span[name="product_list"]').hide();
-            modal.find('#in4listpro').attr('data-idcoupon', id)
+            modal.find('#in4listpro').attr('data-idcoupon', id);
             modal.find('#in4listpro').show();
+            $(".hidein4").removeClass("hideproduct");
         } else {
             modal.find('#in4listpro').hide();
+            $(".hidein4").addClass("hideproduct");
             modal.find('span[name="product_list"]').text('Tất cả sản phẩm');
             modal.find('span[name="product_list"]').show();
         }
         if (cate == 1) {
             modal.find('span[name="category_list"]').hide();
-            modal.find('#in4listcate').attr('data-idcoupon', id)
+            modal.find('#in4listcate').attr('data-idcoupon', id);
             modal.find('#in4listcate').show();
+            $(".hidein4").removeClass("hideproduct");
         } else {
             modal.find('#in4listcate').hide();
+            $(".hidein4").addClass("hideproduct");
             modal.find('span[name="category_list"]').text('Tất cả sản phẩm');
             modal.find('span[name="category_list"]').show();
         }

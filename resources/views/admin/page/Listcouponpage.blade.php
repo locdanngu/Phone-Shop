@@ -558,6 +558,49 @@ $(document).ready(function() {
 
     });
 
+    $("#coupon-form2").submit(function(event) {
+        // Thực hiện kiểm tra điều kiện của bạn ở đây
+        if ($("#user-radio2").is(":checked") && $("#sendiduser2").val() == "") {
+            // Điều kiện không đáp ứng, ngăn gửi biểu mẫu
+            event.preventDefault();
+            toastr.error(
+                '<b>Vui lòng nhập đúng thông tin người dùng</b>'
+            )
+        }
+
+        if ($("#product-radio2").is(":checked") && $("#listproduct2").val() == "") {
+            event.preventDefault();
+            toastr.error(
+                '<b>Vui lòng chọn ít nhất 1 sản phẩm</b>'
+            )
+        }
+
+        if ($("#cate-radio2").is(":checked") && $("#listcate2").val() == "") {
+            event.preventDefault();
+            toastr.error(
+                '<b>Vui lòng chọn ít nhất 1 danh mục</b>'
+            )
+        }
+        var startDatetime = new Date($("#changestarttime").val());
+        var endDatetime = new Date($("#changeendtime").val());
+        var currentDate = new Date();
+
+        if (endDatetime <= startDatetime) {
+            event.preventDefault();
+            toastr.error(
+                '<b>Ngày kết thúc không được sớm hơn ngày bắt đầu</b>'
+            )
+        }
+
+        if (endDatetime <= currentDate) {
+            event.preventDefault();
+            toastr.error(
+                '<b>Ngày kết thúc không được sớm hơn thời gian hiện tại</b>'
+            )
+        }
+
+    });
+
     $("#code-input").on("input", function() {
         var inputValue = $(this).val();
 

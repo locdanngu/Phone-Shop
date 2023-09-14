@@ -1,6 +1,7 @@
 <div class="modal fade" id="modal-change">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data"
+            id="coupon-form2">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Chỉnh sửa mã giảm giá</h4>
@@ -125,12 +126,12 @@
                     <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Ngày bắt đầu</span>
-                        <input type="datetime-local" name="starttime" style="width: 100%" required>
+                        <input type="datetime-local" name="starttime" style="width: 100%" required id="changestarttime">
                     </div>
                     <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Ngày kết thúc</span>
-                        <input type="datetime-local" name="endtime" style="width: 100%" required>
+                        <input type="datetime-local" name="endtime" style="width: 100%" required id="changeendtime">
                     </div>
                 </div>
             </div>

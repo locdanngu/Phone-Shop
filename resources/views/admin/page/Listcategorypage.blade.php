@@ -70,6 +70,7 @@
                                                 <i class="bi bi-pencil"></i>
                                                 Sửa
                                             </button>
+                                            @if($row->product_count== 0)
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-delete" data-id="{{ $row->idcategory }}"
                                                 data-name="{{ $row->namecategory }}"
@@ -77,6 +78,15 @@
                                                 data-count="{{ $row->product_count }}">
                                                 <i class="bi bi-trash"></i> Xóa
                                             </button>
+                                            @else
+                                            <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-delete-cant" data-id="{{ $row->idcategory }}"
+                                                data-name="{{ $row->namecategory }}"
+                                                data-image="{{ $row->imagecategory }}"
+                                                data-count="{{ $row->product_count }}">
+                                                <i class="bi bi-trash"></i> Xóa
+                                            </button>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
@@ -208,6 +218,37 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade" id="modal-delete-cant">
+    <div class="modal-dialog">
+        <form class="modal-content" action="{{ route('category.delete') }}" method="post">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title">Xóa 1 danh mục</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <input type="hidden" name="idcategory">
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
+                    <span name="namecategory" class="spanpopup"></span>
+                </div>
+                <div class="input-group mb-3 d-flex align-items-center">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
+                    <img src="" alt="" style="height:100px;margin-left:1em" class="imageblog2">
+                </div>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-danger">Xóa</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection
 
 
@@ -246,6 +287,17 @@ $(document).ready(function() {
     });
 
     $('#modal-delete').on('shown.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Nút "Change" được nhấn
+        var id = button.data('id');
+        var name = button.data('name');
+        var image = button.data('image');
+        var modal = $(this);
+        modal.find('span[name="namecategory"]').text(name);
+        modal.find('input[name="idcategory"]').val(id);
+        modal.find('img.imageblog2').attr('src', image);
+    });
+
+    $('#modal-delete-cant').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
         var name = button.data('name');

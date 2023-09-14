@@ -34,5 +34,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'iduser');
+    }
     
+    public function coupon()
+    {
+        return $this->hasMany(Coupon::class, 'iduser');
+    }
 }

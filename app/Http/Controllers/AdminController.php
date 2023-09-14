@@ -323,7 +323,7 @@ class AdminController extends Controller
             }
         }
 
-        if($coupon->category_list == 3){
+        if($coupon->category_list == 1){
             $listCate = explode(',', $request['listcate']);
             foreach ($listCate as $idcate) {
                 $category_coupon = new Category_coupon();
@@ -395,7 +395,9 @@ class AdminController extends Controller
             }
         }
 
-        if($coupon->category_list == 3){
+        
+
+        if($coupon->category_list == 1){
             $listCate = explode(',', $request['listcate']);
             foreach ($listCate as $idcate) {
                 $category_coupon = new Category_coupon();

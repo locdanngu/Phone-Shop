@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal-change">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data"
+        <form class="modal-content" action="{{ route('coupon.change') }}" method="post" enctype="multipart/form-data"
             id="coupon-form2">
             @csrf
             <div class="modal-header">
@@ -11,8 +11,8 @@
             </div>
             <input type="hidden" name="sendiduser" id="sendiduser2">
             <input type="hidden" name="idcoupon">
-            <input type="text" name="listproduct" id="listproduct2">
-            <input type="text" name="listcate" id="listcate2">
+            <input type="hidden" name="listproduct" id="listproduct2">
+            <input type="hidden" name="listcate" id="listcate2">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>

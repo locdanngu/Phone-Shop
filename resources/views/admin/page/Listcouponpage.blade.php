@@ -320,7 +320,7 @@
                             style="width: 30% !important;">Người dùng</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="iduser" value="1" id="user-radio" required>
+                                <input type="radio" name="iduser" value="1" id="user-radio2" required>
                                 Cá nhân
                             </label>
                             <label class="label">
@@ -333,9 +333,9 @@
                         <input type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default"
                             placeholder="Nhập Id, username, email hoặc số điện thoại" style="width: 90%;"
-                            id="user-input">
-                        <i class="bi bi-x-circle-fill ml-3" id="not" style="color:red"></i>
-                        <i class="bi bi-check-circle-fill ml-3" id="yes" style="color: #007bff"></i>
+                            id="user-input2">
+                        <i class="bi bi-x-circle-fill ml-3" id="not2" style="color:red"></i>
+                        <i class="bi bi-check-circle-fill ml-3" id="yes2" style="color: #007bff"></i>
                     </div>
 
                 </div>
@@ -692,13 +692,16 @@ $(document).ready(function() {
         var modal = $(this);
         modal.find('input[name="code"]').val(code);
         modal.find('input[name="applicable_to"][value="' + app + '"]').prop('checked', true);
-        console.log(iduser);
-        if(iduser == 1){
+        if (iduser == 1) {
             modal.find('input[name="iduser"][value="' + iduser + '"]').prop('checked', true);
-        }else{
+            $("#user-input2").show();
+
+        } else {
             modal.find('input[name="iduser"][value="0"]').prop('checked', true);
+            $("#user-input2").hide();
 
         }
+        
 
     });
 
@@ -713,7 +716,7 @@ $(document).ready(function() {
         modal.find('img.imageblog2').attr('src', image);
     });
 
-    $("#user-input, #cate-input, #product-input, #not, #yes").hide();
+    $("#user-input, #user-input2, #cate-input, #product-input, #not, #yes, #not2, #yes2").hide();
 
     $(".productorcate").addClass("hideproduct");
 
@@ -737,6 +740,9 @@ $(document).ready(function() {
             $("#user-input").hide();
         }
     });
+
+
+
 
     // $("input[name='category_list']").change(function() {
     //     if ($(this).val() === "3") {

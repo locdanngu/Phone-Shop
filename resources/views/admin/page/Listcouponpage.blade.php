@@ -510,6 +510,20 @@ $(document).ready(function() {
         $(".sidebar-mini").addClass("modal-open");
     });
 
+    $("#in4listpro").click(function() {
+        $("#modal-in4").addClass('anthan');
+
+    });
+
+    $("#in4listcate").click(function() {
+        $("#modal-in4").addClass('anthan');
+    });
+
+    $("#modal-addcate3, #modal-addproduct3").on('hidden.bs.modal', function() {
+        $("#modal-in4").removeClass('anthan');
+        $(".sidebar-mini").addClass("modal-open");
+    });
+
     $("#listcatebtn2").click(function() {
         var selectedValues = [];
 

@@ -23,12 +23,14 @@
                 <div class="input-group mb-3 hidein4" id="hidein4pro">
                     <span class="input-group-text" id="inputGroup-sizing-default">Sản phẩm</span>
                     <span name="product_list" class="spanpopup"></span>
-                    <button class="btn btn-secondary ml-3" id="in4listpro">Danh sách sản phẩm</button>
+                    <button class="btn btn-secondary ml-3" id="in4listpro" type="button" data-toggle="modal"
+                        data-target="#modal-addproduct3">Danh sách sản phẩm</button>
                 </div>
                 <div class="input-group mb-3 hidein4" id="hidein4cate">
                     <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
                     <span name="category_list" class="spanpopup"></span>
-                    <button class="btn btn-secondary ml-3" id="in4listcate">Danh sách danh mục</button>
+                    <button class="btn btn-secondary ml-3" id="in4listcate" type="button" data-toggle="modal"
+                        data-target="#modal-addcate3">Danh sách danh mục</button>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm giá</span>
@@ -57,6 +59,75 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Ngày kết thúc</span>
                     <span name="endtime" class="spanpopup font-weight-bold"></span>
+                </div>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-addcate3">
+    <!-- Không đóng popup khi nhấn bên ngoài -->
+    <div class="modal-dialog">
+        <div class="modal-content" action="" method="post">
+            <div class="modal-header">
+                <h4 class="modal-title">Chọn danh sách danh mục mới</h4>
+            </div>
+            <div class="modal-body fixgrid" id="listcategory_couponin4">
+                @foreach($category as $ca)
+                <label for="" class="d-flex flex-column align-items-center">
+                    <img src="{{ $ca->imagecategory }}" alt="" height="50" style="width:fit-content">
+                    {{ $ca->namecategory }}
+                    <input type="checkbox" name="listcate" value="{{ $ca->idcategory }}" class="listcate-checkbox">
+                </label>
+                @endforeach
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-addproduct3">
+    <!-- Không đóng popup khi nhấn bên ngoài -->
+    <div class="modal-dialog">
+        <div class="modal-content" action="" method="post">
+            <div class="modal-header">
+                <h4 class="modal-title">Chọn danh sách sản phẩm mới</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-body table-responsive p-0" style="height: 65vh;">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Tên</th>
+                                <th class="text-center">Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Hãng</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listproduct_couponin4">
+                            @foreach($product as $pr)
+                            <tr>
+                                <td class="font-weight-bold" style="color:red">{{ $pr->nameproduct }}</td>
+                                <td class="text-center"><img src="{{ $pr->imageproduct }} " alt="" height="50"></td>
+                                <td class="font-weight-bold" style="color:red">{{ $pr->price }} $</td>
+                                <td class="font-weight-bold">{{ $pr->category->namecategory }}</td>
+                                <td><input type="checkbox" name="listproduct" value="{{ $pr->idproduct }}"
+                                        class="listproduct-checkbox"></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="modal-footer justify-align-content-end">

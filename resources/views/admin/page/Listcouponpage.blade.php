@@ -254,18 +254,18 @@ $(document).ready(function() {
         modal.find('input[name="discount_amount"]').val(amo);
         modal.find('input[name="starttime"]').val(start);
         modal.find('input[name="endtime"]').val(end);
-        
-        if(pro == '1'){
+
+        if (pro == '1') {
             $("#product-input2").show();
             modal.find('input[name="product_list_or_cate_list"][value="1"]').prop('checked', true);
-        }else{
+        } else {
             modal.find('input[name="product_list_or_cate_list"][value="2"]').prop('checked', true);
             $("#product-input2").hide();
         }
-        if(cate == '1'){
+        if (cate == '1') {
             $("#cate-input2").show();
             modal.find('input[name="product_list_or_cate_list"][value="3"]').prop('checked', true);
-        }else{
+        } else {
             modal.find('input[name="product_list_or_cate_list"][value="4"]').prop('checked', true);
             $("#cate-input2").hide();
         }
@@ -346,19 +346,6 @@ $(document).ready(function() {
         $(".sidebar-mini").addClass("modal-open");
     });
 
-    $("#cate-input2").click(function() {
-        $("#modal-change").modal('hide');
-    });
-
-    $("#product-input2").click(function() {
-        $("#modal-change").modal('hide');
-    });
-
-    $("#modal-addcate2, #modal-addproduct2").on('hidden.bs.modal', function() {
-        $("#modal-change").modal('show');
-        $(".sidebar-mini").addClass("modal-open");
-    });
-
     //lấy danh sách danh mục(nếu có)
     $("#listcatebtn").click(function() {
         // Tạo một mảng để lưu giá trị của các checkbox đã chọn
@@ -385,22 +372,17 @@ $(document).ready(function() {
         $("#modal-addcate").modal('hide');
     });
 
-    //lấy danh sách sản phẩm(nếu có)
     $("#listproductbtn").click(function() {
-        // Tạo một mảng để lưu giá trị của các checkbox đã chọn
         var selectedValues = [];
 
-        // Lặp qua tất cả các checkbox đã chọn và thêm giá trị vào mảng
         $(".listproduct-checkbox:checked").each(function() {
             selectedValues.push($(this).val());
         });
 
-        // Cập nhật giá trị của trường input ẩn
         $("#listproduct").val(selectedValues.join(","));
 
         var selectedCount = selectedValues.length;
 
-        // Thay đổi nội dung thẻ <p> "Chọn danh sách"
         if (selectedCount > 0) {
             $("#product-input").text("Đã chọn " + selectedCount + " sản phẩm");
         } else {
@@ -409,6 +391,60 @@ $(document).ready(function() {
 
         $("#modal-add").modal('show');
         $("#modal-addproduct").modal('hide');
+    });
+
+    $("#cate-input2").click(function() {
+        $("#modal-change").addClass('anthan');
+
+    });
+
+    $("#product-input2").click(function() {
+        $("#modal-change").addClass('anthan');
+    });
+
+    $("#modal-addcate2, #modal-addproduct2").on('hidden.bs.modal', function() {
+        $("#modal-change").removeClass('anthan');
+        $(".sidebar-mini").addClass("modal-open");
+    });
+
+    $("#listcatebtn2").click(function() {
+        var selectedValues = [];
+
+        $(".listcate-checkbox:checked").each(function() {
+            selectedValues.push($(this).val());
+        });
+
+        $("#listcate2").val(selectedValues.join(","));
+
+        var selectedCount = selectedValues.length;
+
+        if (selectedCount > 0) {
+            $("#cate-input2").text("Đã chọn " + selectedCount + " mục");
+        } else {
+            $("#cate-input2").text("Chưa chọn mục nào");
+        }
+
+        $("#modal-addcate2").modal('hide');
+    });
+
+    $("#listproductbtn2").click(function() {
+        var selectedValues = [];
+
+        $(".listproduct-checkbox:checked").each(function() {
+            selectedValues.push($(this).val());
+        });
+
+        $("#listproduct2").val(selectedValues.join(","));
+
+        var selectedCount = selectedValues.length;
+
+        if (selectedCount > 0) {
+            $("#product-input2").text("Đã chọn " + selectedCount + " sản phẩm");
+        } else {
+            $("#product-input2").text("Chưa chọn sản phẩm nào");
+        }
+
+        $("#modal-addproduct2").modal('hide');
     });
 
     //kiểm tra người dùng
@@ -460,7 +496,7 @@ $(document).ready(function() {
                 success: function(response) {
                     var re = response.re;
                     var iduser = response.iduser;
-                    $("#sendiduser").val(response.iduser);
+                    $("#sendiduser2").val(response.iduser);
                     if (re == 'yes') {
                         $("#yes2").show();
                         $("#not2").hide();

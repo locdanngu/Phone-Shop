@@ -8,9 +8,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input type="hidden" name="sendiduser" id="sendiduser">
-            <input type="text" name="listproduct" id="listproduct">
-            <input type="text" name="listcate" id="listcate">
+            <input type="hidden" name="sendiduser" id="sendiduser2">
+            <input type="text" name="listproduct" id="listproduct2">
+            <input type="text" name="listcate" id="listcate2">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
@@ -162,7 +162,7 @@
                 @endforeach
             </div>
             <div class="modal-footer justify-align-content-end">
-                <button type="submit" class="btn btn-success" id="listcatebtn">Đồng ý</button>
+                <button type="submit" class="btn btn-success" id="listcatebtn2">Đồng ý</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -205,7 +205,7 @@
                 </div>
             </div>
             <div class="modal-footer justify-align-content-end">
-                <button type="submit" class="btn btn-success" id="listproductbtn">Đồng ý</button>
+                <button type="submit" class="btn btn-success" id="listproductbtn2">Đồng ý</button>
             </div>
         </div>
         <!-- /.modal-content -->

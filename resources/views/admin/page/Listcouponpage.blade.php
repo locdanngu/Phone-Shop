@@ -100,6 +100,7 @@
                                                 data-pro="{{ $row->product_list }}"
                                                 data-cate="{{ $row->category_list }}"
                                                 data-dis="{{ $row->discount_type }}"
+                                                data-user="{{ isset($row->user->username) ? $row->user->username : '' }}"
                                                 data-mini="{{ $row->minimum_order_amount }}"
                                                 data-max="{{ $row->max_discount_amount }}"
                                                 data-amo="{{ $row->discount_amount }}" data-used="{{ $row->used }}"
@@ -293,8 +294,8 @@
                 </button>
             </div>
             <input type="hidden" name="sendiduser" id="sendiduser">
-            <input type="hidden" name="listproduct" id="listproduct">
-            <input type="hidden" name="listcate" id="listcate">
+            <input type="text" name="listproduct" id="listproduct">
+            <input type="text" name="listcate" id="listcate">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
@@ -333,7 +334,7 @@
                         <input type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default"
                             placeholder="Nhập Id, username, email hoặc số điện thoại" style="width: 90%;"
-                            id="user-input2">
+                            id="user-input2" name="finduser">
                         <i class="bi bi-x-circle-fill ml-3" id="not2" style="color:red"></i>
                         <i class="bi bi-check-circle-fill ml-3" id="yes2" style="color: #007bff"></i>
                     </div>
@@ -682,6 +683,7 @@ $(document).ready(function() {
         var end = button.data('end');
         var app = button.data('appli');
         var iduser = button.data('iduser');
+        var user = button.data('user');
         var pro = button.data('pro');
         var cate = button.data('cate');
         var dis = button.data('dis');
@@ -691,17 +693,18 @@ $(document).ready(function() {
         var used = button.data('used');
         var modal = $(this);
         modal.find('input[name="code"]').val(code);
+        modal.find('input[name="finduser"]').val(user);
+        modal.find('input[name="sendiduser"]').val(iduser);
         modal.find('input[name="applicable_to"][value="' + app + '"]').prop('checked', true);
-        if (iduser == 1) {
-            modal.find('input[name="iduser"][value="' + iduser + '"]').prop('checked', true);
+        if (iduser) {
+            modal.find('input[name="iduser"][value="1"]').prop('checked', true);
             $("#user-input2").show();
-
         } else {
             modal.find('input[name="iduser"][value="0"]').prop('checked', true);
             $("#user-input2").hide();
-
         }
-        
+        modal.find('input[name="discount_type"][value="' + dis + '"]').prop('checked', true);
+
 
     });
 
@@ -740,17 +743,6 @@ $(document).ready(function() {
             $("#user-input").hide();
         }
     });
-
-
-
-
-    // $("input[name='category_list']").change(function() {
-    //     if ($(this).val() === "3") {
-    //         $("#cate-input").show();
-    //     } else {
-    //         $("#cate-input").hide();
-    //     }
-    // });
 
     $("input[name='product_list_or_cate_list']").change(function() {
         if ($(this).val() === "1") {
@@ -865,6 +857,39 @@ $(document).ready(function() {
         }
     });
 
+    $("#user-input2").on("input", function() {
+        var inputValue = $(this).val();
+
+        if (inputValue.trim() !== "") {
+            $.ajax({
+                url: '{{ route("user.search") }}',
+                type: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    searchuser: inputValue
+                },
+                success: function(response) {
+                    var re = response.re;
+                    var iduser = response.iduser;
+                    $("#sendiduser").val(response.iduser);
+                    if (re == 'yes') {
+                        $("#yes2").show();
+                        $("#not2").hide();
+
+                    } else {
+                        $("#not2").show();
+                        $("#yes2").hide();
+                    }
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        } else {
+            $("#yes2, #not2").hide();
+        }
+    });
+
     $("#coupon-form").submit(function(event) {
         // Thực hiện kiểm tra điều kiện của bạn ở đây
         if ($("#user-radio").is(":checked") && $("#sendiduser").val() == "") {
@@ -945,6 +970,9 @@ $(document).ready(function() {
     });
 
 
+    $('#modal-change').on('hidden.bs.modal', function () {
+        $("#yes2, #not2").hide();
+    });
 });
 </script>
 

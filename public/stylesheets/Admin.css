@@ -138,7 +138,7 @@ input[type="file"] {
     display: grid;
 }
 
-#cate-input, #product-input{
+#cate-input, #product-input,#cate-input2, #product-input2 {
     margin: 0em !important;
 }
 
@@ -202,7 +202,7 @@ input[type="file"] {
         flex-direction: column;
     }
 
-    #user-input, #cate-input, #product-input{
+    #user-input, #cate-input, #product-input,#cate-input2, #product-input2{
         margin-top: 1em !important;
         width: 100% !important;
     }
@@ -255,7 +255,7 @@ input[type="file"] {
         flex-direction: column;
     }
 
-    #user-input, #cate-input{
+    #user-input, #cate-input,#cate-input2{
         margin-top: 1em !important;
         width: 100% !important;
     }

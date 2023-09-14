@@ -134,153 +134,7 @@
 
 @section('popup')
 <!-- Modal trả lời đơn tư vấn -->
-<div class="modal fade" id="modal-add">
-    <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('coupon.add') }}" method="post" enctype="multipart/form-data"
-            id="coupon-form">
-            @csrf
-            <div class="modal-header">
-                <h4 class="modal-title">Tạo mã giảm giá</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <input type="hidden" name="sendiduser" id="sendiduser">
-            <input type="hidden" name="listproduct" id="listproduct">
-            <input type="hidden" name="listcate" id="listcate">
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="code" id="code-input">
-                </div>
-                <p class="font-weight-bold checkcode" style="color:red">Mã đã tồn tại! Vui lòng nhập mã khác</p>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Áp dụng cho</span>
-                    <div class="d-flex align-items-center">
-                        <label class="label">
-                            <input type="radio" name="applicable_to" value="product" required id="productcoupon">
-                            Sản phẩm
-                        </label>
-                        <label class="label">
-                            <input type="radio" name="applicable_to" value="cart" required>
-                            Đơn hàng
-                        </label>
-                    </div>
-                </div>
-                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser">
-                    <div class="w-50 d-flex fixmobileuser2">
-                        <span class="input-group-text" id="inputGroup-sizing-default"
-                            style="width: 30% !important;">Người dùng</span>
-                        <div class="d-flex align-items-center">
-                            <label class="label">
-                                <input type="radio" name="iduser" value="product" id="user-radio" required>
-                                Cá nhân
-                            </label>
-                            <label class="label">
-                                <input type="radio" name="iduser" value="cart" required>
-                                Tất cả
-                            </label>
-                        </div>
-                    </div>
-                    <div class="d-flex checkuser align-items-center">
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default"
-                            placeholder="Nhập Id, username, email hoặc số điện thoại" style="width: 90%;"
-                            id="user-input">
-                        <i class="bi bi-x-circle-fill ml-3" id="not" style="color:red"></i>
-                        <i class="bi bi-check-circle-fill ml-3" id="yes" style="color: #007bff"></i>
-                    </div>
-
-                </div>
-                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser productorcate">
-                    <div class="w-50 d-flex fixmobileuser2">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30% !important;">Sản
-                            phẩm</span>
-                        <div class="d-flex align-items-center">
-                            <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="1" id="product-radio"
-                                    class="requiredcheck">
-                                Danh sách
-                            </label>
-                            <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="2" class="requiredcheck">
-                                Tất cả
-                            </label>
-                        </div>
-                    </div>
-                    <p class="btn btn-secondary" id="product-input" type="button" data-toggle="modal"
-                        data-target="#modal-addproduct">Chưa chọn sản phẩm nào</p>
-                </div>
-                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser productorcate">
-                    <div class="w-50 d-flex fixmobileuser2">
-                        <span class="input-group-text" id="inputGroup-sizing-default"
-                            style="width: 30% !important;">Danh mục</span>
-                        <div class="d-flex align-items-center">
-                            <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="3" id="cate-radio"
-                                    class="requiredcheck">
-                                Danh sách
-                            </label>
-                            <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="4" class="requiredcheck">
-                                Tất cả
-                            </label>
-                        </div>
-                    </div>
-                    <p class="btn btn-secondary" id="cate-input" type="button" data-toggle="modal"
-                        data-target="#modal-addcate">Chưa chọn mục nào</p>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm</span>
-                    <div class="d-flex align-items-center">
-                        <label class="label">
-                            <input type="radio" name="discount_type" value="percentage" required>
-                            Phần trăm
-                        </label>
-                        <label class="label">
-                            <input type="radio" name="discount_type" value="amount" required>
-                            Số tiền
-                        </label>
-                    </div>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Y/c tối thiểu($)</span>
-                    <input type="number" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="minimum_order_amount">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tối đa giảm($)</span>
-                    <input type="number" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="max_discount_amount">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Mức giảm(%/$)</span>
-                    <input type="number" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="discount_amount">
-                </div>
-                <div class="input-group mb-3" style="width: 100% !important;">
-                    <div class="w-50">
-                        <span class="input-group-text" id="inputGroup-sizing-default"
-                            style="width: 100% !important;">Ngày bắt đầu</span>
-                        <input type="datetime-local" name="starttime" style="width: 100%" required>
-                    </div>
-                    <div class="w-50">
-                        <span class="input-group-text" id="inputGroup-sizing-default"
-                            style="width: 100% !important;">Ngày kết thúc</span>
-                        <input type="datetime-local" name="endtime" style="width: 100%" required>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Lưu thông tin</button>
-            </div>
-        </form>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+@include('admin.page.layoutmodalcoupon.addcoupon')
 
 
 <div class="modal fade" id="modal-change">
@@ -299,8 +153,8 @@
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
-                    <input type="text" class="form-control" disabled aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" name="code">
+                    <input type="text" class="form-control font-weight-bold" style="color:red;" disabled
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="code">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Áp dụng cho</span>
@@ -346,7 +200,7 @@
                             phẩm</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="1" id="product-radio"
+                                <input type="radio" name="product_list_or_cate_list" value="1" id="product-radio2"
                                     class="requiredcheck">
                                 Danh sách
                             </label>
@@ -356,7 +210,7 @@
                             </label>
                         </div>
                     </div>
-                    <p class="btn btn-secondary" id="product-input" type="button" data-toggle="modal"
+                    <p class="btn btn-secondary" id="product-input2" type="button" data-toggle="modal"
                         data-target="#modal-addproduct">Chưa chọn sản phẩm nào</p>
                 </div>
                 <div class="input-group mb-3 d-flex justify-content-between fixmobileuser productorcate">
@@ -365,7 +219,7 @@
                             style="width: 30% !important;">Danh mục</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="3" id="cate-radio"
+                                <input type="radio" name="product_list_or_cate_list" value="3" id="cate-radio2"
                                     class="requiredcheck">
                                 Danh sách
                             </label>
@@ -375,7 +229,7 @@
                             </label>
                         </div>
                     </div>
-                    <p class="btn btn-secondary" id="cate-input" type="button" data-toggle="modal"
+                    <p class="btn btn-secondary" id="cate-input2" type="button" data-toggle="modal"
                         data-target="#modal-addcate">Chưa chọn mục nào</p>
                 </div>
                 <div class="input-group mb-3">
@@ -696,6 +550,11 @@ $(document).ready(function() {
         modal.find('input[name="finduser"]').val(user);
         modal.find('input[name="sendiduser"]').val(iduser);
         modal.find('input[name="applicable_to"][value="' + app + '"]').prop('checked', true);
+        if (app == "product") {
+            modal.find(".productorcate").removeClass("hideproduct");
+        } else {
+            modal.find(".productorcate").addClass("hideproduct");
+        }
         if (iduser) {
             modal.find('input[name="iduser"][value="1"]').prop('checked', true);
             $("#user-input2").show();
@@ -709,6 +568,34 @@ $(document).ready(function() {
         modal.find('input[name="discount_amount"]').val(amo);
         modal.find('input[name="starttime"]').val(start);
         modal.find('input[name="endtime"]').val(end);
+        
+        if(pro == '1'){
+            $("#product-input2").show();
+            modal.find('input[name="product_list_or_cate_list"][value="1"]').prop('checked', true);
+        }else{
+            modal.find('input[name="product_list_or_cate_list"][value="2"]').prop('checked', true);
+            $("#product-input2").hide();
+        }
+        if(cate == '1'){
+            $("#cate-input2").show();
+            modal.find('input[name="product_list_or_cate_list"][value="3"]').prop('checked', true);
+        }else{
+            modal.find('input[name="product_list_or_cate_list"][value="4"]').prop('checked', true);
+            $("#cate-input2").hide();
+        }
+
+        $("input[name='product_list_or_cate_list']").change(function() {
+            if ($(this).val() === "1") {
+                $("#product-input2").show();
+                $("#cate-input2").hide();
+            } else if ($(this).val() === "3") {
+                $("#product-input2").hide();
+                $("#cate-input2").show();
+            } else {
+                $("#product-input2").hide();
+                $("#cate-input2").hide();
+            }
+        });
     });
 
     $('#modal-delete').on('shown.bs.modal', function(event) {
@@ -973,8 +860,8 @@ $(document).ready(function() {
     });
 
 
-    $('#modal-change').on('hidden.bs.modal', function () {
-        $("#yes2, #not2").hide();
+    $('#modal-change').on('hidden.bs.modal', function() {
+        $("#yes2, #not2,#product-input2,#cate-input2").hide();
     });
 });
 </script>

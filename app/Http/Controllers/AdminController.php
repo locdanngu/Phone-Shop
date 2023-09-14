@@ -291,12 +291,13 @@ class AdminController extends Controller
         $coupon->starttime = $request['starttime'];
         $coupon->endtime = $request['endtime'];
         $coupon->iduser = $request['sendiduser'];
-        if($request['listproduct'] !== ''){
+        // dd($request);
+        if($request['listproduct']){
             $coupon->product_list = 1;
         }else{
             $coupon->product_list = 0;
         }
-        if($request['listcate'] !== ''){
+        if($request['listcate']){
             $coupon->category_list = 1;
         }else{
             $coupon->category_list = 0;
@@ -309,7 +310,7 @@ class AdminController extends Controller
         $coupon->isdelete = 0;
         $coupon->save();
 
-        if($request['listcate'] !== ''){
+        if($coupon->category_list == 1){
             $listCate = explode(',', $request['listcate']);
             foreach ($listCate as $idcate) {
                 $category_coupon = new Category_coupon();
@@ -319,7 +320,7 @@ class AdminController extends Controller
             }
         }
 
-        if($request['listproduct'] !== ''){
+        if($coupon->product_list == 1){
             $listPro = explode(',', $request['listproduct']);
             foreach ($listPro as $idproduct) {
                 $product_coupon = new Product_coupon();

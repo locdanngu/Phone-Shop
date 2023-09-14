@@ -149,7 +149,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Áp dụng cho</span>
                     <div class="d-flex align-items-center">
                         <label class="label">
-                            <input type="radio" name="applicable_to" value="product" required>
+                            <input type="radio" name="applicable_to" value="product" required id="productcoupon"> 
                             Sản phẩm
                         </label>
                         <label class="label">
@@ -183,17 +183,17 @@
                     </div>
 
                 </div>
-                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser">
+                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser productorcate">
                     <div class="w-50 d-flex fixmobileuser2">
                         <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30% !important;">Sản
                             phẩm</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="product_list" value="1" id="product-radio" required>
+                                <input type="radio" name="product_list" value="1" id="product-radio" class="requiredcheck">
                                 Danh sách
                             </label>
                             <label class="label">
-                                <input type="radio" name="product_list" value="0" required>
+                                <input type="radio" name="product_list" value="0" class="requiredcheck">
                                 Tất cả
                             </label>
                         </div>
@@ -201,17 +201,17 @@
                     <p class="btn btn-secondary" id="product-input" type="button" data-toggle="modal"
                         data-target="#modal-addproduct">Chưa chọn sản phẩm nào</p>
                 </div>
-                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser">
+                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser productorcate">
                     <div class="w-50 d-flex fixmobileuser2">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 30% !important;">Danh mục</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="category_list" value="1" id="cate-radio" required>
+                                <input type="radio" name="category_list" value="1" id="cate-radio" class="requiredcheck">
                                 Danh sách
                             </label>
                             <label class="label">
-                                <input type="radio" name="category_list" value="0" required>
+                                <input type="radio" name="category_list" value="0" class="requiredcheck">
                                 Tất cả
                             </label>
                         </div>
@@ -573,6 +573,19 @@ $(document).ready(function() {
 
     $("#user-input, #cate-input, #product-input, #not, #yes").hide();
 
+    $(".productorcate").addClass("hideproduct");
+
+    $("input[name='applicable_to']").change(function() {
+        if ($(this).val() === "product") {
+            // Nếu radio button "Cá nhân" được chọn, hiển thị ô input
+            $(".productorcate").removeClass("hideproduct");
+            $(".requiredcheck").removeAttr("required");
+        } else {
+            $(".productorcate").addClass("hideproduct");
+            $(".requiredcheck").addAttr("required");
+        }
+    });
+
     $("input[name='iduser']").change(function() {
         if ($(this).val() === "product") {
             // Nếu radio button "Cá nhân" được chọn, hiển thị ô input
@@ -585,10 +598,8 @@ $(document).ready(function() {
 
     $("input[name='category_list']").change(function() {
         if ($(this).val() === "1") {
-            // Nếu radio button "Cá nhân" được chọn, hiển thị ô input
             $("#cate-input").show();
         } else {
-            // Nếu radio button khác được chọn, ẩn ô input
             $("#cate-input").hide();
         }
     });

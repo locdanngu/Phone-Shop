@@ -352,4 +352,65 @@ class AdminController extends Controller
             ]);
         }
     }
+
+    public function changecoupon(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $coupon = Coupon::where('idcoupon', $request['idcoupon'])->first();
+        $coupon->applicable_to = $request['applicable_to'];
+        $coupon->starttime = $request['starttime'];
+        $coupon->endtime = $request['endtime'];
+        $coupon->iduser = $request['sendiduser'];
+
+        if($coupon->applicable_to == "product"){
+            if($request['product_list_or_cate_list'] == 1){
+                $coupon->product_list = 1;
+                $coupon->category_list = 0;
+            }elseif($request['product_list_or_cate_list'] == 2){
+                $coupon->product_list = 0;
+                $coupon->category_list = 0;
+            }elseif($request['product_list_or_cate_list'] == 3){
+                $coupon->category_list = 1;
+                $coupon->product_list = 0;
+            }else{
+                $coupon->category_list = 0;
+                $coupon->product_list = 0;
+            }
+        }
+
+        $coupon->discount_type = $request['discount_type'];
+        $coupon->minimum_order_amount = $request['minimum_order_amount'];
+        $coupon->max_discount_amount = $request['max_discount_amount'];
+        $coupon->discount_amount = $request['discount_amount'];
+        $coupon->used = 0;
+        $coupon->isdelete = 0;
+        $coupon->save();
+
+        $deleteproduct = Product_coupon::where('idcoupon', $request['idcoupon'])->delete();
+        $deletecategory = Category_coupon::where('idcoupon', $request['idcoupon'])->delete();
+
+        if($coupon->product_list == 1){
+            $listPro = explode(',', $request['listproduct']);
+            foreach ($listPro as $idproduct) {
+                $product_coupon = new Product_coupon();
+                $product_coupon->idproduct = $idproduct;
+                $product_coupon->idcoupon = $coupon->idcoupon;
+                $product_coupon->save();
+            }
+        }
+
+        if($coupon->category_list == 3){
+            $listCate = explode(',', $request['listcate']);
+            foreach ($listCate as $idcate) {
+                $category_coupon = new Category_coupon();
+                $category_coupon->idcategory = $idcate;
+                $category_coupon->idcoupon = $coupon->idcoupon;
+                $category_coupon->save();
+            }
+        }
+        
+        return redirect()->route('listcoupon.page');
+
+    }
+
 }

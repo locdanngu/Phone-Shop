@@ -233,6 +233,7 @@ $(document).ready(function() {
         var used = button.data('used');
         var modal = $(this);
         modal.find('input[name="code"]').val(code);
+        modal.find('input[name="idcoupon"]').val(id);
         modal.find('input[name="finduser"]').val(user);
         modal.find('input[name="sendiduser"]').val(iduser);
         modal.find('input[name="applicable_to"][value="' + app + '"]').prop('checked', true);

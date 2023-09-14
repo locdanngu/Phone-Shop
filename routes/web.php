@@ -49,6 +49,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/searchuser', [AdminController::class, 'searchuser'])->name('user.search');
         Route::post('/checkcode', [AdminController::class, 'checkcode'])->name('code.check');
         Route::post('/addcoupon', [AdminController::class, 'addcoupon'])->name('coupon.add');
+        Route::post('/changecoupon', [AdminController::class, 'changecoupon'])->name('coupon.change');
         Route::get('/listcouponpage/search', [AdminController::class, 'listcouponpage'])->name('searchcoupon');
     });
 });

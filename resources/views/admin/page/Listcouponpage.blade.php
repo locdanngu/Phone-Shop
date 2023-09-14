@@ -136,8 +136,8 @@
                 </button>
             </div>
             <input type="hidden" name="sendiduser" id="sendiduser">
-            <input type="hidden" name="listproduct" id="listproduct">
-            <input type="hidden" name="listcate" id="listcate">
+            <input type="text" name="listproduct" id="listproduct">
+            <input type="text" name="listcate" id="listcate">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mã giảm giá</span>
@@ -189,11 +189,11 @@
                             phẩm</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="product_list" value="1" id="product-radio" class="requiredcheck">
+                                <input type="radio" name="product_list_or_cate_list" value="1" id="product-radio" class="requiredcheck">
                                 Danh sách
                             </label>
                             <label class="label">
-                                <input type="radio" name="product_list" value="0" class="requiredcheck">
+                                <input type="radio" name="product_list_or_cate_list" value="2" class="requiredcheck">
                                 Tất cả
                             </label>
                         </div>
@@ -207,11 +207,11 @@
                             style="width: 30% !important;">Danh mục</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="category_list" value="1" id="cate-radio" class="requiredcheck">
+                                <input type="radio" name="product_list_or_cate_list" value="3" id="cate-radio" class="requiredcheck">
                                 Danh sách
                             </label>
                             <label class="label">
-                                <input type="radio" name="category_list" value="0" class="requiredcheck">
+                                <input type="radio" name="product_list_or_cate_list" value="4" class="requiredcheck">
                                 Tất cả
                             </label>
                         </div>
@@ -596,19 +596,24 @@ $(document).ready(function() {
         }
     });
 
-    $("input[name='category_list']").change(function() {
-        if ($(this).val() === "1") {
-            $("#cate-input").show();
-        } else {
-            $("#cate-input").hide();
-        }
-    });
+    // $("input[name='category_list']").change(function() {
+    //     if ($(this).val() === "3") {
+    //         $("#cate-input").show();
+    //     } else {
+    //         $("#cate-input").hide();
+    //     }
+    // });
 
-    $("input[name='product_list']").change(function() {
+    $("input[name='product_list_or_cate_list']").change(function() {
         if ($(this).val() === "1") {
             $("#product-input").show();
-        } else {
+            $("#cate-input").hide();
+        } else if($(this).val() === "3") {
             $("#product-input").hide();
+            $("#cate-input").show();
+        }else{
+            $("#product-input").hide();
+            $("#cate-input").hide();
         }
     });
 

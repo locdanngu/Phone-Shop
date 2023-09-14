@@ -284,24 +284,25 @@ class AdminController extends Controller
     public function addcoupon(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        
         $coupon = new Coupon();
         $coupon->code = $request['code'];
         $coupon->applicable_to = $request['applicable_to'];
         $coupon->starttime = $request['starttime'];
         $coupon->endtime = $request['endtime'];
         $coupon->iduser = $request['sendiduser'];
-        // dd($request);
-        if($request['listproduct']){
-            $coupon->product_list = 1;
-        }else{
-            $coupon->product_list = 0;
+
+        if($coupon->applicable_to == "product"){
+            if($request['product_list_or_cate_list'] == 1){
+                $coupon->product_list = 1;
+            }elseif($request['product_list_or_cate_list'] == 2){
+                $coupon->product_list = 0;
+            }elseif($request['product_list_or_cate_list'] == 3){
+                $coupon->category_list = 1;
+            }else{
+                $coupon->category_list = 0;
+            }
         }
-        if($request['listcate']){
-            $coupon->category_list = 1;
-        }else{
-            $coupon->category_list = 0;
-        }
+
         $coupon->discount_type = $request['discount_type'];
         $coupon->minimum_order_amount = $request['minimum_order_amount'];
         $coupon->max_discount_amount = $request['max_discount_amount'];
@@ -309,16 +310,6 @@ class AdminController extends Controller
         $coupon->used = 0;
         $coupon->isdelete = 0;
         $coupon->save();
-
-        if($coupon->category_list == 1){
-            $listCate = explode(',', $request['listcate']);
-            foreach ($listCate as $idcate) {
-                $category_coupon = new Category_coupon();
-                $category_coupon->idcategory = $idcate;
-                $category_coupon->idcoupon = $coupon->idcoupon;
-                $category_coupon->save();
-            }
-        }
 
         if($coupon->product_list == 1){
             $listPro = explode(',', $request['listproduct']);
@@ -329,6 +320,17 @@ class AdminController extends Controller
                 $product_coupon->save();
             }
         }
+
+        if($coupon->category_list == 3){
+            $listCate = explode(',', $request['listcate']);
+            foreach ($listCate as $idcate) {
+                $category_coupon = new Category_coupon();
+                $category_coupon->idcategory = $idcate;
+                $category_coupon->idcoupon = $coupon->idcoupon;
+                $category_coupon->save();
+            }
+        }
+        
         return redirect()->route('listcoupon.page');
     }
 

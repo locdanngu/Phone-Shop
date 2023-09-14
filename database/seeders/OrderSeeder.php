@@ -21,6 +21,8 @@ class OrderSeeder extends Seeder
             'idorder' => 1,
             'idproduct' => 1,
             'quantity' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

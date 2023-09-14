@@ -291,7 +291,7 @@
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Hoàn tất</button>
+                <button type="submit" class="btn btn-success">Hoàn tất</button>
             </div>
         </form>
         <!-- /.modal-content -->

@@ -410,7 +410,15 @@ class AdminController extends Controller
         }
         
         return redirect()->route('listcoupon.page');
+    }
+
+    public function categorylist(Request $request)
+    {
 
     }
 
+    public function productlist(Request $request)
+    {
+
+    }
 }

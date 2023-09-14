@@ -258,6 +258,7 @@ $(document).ready(function() {
 
         if (pro == '1') {
             $("#product-input2").show();
+            modal.find('#product-input2').attr('data-idcoupon', id);
             modal.find('input[name="product_list_or_cate_list"][value="1"]').prop('checked', true);
         } else {
             modal.find('input[name="product_list_or_cate_list"][value="2"]').prop('checked', true);
@@ -265,6 +266,7 @@ $(document).ready(function() {
         }
         if (cate == '1') {
             $("#cate-input2").show();
+            modal.find('#cate-input2').attr('data-idcoupon', id);
             modal.find('input[name="product_list_or_cate_list"][value="3"]').prop('checked', true);
         } else {
             modal.find('input[name="product_list_or_cate_list"][value="4"]').prop('checked', true);
@@ -641,6 +643,27 @@ $(document).ready(function() {
 
     $('#modal-change').on('hidden.bs.modal', function() {
         $("#yes2, #not2,#product-input2,#cate-input2").hide();
+    });
+
+
+    $("#cate-input2").on("click", function() {
+        var idcoupon = $(this).data("idcoupon");
+
+        $.ajax({
+            url: "",
+            type: "POST",
+            data: {
+                _token: '{{ csrf_token() }}',
+                idcoupon,
+            },
+            success: function(response) {
+
+
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
     });
 });
 </script>

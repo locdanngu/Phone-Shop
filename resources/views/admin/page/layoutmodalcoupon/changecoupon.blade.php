@@ -154,7 +154,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">Chọn danh sách danh mục mới</h4>
             </div>
-            <div class="modal-body fixgrid">
+            <div class="modal-body fixgrid" id="listcategory_coupon">
                 @foreach($category as $ca)
                 <label for="" class="d-flex flex-column align-items-center">
                     <img src="{{ $ca->imagecategory }}" alt="" height="50" style="width:fit-content">
@@ -191,7 +191,7 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="listproduct_coupon">
                             @foreach($product as $pr)
                             <tr>
                                 <td class="font-weight-bold" style="color:red">{{ $pr->nameproduct }}</td>

@@ -457,18 +457,24 @@ class AdminController extends Controller
     public function productcount(Request $request)
     {
         $html = Product_coupon::where('idcoupon', $request['id'])->count();
+        $listproduct = Product_coupon::where('idcoupon', $request['id'])->pluck('idproduct')->toArray();
+        $product = implode(',', $listproduct);
 
         return response()->json([
             'html' => $html,
+            'product' => $product,
         ]);
     }
 
     public function categorycount(Request $request)
     {
         $html = Category_coupon::where('idcoupon', $request['id'])->count();
+        $listcate = Category_coupon::where('idcoupon', $request['id'])->pluck('idcategory')->toArray();
+        $category = implode(',', $listcate);
 
         return response()->json([
             'html' => $html,
+            'category' => $category,
         ]);
     }
 }

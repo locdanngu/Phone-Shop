@@ -269,6 +269,8 @@ $(document).ready(function() {
                 },
                 success: function(response) {
                     var html = response.html;
+                    var product = response.product;
+                    $('#listproduct2').val(product);
                     $("#product-input2").text('Đã chọn ' + html + ' sản phẩm');
                 },
                 error: function(xhr, status, error) {
@@ -294,6 +296,8 @@ $(document).ready(function() {
                 },
                 success: function(response) {
                     var html = response.html;
+                    var category = response.category;
+                    $('#listcate2').val(category);
                     $("#cate-input2").text('Đã chọn ' + html + ' mục');
                 },
                 error: function(xhr, status, error) {

@@ -328,6 +328,16 @@ $(document).ready(function() {
                 $("#cate-input2").hide();
             }
         });
+
+        $("input[name='iduser']").change(function() {
+            if ($(this).val() === "1") {
+                // Nếu radio button "Cá nhân" được chọn, hiển thị ô input
+                $("#user-input2").show();
+            } else {
+                // Nếu radio button khác được chọn, ẩn ô input
+                $("#user-input2").hide();
+            }
+        });
     });
 
     $('#modal-delete').on('shown.bs.modal', function(event) {
@@ -364,6 +374,8 @@ $(document).ready(function() {
             $("#user-input").hide();
         }
     });
+
+
 
     $("input[name='product_list_or_cate_list']").change(function() {
         if ($(this).val() === "1") {

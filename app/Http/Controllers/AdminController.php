@@ -530,16 +530,23 @@ class AdminController extends Controller
     public function listorderpage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $limit = $request->limit ?? 5;
-        $order = new Order();
-        $searchorder = $request['searchorder'];
-        
-        if ($searchorder) {
-            $order = $order->where('code', 'like', '%' . $searchcoupon . '%')
-                           ->where('status', 'wait');
-        }
-        $order = $order->where('status', 'wait')->paginate($limit);
+
+        $order = Order::where('status', 'wait')->get();
         $countorder = $order->count();
+
+        
+        if($request){
+            $year = $request->input('year');
+            $month = $request->input('month');
+            $day = $request->input('day');
+
+            if($year!='' && $month!='' && $day ==''){
+                $order = Order::where('status', 'wait')
+                ->whereYear('created_at', $year)
+                ->whereMonth('created_at', $month)
+                ->get();
+            }
+        }
 
         return view('admin/page/Listorderpage', compact('admin','order','countorder'));
     }

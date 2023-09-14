@@ -14,7 +14,6 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
     <!-- Main content -->
     <div class="content">
         <div class="row">
@@ -22,11 +21,17 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Tổng cộng : {{ $countorder }} đơn</h3>
-                        <div class="card-tools" style="width: 45%;">
-                            <form action="{{ route('searchcategory') }}" method="get"
+                        <div class="card-tools">
+                            <form action="{{ route('order.search') }}" method="get"
                                 class="input-group input-group-sm">
-                                <input type="text" name="searchcategory" class="form-control float-right"
-                                    placeholder="Tìm kiếm" value="{{ request('searchcategory')}}">
+                                <div class="d-flex justify-content-center">
+                                    {!! Form::selectYear('year', date('Y'), date('Y') - 50, null, ['placeholder' =>
+                                    '-----', 'name' => 'year']) !!}
+                                    {!! Form::selectMonth('month', null, ['placeholder' => '-----', 'name' => 'month'])
+                                    !!}
+                                    {!! Form::selectRange('day', 1, 31, null, ['placeholder' => '-----', 'name' =>
+                                    'day']) !!}
+                                </div>
                                 <button class="btn-success" type="submit">Tìm</button>
                             </form>
                         </div>

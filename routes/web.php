@@ -61,6 +61,8 @@ Route::prefix('/admin')->group(function () {
 
         //Order
         Route::get('/listorderpage', [AdminController::class, 'listorderpage'])->name('listorder.page');
+        Route::get('/listorderpage/search', [AdminController::class, 'listorderpage'])->name('order.search');
+
     });
 });
 

@@ -179,8 +179,8 @@ $(document).ready(function() {
         var used = button.data('used');
         var modal = $(this);
         modal.find('span[name="code"]').text(code);
-        modal.find('span[name="starttime"]').text(start);
-        modal.find('span[name="endtime"]').text(end);
+        modal.find('span[name="starttime"]').text(start.split(':').slice(0, 2).join(':'));
+        modal.find('span[name="endtime"]').text(end.split(':').slice(0, 2).join(':'));
         modal.find('span[name="applicable_to"]').text(app);
         modal.find('span[name="iduser"]').text(iduser);
         if (pro == 1) {
@@ -255,8 +255,8 @@ $(document).ready(function() {
         modal.find('input[name="minimum_order_amount"]').val(mini);
         modal.find('input[name="max_discount_amount"]').val(max);
         modal.find('input[name="discount_amount"]').val(amo);
-        modal.find('input[name="starttime"]').val(start);
-        modal.find('input[name="endtime"]').val(end);
+        modal.find('input[name="starttime"]').val(start.split(':').slice(0, 2).join(':'));
+        modal.find('input[name="endtime"]').val(end.split(':').slice(0, 2).join(':'));
 
         if (pro == '1') {
 

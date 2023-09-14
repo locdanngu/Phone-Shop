@@ -149,7 +149,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Áp dụng cho</span>
                     <div class="d-flex align-items-center">
                         <label class="label">
-                            <input type="radio" name="applicable_to" value="product" required id="productcoupon"> 
+                            <input type="radio" name="applicable_to" value="product" required id="productcoupon">
                             Sản phẩm
                         </label>
                         <label class="label">
@@ -189,7 +189,8 @@
                             phẩm</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="1" id="product-radio" class="requiredcheck">
+                                <input type="radio" name="product_list_or_cate_list" value="1" id="product-radio"
+                                    class="requiredcheck">
                                 Danh sách
                             </label>
                             <label class="label">
@@ -207,7 +208,8 @@
                             style="width: 30% !important;">Danh mục</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="3" id="cate-radio" class="requiredcheck">
+                                <input type="radio" name="product_list_or_cate_list" value="3" id="cate-radio"
+                                    class="requiredcheck">
                                 Danh sách
                             </label>
                             <label class="label">
@@ -383,16 +385,16 @@
                     <span name="discount_type" class="spanpopup"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Yêu cầu($)</span>
-                    <span name="minimum_order_amount" class="spanpopup"></span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Yêu cầu</span>
+                    <span name="minimum_order_amount" class="spanpopup font-weight-bold" style="color:red"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tối đa($)</span>
-                    <span name="max_discount_amount" class="spanpopup"></span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tối đa</span>
+                    <span name="max_discount_amount" class="spanpopup font-weight-bold" style="color:red"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Mức giảm(%/$)</span>
-                    <span name="discount_amount" class="spanpopup"></span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Mức giảm</span>
+                    <span name="discount_amount" class="spanpopup font-weight-bold" style="color:red"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Đã sử dụng</span>
@@ -400,11 +402,11 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Ngày bắt đầu</span>
-                    <span name="starttime" class="spanpopup"></span>
+                    <span name="starttime" class="spanpopup font-weight-bold"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Ngày kết thúc</span>
-                    <span name="endtime" class="spanpopup"></span>
+                    <span name="endtime" class="spanpopup font-weight-bold"></span>
                 </div>
             </div>
             <div class="modal-footer justify-align-content-end">
@@ -544,9 +546,14 @@ $(document).ready(function() {
             modal.find('span[name="category_list"]').show();
         }
         modal.find('span[name="discount_type"]').text(dis);
-        modal.find('span[name="minimum_order_amount"]').text(mini);
-        modal.find('span[name="max_discount_amount"]').text(max);
-        modal.find('span[name="discount_amount"]').text(amo);
+        modal.find('span[name="minimum_order_amount"]').text(mini + ' $');
+        modal.find('span[name="max_discount_amount"]').text(max + ' $');
+        if (dis == 'Theo phần trăm') {
+            modal.find('span[name="discount_amount"]').text(amo + ' %');
+        } else {
+            modal.find('span[name="discount_amount"]').text(amo + ' $');
+
+        }
         modal.find('span[name="used"]').text(used + ' lần');
 
     });
@@ -611,10 +618,10 @@ $(document).ready(function() {
         if ($(this).val() === "1") {
             $("#product-input").show();
             $("#cate-input").hide();
-        } else if($(this).val() === "3") {
+        } else if ($(this).val() === "3") {
             $("#product-input").hide();
             $("#cate-input").show();
-        }else{
+        } else {
             $("#product-input").hide();
             $("#cate-input").hide();
         }

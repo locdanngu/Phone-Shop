@@ -156,7 +156,7 @@
             </div>
             <div class="modal-body fixgrid">
                 @foreach($category as $ca)
-                <label for="" class="d-flex flex-column align-items-center">
+                <label class="d-flex flex-column align-items-center">
                     <img src="{{ $ca->imagecategory }}" alt="" height="50" style="width:fit-content">
                     {{ $ca->namecategory }}
                     <input type="checkbox" name="listcate" value="{{ $ca->idcategory }}" class="listcate-checkbox">

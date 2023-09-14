@@ -80,7 +80,7 @@
             </div>
             <div class="modal-body fixgrid" id="listcategory_couponin4">
                 @foreach($category as $ca)
-                <label for="" class="d-flex flex-column align-items-center">
+                <label class="d-flex flex-column align-items-center">
                     <img src="{{ $ca->imagecategory }}" alt="" height="50" style="width:fit-content">
                     {{ $ca->namecategory }}
                 </label>

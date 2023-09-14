@@ -74,7 +74,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" id="submitBtn">Thiết lập mật khẩu mới</button>
+                            <button type="submit" class="btn btn-success" id="submitBtn">Thiết lập mật khẩu mới</button>
                         </div>
                         <!-- /.card -->
                     </form>

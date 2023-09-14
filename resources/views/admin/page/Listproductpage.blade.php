@@ -75,7 +75,7 @@
                                                 href="{{ route('searchcategory', ['searchcategory' => $row->category->namecategory]) }}">{{ $row->category->namecategory }}</a>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                            <button class="btn btn-success btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-change" data-id="{{ $row->idproduct }}"
                                                 data-name="{{ $row->nameproduct }}" data-old="{{ $row->oldprice }}"
                                                 data-new="{{ $row->price }}" data-detail="{{ $row->detail }}"

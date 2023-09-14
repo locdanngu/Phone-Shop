@@ -93,7 +93,7 @@
                                                 <i class="bi bi-info-lg"></i>
                                                 Thông tin
                                             </button>
-                                            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                            <button class="btn btn-success btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-change" data-id="{{ $row->idcoupon }}"
                                                 data-start="{{ $row->starttime }}" data-end="{{ $row->endtime }}"
                                                 data-appli="{{ $row->applicable_to }}" data-iduser="{{ $row->iduser }}"
@@ -288,7 +288,7 @@
         <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Chỉnh sửa hãng</h4>
+                <h4 class="modal-title">Chỉnh sửa mã giảm giá</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -421,7 +421,7 @@
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Hoàn tất</button>
+                <button type="submit" class="btn btn-success">Lưu thay đổi</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -704,8 +704,11 @@ $(document).ready(function() {
             $("#user-input2").hide();
         }
         modal.find('input[name="discount_type"][value="' + dis + '"]').prop('checked', true);
-
-
+        modal.find('input[name="minimum_order_amount"]').val(mini);
+        modal.find('input[name="max_discount_amount"]').val(max);
+        modal.find('input[name="discount_amount"]').val(amo);
+        modal.find('input[name="starttime"]').val(start);
+        modal.find('input[name="endtime"]').val(end);
     });
 
     $('#modal-delete').on('shown.bs.modal', function(event) {

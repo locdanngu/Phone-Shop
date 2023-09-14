@@ -62,7 +62,7 @@
                                                 href="{{ route('searchproduct', ['searchproduct' => $row->namecategory]) }}">{{ $row->product_count }}</a>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                            <button class="btn btn-success btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-change" data-id="{{ $row->idcategory }}"
                                                 data-name="{{ $row->namecategory }}"
                                                 data-image="{{ $row->imagecategory }}"

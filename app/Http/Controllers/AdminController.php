@@ -438,7 +438,7 @@ class AdminController extends Controller
         $listproduct = Product_coupon::where('idcoupon', $request['idcoupon'])->pluck('idproduct')->toArray();
         
         foreach($product as $pr){
-            $isChecked = in_array($ca->idproduct, $listproduct) ? 'checked' : ''; // Kiểm tra xem idproduct có trong danh sách $listcate hay không
+            $isChecked = in_array($pr->idproduct, $listproduct) ? 'checked' : ''; // Kiểm tra xem idproduct có trong danh sách $listcate hay không
 
             $html .= '<tr>';
             $html .= '<td class="font-weight-bold" style="color:red">' . $pr->nameproduct . '</td>';

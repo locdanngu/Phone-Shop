@@ -14,6 +14,15 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center mb-3">
+                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#modal-add"><i
+                        class="bi bi-plus-circle-fill"></i> Thêm 1 chi tiêu mới</button>
+            </div>
+        </div>
+    </div>
     <!-- Main content -->
     <div class="content">
         <div class="row">
@@ -100,6 +109,40 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade" id="modal-add">
+    <div class="modal-dialog">
+        <form class="modal-content" action="{{ route('spend.add') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title">Tạo 1 chi tiêu mới</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Lý do</span>
+                    <textarea type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="reason"
+                        style="height:8em"></textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Số tiền($)</span>
+                    <input type="number" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" name="money" id="pricevnd">
+                </div>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 
 @endsection
 

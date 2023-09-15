@@ -837,6 +837,14 @@ class AdminController extends Controller
         }
 
         return view('admin/page/Listspendpage', compact('spend', 'admin', 'sum'));
+    }
 
+    public function spendadd(Request $request)
+    {
+        $spend = new Spend();
+        $spend->reason = $request['reason'];
+        $spend->money = $request['money'];
+        $spend->save();
+        return redirect()->route('listspend.page');
     }
 }

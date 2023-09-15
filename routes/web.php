@@ -77,6 +77,7 @@ Route::prefix('/admin')->group(function () {
         //Revenue(chi tiêu)
         Route::get('/listspendpage', [AdminController::class, 'listspendpage'])->name('listspend.page');
         Route::get('/listspendpage/search', [AdminController::class, 'listspendpage'])->name('spend.search');
+        Route::post('/spendadd', [AdminController::class, 'spendadd'])->name('spend.add');
 
         //User
         Route::get('/listuserpage', [AdminController::class, 'listuserpage'])->name('listuser.page');

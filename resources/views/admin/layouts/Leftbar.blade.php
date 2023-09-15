@@ -35,7 +35,6 @@
                         <p>
                             Quản lý sản phẩm
                             <i class="bi bi-arrow-left right"></i>
-                            <!-- <span class="badge badge-info right">6</span> -->
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -46,13 +45,6 @@
                                 <p>Danh sách sản phẩm</p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href=""
-                                class="nav-link {{ request()->is('don-tra-loi-tu-van') ? 'active' : '' }}">
-                                <i class="bi bi-file-x nav-icon"></i>
-                                <p>Sản phẩm đã bị xóa</p>
-                            </a>
-                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -72,18 +64,11 @@
                                 <p>Danh sách danh mục</p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href=""
-                                class="nav-link {{ request()->is('daura') ? 'active' : '' }}">
-                                <i class="bi-file-x nav-icon"></i>
-                                <p>Hãng đã xóa</p>
-                            </a>
-                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link {{ request()->routeIs('listcoupon.page', 'searchcoupon') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('listcoupon.page', 'searchcoupon', 'listexpiredcoupon.page', 'searchcouponexpired') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-badge-vo"></i>
                         <p>
                             Quản lý mã khuyến mãi
@@ -99,7 +84,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('listexpiredcoupon.page') }}" class="nav-link {{ request()->is('daura') ? 'active' : '' }}">
+                            <a href="{{ route('listexpiredcoupon.page') }}"
+                                class="nav-link {{ request()->routeIs('listexpiredcoupon.page', 'searchcouponexpired') ? 'active' : '' }}">
                                 <i class="bi bi-file-x nav-icon"></i>
                                 <p>Mã hết hạn</p>
                             </a>
@@ -154,7 +140,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link {{ request()->routeIs('listrevenue.page', 'revenue.search') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('listrevenue.page', 'revenue.search','listspend.page', 'spend.search') ? 'active' : '' }}">
                         <i class="nav-icon bi-wallet"></i>
                         <p>
                             Quản lý doanh thu
@@ -165,14 +151,14 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('listrevenue.page') }}"
-                                class="nav-link {{ request()->routeIs('listrevenue.page') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('listrevenue.page', 'revenue.search') ? 'active' : '' }}">
                                 <i class="bi bi-piggy-bank nav-icon"></i>
                                 <p>Thống kê thu nhập</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('listspend.page') }}"
-                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('listspend.page', 'spend.search') ? 'active' : '' }}">
                                 <i class="bi bi-wrench nav-icon"></i>
                                 <p>Thống kê chi tiêu</p>
                             </a>

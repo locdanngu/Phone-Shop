@@ -116,20 +116,21 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link {{ request()->routeIs('listorder.page', 'searchproduct') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('listorder.page', 'order.search') ? 'active' : '' }}">
                         <i class="nav-icon bi-receipt"></i>
                         <p>
                             Quản lý đơn
                             <!-- <i class="bi bi-arrow-left right"></i> -->
-                            <!-- <span class="badge badge-info right">6</span> -->
+                            <span class="badge badge-danger right">{{ $countorder }}</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('listorder.page') }}"
-                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('listorder.page') ? 'active' : '' }}">
                                 <i class="bi-receipt-cutoff nav-icon"></i>
                                 <p>Đơn đặt hàng</p>
+                                <span class="badge badge-danger right">{{ $countorder }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -153,13 +154,33 @@
                                 <p>Đơn đã hoàn thành</p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href=""
-                                class="nav-link {{ request()->is('don-tra-loi-tu-van') ? 'active' : '' }}">
-                                <i class="bi bi-file-x nav-icon"></i>
-                                <p>Sản phẩm đã bị xóa</p>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#"
+                        class="nav-link {{ request()->routeIs('listpay.page', 'order.search') ? 'active' : '' }}">
+                        <i class="nav-icon bi-wallet"></i>
+                        <p>
+                            Quản lý doanh thu
+                            <i class="bi bi-arrow-left right"></i>
+                            <!-- <span class="badge badge-info right">6</span> -->
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('listorder.page') }}"
+                                class="nav-link {{ request()->routeIs('listorder.page') ? 'active' : '' }}">
+                                <i class="bi bi-piggy-bank nav-icon"></i>
+                                <p>Thống kê thu nhập</p>
                             </a>
-                        </li> -->
+                        </li>
+                        <li class="nav-item">
+                            <a href=""
+                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                                <i class="bi bi-wrench nav-icon"></i>
+                                <p>Thống kê chi tiêu</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

@@ -26,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
                         'admin/page/Listcouponpage', 
                         'admin/page/Listorderpage',
                         'admin/page/Listproductpage',
-                        'admin/page/Listrevenuepage',], function ($view) {
+                        'admin/page/Listrevenuepage',
+                        'admin/page/Listuserpage',], function ($view) {
                             
                             
             $countorder = Order::where('status', 'wait')->count();

@@ -25,6 +25,7 @@ class UsersTableSeeder extends Seeder
             'phone' => '1234567890',
             'ordernote' => 'This is a sample user',
             'apartment' => 'Apt 101',
+            'status' => 'ok',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

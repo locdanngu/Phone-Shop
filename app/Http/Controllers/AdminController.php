@@ -34,10 +34,6 @@ class AdminController extends Controller
     }
 
     public function loginadmin(Request $request){
-        // $this->validate($request, [
-        //     'adminname' => 'required',
-        //     'password' => 'required'
-        // ]);
         $this->validate($request, ['adminname' => 'required',
                                     'password' => 'required']);
         
@@ -95,12 +91,6 @@ class AdminController extends Controller
         $limit = $request->limit ?? 5;
         $product = new Product();
         $searchproduct = $request['searchproduct'];
-        // if ($searchproduct) {
-        //     $product = $product->where(function($query) use ($searchproduct) {
-        //         $query->where('nameproduct', 'like', '%' . $searchproduct . '%')
-        //               ->orWhere('price', 'like', '%' . $searchproduct . '%');
-        //     })->orderBy('idproduct', 'desc');
-        // }
         if ($searchproduct) {
             $product = $product->where('nameproduct', 'like', '%' . $searchproduct . '%')
                 ->orWhereHas('category', function($query) use ($searchproduct) {
@@ -751,6 +741,29 @@ class AdminController extends Controller
 
         return view('admin/page/Listrevenuepage', compact('order', 'admin', 'sum'));
 
+    }
+
+
+    public function listuserpage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $limit = $request->limit ?? 5;
+        $user = new User();
+        $searchuser = $request['searchuser'];
+        if ($searchuser) {
+            $user = $user->where(function ($query) use ($searchuser) {
+                $query->where('username', 'like', '%' . $searchuser . '%')
+                    ->orWhere('firstname', 'like', '%' . $searchuser . '%')
+                    ->orWhere('lastname', 'like', '%' . $searchuser . '%')
+                    ->orWhere('email', 'like', '%' . $searchuser . '%')
+                    ->orWhere('phone', 'like', '%' . $searchuser . '%');
+            });
+        }
+        
+        $user = $user->paginate($limit);
+        $countuser = $user->count();
+
+        return view('admin/page/Listuserpage', compact('admin','user','searchuser','countuser'));
     }
     
 }

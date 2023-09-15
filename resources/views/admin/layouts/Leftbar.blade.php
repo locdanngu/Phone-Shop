@@ -107,7 +107,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('dauvao', 'daura') ? 'active' : '' }}">
+                    <a href="{{ route('listuser.page') }}"
+                        class="nav-link {{ request()->routeIs('listuser.page', 'searchuser') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-person-circle"></i>
                         <p>
                             Quản lý người dùng

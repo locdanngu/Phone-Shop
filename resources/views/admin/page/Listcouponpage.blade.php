@@ -183,6 +183,13 @@ $(document).ready(function() {
         modal.find('span[name="endtime"]').text(end.split(':').slice(0, 2).join(':'));
         modal.find('span[name="applicable_to"]').text(app);
         modal.find('span[name="iduser"]').text(iduser);
+
+        if (app == 'Đơn hàng') {
+            modal.find('#hidein4pro').hide();
+        }else{
+            modal.find('#hidein4pro').show();
+        }
+
         if (pro == 1) {
             modal.find('span[name="product_list"]').hide();
             modal.find('#in4listpro').attr('data-idcoupon', id);

@@ -856,4 +856,50 @@ class AdminController extends Controller
         $spend->save();
         return redirect()->route('listspend.page');
     }
+
+    public function listordershippage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+
+        $order = Order::where('status', 'ship')->get();
+        $countorder = $order->count();
+
+        
+        if($request->input('year') || $request->input('month') || $request->input('day')){
+            $year = $request->input('year');
+            $month = $request->input('month');
+            $day = $request->input('day');
+
+            if ($request->filled('year')) {
+                $order = Order::where('status', 'ship')->whereYear('created_at', $year);
+            }
+            
+            if ($request->filled('month') && $request->filled('year')) {
+                $order = isset($order) ? $order->whereMonth('created_at', $month) : Order::where('status', 'ship')->whereMonth('created_at', $month);
+            }
+            
+            if ($request->filled('day') && $request->filled('month') && $request->filled('year')) {
+                $order = isset($order) ? $order->whereDay('created_at', $day) : Order::where('status', 'ship')->whereDay('created_at', $day);
+            }
+
+            if ($request->filled('day') && !$request->filled('month') && !$request->filled('year')) {
+                $order = Order::where('status', 'ship')->whereDay('created_at', $day);
+            }
+
+            if (!$request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $order = Order::where('status', 'ship')->whereMonth('created_at', $month);
+            }
+
+            if ($request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $order = Order::where('status', 'ship')->whereDay('created_at', $day)->whereMonth('created_at', $month);
+            }
+            
+            
+            $order = $order->get();
+            
+            $countorder = $order->count();
+        }
+
+        return view('admin/page/Listshiporderpage', compact('admin','order','countorder'));
+    }
 }

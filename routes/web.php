@@ -64,12 +64,16 @@ Route::prefix('/admin')->group(function () {
         Route::get('/listexpiredcouponpage/search', [AdminController::class, 'listexpiredcouponpage'])->name('searchcouponexpired');
 
 
-        //Order
+        //Order (chờ xác nhận)
         Route::get('/listorderpage', [AdminController::class, 'listorderpage'])->name('listorder.page');
         Route::get('/listorderpage/search', [AdminController::class, 'listorderpage'])->name('order.search');
         Route::post('/in4order', [AdminController::class, 'in4order'])->name('order.in4');
         Route::post('/successorder', [AdminController::class, 'successorder'])->name('order.success');
         Route::post('/denyorder', [AdminController::class, 'denyorder'])->name('order.deny');
+        //Order (giao hàng)
+        Route::get('/listordershippage', [AdminController::class, 'listordershippage'])->name('listordership.page');
+        Route::get('/listordershippage/search', [AdminController::class, 'listordershippage'])->name('ordership.search');
+        Route::post('/doneorder', [AdminController::class, 'doneorder'])->name('order.done');
 
         //Revenue(thu nhập)
         Route::get('/listrevenuepage', [AdminController::class, 'listrevenuepage'])->name('listrevenue.page');

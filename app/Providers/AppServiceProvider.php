@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
                         'admin/page/Listcouponpage', 
                         'admin/page/Listexpiredcouponpage',
                         'admin/page/Listorderpage',
+                        'admin/page/Listshiporderpage',
                         'admin/page/Listproductpage',
                         'admin/page/Listrevenuepage',
                         'admin/page/Listspendpage',

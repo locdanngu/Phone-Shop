@@ -121,7 +121,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href=""
+                            <a href="{{ route('listordership.page') }}"
                                 class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
                                 <i class="bi-file-earmark-check nav-icon"></i>
                                 <p>Đơn đang giao</p>

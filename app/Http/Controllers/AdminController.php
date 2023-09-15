@@ -766,4 +766,12 @@ class AdminController extends Controller
         return view('admin/page/Listuserpage', compact('admin','user','searchuser','countuser'));
     }
     
+    public function changepassuser(Request $request)
+    {
+        $user = User::where('iduser', $request['iduser'])->first();
+        $user->password = Hash::make($request['password']);
+        $user->save();
+        return redirect()->route('listuser.page');
+    }
+
 }

@@ -65,9 +65,14 @@
                                         <td class="font-weight-bold" style="color: red">Khóa</td>
                                         @endif
                                         <td>
+                                            <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-change" data-id="{{ $u->iduser }}"
+                                                data-name="{{ $u->firstname }} {{ $u->lastname }}">
+                                                <i class="bi bi-wrench"></i> Đổi mật khẩu
+                                            </button>
                                             <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-change">
-                                                <i class="bi bi-wrench"></i> Thao tác
+                                                data-target="#modal-lock">
+                                                <i class="bi bi-lock-fill"></i> Thao tác
                                             </button>
                                         </td>
                                     </tr>
@@ -94,39 +99,37 @@
 @section('popup')
 <div class="modal fade" id="modal-change">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('user.changepass') }}" method="post" id="formchangepass">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Chỉnh sửa danh mục</h4>
+                <h4 class="modal-title">Đổi mật khẩu người dùng</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input type="hidden" name="idcategory">
+            <input type="hidden" name="iduser">
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="namecategory">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên tài khoản</span>
+                    <span name="username" class="spanpopup font-weight-bold" style="color:red"></span>
                 </div>
-                <div class="w-100 d-flex">
-                    <div class="w-100 mb-3 d-flex flex-column align-items-center">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="width:100% !important">Logo
-                            hiện tại</span>
-                        <img src="" alt="" style="height:100px;width: fit-content;margin-top: 2.5em" class="imageblog1">
-                    </div>
-                    <div class="w-100 mb-3 d-flex flex-column align-items-center">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="width:100% !important">Logo
-                            mới</span>
-                        <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
-                            onchange="previewImage2(event)" name="image">
-                        <img id="preview2" src="" alt="" style="height:100px">
-                    </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Mật khẩu mới</span>
+                    <input type="password" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="password" autocomplete="off"
+                        id="pass">
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Nhập lại mật khẩu</span>
+                    <input type="password" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="repassword" autocomplete="off"
+                        id="repass">
+                </div>
+
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-success">Hoàn tất</button>
+                <button type="submit" class="btn btn-success">Đổi mật khẩu</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -144,12 +147,21 @@ $(document).ready(function() {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
         var name = button.data('name');
-        var image = button.data('image');
         var modal = $(this);
-        modal.find('input[name="namecategory"]').val(name);
-        modal.find('input[name="idcategory"]').val(id);
-        modal.find('img.imageblog1').attr('src', image);
+        modal.find('input[name="iduser"]').val(id);
+        modal.find('span[name="username"]').text(name);
+
+        $("#formchangepass").submit(function(event) {
+            if (modal.find('input[name="password"]').val() != modal.find('input[name="repassword"]').val()) {
+                event.preventDefault();
+                toastr.error(
+                    '<b>Mật khẩu nhập lại không khớp</b>'
+                )
+            }
+        });
     });
+
+
 });
 </script>
 

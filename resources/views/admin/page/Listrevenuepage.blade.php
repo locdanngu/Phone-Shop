@@ -21,19 +21,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title font-weight-bold">Tổng cộng : {{ $sum }} $</h3>
-                        <div class="card-tools fixmobile">
+                        <div class="card-tools">
                             <form action="{{ route('revenue.search') }}" method="get"
-                                class="input-group input-group-sm m-0 d-flex">
-                                <div class="d-flex align-items-center mr-3">
-                                    <label class="mb-0 mr-3 d-flex align-items-center">
-                                        <input type="radio" name="sapxep" value="1" class="mr-1">
-                                        Mới nhất 
-                                    </label>
-                                    <label class="mb-0 d-flex align-items-center">
-                                        <input type="radio" name="sapxep" value="0" class="mr-1">
-                                        Cũ nhất
-                                    </label>
-                                </div>
+                                class="input-group input-group-sm m-0">
                                 <div class="d-flex justify-content-center">
                                     {!! Form::selectYear('year', date('Y'), date('Y') - 50, request('year', null),
                                     ['placeholder' => '-----', 'name' => 'year']) !!}

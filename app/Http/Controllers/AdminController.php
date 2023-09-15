@@ -715,15 +715,11 @@ class AdminController extends Controller
         $order = Order::where('status', 'done')->get();
         $sum = Order::sum('totalprice');
 
-
         if($request->input('year') || $request->input('month') || $request->input('day')){
-           
-
             $year = $request->input('year');
             $month = $request->input('month');
             $day = $request->input('day');
-            
-
+        
             if ($request->filled('year')) {
                 $order = Order::where('status', 'done')->whereYear('updated_at', $year);
             }
@@ -748,11 +744,8 @@ class AdminController extends Controller
                 $order = Order::where('status', 'done')->whereDay('updated_at', $day)->whereMonth('updated_at', $month);
             }
             
-            
             $order = $order->get();
-            
             $countorder = $order->count();
-
             $sum = $order->sum('totalprice');
         }
 

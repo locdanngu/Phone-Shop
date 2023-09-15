@@ -129,7 +129,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href=""
+                            <a href="{{ route('listordercancel.page') }}"
                                 class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
                                 <i class="bi-file-earmark-excel nav-icon"></i>
                                 <p>Đơn đã hủy</p>

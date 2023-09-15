@@ -602,6 +602,13 @@ class AdminController extends Controller
             $html .= '</div>';
         }
 
+        if($code == 2){
+            $html .= '<div class="input-group mb-3">';
+            $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Lý do hủy đơn</span>';
+            $html .= '<span class="spanpopup font-weight-bold" style="color:red">' . $id->reason . '</span>';
+            $html .= '</div>';
+        }
+
         $html .= '<div class="input-group mb-3">';
         $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Lời nhắn</span>';
         if(!$id->note){
@@ -910,5 +917,50 @@ class AdminController extends Controller
         $order->save();
 
         return redirect()->route('listordership.page');
+    }
+
+    public function listordercancelpage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+
+        $order = Order::where('status', 'cancel')->orderBy('updated_at', 'desc')->get();
+        $countorder = $order->count();
+
+        
+        if($request->input('year') || $request->input('month') || $request->input('day')){
+            $year = $request->input('year');
+            $month = $request->input('month');
+            $day = $request->input('day');
+
+            if ($request->filled('year')) {
+                $order = Order::where('status', 'cancel')->whereYear('updated_at', $year);
+            }
+            
+            if ($request->filled('month') && $request->filled('year')) {
+                $order = isset($order) ? $order->whereMonth('updated_at', $month) : Order::orderBy('updated_at', 'desc')->where('status', 'cancel')->whereMonth('updated_at', $month);
+            }
+            
+            if ($request->filled('day') && $request->filled('month') && $request->filled('year')) {
+                $order = isset($order) ? $order->whereDay('updated_at', $day) : Order::orderBy('updated_at', 'desc')->where('status', 'cancel')->whereDay('updated_at', $day);
+            }
+
+            if ($request->filled('day') && !$request->filled('month') && !$request->filled('year')) {
+                $order = Order::orderBy('updated_at', 'desc')->where('status', 'cancel')->whereDay('updated_at', $day);
+            }
+
+            if (!$request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $order = Order::orderBy('updated_at', 'desc')->where('status', 'cancel')->whereMonth('updated_at', $month);
+            }
+
+            if ($request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $order = Order::orderBy('updated_at', 'desc')->where('status', 'cancel')->whereDay('updated_at', $day)->whereMonth('updated_at', $month);
+            }
+            
+            $order = $order->get();
+            
+            $countorder = $order->count();
+        }
+
+        return view('admin/page/Listcancelorderpage', compact('admin','order','countorder'));
     }
 }

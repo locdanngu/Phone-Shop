@@ -74,6 +74,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/listordershippage', [AdminController::class, 'listordershippage'])->name('listordership.page');
         Route::get('/listordershippage/search', [AdminController::class, 'listordershippage'])->name('ordership.search');
         Route::post('/doneorder', [AdminController::class, 'doneorder'])->name('order.done');
+        //Order (đã hủy)
+        Route::get('/listordercancelpage', [AdminController::class, 'listordercancelpage'])->name('listordercancel.page');
+        Route::get('/listordercancelpage/search', [AdminController::class, 'listordercancelpage'])->name('ordercancel.search');
 
         //Revenue(thu nhập)
         Route::get('/listrevenuepage', [AdminController::class, 'listrevenuepage'])->name('listrevenue.page');

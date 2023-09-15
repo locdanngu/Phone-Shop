@@ -78,6 +78,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/listspendpage', [AdminController::class, 'listspendpage'])->name('listspend.page');
         Route::get('/listspendpage/search', [AdminController::class, 'listspendpage'])->name('spend.search');
         Route::post('/spendadd', [AdminController::class, 'spendadd'])->name('spend.add');
+        Route::post('/spendchange', [AdminController::class, 'spendchange'])->name('spend.change');
 
         //User
         Route::get('/listuserpage', [AdminController::class, 'listuserpage'])->name('listuser.page');

@@ -847,4 +847,13 @@ class AdminController extends Controller
         $spend->save();
         return redirect()->route('listspend.page');
     }
+
+    public function spendchange(Request $request)
+    {
+        $spend = Spend::where('idspend', $request['idspend'])->first();
+        $spend->reason = $request['reason'];
+        $spend->money = $request['money'];
+        $spend->save();
+        return redirect()->route('listspend.page');
+    }
 }

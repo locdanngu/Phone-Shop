@@ -677,5 +677,24 @@ class AdminController extends Controller
         return redirect()->route('listorder.page');
     }
 
+    public function denyorder(Request $request)
+    {
+        $order = Order::where('idorder', $request['idorder'])->first();
+        $reason = $request['reason'];
+        $order->reason = $reason;
+        $order->status = 'cancel';
+        $order->save();
+
+        $user = User::where('iduser', $request['iduser'])->first();
+        $nameuser = $user->firstname . ' ' . $user->lastname;
+        $mail = $user->email;
+        $result = Mail::send('admin/page/Denyordermail', compact('reason', 'mail', 'nameuser'), function($email) use ($request, $reason, $mail, $nameuser) {
+            $email->subject('Về đơn giao hàng của bạn');
+            $email->to($mail);
+        });
+
+        return redirect()->route('listorder.page');
+    }
+
 
 }

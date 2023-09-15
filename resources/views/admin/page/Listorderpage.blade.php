@@ -75,7 +75,7 @@
                                                 Xem thông tin
                                             </button>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-deny" data-id="{{ $od->idorder }}">
+                                                data-target="#modal-deny" data-id="{{ $od->idorder }}" data-iduser="{{ $od->user->iduser }}">
                                                 <i class="bi bi-trash"></i>
                                                 Từ chối
                                             </button>
@@ -132,7 +132,7 @@
 
 <div class="modal fade" id="modal-deny">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('order.success') }}" method="post">
+        <form class="modal-content" action="{{ route('order.deny') }}" method="post">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Từ chối / Hủy đơn</h4>
@@ -141,6 +141,7 @@
                 </button>
             </div>
             <input type="hidden" name="idorder">
+            <input type="hidden" name="iduser">
             <div class="modal-body" id="in4order">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Lý do</span>
@@ -151,7 +152,7 @@
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Xác nhận giao</button>
+                <button type="submit" class="btn btn-danger">Từ chối giao</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -191,8 +192,10 @@ $(document).ready(function() {
     $('#modal-deny').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
+        var iduser = button.data('iduser');
         var modal = $(this);
         modal.find('input[name="idorder"]').val(id);
+        modal.find('input[name="iduser"]').val(iduser);
     });
 
 

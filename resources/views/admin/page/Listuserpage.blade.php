@@ -67,11 +67,13 @@
                                         <td>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-change" data-id="{{ $u->iduser }}"
-                                                data-name="{{ $u->firstname }} {{ $u->lastname }}">
+                                                data-name="{{ $u->username }}">
                                                 <i class="bi bi-wrench"></i> Đổi mật khẩu
                                             </button>
                                             <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-lock">
+                                                data-target="#modal-lock" data-id="{{ $u->iduser }}"
+                                                data-name="{{ $u->username }}"
+                                                data-status="{{ $u->status }}">
                                                 <i class="bi bi-lock-fill"></i> Thao tác
                                             </button>
                                         </td>
@@ -137,6 +139,40 @@
     <!-- /.modal-dialog -->
 </div>
 
+<div class="modal fade" id="modal-lock">
+    <div class="modal-dialog">
+        <form class="modal-content" action="{{ route('user.changestatus') }}" method="post" id="formchangepass">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title">Đổi trạng thái user</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <input type="hidden" name="iduser">
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Tên tài khoản</span>
+                    <span name="username" class="spanpopup font-weight-bold" style="color:red"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Mật khẩu mới</span>
+                    <select name="status" id="" class="ml-3">
+                        <option value="lock">Khóa</option>
+                        <option value="ok">Bình thường</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-success">Thay đổi</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 @endsection
 
 
@@ -152,13 +188,25 @@ $(document).ready(function() {
         modal.find('span[name="username"]').text(name);
 
         $("#formchangepass").submit(function(event) {
-            if (modal.find('input[name="password"]').val() != modal.find('input[name="repassword"]').val()) {
+            if (modal.find('input[name="password"]').val() != modal.find(
+                    'input[name="repassword"]').val()) {
                 event.preventDefault();
                 toastr.error(
                     '<b>Mật khẩu nhập lại không khớp</b>'
                 )
             }
         });
+    });
+
+    $('#modal-lock').on('shown.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Nút "Change" được nhấn
+        var id = button.data('id');
+        var name = button.data('name');
+        var status = button.data('status');
+        var modal = $(this);
+        modal.find('input[name="iduser"]').val(id);
+        modal.find('span[name="username"]').text(name);
+        modal.find('select[name="status"] option[value="' + status + '"]').prop('selected', true);
     });
 
 

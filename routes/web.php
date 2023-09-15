@@ -74,6 +74,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/listuserpage', [AdminController::class, 'listuserpage'])->name('listuser.page');
         Route::get('/listuserpage/search', [AdminController::class, 'listuserpage'])->name('searchuser');
         Route::post('/changepassuser', [AdminController::class, 'changepassuser'])->name('user.changepass');
+        Route::post('/changestatususer', [AdminController::class, 'changestatususer'])->name('user.changestatus');
 
     });
 });

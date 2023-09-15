@@ -774,4 +774,11 @@ class AdminController extends Controller
         return redirect()->route('listuser.page');
     }
 
+    public function changestatususer(Request $request)
+    {
+        $user = User::where('iduser', $request['iduser'])->first();
+        $user->status = $request['password'];
+        $user->save();
+        return redirect()->route('listuser.page');
+    }
 }

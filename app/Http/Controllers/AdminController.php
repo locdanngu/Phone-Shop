@@ -773,4 +773,25 @@ class AdminController extends Controller
         $user->save();
         return redirect()->route('listuser.page');
     }
+
+
+    public function listexpiredcouponpage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $limit = $request->limit ?? 5;
+        $coupon = new Coupon();
+        $searchexpiredcoupon = $request['searchexpiredcoupon'];
+        
+        if ($searchexpiredcoupon) {
+            $coupon = $coupon->where('endtime', '<', Carbon::now())
+                             ->where('code', 'like', '%' . $searchexpiredcoupon . '%')
+                             ->where('isdelete', 0);
+        }
+        $coupon = $coupon->where('endtime', '<', Carbon::now())->where('isdelete', 0)->paginate($limit);
+        $category = Category::all();
+        $product = Product::orderBy('idcategory')->get();
+        $countcoupon = $coupon->count();
+
+        return view('admin/page/Listexpiredcouponpage', compact('admin','coupon','category','product','countcoupon'));
+    }
 }

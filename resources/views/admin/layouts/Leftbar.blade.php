@@ -99,7 +99,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link {{ request()->is('daura') ? 'active' : '' }}">
+                            <a href="{{ route('listexpiredcoupon.page') }}" class="nav-link {{ request()->is('daura') ? 'active' : '' }}">
                                 <i class="bi bi-file-x nav-icon"></i>
                                 <p>Mã hết hạn</p>
                             </a>

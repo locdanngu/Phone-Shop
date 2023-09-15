@@ -59,6 +59,10 @@ Route::prefix('/admin')->group(function () {
         Route::post('/productcount', [AdminController::class, 'productcount'])->name('product.count');
         Route::get('/listcouponpage/search', [AdminController::class, 'listcouponpage'])->name('searchcoupon');
 
+        Route::get('/listexpiredcouponpage', [AdminController::class, 'listexpiredcouponpage'])->name('listexpiredcoupon.page');
+        Route::get('/listexpiredcouponpage/search', [AdminController::class, 'listexpiredcouponpage'])->name('searchcouponexpired');
+
+
         //Order
         Route::get('/listorderpage', [AdminController::class, 'listorderpage'])->name('listorder.page');
         Route::get('/listorderpage/search', [AdminController::class, 'listorderpage'])->name('order.search');

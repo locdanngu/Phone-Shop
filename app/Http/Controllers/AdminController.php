@@ -390,7 +390,7 @@ class AdminController extends Controller
             }
         }
         
-        return redirect()->route('listcoupon.page');
+        return redirect()->back();
     }
 
     public function categorylist(Request $request)

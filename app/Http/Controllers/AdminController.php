@@ -535,7 +535,7 @@ class AdminController extends Controller
         $countorder = $order->count();
 
         
-        if($request){
+        if($request->input('year') && $request->input('month') && $request->input('day')){
             $year = $request->input('year');
             $month = $request->input('month');
             $day = $request->input('day');
@@ -576,8 +576,8 @@ class AdminController extends Controller
     public function in4order(Request $request)
     {
         $productlist = Order_product::where('idorder', $request['id'])->get();
-        $id = Order::where('idorder', $request['id'])->pluck('iduser')->first();
-        $user = User::where('iduser', $id)->first();
+        $id = Order::where('idorder', $request['id'])->first();
+        $user = User::where('iduser', $id->iduser)->first();
 
         $html = '';
 
@@ -604,6 +604,15 @@ class AdminController extends Controller
         $html .= '<div class="input-group mb-3">';
         $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Địa chỉ</span>';
         $html .= '<span class="spanpopup font-weight-bold">' . $user->address . '</span>';
+        $html .= '</div>';
+
+        $html .= '<div class="input-group mb-3">';
+        $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Lời nhắn</span>';
+        if(!$id->note){
+            $html .= '<span class="spanpopup">Trống</span>';
+        }else{
+            $html .= '<span class="spanpopup">' . $id->note . '</span>';
+        }
         $html .= '</div>';
 
         $html .= '<div class="card-body table-responsive p-0" style="max-height: 500px;">';
@@ -658,5 +667,15 @@ class AdminController extends Controller
             'html' => $html,
         ]);
     }
+
+    public function successorder(Request $request)
+    {
+        $order = Order::where('idorder', $request['idorder'])->first();
+        $order->status = 'ship';
+        $order->save();
+
+        return redirect()->route('listorder.page');
+    }
+
 
 }

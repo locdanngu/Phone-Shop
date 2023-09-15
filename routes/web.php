@@ -63,6 +63,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/listorderpage', [AdminController::class, 'listorderpage'])->name('listorder.page');
         Route::get('/listorderpage/search', [AdminController::class, 'listorderpage'])->name('order.search');
         Route::post('/in4order', [AdminController::class, 'in4order'])->name('order.in4');
+        Route::post('/successorder', [AdminController::class, 'successorder'])->name('order.success');
 
     });
 });

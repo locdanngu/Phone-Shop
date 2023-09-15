@@ -101,7 +101,7 @@
 <!-- Modal trả lời đơn tư vấn -->
 <div class="modal fade" id="modal-in4">
     <div class="modal-dialog">
-        <form class="modal-content" action="" method="post">
+        <form class="modal-content" action="{{ route('order.success') }}" method="post">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Thông tin đơn</h4>

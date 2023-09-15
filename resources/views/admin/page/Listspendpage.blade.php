@@ -22,7 +22,7 @@
                     <div class="card-header">
                         <h3 class="card-title font-weight-bold">Tổng cộng : {{ $sum }} $</h3>
                         <div class="card-tools">
-                            <form action="{{ route('revenue.search') }}" method="get"
+                            <form action="{{ route('spend.search') }}" method="get"
                                 class="input-group input-group-sm m-0">
                                 <div class="d-flex justify-content-center">
                                     {!! Form::selectYear('year', date('Y'), date('Y') - 50, request('year', null),
@@ -50,9 +50,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                         
+                                    @foreach($spend as $sp)
+                                    <tr>
+                                        <td class="font-weight-bold">{{ $sp->created_at }}</td>
+                                        <td class="font-weight-bold" style="color:red">{{ $sp->money }} $</td>
+                                        <td>{{ $sp->reason }}</td>
+                                        <td>
 
-
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
 

@@ -24,7 +24,7 @@ Route::prefix('/admin')->group(function () {
 
     // Middleware group cho admin
     Route::middleware(['admin'])->group(function () {
-        //Admin
+        //Admin(tác vụ)
         Route::get('/homepage', [AdminController::class, 'homepage'])->name('adminhome.page');
         Route::post('/logoutadmin', [AdminController::class, 'logoutadmin'])->name('logoutadmin');
         Route::get('/changepasswordpage', [AdminController::class, 'changepasswordpage'])->name('adminchangepassword.page');
@@ -59,6 +59,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/productcount', [AdminController::class, 'productcount'])->name('product.count');
         Route::get('/listcouponpage/search', [AdminController::class, 'listcouponpage'])->name('searchcoupon');
 
+        //Coupon(hết hạn)
         Route::get('/listexpiredcouponpage', [AdminController::class, 'listexpiredcouponpage'])->name('listexpiredcoupon.page');
         Route::get('/listexpiredcouponpage/search', [AdminController::class, 'listexpiredcouponpage'])->name('searchcouponexpired');
 
@@ -70,10 +71,10 @@ Route::prefix('/admin')->group(function () {
         Route::post('/successorder', [AdminController::class, 'successorder'])->name('order.success');
         Route::post('/denyorder', [AdminController::class, 'denyorder'])->name('order.deny');
 
-        //Revenue
+        //Revenue(thu nhập)
         Route::get('/listrevenuepage', [AdminController::class, 'listrevenuepage'])->name('listrevenue.page');
         Route::get('/listrevenuepage/search', [AdminController::class, 'listrevenuepage'])->name('revenue.search');
-
+        //Revenue(chi tiêu)
         Route::get('/listspendpage', [AdminController::class, 'listspendpage'])->name('listspend.page');
         Route::get('/listspendpage/search', [AdminController::class, 'listspendpage'])->name('spend.search');
 

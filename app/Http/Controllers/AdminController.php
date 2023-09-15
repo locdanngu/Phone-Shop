@@ -808,27 +808,27 @@ class AdminController extends Controller
             $day = $request->input('day');
         
             if ($request->filled('year')) {
-                $spend = Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereYear('created_at', $year);
+                $spend = Spend::orderBy('created_at', 'desc')->whereYear('created_at', $year);
             }
             
             if ($request->filled('month') && $request->filled('year')) {
-                $spend = isset($spend) ? $spend->whereMonth('created_at', $month) : Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereMonth('created_at', $month);
+                $spend = isset($spend) ? $spend->whereMonth('created_at', $month) : Spend::orderBy('created_at', 'desc')->whereMonth('created_at', $month);
             }
             
             if ($request->filled('day') && $request->filled('month') && $request->filled('year')) {
-                $spend = isset($spend) ? $spend->whereDay('created_at', $day) : Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereDay('created_at', $day);
+                $spend = isset($spend) ? $spend->whereDay('created_at', $day) : Spend::orderBy('created_at', 'desc')->whereDay('created_at', $day);
             }
 
             if ($request->filled('day') && !$request->filled('month') && !$request->filled('year')) {
-                $spend = Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereDay('created_at', $day);
+                $spend = Spend::orderBy('created_at', 'desc')->whereDay('created_at', $day);
             }
 
             if (!$request->filled('day') && $request->filled('month') && !$request->filled('year')) {
-                $spend = Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereMonth('created_at', $month);
+                $spend = Spend::orderBy('created_at', 'desc')->whereMonth('created_at', $month);
             }
 
             if ($request->filled('day') && $request->filled('month') && !$request->filled('year')) {
-                $spend = Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereDay('created_at', $day)->whereMonth('created_at', $month);
+                $spend = Spend::orderBy('created_at', 'desc')->whereDay('created_at', $day)->whereMonth('created_at', $month);
             }
             
             $spend = $spend->get();

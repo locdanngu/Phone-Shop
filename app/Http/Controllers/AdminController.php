@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Coupon;
+use App\Models\Spend;
 use App\Models\Product_coupon;
 use App\Models\Order;
 use App\Models\Order_product;

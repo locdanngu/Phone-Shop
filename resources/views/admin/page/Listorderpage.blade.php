@@ -116,7 +116,7 @@
             </div>
             <input type="hidden" name="idorder">
             <div class="modal-body" id="in4order">
-                
+
 
             </div>
             <div class="modal-footer justify-align-content-end">
@@ -135,14 +135,18 @@
         <form class="modal-content" action="{{ route('order.success') }}" method="post">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Thông tin đơn</h4>
+                <h4 class="modal-title">Từ chối / Hủy đơn</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <input type="hidden" name="idorder">
             <div class="modal-body" id="in4order">
-                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Lý do</span>
+                    <textarea class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="reason"></textarea>
+                </div>
 
             </div>
             <div class="modal-footer justify-align-content-end">

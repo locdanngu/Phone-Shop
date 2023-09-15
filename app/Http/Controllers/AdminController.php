@@ -540,12 +540,34 @@ class AdminController extends Controller
             $month = $request->input('month');
             $day = $request->input('day');
 
-            if($year!='' && $month!='' && $day ==''){
-                $order = Order::where('status', 'wait')
-                ->whereYear('created_at', $year)
-                ->whereMonth('created_at', $month)
-                ->get();
+            if ($request->filled('year')) {
+                $order = Order::where('status', 'wait')->whereYear('created_at', $year);
             }
+            
+            if ($request->filled('month') && $request->filled('year')) {
+                $order = isset($order) ? $order->whereMonth('created_at', $month) : Order::where('status', 'wait')->whereMonth('created_at', $month);
+            }
+            
+            if ($request->filled('day') && $request->filled('month') && $request->filled('year')) {
+                $order = isset($order) ? $order->whereDay('created_at', $day) : Order::where('status', 'wait')->whereDay('created_at', $day);
+            }
+
+            if ($request->filled('day') && !$request->filled('month') && !$request->filled('year')) {
+                $order = Order::whereDay('created_at', $day);
+            }
+
+            if (!$request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $order = Order::whereMonth('created_at', $month);
+            }
+
+            if ($request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $order = Order::whereDay('created_at', $day)->whereMonth('created_at', $month);
+            }
+            
+            
+            $order = $order->get();
+            
+            $countorder = $order->count();
         }
 
         return view('admin/page/Listorderpage', compact('admin','order','countorder'));

@@ -385,7 +385,7 @@ $(document).ready(function() {
         if ($(this).val() === "1") {
             $("#product-input").show();
             $("#cate-input").hide();
-        } else if ($(this).val() === "3") {
+        } else if ($(this).val() === "2") {
             $("#product-input").hide();
             $("#cate-input").show();
         } else {

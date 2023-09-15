@@ -733,7 +733,6 @@ class AdminController extends Controller
         }
 
         return view('admin/page/Listrevenuepage', compact('order', 'admin', 'sum'));
-
     }
 
 
@@ -794,5 +793,50 @@ class AdminController extends Controller
         $countcoupon = $coupon->count();
 
         return view('admin/page/Listexpiredcouponpage', compact('admin','coupon','category','product','countcoupon'));
+    }
+
+    public function listspendpage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        // $order = Order::where('status', 'done')->orderBy('created_at', 'desc')->get();
+        $spend = Spend::orderBy('created_at', 'desc')->get();
+        $sum = Spend::sum('money');
+
+        if($request->input('year') || $request->input('month') || $request->input('day')){
+            $year = $request->input('year');
+            $month = $request->input('month');
+            $day = $request->input('day');
+        
+            if ($request->filled('year')) {
+                $spend = Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereYear('created_at', $year);
+            }
+            
+            if ($request->filled('month') && $request->filled('year')) {
+                $spend = isset($spend) ? $spend->whereMonth('created_at', $month) : Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereMonth('created_at', $month);
+            }
+            
+            if ($request->filled('day') && $request->filled('month') && $request->filled('year')) {
+                $spend = isset($spend) ? $spend->whereDay('created_at', $day) : Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereDay('created_at', $day);
+            }
+
+            if ($request->filled('day') && !$request->filled('month') && !$request->filled('year')) {
+                $spend = Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereDay('created_at', $day);
+            }
+
+            if (!$request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $spend = Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereMonth('created_at', $month);
+            }
+
+            if ($request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $spend = Spend::where('status', 'done')->orderBy('created_at', 'desc')->whereDay('created_at', $day)->whereMonth('created_at', $month);
+            }
+            
+            $spend = $spend->get();
+            $countspend = $spend->count();
+            $sum = $spend->sum('money');
+        }
+
+        return view('admin/page/Listspendpage', compact('spend', 'admin', 'sum'));
+
     }
 }

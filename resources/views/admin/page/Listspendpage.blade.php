@@ -1,6 +1,6 @@
 @extends('admin.layouts.Adminlayout')
 
-@section('title', 'Danh sách thu nhập')
+@section('title', 'Danh sách chi tiêu')
 <!-- Content Wrapper. Contains page content -->
 @section('body')
 <div class="content-wrapper">
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Quản lý thu nhập</h1>
+                    <h1 class="m-0">Quản lý chi tiêu</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -44,35 +44,13 @@
                                 <thead>
                                     <tr>
                                         <th>Ngày</th>
-                                        <th>Người đặt</th>
-                                        <th>Tài khoản</th>
-                                        <th>Email</th>
-                                        <th>Mã đơn</th>
                                         <th>Số tiền</th>
+                                        <th>Lý do</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($order as $rv)
-                                    <tr>
-                                        <td class="font-weight-bold" style="color:red">{{ $rv->updated_at }}</td>
-                                        <td class="font-weight-bold">{{ $rv->user->firstname }}
-                                            {{ $rv->user->lastname }}</td>
-                                        <td class="font-weight-bold"><a
-                                                href="{{ route('searchuser', ['searchuser' => $rv->user->username]) }}">{{ $rv->user->username }}</a>
-                                        </td>
-                                        <td class="font-weight-bold">{{ $rv->user->email }}</td>
-                                        <td class="font-weight-bold">{{ $rv->idorder }}</td>
-                                        <td class="font-weight-bold" style="color:red">{{ $rv->totalprice }} $</td>
-                                        <td>
-                                            <button class="btn btn-info btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-in4" data-id="{{ $rv->idorder }}">
-                                                <i class="bi bi-info-lg"></i>
-                                                Xem chi tiết
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                         
 
 
                                 </tbody>

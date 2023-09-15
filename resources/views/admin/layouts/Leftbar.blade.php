@@ -171,7 +171,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href=""
+                            <a href="{{ route('listspend.page') }}"
                                 class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
                                 <i class="bi bi-wrench nav-icon"></i>
                                 <p>Thống kê chi tiêu</p>

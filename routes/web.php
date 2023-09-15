@@ -74,6 +74,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/listrevenuepage', [AdminController::class, 'listrevenuepage'])->name('listrevenue.page');
         Route::get('/listrevenuepage/search', [AdminController::class, 'listrevenuepage'])->name('revenue.search');
 
+        Route::get('/listspendpage', [AdminController::class, 'listspendpage'])->name('listspend.page');
+        Route::get('/listspendpage/search', [AdminController::class, 'listspendpage'])->name('spend.search');
+
         //User
         Route::get('/listuserpage', [AdminController::class, 'listuserpage'])->name('listuser.page');
         Route::get('/listuserpage/search', [AdminController::class, 'listuserpage'])->name('searchuser');

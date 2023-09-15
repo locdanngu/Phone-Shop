@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
                         'admin/page/Listorderpage',
                         'admin/page/Listproductpage',
                         'admin/page/Listrevenuepage',
+                        'admin/page/Listspendpage',
                         'admin/page/Listuserpage',], function ($view) {
                             
                             

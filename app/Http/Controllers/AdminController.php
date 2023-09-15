@@ -612,8 +612,8 @@ class AdminController extends Controller
         $html .= '<tr>';
         $html .= '<th>Tên</th>';
         $html .= '<th class="text-center">Sản phẩm</th>';
-        $html .= '<th>Hãng</th>';
         $html .= '<th>Giá</th>';
+        $html .= '<th>Hãng</th>';
         $html .= '<th>Số lượng</th>';
         $html .= '<th>Thành tiền</th>';
         $html .= '</tr>';
@@ -630,13 +630,22 @@ class AdminController extends Controller
             $html .= '<td class="font-weight-bold" style="color:red">' . ($pr->product->price * $pr->quantity) . ' $</td>';
             $html .= '</tr>';
         }
+
+        $html .= '<tr>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td class="font-weight-bold" style="color:red">Phí giao:</td>';
+        $html .= '<td class="font-weight-bold" style="color:red">0 $</td>';
+        $html .= '</tr>';
         
         $html .= '<tr>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
         $html .= '<td class="font-weight-bold" style="color:red">Tổng tiền:</td>';
-        $html .= '<td></td>';
-        $html .= '<td></td>';
-        $html .= '<td></td>';
-        $html .= '<td></td>';
         $html .= '<td class="font-weight-bold" style="color:red">' . $pr->order->totalprice . ' $</td>';
         $html .= '</tr>';
         

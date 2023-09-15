@@ -175,6 +175,7 @@ $(document).ready(function() {
             type: "POST",
             data: {
                 _token: '{{ csrf_token() }}',
+                code: 0,
                 id,
             },
             success: function(response) {

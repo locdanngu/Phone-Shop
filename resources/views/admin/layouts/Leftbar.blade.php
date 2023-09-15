@@ -153,7 +153,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link {{ request()->routeIs('listpay.page', 'order.search') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('listrevenue.page', 'revenue.search') ? 'active' : '' }}">
                         <i class="nav-icon bi-wallet"></i>
                         <p>
                             Quản lý doanh thu
@@ -164,7 +164,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('listrevenue.page') }}"
-                                class="nav-link {{ request()->routeIs('listorder.page') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('listrevenue.page') ? 'active' : '' }}">
                                 <i class="bi bi-piggy-bank nav-icon"></i>
                                 <p>Thống kê thu nhập</p>
                             </a>

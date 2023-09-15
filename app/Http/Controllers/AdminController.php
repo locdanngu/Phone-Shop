@@ -578,6 +578,7 @@ class AdminController extends Controller
         $productlist = Order_product::where('idorder', $request['id'])->get();
         $id = Order::where('idorder', $request['id'])->first();
         $user = User::where('iduser', $id->iduser)->first();
+        $code = $request['code'];
 
         $html = '';
 
@@ -605,6 +606,18 @@ class AdminController extends Controller
         $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Địa chỉ</span>';
         $html .= '<span class="spanpopup font-weight-bold">' . $user->address . '</span>';
         $html .= '</div>';
+
+        $html .= '<div class="input-group mb-3">';
+        $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Thời gian đặt</span>';
+        $html .= '<span class="spanpopup font-weight-bold" style="color:red">' . $id->created_at . '</span>';
+        $html .= '</div>';
+
+        if($code == 1){
+            $html .= '<div class="input-group mb-3">';
+            $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Thời gian giao</span>';
+            $html .= '<span class="spanpopup font-weight-bold" style="color:red">' . $id->updated_at . '</span>';
+            $html .= '</div>';
+        }
 
         $html .= '<div class="input-group mb-3">';
         $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Lời nhắn</span>';
@@ -698,9 +711,10 @@ class AdminController extends Controller
 
     public function listrevenuepage(Request $request)
     {
+        $admin = Auth::guard('admin')->user();
         $revenue = Order::where('status', 'done')->get();
 
-        return view('admin/page/Listrevenuepage', compact('revenue'));
+        return view('admin/page/Listrevenuepage', compact('revenue', 'admin'));
 
     }
     

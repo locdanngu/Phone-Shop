@@ -49,12 +49,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                      
+                                    @foreach($revenue as $rv)
+                                    <tr>
+                                        <td class="font-weight-bold" style="color:red">{{ $rv->updated_at }}</td>
+                                        <td class="font-weight-bold">{{ $rv->idorder }}</td>
+                                        <td class="font-weight-bold" style="color:red">{{ $rv->totalprice }} $</td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-in4" data-id="{{ $rv->idorder }}">
+                                                <i class="bi bi-info-lg"></i>
+                                                Xem chi tiết
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
 
                                 </tbody>
                             </table>
-                            
+
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -73,24 +86,21 @@
 <!-- Modal trả lời đơn tư vấn -->
 <div class="modal fade" id="modal-in4">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('order.success') }}" method="post">
-            @csrf
+        <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Thông tin đơn</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input type="hidden" name="idorder">
             <div class="modal-body" id="in4order">
 
 
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Xác nhận giao</button>
             </div>
-        </form>
+        </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
@@ -142,6 +152,7 @@ $(document).ready(function() {
             type: "POST",
             data: {
                 _token: '{{ csrf_token() }}',
+                code: 1,
                 id,
             },
             success: function(response) {

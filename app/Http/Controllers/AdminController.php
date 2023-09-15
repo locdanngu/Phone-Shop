@@ -698,9 +698,9 @@ class AdminController extends Controller
 
     public function listrevenuepage(Request $request)
     {
+        $revenue = Order::where('status', 'done')->get();
 
-
-        return view('admin/page/Listrevenuepage', compact());
+        return view('admin/page/Listrevenuepage', compact('revenue'));
 
     }
     

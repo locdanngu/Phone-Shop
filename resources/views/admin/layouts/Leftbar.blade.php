@@ -137,7 +137,8 @@
                             <a href=""
                                 class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
                                 <i class="bi-file-earmark-check nav-icon"></i>
-                                <p>Đơn đã chấp nhận</p>
+                                <p>Đơn đang giao</p>
+                                <span class="badge badge-warning right">{{ $countorder2 }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -147,13 +148,7 @@
                                 <p>Đơn đã hủy</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href=""
-                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
-                                <i class="bi-file-earmark-check-fill nav-icon"></i>
-                                <p>Đơn đã hoàn thành</p>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -168,7 +163,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('listorder.page') }}"
+                            <a href="{{ route('listrevenue.page') }}"
                                 class="nav-link {{ request()->routeIs('listorder.page') ? 'active' : '' }}">
                                 <i class="bi bi-piggy-bank nav-icon"></i>
                                 <p>Thống kê thu nhập</p>

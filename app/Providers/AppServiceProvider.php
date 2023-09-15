@@ -30,11 +30,12 @@ class AppServiceProvider extends ServiceProvider
                             
                             
             $countorder = Order::where('status', 'wait')->count();
+            $countorder2 = Order::where('status', 'ship')->count();
 
-            
             $view->with([
                 'countorder' => $countorder,
-                
+                'countorder2' => $countorder2,
+
             ]);
             
         });

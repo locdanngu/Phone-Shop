@@ -192,13 +192,13 @@ $(document).ready(function() {
             modal.find('#in4listcate').hide();
         } else if(pro == 2) {
             modal.find('span[name="product_list"]').hide();
+            modal.find('#in4listcate').attr('data-idcoupon', id);
             modal.find('#in4listpro').hide();
-            modal.find('#in4listcate').show();
             modal.find('#in4listcate').show();
         }else{
             modal.find('span[name="product_list"]').text('Tất cả sản phẩm/danh mục');
             modal.find('span[name="product_list"]').show();
-            $("#in4listpro, #in4listcate").addClass("hideproduct");
+            $("#in4listpro, #in4listcate").hide();
         }
         
         modal.find('span[name="discount_type"]').text(dis);

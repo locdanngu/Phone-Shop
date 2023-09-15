@@ -22,18 +22,18 @@
                     <div class="card-header">
                         <h3 class="card-title">Tổng cộng : {{ $countorder }} đơn</h3>
                         <div class="card-tools">
-                            <form action="{{ route('order.search') }}" method="get"
-                                class="input-group input-group-sm">
+                            <form action="{{ route('order.search') }}" method="get" class="input-group input-group-sm">
                                 <div class="d-flex justify-content-center">
-                                    {!! Form::selectYear('year', date('Y'), date('Y') - 50, null, ['placeholder' =>
-                                    '-----', 'name' => 'year']) !!}
-                                    {!! Form::selectMonth('month', null, ['placeholder' => '-----', 'name' => 'month'])
-                                    !!}
-                                    {!! Form::selectRange('day', 1, 31, null, ['placeholder' => '-----', 'name' =>
-                                    'day']) !!}
+                                    {!! Form::selectYear('year', date('Y'), date('Y') - 50, request('year', null),
+                                    ['placeholder' => '-----', 'name' => 'year']) !!}
+                                    {!! Form::selectMonth('month', request('month', null), ['placeholder' => '-----',
+                                    'name' => 'month']) !!}
+                                    {!! Form::selectRange('day', 1, 31, request('day', null), ['placeholder' => '-----',
+                                    'name' => 'day']) !!}
                                 </div>
                                 <button class="btn-success" type="submit">Tìm</button>
                             </form>
+
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -295,6 +295,21 @@ $(document).ready(function() {
         modal.find('input[name="idcategory"]').val(id);
         modal.find('img.imageblog2').attr('src', image);
     });
+
+    // var searchdate = "{{ request('order.search') }}";
+
+    // // Nếu có giá trị trong searchcategory, giải mã thành năm, tháng và ngày
+    // if (searchdate) {
+    //     var searchDate = new Date(searchdate);
+    //     var year = searchDate.getFullYear();
+    //     var month = searchDate.getMonth() + 1; // Tháng trong JavaScript là từ 0-11, nên cần +1
+    //     var day = searchDate.getDate();
+
+    //     // Đặt giá trị mặc định cho các ô select tương ứng bằng jQuery
+    //     $('select[name="year"]').val(year);
+    //     $('select[name="month"]').val(month);
+    //     $('select[name="day"]').val(day);
+    // }
 });
 </script>
 

@@ -99,32 +99,24 @@
 
 @section('popup')
 <!-- Modal trả lời đơn tư vấn -->
-<div class="modal fade" id="modal-add">
+<div class="modal fade" id="modal-in4">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.add') }}" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="" method="post">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Tạo danh mục</h4>
+                <h4 class="modal-title">Thông tin đơn</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="namecategory">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
-                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
-                        onchange="previewImage(event)" name="image" required>
-                </div>
-                <img id="preview" src="" alt="" style="height:100px">
+            <input type="hidden" name="idorder">
+            <div class="modal-body" id="in4order">
+                
+
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+                <button type="submit" class="btn btn-primary">Xác nhận giao</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -132,184 +124,37 @@
     <!-- /.modal-dialog -->
 </div>
 
-
-<div class="modal fade" id="modal-change">
-    <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-header">
-                <h4 class="modal-title">Chỉnh sửa danh mục</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <input type="hidden" name="idcategory">
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="namecategory">
-                </div>
-                <div class="w-100 d-flex">
-                    <div class="w-100 mb-3 d-flex flex-column align-items-center">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="width:100% !important">Logo
-                            hiện tại</span>
-                        <img src="" alt="" style="height:100px;width: fit-content;margin-top: 2.5em" class="imageblog1">
-                    </div>
-                    <div class="w-100 mb-3 d-flex flex-column align-items-center">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="width:100% !important">Logo
-                            mới</span>
-                        <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
-                            onchange="previewImage2(event)" name="image">
-                        <img id="preview2" src="" alt="" style="height:100px">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-success">Hoàn tất</button>
-            </div>
-        </form>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
-
-<div class="modal fade" id="modal-delete">
-    <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.delete') }}" method="post">
-            @csrf
-            <div class="modal-header">
-                <h4 class="modal-title">Xóa 1 danh mục</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <input type="hidden" name="idcategory">
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <span name="namecategory" class="spanpopup"></span>
-                </div>
-                <div class="input-group mb-3 d-flex align-items-center">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
-                    <img src="" alt="" style="height:100px;margin-left:1em" class="imageblog2">
-                </div>
-            </div>
-            <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-danger">Xóa</button>
-            </div>
-        </form>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
-<div class="modal fade" id="modal-delete-cant">
-    <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.delete') }}" method="post">
-            @csrf
-            <div class="modal-header">
-                <h4 class="modal-title">Xóa 1 danh mục</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <input type="hidden" name="idcategory">
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <span name="namecategory" class="spanpopup"></span>
-                </div>
-                <div class="input-group mb-3 d-flex align-items-center">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
-                    <img src="" alt="" style="height:100px;margin-left:1em" class="imageblog2">
-                </div>
-            </div>
-            <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-danger">Xóa</button>
-            </div>
-        </form>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
 @endsection
 
 
 @section('js')
 <script>
-function previewImage(event) {
-    const preview = document.getElementById('preview');
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function() {
-        preview.src = reader.result;
-    }
-    reader.readAsDataURL(file);
-}
-
-function previewImage2(event) {
-    const preview = document.getElementById('preview2');
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function() {
-        preview.src = reader.result;
-    }
-    reader.readAsDataURL(file);
-}
-
 $(document).ready(function() {
-    $('#modal-change').on('shown.bs.modal', function(event) {
+    $('#modal-in4').on('shown.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
-        var name = button.data('name');
-        var image = button.data('image');
         var modal = $(this);
-        modal.find('input[name="namecategory"]').val(name);
-        modal.find('input[name="idcategory"]').val(id);
-        modal.find('img.imageblog1').attr('src', image);
+
+        $.ajax({
+            url: '{{ route("order.in4") }}',
+            type: "POST",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id,
+            },
+            success: function(response) {
+                var html = response.html;
+                modal.find("#in4order").html(html);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+
+        modal.find('input[name="idorder"]').val(id);
     });
 
-    $('#modal-delete').on('shown.bs.modal', function(event) {
-        var button = $(event.relatedTarget); // Nút "Change" được nhấn
-        var id = button.data('id');
-        var name = button.data('name');
-        var image = button.data('image');
-        var modal = $(this);
-        modal.find('span[name="namecategory"]').text(name);
-        modal.find('input[name="idcategory"]').val(id);
-        modal.find('img.imageblog2').attr('src', image);
-    });
 
-    $('#modal-delete-cant').on('shown.bs.modal', function(event) {
-        var button = $(event.relatedTarget); // Nút "Change" được nhấn
-        var id = button.data('id');
-        var name = button.data('name');
-        var image = button.data('image');
-        var modal = $(this);
-        modal.find('span[name="namecategory"]').text(name);
-        modal.find('input[name="idcategory"]').val(id);
-        modal.find('img.imageblog2').attr('src', image);
-    });
-
-    // var searchdate = "{{ request('order.search') }}";
-
-    // // Nếu có giá trị trong searchcategory, giải mã thành năm, tháng và ngày
-    // if (searchdate) {
-    //     var searchDate = new Date(searchdate);
-    //     var year = searchDate.getFullYear();
-    //     var month = searchDate.getMonth() + 1; // Tháng trong JavaScript là từ 0-11, nên cần +1
-    //     var day = searchDate.getDate();
-
-    //     // Đặt giá trị mặc định cho các ô select tương ứng bằng jQuery
-    //     $('select[name="year"]').val(year);
-    //     $('select[name="month"]').val(month);
-    //     $('select[name="day"]').val(day);
-    // }
 });
 </script>
 

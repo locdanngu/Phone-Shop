@@ -572,4 +572,82 @@ class AdminController extends Controller
 
         return view('admin/page/Listorderpage', compact('admin','order','countorder'));
     }
+
+    public function in4order(Request $request)
+    {
+        $productlist = Order_product::where('idorder', $request['id'])->get();
+        $id = Order::where('idorder', $request['id'])->pluck('iduser')->first();
+        $user = User::where('iduser', $id)->first();
+
+        $html = '';
+
+        $html .= '<div class="input-group mb-3">';
+        $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Người đặt mua</span>';
+        $html .= '<span class="spanpopup font-weight-bold">' . $user->firstname . ' ' . $user->lastname . '</span>';
+        $html .= '</div>';
+
+        $html .= '<div class="input-group mb-3">';
+        $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Tài khoản</span>';
+        $html .= '<span class="spanpopup font-weight-bold">' . $user->username . '</span>';
+        $html .= '</div>';
+
+        $html .= '<div class="input-group mb-3">';
+        $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Email liên hệ</span>';
+        $html .= '<span class="spanpopup font-weight-bold">' . $user->email . '</span>';
+        $html .= '</div>';
+
+        $html .= '<div class="input-group mb-3">';
+        $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Số điện thoại</span>';
+        $html .= '<span class="spanpopup font-weight-bold">' . $user->phone . '</span>';
+        $html .= '</div>';
+
+        $html .= '<div class="input-group mb-3">';
+        $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Địa chỉ</span>';
+        $html .= '<span class="spanpopup font-weight-bold">' . $user->address . '</span>';
+        $html .= '</div>';
+
+        $html .= '<div class="card-body table-responsive p-0" style="max-height: 500px;">';
+        $html .= '<table class="table table-head-fixed text-nowrap">';
+        $html .= '<thead>';
+        $html .= '<tr>';
+        $html .= '<th>Tên</th>';
+        $html .= '<th class="text-center">Sản phẩm</th>';
+        $html .= '<th>Hãng</th>';
+        $html .= '<th>Giá</th>';
+        $html .= '<th>Số lượng</th>';
+        $html .= '<th>Thành tiền</th>';
+        $html .= '</tr>';
+        $html .= '</thead>';
+        $html .= '<tbody id="listproduct_couponin4">';
+
+        foreach ($productlist as $pr) {
+            $html .= '<tr>';
+            $html .= '<td class="font-weight-bold" style="color:red">' . $pr->product->nameproduct . '</td>';
+            $html .= '<td class="text-center"><img src="' . $pr->product->imageproduct . '" alt="" height="50"></td>';
+            $html .= '<td class="font-weight-bold" style="color:red">' . $pr->product->price . ' $</td>';
+            $html .= '<td class="font-weight-bold">' . $pr->product->category->namecategory . '</td>';
+            $html .= '<td class="font-weight-bold">' . $pr->quantity . '</td>';
+            $html .= '<td class="font-weight-bold" style="color:red">' . ($pr->product->price * $pr->quantity) . ' $</td>';
+            $html .= '</tr>';
+        }
+        
+        $html .= '<tr>';
+        $html .= '<td class="font-weight-bold" style="color:red">Tổng tiền:</td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td class="font-weight-bold" style="color:red">' . $pr->order->totalprice . ' $</td>';
+        $html .= '</tr>';
+        
+        $html .= '</tbody>';
+        $html .= '</table>';
+        $html .= '</div>';
+
+
+        return response()->json([
+            'html' => $html,
+        ]);
+    }
+
 }

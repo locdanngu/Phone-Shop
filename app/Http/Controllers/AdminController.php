@@ -31,7 +31,10 @@ class AdminController extends Controller
     public function homepage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        return view('admin/page/Homepage', compact('admin'));
+        $cproduct = Product::count();
+        $cuser = User::count();
+        $ccategory = Category::count(); 
+        return view('admin/page/Homepage', compact('admin','cproduct','ccategory','cuser'));
     }
 
     public function loginadmin(Request $request){

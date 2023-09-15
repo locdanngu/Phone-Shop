@@ -712,7 +712,7 @@ class AdminController extends Controller
     public function listrevenuepage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $order = Order::where('status', 'done')->get();
+        $order = Order::where('status', 'done')->orderBy('updated_at', 'desc')->get();
         $sum = Order::sum('totalprice');
 
         if($request->input('year') || $request->input('month') || $request->input('day')){
@@ -721,27 +721,27 @@ class AdminController extends Controller
             $day = $request->input('day');
         
             if ($request->filled('year')) {
-                $order = Order::where('status', 'done')->whereYear('updated_at', $year);
+                $order = Order::where('status', 'done')->orderBy('updated_at', 'desc')->whereYear('updated_at', $year);
             }
             
             if ($request->filled('month') && $request->filled('year')) {
-                $order = isset($order) ? $order->whereMonth('updated_at', $month) : Order::where('status', 'done')->whereMonth('updated_at', $month);
+                $order = isset($order) ? $order->whereMonth('updated_at', $month) : Order::where('status', 'done')->orderBy('updated_at', 'desc')->whereMonth('updated_at', $month);
             }
             
             if ($request->filled('day') && $request->filled('month') && $request->filled('year')) {
-                $order = isset($order) ? $order->whereDay('updated_at', $day) : Order::where('status', 'done')->whereDay('updated_at', $day);
+                $order = isset($order) ? $order->whereDay('updated_at', $day) : Order::where('status', 'done')->orderBy('updated_at', 'desc')->whereDay('updated_at', $day);
             }
 
             if ($request->filled('day') && !$request->filled('month') && !$request->filled('year')) {
-                $order = Order::where('status', 'done')->whereDay('updated_at', $day);
+                $order = Order::where('status', 'done')->orderBy('updated_at', 'desc')->whereDay('updated_at', $day);
             }
 
             if (!$request->filled('day') && $request->filled('month') && !$request->filled('year')) {
-                $order = Order::where('status', 'done')->whereMonth('updated_at', $month);
+                $order = Order::where('status', 'done')->orderBy('updated_at', 'desc')->whereMonth('updated_at', $month);
             }
 
             if ($request->filled('day') && $request->filled('month') && !$request->filled('year')) {
-                $order = Order::where('status', 'done')->whereDay('updated_at', $day)->whereMonth('updated_at', $month);
+                $order = Order::where('status', 'done')->orderBy('updated_at', 'desc')->whereDay('updated_at', $day)->whereMonth('updated_at', $month);
             }
             
             $order = $order->get();

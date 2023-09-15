@@ -66,7 +66,7 @@
                                         @endif
                                         <td>
                                             <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-delete-cant">
+                                                data-target="#modal-change">
                                                 <i class="bi bi-wrench"></i> Thao tác
                                             </button>
                                         </td>
@@ -92,41 +92,6 @@
 @endsection
 
 @section('popup')
-<!-- Modal trả lời đơn tư vấn -->
-<div class="modal fade" id="modal-add">
-    <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.add') }}" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-header">
-                <h4 class="modal-title">Tạo danh mục</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="namecategory">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
-                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
-                        onchange="previewImage(event)" name="image" required>
-                </div>
-                <img id="preview" src="" alt="" style="height:100px">
-            </div>
-            <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Lưu thông tin</button>
-            </div>
-        </form>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
-
 <div class="modal fade" id="modal-change">
     <div class="modal-dialog">
         <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data">
@@ -169,68 +134,6 @@
     <!-- /.modal-dialog -->
 </div>
 
-
-<div class="modal fade" id="modal-delete">
-    <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.delete') }}" method="post">
-            @csrf
-            <div class="modal-header">
-                <h4 class="modal-title">Xóa 1 danh mục</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <input type="hidden" name="idcategory">
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <span name="namecategory" class="spanpopup"></span>
-                </div>
-                <div class="input-group mb-3 d-flex align-items-center">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
-                    <img src="" alt="" style="height:100px;margin-left:1em" class="imageblog2">
-                </div>
-            </div>
-            <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-danger">Xóa</button>
-            </div>
-        </form>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
-<div class="modal fade" id="modal-delete-cant">
-    <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.delete') }}" method="post">
-            @csrf
-            <div class="modal-header">
-                <h4 class="modal-title">Xóa 1 danh mục</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <input type="hidden" name="idcategory">
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <span name="namecategory" class="spanpopup"></span>
-                </div>
-                <div class="input-group mb-3 d-flex align-items-center">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
-                    <img src="" alt="" style="height:100px;margin-left:1em" class="imageblog2">
-                </div>
-            </div>
-            <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-danger">Xóa</button>
-            </div>
-        </form>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
 @endsection
 
 
@@ -246,28 +149,6 @@ $(document).ready(function() {
         modal.find('input[name="namecategory"]').val(name);
         modal.find('input[name="idcategory"]').val(id);
         modal.find('img.imageblog1').attr('src', image);
-    });
-
-    $('#modal-delete').on('shown.bs.modal', function(event) {
-        var button = $(event.relatedTarget); // Nút "Change" được nhấn
-        var id = button.data('id');
-        var name = button.data('name');
-        var image = button.data('image');
-        var modal = $(this);
-        modal.find('span[name="namecategory"]').text(name);
-        modal.find('input[name="idcategory"]').val(id);
-        modal.find('img.imageblog2').attr('src', image);
-    });
-
-    $('#modal-delete-cant').on('shown.bs.modal', function(event) {
-        var button = $(event.relatedTarget); // Nút "Change" được nhấn
-        var id = button.data('id');
-        var name = button.data('name');
-        var image = button.data('image');
-        var modal = $(this);
-        modal.find('span[name="namecategory"]').text(name);
-        modal.find('input[name="idcategory"]').val(id);
-        modal.find('img.imageblog2').attr('src', image);
     });
 });
 </script>

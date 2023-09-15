@@ -499,7 +499,6 @@ class AdminController extends Controller
     public function in4productlist(Request $request)
     {
         $html = ''; 
-
         $listproduct = Product_coupon::where('idcoupon', $request['idcoupon'])->get();
     
         foreach($listproduct as $pr){
@@ -510,7 +509,6 @@ class AdminController extends Controller
             $html .= '<td class="font-weight-bold">' . $pr->category->namecategory . '</td>';
             $html .= '</tr>';
         }
-
 
         return response()->json([
             'html' => $html,

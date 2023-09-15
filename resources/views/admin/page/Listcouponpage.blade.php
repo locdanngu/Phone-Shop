@@ -87,8 +87,7 @@
                                                 data-target="#modal-in4" data-id="{{ $row->idcoupon }}"
                                                 data-start="{{ $row->starttime }}" data-end="{{ $row->endtime }}"
                                                 data-appli="{{ $row->applicable_to }}" data-iduser="{{ $row->iduser }}"
-                                                data-pro="{{ $row->product_list }}"
-                                                data-dis="{{ $row->discount_type }}"
+                                                data-pro="{{ $row->product_list }}" data-dis="{{ $row->discount_type }}"
                                                 data-mini="{{ $row->minimum_order_amount }}"
                                                 data-max="{{ $row->max_discount_amount }}"
                                                 data-amo="{{ $row->discount_amount }}" data-used="{{ $row->used }}"
@@ -100,8 +99,7 @@
                                                 data-target="#modal-change" data-id="{{ $row->idcoupon }}"
                                                 data-start="{{ $row->starttime }}" data-end="{{ $row->endtime }}"
                                                 data-appli="{{ $row->applicable_to }}" data-iduser="{{ $row->iduser }}"
-                                                data-pro="{{ $row->product_list }}"
-                                                data-dis="{{ $row->discount_type }}"
+                                                data-pro="{{ $row->product_list }}" data-dis="{{ $row->discount_type }}"
                                                 data-user="{{ isset($row->user->username) ? $row->user->username : '' }}"
                                                 data-mini="{{ $row->minimum_order_amount }}"
                                                 data-max="{{ $row->max_discount_amount }}"
@@ -190,17 +188,17 @@ $(document).ready(function() {
             modal.find('#in4listpro').attr('data-idcoupon', id);
             modal.find('#in4listpro').show();
             modal.find('#in4listcate').hide();
-        } else if(pro == 2) {
+        } else if (pro == 2) {
             modal.find('span[name="product_list"]').hide();
             modal.find('#in4listcate').attr('data-idcoupon', id);
             modal.find('#in4listpro').hide();
             modal.find('#in4listcate').show();
-        }else{
+        } else {
             modal.find('span[name="product_list"]').text('Tất cả sản phẩm/danh mục');
             modal.find('span[name="product_list"]').show();
             $("#in4listpro, #in4listcate").hide();
         }
-        
+
         modal.find('span[name="discount_type"]').text(dis);
         modal.find('span[name="minimum_order_amount"]').text(mini + ' $');
         modal.find('span[name="max_discount_amount"]').text(max + ' $');
@@ -223,7 +221,6 @@ $(document).ready(function() {
         var iduser = button.data('iduser');
         var user = button.data('user');
         var pro = button.data('pro');
-        var cate = button.data('cate');
         var dis = button.data('dis');
         var mini = button.data('mini');
         var max = button.data('max');
@@ -275,14 +272,10 @@ $(document).ready(function() {
             });
 
             $("#product-input2").show();
+            $("#cate-input2").hide();
             modal.find('#product-input2').attr('data-idcoupon', id);
             modal.find('input[name="product_list_or_cate_list"][value="1"]').prop('checked', true);
-        } else {
-            modal.find('input[name="product_list_or_cate_list"][value="2"]').prop('checked', true);
-            $("#product-input2").hide();
-        }
-        if (cate == '1') {
-
+        } else if (pro == '2') {
             $.ajax({
                 url: '{{ route("cate.count") }}',
                 type: "POST",
@@ -300,25 +293,27 @@ $(document).ready(function() {
                     console.error(error);
                 }
             });
-
+            $("#product-input2").hide();
             $("#cate-input2").show();
             modal.find('#cate-input2').attr('data-idcoupon', id);
-            modal.find('input[name="product_list_or_cate_list"][value="3"]').prop('checked', true);
+            modal.find('input[name="product_list_or_cate_list"][value="2"]').prop('checked', true);
+
+
         } else {
-            modal.find('input[name="product_list_or_cate_list"][value="4"]').prop('checked', true);
-            $("#cate-input2").hide();
+            modal.find('input[name="product_list_or_cate_list"][value="3"]').prop('checked', true);
+            $("#product-input2, #cate-input2").hide();
         }
+
 
         $("input[name='product_list_or_cate_list']").change(function() {
             if ($(this).val() === "1") {
                 $("#product-input2").show();
                 $("#cate-input2").hide();
-            } else if ($(this).val() === "3") {
+            } else if ($(this).val() === "2") {
                 $("#product-input2").hide();
                 $("#cate-input2").show();
             } else {
-                $("#product-input2").hide();
-                $("#cate-input2").hide();
+                $("#product-input2, #cate-input2").hide();
             }
         });
 

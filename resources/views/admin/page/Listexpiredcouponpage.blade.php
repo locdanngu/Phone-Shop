@@ -25,7 +25,7 @@
                         <h3 class="card-title">Tổng cộng : {{ $countcoupon }} mã</h3>
                         <div class="card-tools" style="width: 45%;">
                             <form action="{{ route('searchcouponexpired') }}" method="get" class="input-group input-group-sm">
-                                <input type="text" name="searchcoupon" class="form-control float-right"
+                                <input type="text" name="searchcouponexpired" class="form-control float-right"
                                     placeholder="Tìm kiếm" value="{{ request('searchcouponexpired')}}">
                                 <button class="btn-success" type="submit">Tìm</button>
 

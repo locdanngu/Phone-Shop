@@ -780,11 +780,11 @@ class AdminController extends Controller
         $admin = Auth::guard('admin')->user();
         $limit = $request->limit ?? 5;
         $coupon = new Coupon();
-        $searchexpiredcoupon = $request['searchexpiredcoupon'];
+        $searchcouponexpired = $request['searchcouponexpired'];
         
-        if ($searchexpiredcoupon) {
+        if ($searchcouponexpired) {
             $coupon = $coupon->where('endtime', '<', Carbon::now())
-                             ->where('code', 'like', '%' . $searchexpiredcoupon . '%')
+                             ->where('code', 'like', '%' . $searchcouponexpired . '%')
                              ->where('isdelete', 0);
         }
         $coupon = $coupon->where('endtime', '<', Carbon::now())->where('isdelete', 0)->paginate($limit);

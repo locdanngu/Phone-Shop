@@ -58,43 +58,32 @@
 
                 </div>
                 <div class="input-group mb-3 d-flex justify-content-between fixmobileuser productorcate">
-                    <div class="w-50 d-flex fixmobileuser2">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30% !important;">Sản
+                    <div class="w-75 d-flex fixmobileuser2">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 20% !important;">Sản
                             phẩm</span>
                         <div class="d-flex align-items-center">
                             <label class="label">
                                 <input type="radio" name="product_list_or_cate_list" value="1" id="product-radio"
                                     class="requiredcheck">
-                                Danh sách
+                                DS sản phẩm
                             </label>
                             <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="2" class="requiredcheck">
+                                <input type="radio" name="product_list_or_cate_list" value="2" id="cate-radio"
+                                    class="requiredcheck">
+                                DS danh mục
+                            </label>
+                            <label class="label">
+                                <input type="radio" name="product_list_or_cate_list" value="3" class="requiredcheck">
                                 Tất cả
                             </label>
                         </div>
                     </div>
                     <p class="btn btn-secondary" id="product-input" type="button" data-toggle="modal"
                         data-target="#modal-addproduct">Chưa chọn sản phẩm nào</p>
-                </div>
-                <div class="input-group mb-3 d-flex justify-content-between fixmobileuser productorcate">
-                    <div class="w-50 d-flex fixmobileuser2">
-                        <span class="input-group-text" id="inputGroup-sizing-default"
-                            style="width: 30% !important;">Danh mục</span>
-                        <div class="d-flex align-items-center">
-                            <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="3" id="cate-radio"
-                                    class="requiredcheck">
-                                Danh sách
-                            </label>
-                            <label class="label">
-                                <input type="radio" name="product_list_or_cate_list" value="4" class="requiredcheck">
-                                Tất cả
-                            </label>
-                        </div>
-                    </div>
                     <p class="btn btn-secondary" id="cate-input" type="button" data-toggle="modal"
                         data-target="#modal-addcate">Chưa chọn mục nào</p>
                 </div>
+                
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Loại giảm</span>
                     <div class="d-flex align-items-center">

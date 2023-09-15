@@ -281,6 +281,7 @@ class AdminController extends Controller
         $coupon->endtime = $request['endtime'];
         $coupon->iduser = $request['sendiduser'];
 
+        //0 là tất cả sp , 1 là danh sách sp , 2 là danh sách cate , 3 là tất cả cate
         if($coupon->applicable_to == "product"){
             if($request['product_list_or_cate_list'] == 1){
                 $coupon->product_list = 1;
@@ -289,10 +290,10 @@ class AdminController extends Controller
                 $coupon->product_list = 0;
                 $coupon->category_list = 0;
             }elseif($request['product_list_or_cate_list'] == 3){
-                $coupon->category_list = 1;
+                $coupon->category_list = 2;
                 $coupon->product_list = 0;
             }else{
-                $coupon->category_list = 0;
+                $coupon->category_list = 3;
                 $coupon->product_list = 0;
             }
         }else{
@@ -318,7 +319,7 @@ class AdminController extends Controller
             }
         }
 
-        if($coupon->category_list == 1){
+        if($coupon->category_list == 2){
             $listCate = explode(',', $request['listcate']);
             foreach ($listCate as $idcate) {
                 $category_coupon = new Category_coupon();

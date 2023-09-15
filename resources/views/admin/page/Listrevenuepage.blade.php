@@ -20,7 +20,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng : {{ $sum }} $</h3>
+                        <h3 class="card-title font-weight-bold">Tổng cộng : {{ $sum }} $</h3>
                         <div class="card-tools">
                             <form action="{{ route('revenue.search') }}" method="get" class="input-group input-group-sm">
                                 <div class="d-flex justify-content-center">

@@ -88,7 +88,6 @@
                                                 data-start="{{ $row->starttime }}" data-end="{{ $row->endtime }}"
                                                 data-appli="{{ $row->applicable_to }}" data-iduser="{{ $row->iduser }}"
                                                 data-pro="{{ $row->product_list }}"
-                                                data-cate="{{ $row->category_list }}"
                                                 data-dis="{{ $row->discount_type }}"
                                                 data-mini="{{ $row->minimum_order_amount }}"
                                                 data-max="{{ $row->max_discount_amount }}"
@@ -102,7 +101,6 @@
                                                 data-start="{{ $row->starttime }}" data-end="{{ $row->endtime }}"
                                                 data-appli="{{ $row->applicable_to }}" data-iduser="{{ $row->iduser }}"
                                                 data-pro="{{ $row->product_list }}"
-                                                data-cate="{{ $row->category_list }}"
                                                 data-dis="{{ $row->discount_type }}"
                                                 data-user="{{ isset($row->user->username) ? $row->user->username : '' }}"
                                                 data-mini="{{ $row->minimum_order_amount }}"
@@ -171,7 +169,6 @@ $(document).ready(function() {
             iduser = 'Tất cả';
         }
         var pro = button.data('pro');
-        var cate = button.data('cate');
         var dis = button.data('dis');
         if (dis == 'percentage') {
             dis = 'Theo phần trăm';
@@ -192,26 +189,18 @@ $(document).ready(function() {
             modal.find('span[name="product_list"]').hide();
             modal.find('#in4listpro').attr('data-idcoupon', id);
             modal.find('#in4listpro').show();
-            $(".hidein4").removeClass("hideproduct");
-            $("#hidein4cate").addClass("hideproduct");
-        } else {
-            modal.find('#in4listpro').hide();
-            $(".hidein4").addClass("hideproduct");
-            modal.find('span[name="product_list"]').text('Tất cả sản phẩm');
-            modal.find('span[name="product_list"]').show();
-        }
-        if (cate == 1) {
-            modal.find('span[name="category_list"]').hide();
-            modal.find('#in4listcate').attr('data-idcoupon', id);
-            modal.find('#in4listcate').show();
-            $(".hidein4").removeClass("hideproduct");
-            $("#hidein4pro").addClass("hideproduct");
-        } else {
             modal.find('#in4listcate').hide();
-            $(".hidein4").addClass("hideproduct");
-            modal.find('span[name="category_list"]').text('Tất cả sản phẩm');
-            modal.find('span[name="category_list"]').show();
+        } else if(pro == 2) {
+            modal.find('span[name="product_list"]').hide();
+            modal.find('#in4listpro').hide();
+            modal.find('#in4listcate').show();
+            modal.find('#in4listcate').show();
+        }else{
+            modal.find('span[name="product_list"]').text('Tất cả sản phẩm/danh mục');
+            modal.find('span[name="product_list"]').show();
+            $("#in4listpro, #in4listcate").addClass("hideproduct");
         }
+        
         modal.find('span[name="discount_type"]').text(dis);
         modal.find('span[name="minimum_order_amount"]').text(mini + ' $');
         modal.find('span[name="max_discount_amount"]').text(max + ' $');

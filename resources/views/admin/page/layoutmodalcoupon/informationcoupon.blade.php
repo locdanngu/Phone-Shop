@@ -25,10 +25,6 @@
                     <span name="product_list" class="spanpopup"></span>
                     <button class="btn btn-secondary ml-3" id="in4listpro" type="button" data-toggle="modal"
                         data-target="#modal-addproduct3">Danh sách sản phẩm</button>
-                </div>
-                <div class="input-group mb-3 hidein4" id="hidein4cate">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
-                    <span name="category_list" class="spanpopup"></span>
                     <button class="btn btn-secondary ml-3" id="in4listcate" type="button" data-toggle="modal"
                         data-target="#modal-addcate3">Danh sách danh mục</button>
                 </div>

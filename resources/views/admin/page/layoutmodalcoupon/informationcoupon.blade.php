@@ -75,12 +75,12 @@
                 <h4 class="modal-title">Danh sách danh mục có thể áp dụng</h4>
             </div>
             <div class="modal-body fixgrid" id="listcategory_couponin4">
-                @foreach($category as $ca)
+                <!-- @foreach($category as $ca)
                 <label class="d-flex flex-column align-items-center">
                     <img src="{{ $ca->imagecategory }}" alt="" height="50" style="width:fit-content">
                     {{ $ca->namecategory }}
                 </label>
-                @endforeach
+                @endforeach -->
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>

@@ -501,13 +501,16 @@ class AdminController extends Controller
         $html = ''; 
 
         $listproduct = Product_coupon::where('idcoupon', $request['idcoupon'])->get();
-        
-        foreach($listproduct as $ca){
-            $html .= '<label class="d-flex flex-column align-items-center">';
-            $html .= '<img src="' . $ca->product->imagecategory . '" alt="" height="50" style="width:fit-content">';
-            $html .= $ca->product->namecategory;
-            $html .= '</label>';
+    
+        foreach($listproduct as $pr){
+            $html .= '<tr>';
+            $html .= '<td class="font-weight-bold" style="color:red">' . $pr->nameproduct . '</td>';
+            $html .= '<td class="text-center"><img src="' . $pr->imageproduct . '" alt="" height="50"></td>';
+            $html .= '<td class="font-weight-bold" style="color:red">' . $pr->price . ' $</td>';
+            $html .= '<td class="font-weight-bold">' . $pr->category->namecategory . '</td>';
+            $html .= '</tr>';
         }
+
 
         return response()->json([
             'html' => $html,

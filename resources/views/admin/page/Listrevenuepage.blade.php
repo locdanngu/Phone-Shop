@@ -58,7 +58,9 @@
                                         <td class="font-weight-bold" style="color:red">{{ $rv->updated_at }}</td>
                                         <td class="font-weight-bold">{{ $rv->user->firstname }}
                                             {{ $rv->user->lastname }}</td>
-                                        <td class="font-weight-bold">{{ $rv->user->username }}</td>
+                                        <td class="font-weight-bold"><a
+                                                href="{{ route('searchuser', ['searchuser' => $rv->user->username]) }}">{{ $rv->user->username }}</a>
+                                        </td>
                                         <td class="font-weight-bold">{{ $rv->user->email }}</td>
                                         <td class="font-weight-bold">{{ $rv->idorder }}</td>
                                         <td class="font-weight-bold" style="color:red">{{ $rv->totalprice }} $</td>

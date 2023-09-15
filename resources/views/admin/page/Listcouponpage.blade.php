@@ -69,7 +69,9 @@
                                         <td class="text-center">Sản phẩm</td>
                                         @endif
                                         @if($row->iduser)
-                                        <td class="text-center font-weight-bold">{{ $row->user->email }}</td>
+                                        <td class="text-center font-weight-bold"><a
+                                                href="{{ route('searchuser', ['searchuser' => $row->user->username]) }}">{{ $row->user->username }}</a>
+                                        </td>
                                         @else
                                         <td class="text-center font-weight-bold">Tất cả</td>
                                         @endif

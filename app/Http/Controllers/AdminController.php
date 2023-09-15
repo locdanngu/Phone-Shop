@@ -295,6 +295,9 @@ class AdminController extends Controller
                 $coupon->category_list = 0;
                 $coupon->product_list = 0;
             }
+        }else{
+            $coupon->category_list = 0;
+            $coupon->product_list = 0;
         }
 
         $coupon->discount_type = $request['discount_type'];

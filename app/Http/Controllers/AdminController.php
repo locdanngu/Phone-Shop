@@ -902,4 +902,13 @@ class AdminController extends Controller
 
         return view('admin/page/Listshiporderpage', compact('admin','order','countorder'));
     }
+
+    public function doneorder(Request $request)
+    {
+        $order = Order::where('idorder', $request['idorder'])->first();
+        $order->status = 'done';
+        $order->save();
+
+        return redirect()->route('listordership.page');
+    }
 }

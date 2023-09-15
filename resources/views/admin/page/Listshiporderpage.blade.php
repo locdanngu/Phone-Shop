@@ -75,7 +75,8 @@
                                                 Giao hàng
                                             </button>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-deny" data-id="{{ $od->idorder }}">
+                                                data-target="#modal-deny" data-id="{{ $od->idorder }}"
+                                                data-iduser="{{ $od->user->iduser }}">
                                                 <i class="bi bi-trash"></i>
                                                 Hủy
                                             </button>
@@ -152,7 +153,7 @@
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-danger">Xác nhận hoàn thành</button>
+                <button type="submit" class="btn btn-danger">Hủy đơn</button>
             </div>
         </form>
         <!-- /.modal-content -->

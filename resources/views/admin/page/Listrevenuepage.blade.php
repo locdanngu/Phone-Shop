@@ -21,8 +21,19 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title font-weight-bold">Tổng cộng : {{ $sum }} $</h3>
-                        <div class="card-tools">
-                            <form action="{{ route('revenue.search') }}" method="get" class="input-group input-group-sm">
+                        <div class="card-tools fixmobile">
+                            <form action="{{ route('revenue.search') }}" method="get"
+                                class="input-group input-group-sm m-0 d-flex">
+                                <div class="d-flex align-items-center mr-3">
+                                    <label class="mb-0 mr-3 d-flex align-items-center">
+                                        <input type="radio" name="sapxep" value="1" class="mr-1">
+                                        Mới nhất 
+                                    </label>
+                                    <label class="mb-0 d-flex align-items-center">
+                                        <input type="radio" name="sapxep" value="0" class="mr-1">
+                                        Cũ nhất
+                                    </label>
+                                </div>
                                 <div class="d-flex justify-content-center">
                                     {!! Form::selectYear('year', date('Y'), date('Y') - 50, request('year', null),
                                     ['placeholder' => '-----', 'name' => 'year']) !!}
@@ -55,7 +66,8 @@
                                     @foreach($order as $rv)
                                     <tr>
                                         <td class="font-weight-bold" style="color:red">{{ $rv->updated_at }}</td>
-                                        <td class="font-weight-bold">{{ $rv->user->firstname }} {{ $rv->user->lastname }}</td>
+                                        <td class="font-weight-bold">{{ $rv->user->firstname }}
+                                            {{ $rv->user->lastname }}</td>
                                         <td class="font-weight-bold">{{ $rv->user->username }}</td>
                                         <td class="font-weight-bold">{{ $rv->user->email }}</td>
                                         <td class="font-weight-bold">{{ $rv->idorder }}</td>

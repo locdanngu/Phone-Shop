@@ -38,6 +38,8 @@
                             <form action="{{ route('searchcoupon') }}" method="get" class="input-group input-group-sm">
                                 <input type="text" name="searchcoupon" class="form-control float-right"
                                     placeholder="Tìm kiếm" value="{{ request('searchcoupon')}}">
+                                <button class="btn-success" type="submit">Tìm</button>
+
                             </form>
                         </div>
                     </div>

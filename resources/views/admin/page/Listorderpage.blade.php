@@ -22,7 +22,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Tổng cộng : {{ $countorder }} đơn</h3>
                         <div class="card-tools">
-                            <form action="{{ route('order.search') }}" method="get" class="input-group input-group-sm">
+                            <form action="{{ route('order.search') }}" method="get" class="input-group input-group-sm m-0">
                                 <div class="d-flex justify-content-center">
                                     {!! Form::selectYear('year', date('Y'), date('Y') - 50, request('year', null),
                                     ['placeholder' => '-----', 'name' => 'year']) !!}

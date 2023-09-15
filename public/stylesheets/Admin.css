@@ -164,6 +164,11 @@ input[type="file"] {
     display: none;
 }
 
+.nav-sidebar .nav-item>.nav-link {
+    display: flex;
+    align-items: center;
+}
+
 @media screen and (max-width: 460px) {
     body{
         font-size: .75em !important;
@@ -171,6 +176,13 @@ input[type="file"] {
 
     .checkuser{
         width: 100%;
+    }
+
+    .card-header>.fixmobile {
+        width: 100% !important;
+        margin-top: .25em !important;
+        float: left !important;
+        margin-right: -0.625rem;
     }
 }
 

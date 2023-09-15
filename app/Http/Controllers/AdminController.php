@@ -703,7 +703,7 @@ class AdminController extends Controller
     {
         $admin = Auth::guard('admin')->user();
         $order = Order::where('status', 'done')->orderBy('updated_at', 'desc')->get();
-        $sum = Order::sum('totalprice');
+        $sum = Order::where('status', 'done')->sum('totalprice');
 
         if($request->input('year') || $request->input('month') || $request->input('day')){
             $year = $request->input('year');

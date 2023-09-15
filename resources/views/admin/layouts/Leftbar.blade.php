@@ -71,7 +71,7 @@
                         class="nav-link {{ request()->routeIs('listcoupon.page', 'searchcoupon', 'listexpiredcoupon.page', 'searchcouponexpired') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-badge-vo"></i>
                         <p>
-                            Quản lý mã khuyến mãi
+                            Quản lý mã giảm giá
                             <i class="bi bi-arrow-left right"></i>
                         </p>
                     </a>
@@ -103,7 +103,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link {{ request()->routeIs('listorder.page', 'order.search') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('listorder.page', 'order.search','listordership.page', 'ordership.search','listordercancel.page', 'ordercancel.search') ? 'active' : '' }}">
                         <i class="nav-icon bi-receipt"></i>
                         <p>
                             Quản lý đơn
@@ -114,7 +114,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('listorder.page') }}"
-                                class="nav-link {{ request()->routeIs('listorder.page') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('listorder.page','order.search') ? 'active' : '' }}">
                                 <i class="bi-receipt-cutoff nav-icon"></i>
                                 <p>Đơn đặt hàng</p>
                                 <span class="badge badge-danger right">{{ $countorder }}</span>
@@ -122,7 +122,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('listordership.page') }}"
-                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('listordership.page', 'ordership.search') ? 'active' : '' }}">
                                 <i class="bi-file-earmark-check nav-icon"></i>
                                 <p>Đơn đang giao</p>
                                 <span class="badge badge-warning right">{{ $countorder2 }}</span>
@@ -130,7 +130,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('listordercancel.page') }}"
-                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('listordercancel.page', 'ordercancel.search') ? 'active' : '' }}">
                                 <i class="bi-file-earmark-excel nav-icon"></i>
                                 <p>Đơn đã hủy</p>
                             </a>

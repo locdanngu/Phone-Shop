@@ -20,9 +20,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng : đơn</h3>
+                        <h3 class="card-title">Tổng cộng : {{ $sum }} $</h3>
                         <div class="card-tools">
-                            <form action="{{ route('order.search') }}" method="get" class="input-group input-group-sm">
+                            <form action="{{ route('revenue.search') }}" method="get" class="input-group input-group-sm">
                                 <div class="d-flex justify-content-center">
                                     {!! Form::selectYear('year', date('Y'), date('Y') - 50, request('year', null),
                                     ['placeholder' => '-----', 'name' => 'year']) !!}
@@ -43,15 +43,21 @@
                                 <thead>
                                     <tr>
                                         <th>Ngày</th>
+                                        <th>Người đặt</th>
+                                        <th>Tài khoản</th>
+                                        <th>email</th>
                                         <th>Mã đơn</th>
                                         <th>Số tiền</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($revenue as $rv)
+                                    @foreach($order as $rv)
                                     <tr>
                                         <td class="font-weight-bold" style="color:red">{{ $rv->updated_at }}</td>
+                                        <td class="font-weight-bold">{{ $rv->user->firstname }} {{ $rv->user->lastname }}</td>
+                                        <td class="font-weight-bold">{{ $rv->user->username }}</td>
+                                        <td class="font-weight-bold">{{ $rv->user->email }}</td>
                                         <td class="font-weight-bold">{{ $rv->idorder }}</td>
                                         <td class="font-weight-bold" style="color:red">{{ $rv->totalprice }} $</td>
                                         <td>

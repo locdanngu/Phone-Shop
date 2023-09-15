@@ -68,6 +68,7 @@ Route::prefix('/admin')->group(function () {
 
         //Revenue
         Route::get('/listrevenuepage', [AdminController::class, 'listrevenuepage'])->name('listrevenue.page');
+        Route::get('/listrevenuepage/search', [AdminController::class, 'listrevenuepage'])->name('revenue.search');
 
     });
 });

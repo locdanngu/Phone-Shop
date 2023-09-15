@@ -535,7 +535,7 @@ class AdminController extends Controller
         $countorder = $order->count();
 
         
-        if($request->input('year') && $request->input('month') && $request->input('day')){
+        if($request->input('year') || $request->input('month') || $request->input('day')){
             $year = $request->input('year');
             $month = $request->input('month');
             $day = $request->input('day');
@@ -553,15 +553,15 @@ class AdminController extends Controller
             }
 
             if ($request->filled('day') && !$request->filled('month') && !$request->filled('year')) {
-                $order = Order::whereDay('created_at', $day);
+                $order = Order::where('status', 'wait')->whereDay('created_at', $day);
             }
 
             if (!$request->filled('day') && $request->filled('month') && !$request->filled('year')) {
-                $order = Order::whereMonth('created_at', $month);
+                $order = Order::where('status', 'wait')->whereMonth('created_at', $month);
             }
 
             if ($request->filled('day') && $request->filled('month') && !$request->filled('year')) {
-                $order = Order::whereDay('created_at', $day)->whereMonth('created_at', $month);
+                $order = Order::where('status', 'wait')->whereDay('created_at', $day)->whereMonth('created_at', $month);
             }
             
             
@@ -712,9 +712,51 @@ class AdminController extends Controller
     public function listrevenuepage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $revenue = Order::where('status', 'done')->get();
+        $order = Order::where('status', 'done')->get();
+        $sum = Order::sum('totalprice');
 
-        return view('admin/page/Listrevenuepage', compact('revenue', 'admin'));
+
+        if($request->input('year') || $request->input('month') || $request->input('day')){
+           
+
+            $year = $request->input('year');
+            $month = $request->input('month');
+            $day = $request->input('day');
+            
+
+            if ($request->filled('year')) {
+                $order = Order::where('status', 'done')->whereYear('updated_at', $year);
+            }
+            
+            if ($request->filled('month') && $request->filled('year')) {
+                $order = isset($order) ? $order->whereMonth('updated_at', $month) : Order::where('status', 'done')->whereMonth('updated_at', $month);
+            }
+            
+            if ($request->filled('day') && $request->filled('month') && $request->filled('year')) {
+                $order = isset($order) ? $order->whereDay('updated_at', $day) : Order::where('status', 'done')->whereDay('updated_at', $day);
+            }
+
+            if ($request->filled('day') && !$request->filled('month') && !$request->filled('year')) {
+                $order = Order::where('status', 'done')->whereDay('updated_at', $day);
+            }
+
+            if (!$request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $order = Order::where('status', 'done')->whereMonth('updated_at', $month);
+            }
+
+            if ($request->filled('day') && $request->filled('month') && !$request->filled('year')) {
+                $order = Order::where('status', 'done')->whereDay('updated_at', $day)->whereMonth('updated_at', $month);
+            }
+            
+            
+            $order = $order->get();
+            
+            $countorder = $order->count();
+
+            $sum = $order->sum('totalprice');
+        }
+
+        return view('admin/page/Listrevenuepage', compact('order', 'admin', 'sum'));
 
     }
     

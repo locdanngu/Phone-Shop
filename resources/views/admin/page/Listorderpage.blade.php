@@ -74,6 +74,11 @@
                                                 <i class="bi bi-info-lg"></i>
                                                 Xem thông tin
                                             </button>
+                                            <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
+                                                data-target="#modal-deny" data-id="{{ $od->idorder }}">
+                                                <i class="bi bi-trash"></i>
+                                                Từ chối
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -124,6 +129,31 @@
     <!-- /.modal-dialog -->
 </div>
 
+
+<div class="modal fade" id="modal-deny">
+    <div class="modal-dialog">
+        <form class="modal-content" action="{{ route('order.success') }}" method="post">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title">Thông tin đơn</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <input type="hidden" name="idorder">
+            <div class="modal-body" id="in4order">
+                
+
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-primary">Xác nhận giao</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection
 
 
@@ -151,6 +181,13 @@ $(document).ready(function() {
             }
         });
 
+        modal.find('input[name="idorder"]').val(id);
+    });
+
+    $('#modal-deny').on('shown.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Nút "Change" được nhấn
+        var id = button.data('id');
+        var modal = $(this);
         modal.find('input[name="idorder"]').val(id);
     });
 

@@ -696,5 +696,12 @@ class AdminController extends Controller
         return redirect()->route('listorder.page');
     }
 
+    public function listrevenuepage(Request $request)
+    {
 
+
+        return view('admin/page/Listrevenuepage', compact());
+
+    }
+    
 }

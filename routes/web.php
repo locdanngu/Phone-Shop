@@ -65,6 +65,10 @@ Route::prefix('/admin')->group(function () {
         Route::post('/in4order', [AdminController::class, 'in4order'])->name('order.in4');
         Route::post('/successorder', [AdminController::class, 'successorder'])->name('order.success');
         Route::post('/denyorder', [AdminController::class, 'denyorder'])->name('order.deny');
+
+        //Revenue
+        Route::get('/listrevenuepage', [AdminController::class, 'listrevenuepage'])->name('listrevenue.page');
+
     });
 });
 

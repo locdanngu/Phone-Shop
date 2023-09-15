@@ -52,7 +52,7 @@
                                     @foreach($user as $u)
                                     <tr>
                                         <td class="font-weight-bold" style="color:red">{{ $u->iduser }}</td>
-                                        <td>{{ $u->username }}</td>
+                                        <td class="font-weight-bold">{{ $u->username }}</td>
                                         <td>{{ $u->firstname }} {{ $u->lastname }}</td>
                                         <td>{{ $u->country }}</td>
                                         <td>{{ $u->address }}</td>

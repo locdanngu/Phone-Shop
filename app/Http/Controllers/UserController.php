@@ -21,8 +21,10 @@ class UserController extends Controller
     public function homepage(Request $request)
     {
         $user = Auth::user();
+        $listcategory = Category::all('imagecategory');
 
-        return view('user/page/Homepage', compact('user'));
+
+        return view('user/page/Homepage', compact('user','listcategory'));
 
     }
 }

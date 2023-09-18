@@ -1121,3 +1121,13 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 .pagination > li > a, .pagination > li > span {
   color: #5a88ca;
 }
+
+.brand-wrapper .owl-carousel .owl-stage{
+    display: flex !important;
+    align-items: center !important;
+}
+
+.brand-wrapper .owl-carousel .owl-item {
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+}

@@ -250,14 +250,9 @@
             <div class="col-md-12">
                 <div class="brand-wrapper">
                     <div class="brand-list">
-                        <img src="/image/example/brand1.png" alt="">
-                        <img src="/image/example/brand2.png" alt="">
-                        <img src="/image/example/brand3.png" alt="">
-                        <img src="/image/example/brand4.png" alt="">
-                        <img src="/image/example/brand5.png" alt="">
-                        <img src="/image/example/brand6.png" alt="">
-                        <img src="/image/example/brand1.png" alt="">
-                        <img src="/image/example/brand2.png" alt="">
+                        @foreach($listcategory as $lc)
+                        <img src="{{ $lc->imagecategory }}" alt="" class="listcate">
+                        @endforeach
                     </div>
                 </div>
             </div>

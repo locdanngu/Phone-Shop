@@ -20,9 +20,9 @@ class UserController extends Controller
 {
     public function homepage(Request $request)
     {
+        $user = Auth::user();
 
-
-        return view('user/page/Homepage');
+        return view('user/page/Homepage', compact('user'));
 
     }
 }

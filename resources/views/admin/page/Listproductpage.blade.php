@@ -247,13 +247,13 @@
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá mới($)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" required name="price" id="pricedola">
+                            aria-describedby="inputGroup-sizing-default" required name="price" id="pricedola2">
                     </div>
                     <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá mới(đ)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="price2" id="pricevnd">
+                            aria-describedby="inputGroup-sizing-default" name="price2" id="pricevnd2">
                     </div>
                 </div>
                 <div class="input-group mb-3">

@@ -22,9 +22,10 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $listcategory = Category::all('imagecategory');
+        $lastproduct = Product::orderBy('created_at', 'desc')->take(10)->get();
 
 
-        return view('user/page/Homepage', compact('user','listcategory'));
+        return view('user/page/Homepage', compact('user','listcategory','lastproduct'));
 
     }
 }

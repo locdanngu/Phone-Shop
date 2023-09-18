@@ -297,4 +297,27 @@ class CouponController extends Controller
         ]);
     }
 
+
+    public function listexpiredcouponpage(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $limit = $request->limit ?? 5;
+        $coupon = new Coupon();
+        $searchcouponexpired = $request['searchcouponexpired'];
+        
+        if ($searchcouponexpired) {
+            $coupon = $coupon->where('endtime', '<', Carbon::now())
+                             ->where('code', 'like', '%' . $searchcouponexpired . '%')
+                             ->where('isdelete', 0);
+        }
+        $countcoupon = $coupon->where('endtime', '<', Carbon::now())->where('isdelete', 0)->count();
+
+        $coupon = $coupon->where('endtime', '<', Carbon::now())->where('isdelete', 0)->paginate($limit);
+        $category = Category::all();
+        $product = Product::orderBy('idcategory')->get();
+
+        return view('admin/page/Listexpiredcouponpage', compact('admin','coupon','category','product','countcoupon'));
+    }
+
+
 }

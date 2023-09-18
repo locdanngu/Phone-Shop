@@ -27,7 +27,7 @@
                     <div class="product-upper">
                         <img src="{{ $pr->imageproduct }}" alt="">
                     </div>
-                    <h2><a href="">{{ $pr->nameproduct }}</a></h2>
+                    <h2><a href="{{ route('product.page', ['nameproduct' => $pr->nameproduct]) }}">{{ $pr->nameproduct }}</a></h2>
                     <div class="product-carousel-price">
                         <ins>${{ $pr->price }}</ins> <del>${{ $pr->oldprice }}</del>
                     </div>

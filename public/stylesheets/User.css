@@ -769,7 +769,6 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
     content: "/";
     position: absolute;
     right: -20px;
-    top: 2px;
 }
 .product-breadcroumb > a:last-child::before {
     display: none;
@@ -805,8 +804,8 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
     margin-right: 15px;
 }
 .quantity input[type="number"] {
-    border: 1px solid #5a88ca;
-    padding: 5px;
+    
+    padding: 9px;
     width: 50px;
 }
 .add_to_cart_button {

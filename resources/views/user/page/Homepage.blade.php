@@ -72,7 +72,8 @@
                                 <div class="product-hover" style="height: 270px;">
                                     <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
                                         cart</a>
-                                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i>
+                                    <a href="{{ route('product.page', ['nameproduct' => $lp->nameproduct]) }}"
+                                        class="view-details-link"><i class="fa fa-link"></i>
                                         See details</a>
                                 </div>
                             </div>
@@ -163,8 +164,7 @@
                     <h2 class="product-wid-title">Top New</h2>
                     <a href="#" class="wid-view-more">View All</a>
                     @foreach($recently as $rc)
-                    @if($loop->index < 3) 
-                    <div class="single-wid-product">
+                    @if($loop->index < 3) <div class="single-wid-product">
                         <a href="single-product.html"><img src="{{ $rc->imageproduct }}" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">{{ $rc->nameproduct }}</a></h2>
@@ -178,15 +178,15 @@
                         <div class="product-wid-price">
                             <ins>${{ $rc->price }}</ins> <del>${{ $rc->oldprice }}</del>
                         </div>
-                    </div>
-                    @else
-                    @break
-                    @endif
-                    @endforeach
                 </div>
+                @else
+                @break
+                @endif
+                @endforeach
             </div>
         </div>
     </div>
+</div>
 </div>
 </div> <!-- End product widget area -->
 @endsection

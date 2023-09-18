@@ -54,6 +54,13 @@ Route::prefix('/admin')->group(function () {
         Route::post('/changecategory', [AdminController::class, 'changecategory'])->name('category.change');
         Route::post('/deletecategory', [AdminController::class, 'deletecategory'])->name('category.delete');
 
+        //Type
+        Route::get('/listtypepage', [TypeController::class, 'listtypepage'])->name('listtype.page');
+        Route::get('/listtypepage/search', [TypeController::class, 'listtypepage'])->name('searchtype');
+        Route::post('/addtype', [TypeController::class, 'addtype'])->name('type.add');
+        Route::post('/changetype', [TypeController::class, 'changetype'])->name('type.change');
+        Route::post('/deletetype', [TypeController::class, 'deletetype'])->name('type.delete');
+
         //Coupon
         Route::get('/listcouponpage', [AdminController::class, 'listcouponpage'])->name('listcoupon.page');
         Route::post('/searchuser', [AdminController::class, 'searchuser'])->name('user.search');

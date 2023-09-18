@@ -47,10 +47,20 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $product = Product::where('nameproduct', $request['nameproduct'])->first();
-        $list = Product::where('idcategory', $product->idcategory)->take(4)->get();
+        $list = Product::inRandomOrder()->take(4)->get();
         $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
         $random = Product::inRandomOrder()->take(6)->get();
 
         return view('user/page/Productpage', compact('user','product','list','recent','random'));
+    }
+
+    public function cartpage(Request $request)
+    {
+        $user = Auth::user();
+        $list = Product::inRandomOrder()->take(4)->get();
+        $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
+        $random = Product::inRandomOrder()->take(2)->get();
+
+        return view('user/page/Cartpage', compact('user','list','recent','random'));
     }
 }

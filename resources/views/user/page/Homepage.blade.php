@@ -1,6 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'Trang chủ')
+@section('title', 'Homepage')
 
 @section('body')
 <div class="slider-area">

@@ -30,4 +30,16 @@ class UserController extends Controller
         return view('user/page/Homepage', compact('user','listcategory','lastproduct','topseller','recently','randomproduct'));
 
     }
+
+    public function shoppage(Request $request)
+    {
+        $user = Auth::user();
+        $limit = $request->limit ?? 12;
+        $product = new Product();
+        $product = $product->paginate($limit);
+
+
+        return view('user/page/Shoppage', compact('user','product'));
+
+    }
 }

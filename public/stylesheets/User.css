@@ -1151,3 +1151,20 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
     font-weight: 400;
     color: #fff;
 }
+
+.product-upper{
+    height: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.product-upper img{
+    object-fit: cover;
+    height: 100%;
+}
+
+.single-shop-product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

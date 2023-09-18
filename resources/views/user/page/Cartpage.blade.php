@@ -2,7 +2,6 @@
 
 @section('title', 'Cart')
 
-
 @section('body')
 <div class="product-big-title-area">
     <div class="container">

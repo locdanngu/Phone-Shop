@@ -63,4 +63,15 @@ class UserController extends Controller
 
         return view('user/page/Cartpage', compact('user','list','recent','random'));
     }
+
+    public function checkoutpage(Request $request)
+    {
+        $user = Auth::user();
+        $list = Product::inRandomOrder()->take(4)->get();
+        $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
+        $random = Product::inRandomOrder()->take(2)->get();
+
+        return view('user/page/Checkoutpage', compact('user','list','recent','random'));
+    }
 }
+

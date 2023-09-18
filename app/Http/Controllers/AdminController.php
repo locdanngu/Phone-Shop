@@ -176,6 +176,15 @@ class AdminController extends Controller
         $product->oldprice = $request['oldprice'];
         $product->price = $request['price'];
         $product->detail = $request['detail'];
+
+        $category = Category::where('idcategory', $product->idcategory)->first();
+        $category->product_count =  $category->product_count - 1;
+        
+        $category->save();
+        $category2 = Category::where('idcategory', $request['idcategory'])->first();
+        $category2->product_count =  $category2->product_count + 1;
+        $category2->save();
+
         $product->idcategory = $request['idcategory'];
 
         if ($request->hasFile('image')) {

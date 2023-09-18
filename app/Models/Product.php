@@ -17,6 +17,7 @@ class Product extends Model
         'imageproduct',
         'timedelete',
         'idcategory',
+        'idtype',
         'sold',
     ];
 
@@ -30,4 +31,10 @@ class Product extends Model
     {
         return $this->hasMany(Order_product::class, 'idproduct');
     }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'idtype');
+    }
 }
+

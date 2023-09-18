@@ -6,6 +6,7 @@ use Hash;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Type;
 use App\Models\Coupon;
 use App\Models\Spend;
 use App\Models\Product_coupon;

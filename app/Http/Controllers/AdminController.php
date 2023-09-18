@@ -131,9 +131,9 @@ class AdminController extends Controller
                 })
                 ->orderBy('idproduct', 'desc');
         }
-        
-        $product = $product->orderBy('idproduct', 'desc')->paginate($limit);
         $countproduct = $product->count();
+
+        $product = $product->orderBy('idproduct', 'desc')->paginate($limit);
         $category = Category::all();
 
         return view('admin/page/Listproductpage', compact('admin','product','searchproduct','category','countproduct'));
@@ -222,8 +222,8 @@ class AdminController extends Controller
         if ($searchcategory) {
             $category = $category->where('namecategory', 'like', '%' . $searchcategory . '%')->orderBy('idcategory', 'desc');
         }
-        $category = $category->orderBy('idcategory', 'desc')->paginate($limit);
         $countcategory = $category->count();
+        $category = $category->orderBy('idcategory', 'desc')->paginate($limit);
         return view('admin/page/Listcategorypage', compact('admin','category','searchcategory','countcategory'));
     }
 
@@ -287,10 +287,11 @@ class AdminController extends Controller
                              ->where('code', 'like', '%' . $searchcoupon . '%')
                              ->where('isdelete', 0);
         }
+        $countcoupon = $coupon->where('isdelete', 0)->count();
+
         $coupon = $coupon->where('isdelete', 0)->paginate($limit);
         $category = Category::all();
         $product = Product::orderBy('idcategory')->get();
-        $countcoupon = $coupon->count();
 
         return view('admin/page/Listcouponpage', compact('admin','coupon','category','product','countcoupon'));
     }
@@ -800,9 +801,8 @@ class AdminController extends Controller
                     ->orWhere('phone', 'like', '%' . $searchuser . '%');
             });
         }
-        
-        $user = $user->paginate($limit);
         $countuser = $user->count();
+        $user = $user->paginate($limit);
 
         return view('admin/page/Listuserpage', compact('admin','user','searchuser','countuser'));
     }
@@ -836,10 +836,11 @@ class AdminController extends Controller
                              ->where('code', 'like', '%' . $searchcouponexpired . '%')
                              ->where('isdelete', 0);
         }
+        $countcoupon = $coupon->where('endtime', '<', Carbon::now())->where('isdelete', 0)->count();
+
         $coupon = $coupon->where('endtime', '<', Carbon::now())->where('isdelete', 0)->paginate($limit);
         $category = Category::all();
         $product = Product::orderBy('idcategory')->get();
-        $countcoupon = $coupon->count();
 
         return view('admin/page/Listexpiredcouponpage', compact('admin','coupon','category','product','countcoupon'));
     }

@@ -41,18 +41,18 @@ Route::prefix('/admin')->group(function () {
         Route::post('/changepassword', [AdminController::class, 'changepassword'])->name('adminchangepassword');
 
         //Product
-        Route::get('/listproductpage', [AdminController::class, 'listproductpage'])->name('listproduct.page');
-        Route::get('/listproductpage/search', [AdminController::class, 'listproductpage'])->name('searchproduct');
-        Route::post('/addproduct', [AdminController::class, 'addproduct'])->name('product.add');
-        Route::post('/changeproduct', [AdminController::class, 'changeproduct'])->name('product.change');
-        Route::post('/deleteproduct', [AdminController::class, 'deleteproduct'])->name('product.delete');
+        Route::get('/listproductpage', [ProductController::class, 'listproductpage'])->name('listproduct.page');
+        Route::get('/listproductpage/search', [ProductController::class, 'listproductpage'])->name('searchproduct');
+        Route::post('/addproduct', [ProductController::class, 'addproduct'])->name('product.add');
+        Route::post('/changeproduct', [ProductController::class, 'changeproduct'])->name('product.change');
+        Route::post('/deleteproduct', [ProductController::class, 'deleteproduct'])->name('product.delete');
 
         //Category
-        Route::get('/listcategorypage', [AdminController::class, 'listcategorypage'])->name('listcategory.page');
-        Route::get('/listcategorypage/search', [AdminController::class, 'listcategorypage'])->name('searchcategory');
-        Route::post('/addcategory', [AdminController::class, 'addcategory'])->name('category.add');
-        Route::post('/changecategory', [AdminController::class, 'changecategory'])->name('category.change');
-        Route::post('/deletecategory', [AdminController::class, 'deletecategory'])->name('category.delete');
+        Route::get('/listcategorypage', [CategoryController::class, 'listcategorypage'])->name('listcategory.page');
+        Route::get('/listcategorypage/search', [CategoryController::class, 'listcategorypage'])->name('searchcategory');
+        Route::post('/addcategory', [CategoryController::class, 'addcategory'])->name('category.add');
+        Route::post('/changecategory', [CategoryController::class, 'changecategory'])->name('category.change');
+        Route::post('/deletecategory', [CategoryController::class, 'deletecategory'])->name('category.delete');
 
         //Type
         Route::get('/listtypepage', [TypeController::class, 'listtypepage'])->name('listtype.page');
@@ -62,47 +62,47 @@ Route::prefix('/admin')->group(function () {
         Route::post('/deletetype', [TypeController::class, 'deletetype'])->name('type.delete');
 
         //Coupon
-        Route::get('/listcouponpage', [AdminController::class, 'listcouponpage'])->name('listcoupon.page');
-        Route::post('/searchuser', [AdminController::class, 'searchuser'])->name('user.search');
-        Route::post('/checkcode', [AdminController::class, 'checkcode'])->name('code.check');
-        Route::post('/addcoupon', [AdminController::class, 'addcoupon'])->name('coupon.add');
-        Route::post('/changecoupon', [AdminController::class, 'changecoupon'])->name('coupon.change');
-        Route::post('/deletecoupon', [AdminController::class, 'deletecoupon'])->name('coupon.delete');
-        Route::post('/categorylist', [AdminController::class, 'categorylist'])->name('cate.list');
-        Route::post('/productlist', [AdminController::class, 'productlist'])->name('product.list');
-        Route::post('/in4categorylist', [AdminController::class, 'in4categorylist'])->name('in4cate.list');
-        Route::post('/in4productlist', [AdminController::class, 'in4productlist'])->name('in4product.list');
-        Route::post('/categorycount', [AdminController::class, 'categorycount'])->name('cate.count');
-        Route::post('/productcount', [AdminController::class, 'productcount'])->name('product.count');
-        Route::get('/listcouponpage/search', [AdminController::class, 'listcouponpage'])->name('searchcoupon');
+        Route::get('/listcouponpage', [CouponController::class, 'listcouponpage'])->name('listcoupon.page');
+        Route::post('/searchuser', [CouponController::class, 'searchuser'])->name('user.search');
+        Route::post('/checkcode', [CouponController::class, 'checkcode'])->name('code.check');
+        Route::post('/addcoupon', [CouponController::class, 'addcoupon'])->name('coupon.add');
+        Route::post('/changecoupon', [CouponController::class, 'changecoupon'])->name('coupon.change');
+        Route::post('/deletecoupon', [CouponController::class, 'deletecoupon'])->name('coupon.delete');
+        Route::post('/categorylist', [CouponController::class, 'categorylist'])->name('cate.list');
+        Route::post('/productlist', [CouponController::class, 'productlist'])->name('product.list');
+        Route::post('/in4categorylist', [CouponController::class, 'in4categorylist'])->name('in4cate.list');
+        Route::post('/in4productlist', [CouponController::class, 'in4productlist'])->name('in4product.list');
+        Route::post('/categorycount', [CouponController::class, 'categorycount'])->name('cate.count');
+        Route::post('/productcount', [CouponController::class, 'productcount'])->name('product.count');
+        Route::get('/listcouponpage/search', [CouponController::class, 'listcouponpage'])->name('searchcoupon');
 
         //Coupon(hết hạn)
-        Route::get('/listexpiredcouponpage', [AdminController::class, 'listexpiredcouponpage'])->name('listexpiredcoupon.page');
-        Route::get('/listexpiredcouponpage/search', [AdminController::class, 'listexpiredcouponpage'])->name('searchcouponexpired');
+        Route::get('/listexpiredcouponpage', [CouponController::class, 'listexpiredcouponpage'])->name('listexpiredcoupon.page');
+        Route::get('/listexpiredcouponpage/search', [CouponController::class, 'listexpiredcouponpage'])->name('searchcouponexpired');
 
 
         //Order (chờ xác nhận)
-        Route::get('/listorderpage', [AdminController::class, 'listorderpage'])->name('listorder.page');
-        Route::get('/listorderpage/search', [AdminController::class, 'listorderpage'])->name('order.search');
-        Route::post('/in4order', [AdminController::class, 'in4order'])->name('order.in4');
-        Route::post('/successorder', [AdminController::class, 'successorder'])->name('order.success');
-        Route::post('/denyorder', [AdminController::class, 'denyorder'])->name('order.deny');
+        Route::get('/listorderpage', [OrderController::class, 'listorderpage'])->name('listorder.page');
+        Route::get('/listorderpage/search', [OrderController::class, 'listorderpage'])->name('order.search');
+        Route::post('/in4order', [OrderController::class, 'in4order'])->name('order.in4');
+        Route::post('/successorder', [OrderController::class, 'successorder'])->name('order.success');
+        Route::post('/denyorder', [OrderController::class, 'denyorder'])->name('order.deny');
         //Order (giao hàng)
-        Route::get('/listordershippage', [AdminController::class, 'listordershippage'])->name('listordership.page');
-        Route::get('/listordershippage/search', [AdminController::class, 'listordershippage'])->name('ordership.search');
-        Route::post('/doneorder', [AdminController::class, 'doneorder'])->name('order.done');
+        Route::get('/listordershippage', [OrderController::class, 'listordershippage'])->name('listordership.page');
+        Route::get('/listordershippage/search', [OrderController::class, 'listordershippage'])->name('ordership.search');
+        Route::post('/doneorder', [OrderController::class, 'doneorder'])->name('order.done');
         //Order (đã hủy)
-        Route::get('/listordercancelpage', [AdminController::class, 'listordercancelpage'])->name('listordercancel.page');
-        Route::get('/listordercancelpage/search', [AdminController::class, 'listordercancelpage'])->name('ordercancel.search');
+        Route::get('/listordercancelpage', [OrderController::class, 'listordercancelpage'])->name('listordercancel.page');
+        Route::get('/listordercancelpage/search', [OrderController::class, 'listordercancelpage'])->name('ordercancel.search');
 
         //Revenue(thu nhập)
-        Route::get('/listrevenuepage', [AdminController::class, 'listrevenuepage'])->name('listrevenue.page');
-        Route::get('/listrevenuepage/search', [AdminController::class, 'listrevenuepage'])->name('revenue.search');
+        Route::get('/listrevenuepage', [RevenueController::class, 'listrevenuepage'])->name('listrevenue.page');
+        Route::get('/listrevenuepage/search', [RevenueController::class, 'listrevenuepage'])->name('revenue.search');
         //Revenue(chi tiêu)
-        Route::get('/listspendpage', [AdminController::class, 'listspendpage'])->name('listspend.page');
-        Route::get('/listspendpage/search', [AdminController::class, 'listspendpage'])->name('spend.search');
-        Route::post('/spendadd', [AdminController::class, 'spendadd'])->name('spend.add');
-        Route::post('/spendchange', [AdminController::class, 'spendchange'])->name('spend.change');
+        Route::get('/listspendpage', [RevenueController::class, 'listspendpage'])->name('listspend.page');
+        Route::get('/listspendpage/search', [RevenueController::class, 'listspendpage'])->name('spend.search');
+        Route::post('/spendadd', [RevenueController::class, 'spendadd'])->name('spend.add');
+        Route::post('/spendchange', [RevenueController::class, 'spendchange'])->name('spend.change');
 
         //User
         Route::get('/listuserpage', [AdminController::class, 'listuserpage'])->name('listuser.page');

@@ -23,8 +23,12 @@
     @yield('popup')
     @yield('js')
 
-    
+
     <script>
+    $(document).ready(function() {
+        $('.move-on-top-btn').hide();
+    });
+
     $(window).scroll(function() {
         if ($(this).scrollTop() >= 300) {
             $('.move-on-top-btn').fadeIn();

@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::prefix('/')->group(function () {
+    Route::get('/', [UserController::class, 'homepage'])->name('home.page');
+
 });
+
 
 Route::prefix('/admin')->group(function () {
     //Loginadmin
@@ -95,4 +101,3 @@ Route::prefix('/admin')->group(function () {
 
     });
 });
-

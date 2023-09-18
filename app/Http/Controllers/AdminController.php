@@ -149,6 +149,7 @@ class AdminController extends Controller
         $product->price = $request['price'];
         $product->detail = $request['detail'];
         $product->idcategory = $request['idcategory'];
+        $product->sold = 0;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

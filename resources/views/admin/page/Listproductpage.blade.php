@@ -49,7 +49,6 @@
                                         <th class="text-center">Sản phẩm</th>
                                         <th class="text-center">Giá cũ($)</th>
                                         <th class="text-center">Giá mới($)</th>
-                                        <th class="text-center">Giá mới(VND)</th>
                                         <th>Mô tả sản phẩm</th>
                                         <th>Đã bán</th>
                                         <th class="text-center">Danh mục</th>
@@ -65,14 +64,12 @@
                                         <td class="text-center">{{ $row->oldprice }} $</td>
                                         <td class="font-weight-bold text-center" style="color:red">{{ $row->price }} $
                                         </td>
-                                        <td class="font-weight-bold text-center" style="color:red">
-                                            {{ number_format($row->price * 23000, 0, ',', '.') }} đ</td>
                                         @if(strlen($row->detail) > 30)
                                         <td>{!! mb_substr(strip_tags($row->detail), 0, 30) !!}...</td>
                                         @else
                                         <td>{{ $row->detail }}</td>
-                                        <td>{{ $row->sold }}</td>
                                         @endif
+                                        <td>{{ $row->sold }}</td>
                                         <td class="font-weight-bold text-center"><a
                                                 href="{{ route('searchcategory', ['searchcategory' => $row->category->namecategory]) }}">{{ $row->category->namecategory }}</a>
                                         </td>

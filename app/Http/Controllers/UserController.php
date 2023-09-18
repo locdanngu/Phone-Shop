@@ -42,4 +42,14 @@ class UserController extends Controller
         return view('user/page/Shoppage', compact('user','product'));
 
     }
+
+    public function productpage(Request $request)
+    {
+        $user = Auth::user();
+        
+
+
+        return view('user/page/Productpage', compact('user','product'));
+
+    }
 }

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/')->group(function () {
     Route::get('/', [UserController::class, 'homepage'])->name('home.page');
     Route::get('/shop', [UserController::class, 'shoppage'])->name('shop.page');
+    Route::get('/productpage', [UserController::class, 'productpage'])->name('product.page');
 
 });
 

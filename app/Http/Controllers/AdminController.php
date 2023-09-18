@@ -37,8 +37,33 @@ class AdminController extends Controller
         $doanhthuyear = Order::where('status', 'done')->whereYear('updated_at', now()->year)->sum('totalprice');
         $doanhthumonth = Order::where('status', 'done')->whereYear('updated_at', now()->month)->sum('totalprice');
 
+        $dauvaoByMonth = Order::selectRaw('MONTH(created_at) as month, SUM(totalprice) as total_cost')
+            ->where('status', 'done')
+            ->whereYear('created_at', now()->year)
+            ->groupBy('month')
+            ->get();
+        $dauvaoTotal = array_fill(1, 12, 0);
+        foreach ($dauvaoByMonth as $item) {
+            $month = $item->month;
+            $totalCost = $item->total_cost;
+            $dauvaoTotal[$month] = $totalCost;
+        }
+    
+        $dauvaoTotal = json_encode(array_values($dauvaoTotal));
 
-        return view('admin/page/Homepage', compact('admin','cproduct','ccategory','cuser','doanhthuyear','doanhthumonth'));
+        $currentYear = now()->year;
+
+        $category = Category::pluck('namecategory')->toArray();
+        $categoryvalue = "'" . implode("','", $category) . "'";
+
+        $products = Product::orderBy('idcategory', 'asc')->get();
+        $productCounts = $products->groupBy('idcategory')->map(function ($products) {
+            return $products->count();
+        });
+        $array = json_decode($productCounts, true);
+        $result = '[' . implode(',', $array) . ']';
+
+        return view('admin/page/Homepage', compact('admin','cproduct','ccategory','cuser','doanhthuyear','doanhthumonth','dauvaoTotal','result','categoryvalue','currentYear'));
     }
 
     public function loginadmin(Request $request){

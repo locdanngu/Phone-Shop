@@ -34,7 +34,11 @@ class AdminController extends Controller
         $cproduct = Product::count();
         $cuser = User::count();
         $ccategory = Category::count(); 
-        return view('admin/page/Homepage', compact('admin','cproduct','ccategory','cuser'));
+        $doanhthuyear = Order::where('status', 'done')->whereYear('updated_at', now()->year)->sum('totalprice');
+        $doanhthumonth = Order::where('status', 'done')->whereYear('updated_at', now()->month)->sum('totalprice');
+
+
+        return view('admin/page/Homepage', compact('admin','cproduct','ccategory','cuser','doanhthuyear','doanhthumonth'));
     }
 
     public function loginadmin(Request $request){

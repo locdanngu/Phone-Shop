@@ -89,8 +89,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header justify-content-between d-flex">
-                        <h3 class="card-title">Doanh thu năm: $</h3>
-                        <h3 class="card-title">Doanh thu tháng: $</h3>
+                        <h3 class="card-title">Doanh thu năm: {{ $doanhthuyear }} $</h3>
+                        <h3 class="card-title">Doanh thu tháng: {{ $doanhthumonth }} $</h3>
                     </div>
 
 

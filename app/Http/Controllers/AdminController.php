@@ -121,7 +121,7 @@ class AdminController extends Controller
     public function listproductpage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $limit = $request->limit ?? 5;
+        $limit = $request->limit ?? 4;
         $product = new Product();
         $searchproduct = $request['searchproduct'];
         if ($searchproduct) {
@@ -216,7 +216,7 @@ class AdminController extends Controller
     public function listcategorypage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $limit = $request->limit ?? 5;
+        $limit = $request->limit ?? 4;
         $category = new Category();
         $searchcategory = $request['searchcategory'];
         if ($searchcategory) {

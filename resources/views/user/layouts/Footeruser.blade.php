@@ -81,3 +81,9 @@
         </div>
     </div>
 </div> <!-- End footer bottom area -->
+
+<div class="move-on-top">
+    <div class="move-on-top__container">
+        <i class="bi bi-arrow-up move-on-top-btn" style="cursor: pointer;"></i>
+    </div>
+</div>

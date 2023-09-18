@@ -4,14 +4,15 @@
             <div class="col-md-8">
                 <div class="user-menu">
                     <ul>
+                        @if($user)
                         <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                         <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                        <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                        <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-                        @if(!$user)
-                        <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
-                        @else
+                        <li><a href="{{ route('cart.page') }}"><i class="fa fa-user"></i> My Cart</a></li>
+                        <li><a href="{{ route('checkout.page') }}"><i class="fa fa-user"></i> Checkout</a></li>
                         <li><a href="#"><i class="fa fa-user"></i> Logout</a></li>
+                        @else
+                        <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                        <li><a href="#"><i class="fa fa-plus"></i> Register</a></li>
                         @endif
                     </ul>
                 </div>
@@ -58,13 +59,15 @@
                     <h1><a href="./"><img src="/image/example/logo.png"></a></h1>
                 </div>
             </div>
-
+            @if($user)
             <div class="col-sm-6">
                 <div class="shopping-item">
-                    <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i>
+                    <a href="{{ route('cart.page') }}">Cart - <span class="cart-amunt">$100</span> <i
+                            class="fa fa-shopping-cart"></i>
                         <span class="product-count">5</span></a>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div> <!-- End site branding area -->
@@ -82,14 +85,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href="{{ route('home.page') }}">Home</a></li>
                     <li><a href="{{ route('shop.page') }}">Shop page</a></li>
                     <!-- <li><a href="{{ route('product.page') }}">Single product</a></li> -->
+                    @if($user)
                     <li><a href="{{ route('cart.page') }}">Cart</a></li>
                     <li><a href="{{ route('checkout.page') }}">Checkout</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Contact</a></li>
+                    @endif
                     <li><a href="#">Category</a></li>
-                    <!-- <li><a href="#">Others</a></li>
-                    <li><a href="#">Contact</a></li> -->
                 </ul>
             </div>
         </div>

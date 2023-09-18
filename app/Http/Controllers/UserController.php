@@ -27,7 +27,7 @@ class UserController extends Controller
         $recently = Product::orderBy('updated_at', 'desc')->take(3)->get();
         $randomproduct = Product::inRandomOrder()->take(4)->get();
 
-        return view('user/page/Homepage', compact('user','listcategory','lastproduct'));
+        return view('user/page/Homepage', compact('user','listcategory','lastproduct','topseller','recently','randomproduct'));
 
     }
 }

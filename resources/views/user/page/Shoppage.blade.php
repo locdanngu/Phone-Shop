@@ -43,7 +43,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="product-pagination text-center">
+                <!-- <div class="product-pagination text-center">
                     <nav>
                         <ul class="pagination">
                             <li>
@@ -63,6 +63,9 @@
                             </li>
                         </ul>
                     </nav>
+                </div> -->
+                <div class="product-pagination text-center">
+                    {{ $product->links('user.layouts.Pagination') }}
                 </div>
             </div>
         </div>

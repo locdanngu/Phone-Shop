@@ -19,7 +19,7 @@
 
     @include('user.layouts.Footeruser')
 
-    @include('admin.layouts.Linkscript')
+    @include('user.layouts.Linkscript')
     @yield('popup')
     @yield('js')
 

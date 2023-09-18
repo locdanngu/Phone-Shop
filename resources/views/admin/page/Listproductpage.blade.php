@@ -51,6 +51,7 @@
                                         <th class="text-center">Giá mới($)</th>
                                         <th class="text-center">Giá mới(VND)</th>
                                         <th>Mô tả sản phẩm</th>
+                                        <th>Đã bán</th>
                                         <th class="text-center">Danh mục</th>
                                         <th></th>
                                     </tr>
@@ -70,6 +71,7 @@
                                         <td>{!! mb_substr(strip_tags($row->detail), 0, 30) !!}...</td>
                                         @else
                                         <td>{{ $row->detail }}</td>
+                                        <td>{{ $row->sold }}</td>
                                         @endif
                                         <td class="font-weight-bold text-center"><a
                                                 href="{{ route('searchcategory', ['searchcategory' => $row->category->namecategory]) }}">{{ $row->category->namecategory }}</a>

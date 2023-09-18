@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="logo">
-                    <h1><a href="./"><img src="img/logo.png"></a></h1>
+                    <h1><a href="./"><img src="/image/example/logo.png"></a></h1>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
     <div class="block-slider block-slider4">
         <ul class="" id="bxslider-home4">
             <li>
-                <img src="img/h4-slide.png" alt="Slide">
+                <img src="/image/example/h4-slide.png" alt="Slide">
                 <div class="caption-group">
                     <h2 class="caption title">
                         iPhone <span class="primary">6 <strong>Plus</strong></span>
@@ -63,7 +63,7 @@
                     <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
                 </div>
             </li>
-            <li><img src="img/h4-slide2.png" alt="Slide">
+            <li><img src="/image/example/h4-slide2.png" alt="Slide">
                 <div class="caption-group">
                     <h2 class="caption title">
                         by one, get one <span class="primary">50% <strong>off</strong></span>
@@ -72,7 +72,7 @@
                     <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
                 </div>
             </li>
-            <li><img src="img/h4-slide3.png" alt="Slide">
+            <li><img src="/image/example/h4-slide3.png" alt="Slide">
                 <div class="caption-group">
                     <h2 class="caption title">
                         Apple <span class="primary">Store <strong>Ipod</strong></span>
@@ -81,7 +81,7 @@
                     <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
                 </div>
             </li>
-            <li><img src="img/h4-slide4.png" alt="Slide">
+            <li><img src="/image/example/h4-slide4.png" alt="Slide">
                 <div class="caption-group">
                     <h2 class="caption title">
                         Apple <span class="primary">Store <strong>Ipod</strong></span>
@@ -137,7 +137,7 @@
                     <div class="product-carousel">
                         <div class="single-product">
                             <div class="product-f-image">
-                                <img src="img/product-1.jpg" alt="">
+                                <img src="/image/example/product-1.jpg" alt="">
                                 <div class="product-hover">
                                     <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
                                         cart</a>
@@ -154,7 +154,7 @@
                         </div>
                         <div class="single-product">
                             <div class="product-f-image">
-                                <img src="img/product-2.jpg" alt="">
+                                <img src="/image/example/product-2.jpg" alt="">
                                 <div class="product-hover">
                                     <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
                                         cart</a>
@@ -170,7 +170,7 @@
                         </div>
                         <div class="single-product">
                             <div class="product-f-image">
-                                <img src="img/product-3.jpg" alt="">
+                                <img src="/image/example/product-3.jpg" alt="">
                                 <div class="product-hover">
                                     <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
                                         cart</a>
@@ -187,7 +187,7 @@
                         </div>
                         <div class="single-product">
                             <div class="product-f-image">
-                                <img src="img/product-4.jpg" alt="">
+                                <img src="/image/example/product-4.jpg" alt="">
                                 <div class="product-hover">
                                     <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
                                         cart</a>
@@ -204,7 +204,7 @@
                         </div>
                         <div class="single-product">
                             <div class="product-f-image">
-                                <img src="img/product-5.jpg" alt="">
+                                <img src="/image/example/product-5.jpg" alt="">
                                 <div class="product-hover">
                                     <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
                                         cart</a>
@@ -221,7 +221,7 @@
                         </div>
                         <div class="single-product">
                             <div class="product-f-image">
-                                <img src="img/product-6.jpg" alt="">
+                                <img src="/image/example/product-6.jpg" alt="">
                                 <div class="product-hover">
                                     <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
                                         cart</a>
@@ -250,14 +250,14 @@
             <div class="col-md-12">
                 <div class="brand-wrapper">
                     <div class="brand-list">
-                        <img src="img/brand1.png" alt="">
-                        <img src="img/brand2.png" alt="">
-                        <img src="img/brand3.png" alt="">
-                        <img src="img/brand4.png" alt="">
-                        <img src="img/brand5.png" alt="">
-                        <img src="img/brand6.png" alt="">
-                        <img src="img/brand1.png" alt="">
-                        <img src="img/brand2.png" alt="">
+                        <img src="/image/example/brand1.png" alt="">
+                        <img src="/image/example/brand2.png" alt="">
+                        <img src="/image/example/brand3.png" alt="">
+                        <img src="/image/example/brand4.png" alt="">
+                        <img src="/image/example/brand5.png" alt="">
+                        <img src="/image/example/brand6.png" alt="">
+                        <img src="/image/example/brand1.png" alt="">
+                        <img src="/image/example/brand2.png" alt="">
                     </div>
                 </div>
             </div>
@@ -274,7 +274,7 @@
                     <h2 class="product-wid-title">Top Sellers</h2>
                     <a href="" class="wid-view-more">View All</a>
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-1.jpg" alt=""
+                        <a href="single-product.html"><img src="/image/example/product-thumb-1.jpg" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                         <div class="product-wid-rating">
@@ -289,7 +289,7 @@
                         </div>
                     </div>
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-2.jpg" alt=""
+                        <a href="single-product.html"><img src="/image/example/product-thumb-2.jpg" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">Apple new mac book 2015</a></h2>
                         <div class="product-wid-rating">
@@ -304,7 +304,7 @@
                         </div>
                     </div>
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-3.jpg" alt=""
+                        <a href="single-product.html"><img src="/image/example/product-thumb-3.jpg" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">Apple new i phone 6</a></h2>
                         <div class="product-wid-rating">
@@ -325,7 +325,7 @@
                     <h2 class="product-wid-title">Recently Viewed</h2>
                     <a href="#" class="wid-view-more">View All</a>
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-4.jpg" alt=""
+                        <a href="single-product.html"><img src="/image/example/product-thumb-4.jpg" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
                         <div class="product-wid-rating">
@@ -340,7 +340,7 @@
                         </div>
                     </div>
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-1.jpg" alt=""
+                        <a href="single-product.html"><img src="/image/example/product-thumb-1.jpg" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">Sony Smart Air Condtion</a></h2>
                         <div class="product-wid-rating">
@@ -355,7 +355,7 @@
                         </div>
                     </div>
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-2.jpg" alt=""
+                        <a href="single-product.html"><img src="/image/example/product-thumb-2.jpg" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
                         <div class="product-wid-rating">
@@ -376,7 +376,7 @@
                     <h2 class="product-wid-title">Top New</h2>
                     <a href="#" class="wid-view-more">View All</a>
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-3.jpg" alt=""
+                        <a href="single-product.html"><img src="/image/example/product-thumb-3.jpg" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">Apple new i phone 6</a></h2>
                         <div class="product-wid-rating">
@@ -391,7 +391,7 @@
                         </div>
                     </div>
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-4.jpg" alt=""
+                        <a href="single-product.html"><img src="/image/example/product-thumb-4.jpg" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
                         <div class="product-wid-rating">
@@ -406,7 +406,7 @@
                         </div>
                     </div>
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-1.jpg" alt=""
+                        <a href="single-product.html"><img src="/image/example/product-thumb-1.jpg" alt=""
                                 class="product-thumb"></a>
                         <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
                         <div class="product-wid-rating">

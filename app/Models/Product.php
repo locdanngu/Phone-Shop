@@ -17,6 +17,7 @@ class Product extends Model
         'imageproduct',
         'timedelete',
         'idcategory',
+        'sold',
     ];
 
     // Các quan hệ nếu có

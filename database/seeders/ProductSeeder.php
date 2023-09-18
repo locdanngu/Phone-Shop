@@ -17,6 +17,7 @@ class ProductSeeder extends Seeder
             'imageproduct' => '/image/product/iPhone-14-256GB.png',
             'timedelete' => null,
             'idcategory' => 1,
+            'sold' => 0,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -29,6 +30,7 @@ class ProductSeeder extends Seeder
             'imageproduct' => '/image/product/Samsung-Galaxy-S4-Mini.png',
             'timedelete' => null,
             'idcategory' => 2,
+            'sold' => 0,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

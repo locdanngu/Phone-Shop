@@ -65,7 +65,8 @@
                 <h4 class="modal-title">Login</h4>
             </div>
             <div style="display:flex;justify-content:center; margin-top:2em">
-                <h2>u<h2 style="color: #5a88ca">Stora</h2></h2>
+                <h2>u<h2 style="color: #5a88ca">Stora</h2>
+                </h2>
             </div>
             <div class="modal-body">
                 <div class="content__inputs">
@@ -79,11 +80,67 @@
                     </label>
                 </div>
                 <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
-                    <h5 style="margin:0">Don't have an account? <a href="#">Register here</a></h5>
+                    <h5 style="margin:0">Don't have an account? <a href="#" type="button" data-toggle="modal"
+                            data-target="#modal-register">Register here</a></h5>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" style="width: 100%;">Đăng nhập</button>
+                <button type="submit" style="width: 100%;">Login</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-register">
+    <div class="modal-dialog">
+        <form action="{{ route('registeruser') }}" method="post" class="modal-content content__form">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title">Register</h4>
+            </div>
+            <div style="display:flex;justify-content:center; margin-top:2em">
+                <h2>u<h2 style="color: #5a88ca">Stora</h2>
+                </h2>
+            </div>
+            <div class="modal-body">
+                <div class="content__inputs">
+                    <label>
+                        <input required type="text" name="username" autocomplete="off">
+                        <span>Username</span>
+                    </label>
+                    <label>
+                        <input required type="password" name="password" autocomplete="off">
+                        <span>Password</span>
+                    </label>
+                    <div style="display: flex; justify-content:space-between">
+                        <label>
+                            <input required type="password" name="firstname" autocomplete="off">
+                            <span>First name</span>
+                        </label>
+                        <label>
+                            <input required type="password" name="lastname" autocomplete="off">
+                            <span>Last name</span>
+                        </label>
+                    </div>
+
+                    <label>
+                        <input required type="email" name="email" autocomplete="off">
+                        <span>Email</span>
+                    </label>
+                    <label>
+                        <input required type="text" name="name" autocomplete="off">
+                        <span>Phone</span>
+                    </label>
+                </div>
+                <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
+                    <h5 style="margin:0">Already have an account? <a href="#" type="button" data-toggle="modal"
+                            data-target="#modal-login">Login here</a></h5>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" style="width: 100%;">Register</button>
             </div>
         </form>
         <!-- /.modal-content -->

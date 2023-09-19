@@ -123,7 +123,13 @@ class UserController extends Controller
             // Không tìm thấy người dùng với thông tin đăng nhập
             return redirect()->back()->withErrors(['login' => 'Không tìm thấy người dùng với thông tin đăng nhập đã nhập!!!']);
         }
+    }
 
-        
+
+
+    public function logoutuser(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('home.page');
     }
 }

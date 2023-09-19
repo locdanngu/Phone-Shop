@@ -30,6 +30,11 @@
     <script>
     $(document).ready(function() {
         $('.move-on-top-btn').hide();
+
+        $('a[data-toggle="modal"]').on('click', function() {
+            // Đóng tất cả các modal hiện tại
+            $('.modal').modal('hide');
+        });
     });
 
     $(window).scroll(function() {

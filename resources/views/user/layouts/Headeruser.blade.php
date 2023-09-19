@@ -85,16 +85,21 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ route('home.page') }}">Home</a></li>
-                    <li><a href="{{ route('shop.page') }}">Shop page</a></li>
+                    <li class="{{ request()->routeIs('home.page') ? 'active' : '' }}"><a
+                            href="{{ route('home.page') }}">Home</a></li>
+                    <li class="{{ request()->routeIs('shop.page','shop.search') ? 'active' : '' }}"><a
+                            href="{{ route('shop.page') }}">Shop page</a></li>
                     <!-- <li><a href="{{ route('product.page') }}">Single product</a></li> -->
                     @if($user)
-                    <li><a href="{{ route('cart.page') }}">Cart</a></li>
-                    <li><a href="{{ route('checkout.page') }}">Checkout</a></li>
+                    <li class="{{ request()->routeIs('cart.page') ? 'active' : '' }}"><a
+                            href="{{ route('cart.page') }}">Cart</a></li>
+                    <li class="{{ request()->routeIs('checkout.page') ? 'active' : '' }}"><a
+                            href="{{ route('checkout.page') }}">Checkout</a></li>
                     <li><a href="#">Wishlist</a></li>
                     <li><a href="#">Contact</a></li>
                     @endif
                     <li><a href="#">Category</a></li>
+                    <li><a href="#">Type</a></li>
                 </ul>
             </div>
         </div>

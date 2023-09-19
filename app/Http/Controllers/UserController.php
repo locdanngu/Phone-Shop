@@ -37,10 +37,16 @@ class UserController extends Controller
         $user = Auth::user();
         $limit = $request->limit ?? 12;
         $product = new Product();
+
+        $searchproduct = $request['searchproduct'];
+        if ($searchproduct) {
+            $product = $product->where('nameproduct', 'like', '%' . $searchproduct . '%');
+        }
+        $countproduct = $product->count();
+
         $product = $product->paginate($limit);
 
-
-        return view('user/page/Shoppage', compact('user','product'));
+        return view('user/page/Shoppage', compact('user','product','countproduct','searchproduct'));
 
     }
 

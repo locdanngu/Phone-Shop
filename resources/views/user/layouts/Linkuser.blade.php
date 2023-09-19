@@ -4,13 +4,13 @@
 <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
 <!-- Bootstrap -->
-<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="{{ asset('bootstrap/bootstrap.min.css') }}">
 
 <!-- Font Awesome -->
-<link rel="stylesheet" href="bootstrap/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('bootstrap/font-awesome.min.css') }}">
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="bootstrap/owl.carousel.css">
-<link rel="stylesheet" href="stylesheets/User.css">
-<link rel="stylesheet" href="bootstrap/responsive.css">
+<link rel="stylesheet" href="{{ asset('bootstrap/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset('stylesheets/User.css') }}">
+<link rel="stylesheet" href="{{ asset('bootstrap/responsive.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">

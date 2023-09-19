@@ -11,11 +11,14 @@
             <div class="col-md-12">
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Search Products</h2>
-                    <form action="" method="get">
-                        @csrf
-                        <input type="text" placeholder="Search products...">
+                    <form action="{{ route('shop.search') }}" method="get">
+                        <input type="text" placeholder="Search products..." value="{{ request('searchproduct') }}"
+                            name="searchproduct">
                         <input type="submit" value="Search">
                     </form>
+                    @if(request('searchproduct'))
+                    <h3 style="margin-top:1em"><span class="font-weight-bold" style="color:red">{{ $countproduct }}</span> valid product</h3>
+                    @endif
                 </div>
             </div>
             @foreach($product as $pr)

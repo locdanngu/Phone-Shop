@@ -12,6 +12,7 @@ class TypeSeeder extends Seeder
         DB::table('type')->insert([
             'idtype' => 1,
             'nametype' => 'Điện thoại',
+            'product_count' => 0,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

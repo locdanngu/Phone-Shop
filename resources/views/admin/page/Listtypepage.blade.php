@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng : {{ $counttype }} danh mục</h3>
+                        <h3 class="card-title">Tổng cộng : {{ $counttype }} loại</h3>
                         <div class="card-tools" style="width: 45%;">
                             <form action="{{ route('searchtype') }}" method="get"
                                 class="input-group input-group-sm">
@@ -46,7 +46,7 @@
                             <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Tên danh mục</th>
+                                        <th>Tên loại</th>
                                         <th class="text-center">Số sản phẩm</th>
                                         <th></th>
                                     </tr>

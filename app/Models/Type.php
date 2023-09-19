@@ -11,6 +11,7 @@ class Type extends Model
     protected $primaryKey = 'idtype'; // Tên trường khóa chính
     protected $fillable = [
         'nametype',
+        'product_count',
     ];
 
 }

@@ -38,7 +38,7 @@
             </div>
             <div class="modal-body">
                 <form action="{{ route('shop.search') }}" method="get" style="display: flex;">
-                    <select style="width: 100%;padding-left:1em" name="searchproduct">
+                    <select style="width: 100%" name="searchproduct">
                         @foreach($type as $ty)
                         <option value="{{ $ty->nametype }}">{{ $loop->iteration }}.
                             {{ $ty->nametype }}</option>

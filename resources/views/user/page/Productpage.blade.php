@@ -28,8 +28,7 @@
                         <a href="{{ route('home.page') }}">Home</a>
                         <a
                             href="{{ route('shop.search', ['searchproduct' => $product->category->namecategory]) }}">{{ $product->category->namecategory }}</a>
-                        <a
-                            href="{{ route('shop.search', ['searchproduct' => $product->nameproduct]) }}">{{ $product->nameproduct }}</a>
+                        <span>{{ $product->nameproduct }}</span>
                     </div>
 
                     <div class="row">

@@ -56,3 +56,37 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade" id="modal-login">
+    <div class="modal-dialog">
+        <form action="" method="post" class="modal-content content__form">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <div style="display:flex;justify-content:center; margin-top:2em">
+                <h2>u<h2 style="color: #5a88ca">Stora</h2></h2>
+            </div>
+            <div class="modal-body">
+                <div class="content__inputs">
+                    <label>
+                        <input required type="text" name="username" autocomplete="off">
+                        <span>Username, Email or Phone</span>
+                    </label>
+                    <label>
+                        <input required type="password" name="password" autocomplete="off">
+                        <span>Password</span>
+                    </label>
+                </div>
+                <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
+                    <h5 style="margin:0">Don't have an account? <a href="#">Register here</a></h5>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="width: 100%;">Đăng nhập</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

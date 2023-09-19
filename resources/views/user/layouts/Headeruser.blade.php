@@ -11,7 +11,8 @@
                         <li><a href="{{ route('checkout.page') }}"><i class="fa fa-user"></i> Checkout</a></li>
                         <li><a href="#"><i class="fa fa-user"></i> Logout</a></li>
                         @else
-                        <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                        <li><a href="#" type="button" data-toggle="modal" data-target="#modal-login"><i
+                                    class="fa fa-user"></i> Login</a></li>
                         <li><a href="#"><i class="fa fa-plus"></i> Register</a></li>
                         @endif
                     </ul>
@@ -102,8 +103,8 @@
                         <a href="#" class="dropbtn" type="button" data-toggle="modal"
                             data-target="#modal-category">Category</a>
                     </li>
-                    <li><a href="#" class="dropbtn" type="button" data-toggle="modal"
-                            data-target="#modal-type">Type</a></li>
+                    <li><a href="#" class="dropbtn" type="button" data-toggle="modal" data-target="#modal-type">Type</a>
+                    </li>
                 </ul>
             </div>
         </div>

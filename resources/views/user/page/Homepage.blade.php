@@ -16,7 +16,9 @@
                         <span class="primary"><strong>{{ $rd->nameproduct }}</strong></span>
                     </h2>
                     <h4 class="caption subtitle">${{ $rd->price }}</h4>
-                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                    <a class="caption button-radius"
+                        href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}"><span
+                            class="icon"></span>Shop now</a>
                 </div>
             </li>
             @endforeach
@@ -70,7 +72,8 @@
                             <div class="product-f-image">
                                 <img src="{{ $lp->imageproduct }}" alt="">
                                 <div class="product-hover" style="height: 270px;">
-                                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
+                                    <a href="#" class="add-to-cart-link them-sp-vao-gio"
+                                        data-idproduct="{{ $lp->idproduct }}"><i class="fa fa-shopping-cart"></i> Add to
                                         cart</a>
                                     <a href="{{ route('product.page', ['nameproduct' => $lp->nameproduct]) }}"
                                         class="view-details-link"><i class="fa fa-link"></i>
@@ -119,9 +122,11 @@
                     <a href="" class="wid-view-more">View All</a>
                     @foreach($topseller as $top)
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="{{ $top->imageproduct }}" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">{{ $top->nameproduct }}</a></h2>
+                        <a href="{{ route('product.page', ['nameproduct' => $top->nameproduct]) }}"><img
+                                src="{{ $top->imageproduct }}" alt="" class="product-thumb"></a>
+                        <h2><a
+                                href="{{ route('product.page', ['nameproduct' => $top->nameproduct]) }}">{{ $top->nameproduct }}</a>
+                        </h2>
                         <div class="product-wid-rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -142,9 +147,11 @@
                     <a href="#" class="wid-view-more">View All</a>
                     @foreach($recently as $rc)
                     <div class="single-wid-product">
-                        <a href="single-product.html"><img src="{{ $rc->imageproduct }}" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">{{ $rc->nameproduct }}</a></h2>
+                        <a href="{{ route('product.page', ['nameproduct' => $rc->nameproduct]) }}"><img
+                                src="{{ $rc->imageproduct }}" alt="" class="product-thumb"></a>
+                        <h2><a
+                                href="{{ route('product.page', ['nameproduct' => $rc->nameproduct]) }}">{{ $rc->nameproduct }}</a>
+                        </h2>
                         <div class="product-wid-rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -165,9 +172,11 @@
                     <a href="#" class="wid-view-more">View All</a>
                     @foreach($recently as $rc)
                     @if($loop->index < 3) <div class="single-wid-product">
-                        <a href="single-product.html"><img src="{{ $rc->imageproduct }}" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">{{ $rc->nameproduct }}</a></h2>
+                        <a href="{{ route('product.page', ['nameproduct' => $rc->nameproduct]) }}"><img
+                                src="{{ $rc->imageproduct }}" alt="" class="product-thumb"></a>
+                        <h2><a
+                                href="{{ route('product.page', ['nameproduct' => $rc->nameproduct]) }}">{{ $rc->nameproduct }}</a>
+                        </h2>
                         <div class="product-wid-rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>

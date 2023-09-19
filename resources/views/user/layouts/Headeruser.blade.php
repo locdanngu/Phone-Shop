@@ -98,8 +98,11 @@
                     <li><a href="#">Wishlist</a></li>
                     <li><a href="#">Contact</a></li>
                     @endif
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Type</a></li>
+                    <li>
+                        <a href="#" class="dropbtn" type="button" data-toggle="modal"
+                            data-target="#modal-category">Category</a>
+                    </li>
+                    <li><a href="#" class="dropbtn">Type</a></li>
                 </ul>
             </div>
         </div>

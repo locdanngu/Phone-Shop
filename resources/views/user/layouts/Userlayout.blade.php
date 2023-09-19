@@ -21,6 +21,9 @@
 
     @include('user.layouts.Linkscript')
     @yield('popup')
+
+    @include('user.layouts.Modalpopup')
+
     @yield('js')
 
 

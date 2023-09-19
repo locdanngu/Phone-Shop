@@ -3,6 +3,9 @@
 namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use App\Models\Order; // Import model Friend
+use App\Models\Category; // Import model Friend
+use App\Models\Type; // Import model Friend
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -42,6 +45,24 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 'countorder' => $countorder,
                 'countorder2' => $countorder2,
+
+            ]);
+            
+        });
+
+        View::composer(['user/page/Cartpage', 
+                        'user/page/Homepage', 
+                        'user/page/Checkoutpage', 
+                        'user/page/Productpage', 
+                        'user/page/Shoppage',], function ($view) {
+                            
+                            
+            $category = Category::all();
+            $type = Type::all();
+
+            $view->with([
+                'category' => $category,
+                'type' => $type,
 
             ]);
             

@@ -40,11 +40,18 @@ class UserController extends Controller
 
         $searchproduct = $request['searchproduct'];
         if ($searchproduct) {
-            $product = $product->where('nameproduct', 'like', '%' . $searchproduct . '%');
+            $product = $product->where('nameproduct', 'like', '%' . $searchproduct . '%')
+                    ->orWhereHas('category', function($query) use ($searchproduct) {
+                        $query->where('namecategory', 'like', '%' . $searchproduct . '%');
+                    })
+                    ->orWhereHas('type', function($query) use ($searchproduct) {
+                        $query->where('nametype', 'like', '%' . $searchproduct . '%');
+                    })
+                    ->orderBy('idproduct', 'desc');
         }
         $countproduct = $product->count();
 
-        $product = $product->paginate($limit);
+        $product = $product->orderBy('idproduct', 'desc')->paginate($limit);
 
         return view('user/page/Shoppage', compact('user','product','countproduct','searchproduct'));
 
@@ -81,4 +88,3 @@ class UserController extends Controller
         return view('user/page/Checkoutpage', compact('user','list','recent','random'));
     }
 }
-

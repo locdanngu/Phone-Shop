@@ -1167,3 +1167,23 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
     flex-direction: column;
     align-items: center;
 }
+
+.fixgrid{
+    grid-template-columns: repeat(5, 1fr); /* Ba cột bằng nhau */
+    gap: 3em;
+    display: grid;
+}
+
+.ptgrid{
+    text-align: center;
+    display: grid;
+    
+}
+
+.ptgrid img{
+    align-self: end;
+}
+
+.ptgrid span{
+    align-self: end;
+}

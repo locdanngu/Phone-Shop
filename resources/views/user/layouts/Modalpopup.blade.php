@@ -110,10 +110,17 @@
                         <input required type="text" name="username" autocomplete="off">
                         <span>Username</span>
                     </label>
+                    <h5 class="h5" id="username">Username already exists</h5>
                     <label>
                         <input required type="password" name="password" autocomplete="off">
                         <span>Password</span>
                     </label>
+                    <h5 class="h5" id="password">Password must be more than 6 and less than 18 characters</h5>
+                    <label>
+                        <input required type="password" name="repassword" autocomplete="off">
+                        <span>Re-enter password</span>
+                    </label>
+                    <h5 class="h5" id="repassword">The re-entered password does not match</h5>
                     <div style="display: flex; justify-content:space-between">
                         <label>
                             <input required type="password" name="firstname" autocomplete="off">
@@ -124,15 +131,16 @@
                             <span>Last name</span>
                         </label>
                     </div>
-
                     <label>
                         <input required type="email" name="email" autocomplete="off">
                         <span>Email</span>
                     </label>
+                    <h5 class="h5" id="email">Email already exists</h5>
                     <label>
                         <input required type="text" name="name" autocomplete="off">
                         <span>Phone</span>
                     </label>
+                    <h5 class="h5" id="phone">Phone already exists</h5>
                 </div>
                 <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
                     <h5 style="margin:0">Already have an account? <a href="#" type="button" data-toggle="modal"

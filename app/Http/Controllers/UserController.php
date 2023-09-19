@@ -95,13 +95,6 @@ class UserController extends Controller
         
         // Lấy thông tin đăng nhập từ đầu vào
         $credentials = $request->only('username', 'password');
-        
-        // if (Auth::attempt($credentials)) {
-        //     // Người dùng admin đã được xác thực
-        //     return redirect()->back();
-        // } else {
-        //     return redirect()->back()->withErrors(['adminname' => 'Sai tên đăng nhập hoặc mật khẩu!!!']);
-        // }
 
         $user = User::where('username', $credentials['username'])
             ->orWhere('email', $credentials['username'])
@@ -125,7 +118,30 @@ class UserController extends Controller
         }
     }
 
-
+    public function registeruser(Request $request)
+    {
+        // $input = $request->all();
+        // $user = User::where('email', $input['email'])->first();
+        // if ($request->password !== $request->repassword) {
+        //     return redirect()->back()->withInput()->withErrors(['password' => 'Mật khẩu nhập lại không khớp']);
+        // }else if($user){
+        //     return redirect()->back()->withInput()->withErrors(['email' => 'Email tài khoản đã tồn tại']);
+        // }else{
+        //     $user = User::create([
+        //         'email' => $input['email'],
+        //         'phone' => $input['phone'],
+        //         'name' => $input['name'],
+        //         'password' => Hash::make($input['password']),
+        //         'avatar' => '/images/avataradmin.png',
+        //     ]);
+        //     // // Đăng nhập người dùng mới đăng ký
+        //     Auth::login($user);
+        //     // Chuyển hướng sang trang Userpage, truyền thông tin người dùng qua biến user
+        //     return redirect()->route('adminlogin.page');
+        //     // return view('/Codesms', ['input' => $input, 'random_number' => $random_number]);
+        // }
+        return redirect()->route('home.page');
+    }
 
     public function logoutuser(Request $request)
     {

@@ -134,15 +134,18 @@
                         </label>
                     </div>
                     <label>
-                        <input required type="email" name="email" autocomplete="off" id="checkemail">
+                        <input required type="text" name="email" autocomplete="off" id="checkemail">
                         <span>Email</span>
                     </label>
-                    <h6 class="h6 noti" id="email">Email already exists</h6>
+                    <h6 class="h6 noti" id="email1">Email already exists</h6>
+                    <h6 class="h6 noti" id="email2">Email can be used</h6>
+                    <h6 class="h6 noti" id="email3">Please enter the correct email format</h6>
                     <label>
                         <input required type="text" name="name" autocomplete="off" id="checkphone">
                         <span>Phone</span>
                     </label>
-                    <h6 class="h6 noti" id="phone">Phone already exists</h6>
+                    <h6 class="h6 noti" id="phone1">Phone already exists</h6>
+                    <h6 class="h6 noti" id="phone2">Phone can be used</h6>
                 </div>
                 <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
                     <h5 style="margin:0">Already have an account? <a href="#" type="button" data-toggle="modal"

@@ -120,16 +120,34 @@ class UserController extends Controller
 
     public function checkusername(Request $request)
     {
-        $user = User::where('username',$request['username'])->first();
-        if($user == null){
-            return response()->json([
-                're' => 1,
-            ]);
-        }else{
-            return response()->json([
-                're' => 0,
-            ]);
+        if($request['username']){
+            $user = User::where('username',$request['username'])->first();
+            if($user == null){
+                $re = 1;
+            }else{
+                $re = 0;
+            }
         }
+        if($request['email']){
+            $user = User::where('email',$request['email'])->first();
+            if($user == null){
+                $re = 1;
+            }else{
+                $re = 0;
+            }
+        }
+        if($request['phone']){
+            $user = User::where('phone',$request['phone'])->first();
+            if($user == null){
+                $re = 1;
+            }else{
+                $re = 0;
+            }
+        }
+
+        return response()->json([
+            're' => $re,
+        ]);
     }
 
 

@@ -52,14 +52,16 @@
                                     <ins>${{ $product->price }}</ins> <del>${{ $product->oldprice }}</del>
                                 </div>
 
-                                <form action="" class="cart">
+                                <div class="cart">
                                     <div class="quantity">
                                         <input type="number" class="input-text qty text" title="Qty" value="1"
                                             name="quantity" min="1" step="1">
                                     </div>
                                     <button class="add_to_cart_button" type="submit">Add to cart</button>
-                                </form>
+                                   
+                                </div>
 
+                                <button class="add_to_cart_button" style="margin:.5em 0" type="submit">Add to wishlist</button>
                                 <div class="product-inner-category">
                                     <p>Category: <a href="">{{ $product->category->namecategory }}</a>. Tags: <a
                                             href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a

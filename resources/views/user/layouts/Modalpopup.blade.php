@@ -147,3 +147,25 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+
+<div class="modal fade" id="modal-logout">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Logout?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 style="color:red" class="font-weight-bold">You sure want to quit?</h3>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <a href="{{ route('logoutuser') }}" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

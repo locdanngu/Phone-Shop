@@ -9,7 +9,8 @@
                         <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                         <li><a href="{{ route('cart.page') }}"><i class="fa fa-user"></i> My Cart</a></li>
                         <!-- <li><a href="{{ route('checkout.page') }}"><i class="fa fa-user"></i> Checkout</a></li> -->
-                        <li><a href="{{ route('logoutuser') }}"><i class="fa fa-user"></i> Logout</a></li>
+                        <li><a href="#" type="button" data-toggle="modal" data-target="#modal-logout"><i
+                                    class="fa fa-user"></i> Logout</a></li>
                         @else
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-login"><i
                                     class="fa fa-user"></i> Login</a></li>

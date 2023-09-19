@@ -1187,3 +1187,27 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 .ptgrid span{
     align-self: end;
 }
+
+
+.gridlist{
+    grid-template-columns: repeat(4, 1fr); /* Ba cột bằng nhau */
+    gap: 1em;
+    display: grid;
+}
+
+
+@media screen and (max-width: 767px) {
+    .gridlist{
+        grid-template-columns: repeat(1, 1fr); /* Ba cột bằng nhau */
+        gap: 1em;
+        display: grid;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .gridlist{
+        grid-template-columns: repeat(3, 1fr); /* Ba cột bằng nhau */
+        gap: 1em;
+        display: grid;
+    }
+}

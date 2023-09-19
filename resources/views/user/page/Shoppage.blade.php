@@ -7,7 +7,7 @@
 <div class="single-product-area">
     <!-- <div class="zigzag-bottom"></div> -->
     <div class="container">
-        <div class="row">
+        <div class="row" style="display: flex; flex-direction: column;">
             <div class="col-md-12">
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Search Products</h2>
@@ -17,30 +17,34 @@
                         <input type="submit" value="Search">
                     </form>
                     @if(request('searchproduct'))
-                    <h3 style="margin-top:1em"><span class="font-weight-bold" style="color:red">{{ $countproduct }}</span> valid product</h3>
+                    <h3 style="margin-top:1em"><span class="font-weight-bold"
+                            style="color:red">{{ $countproduct }}</span> valid product</h3>
                     @endif
                 </div>
             </div>
-            @foreach($product as $pr)
-            <div class="col-md-3 col-sm-6">
-                <div class="single-shop-product">
-                    <div class="product-upper">
-                        <img src="{{ $pr->imageproduct }}" alt="">
-                    </div>
-                    <h2><a
-                            href="{{ route('product.page', ['nameproduct' => $pr->nameproduct]) }}">{{ $pr->nameproduct }}</a>
-                    </h2>
-                    <div class="product-carousel-price">
-                        <ins>${{ $pr->price }}</ins> <del>${{ $pr->oldprice }}</del>
-                    </div>
+            <div class="gridlist">
+                @foreach($product as $pr)
+                <div class="listproduct">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="{{ $pr->imageproduct }}" alt="">
+                        </div>
+                        <h2 class="text-center"><a
+                                href="{{ route('product.page', ['nameproduct' => $pr->nameproduct]) }}">{{ $pr->nameproduct }}</a>
+                        </h2>
+                        <div class="product-carousel-price">
+                            <ins>${{ $pr->price }}</ins> <del>${{ $pr->oldprice }}</del>
+                        </div>
 
-                    <div class="product-option-shop">
-                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70"
-                            rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70"
+                                rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
+
         </div>
 
         <div class="row">

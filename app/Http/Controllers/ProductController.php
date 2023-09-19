@@ -30,14 +30,18 @@ class ProductController extends Controller
                 ->orWhereHas('category', function($query) use ($searchproduct) {
                     $query->where('namecategory', 'like', '%' . $searchproduct . '%');
                 })
+                ->orWhereHas('type', function($query) use ($searchproduct) {
+                    $query->where('nametype', 'like', '%' . $searchproduct . '%');
+                })
                 ->orderBy('idproduct', 'desc');
         }
         $countproduct = $product->count();
 
         $product = $product->orderBy('idproduct', 'desc')->paginate($limit);
         $category = Category::all();
+        $type = Type::all();
 
-        return view('admin/page/Listproductpage', compact('admin','product','searchproduct','category','countproduct'));
+        return view('admin/page/Listproductpage', compact('admin','product','searchproduct','category','countproduct','type'));
     }
 
     public function addproduct(Request $request)
@@ -50,6 +54,7 @@ class ProductController extends Controller
         $product->price = $request['price'];
         $product->detail = $request['detail'];
         $product->idcategory = $request['idcategory'];
+        $product->idtype = $request['idtype'];
         $product->sold = 0;
 
         if ($request->hasFile('image')) {
@@ -87,6 +92,16 @@ class ProductController extends Controller
         $category2->save();
 
         $product->idcategory = $request['idcategory'];
+
+        $type = Type::where('idtype', $product->idtype)->first();
+        $type->product_count =  $type->product_count - 1;
+        
+        $type->save();
+        $type2 = Type::where('idtype', $request['idtype'])->first();
+        $type2->product_count =  $type2->product_count + 1;
+        $type2->save();
+
+        $product->idtype = $request['idtype'];
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

@@ -51,6 +51,7 @@
                                         <th class="text-center">Giá mới($)</th>
                                         <th>Mô tả sản phẩm</th>
                                         <th>Đã bán</th>
+                                        <th class="text-center">Loại</th>
                                         <th class="text-center">Danh mục</th>
                                         <th></th>
                                     </tr>
@@ -71,6 +72,9 @@
                                         @endif
                                         <td>{{ $row->sold }}</td>
                                         <td class="font-weight-bold text-center"><a
+                                                href="{{ route('searchtype', ['searchtype' => $row->type->nametype]) }}">{{ $row->type->nametype }}</a>
+                                        </td>
+                                        <td class="font-weight-bold text-center"><a
                                                 href="{{ route('searchcategory', ['searchcategory' => $row->category->namecategory]) }}">{{ $row->category->namecategory }}</a>
                                         </td>
                                         <td>
@@ -78,7 +82,7 @@
                                                 data-target="#modal-change" data-id="{{ $row->idproduct }}"
                                                 data-name="{{ $row->nameproduct }}" data-old="{{ $row->oldprice }}"
                                                 data-new="{{ $row->price }}" data-detail="{{ $row->detail }}"
-                                                data-cate="{{ $row->idcategory }}"
+                                                data-type="{{ $row->idtype }}" data-cate="{{ $row->idcategory }}"
                                                 data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-pencil"></i>
                                                 Sửa
@@ -87,7 +91,7 @@
                                                 data-target="#modal-delete" data-id="{{ $row->idproduct }}"
                                                 data-id2="{{ $row->idcategory }}" data-name="{{ $row->nameproduct }}"
                                                 data-old="{{ $row->oldprice }}" data-new="{{ $row->price }}"
-                                                data-detail="{{ $row->detail }}"
+                                                data-detail="{{ $row->detail }}" data-type="{{ $row->idtype }}"
                                                 data-cate="{{ $row->category->namecategory }}"
                                                 data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-trash"></i> Xóa
@@ -184,6 +188,16 @@
                     </select>
                 </div>
                 <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Loại
+                        hàng</span>
+                    <select style="width: 100%;padding-left:1em;height:2.5em" name="idtype">
+                        @foreach($type as $ty)
+                        <option value="{{ $ty->idtype }}" style="height:2.5em">{{ $loop->iteration }}.
+                            {{ $ty->nametype }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Ảnh sản phẩm</span>
                     <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
                         onchange="previewImage(event)" name="image" required>
@@ -273,6 +287,15 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Loại hàng</span>
+                    <select style="width: 100%;padding-left:1em;height:2.5em" name="idtype">
+                        @foreach($type as $ty)
+                        <option value="{{ $ty->idtype }}" style="height:2.5em">{{ $loop->iteration }}.
+                            {{ $ty->nametype }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="w-100 d-flex">
                     <div class="w-100 mb-3 d-flex flex-column align-items-center">
                         <span class="input-group-text" id="inputGroup-sizing-default" style="width:100% !important">Ảnh
@@ -332,6 +355,10 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Danh mục</span>
                     <span name="namecategory" class="spanpopup font-weight-bold"></span>
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Loại hàng</span>
+                    <span name="nametype" class="spanpopup font-weight-bold"></span>
+                </div>
                 <div class="input-group mb-3 d-flex align-items-center">
                     <span class="input-group-text" id="inputGroup-sizing-default">Ảnh sản phẩm</span>
                     <img src="" alt="" style="height:100px;margin-left:1em" class="imageblog2">
@@ -380,6 +407,7 @@ $(document).ready(function() {
         var oldprice = button.data('old');
         var price = button.data('new');
         var detail = button.data('detail');
+        var type = button.data('type');
         var category = button.data('cate');
         var image = button.data('image');
         var modal = $(this);
@@ -387,11 +415,12 @@ $(document).ready(function() {
         modal.find('input[name="idproduct"]').val(id);
         modal.find('input[name="oldprice"]').val(oldprice);
         modal.find('input[name="price"]').val(price);
-        modal.find('input[name="oldprice2"]').val(oldprice*23000);
-        modal.find('input[name="price2"]').val(price*23000);
+        modal.find('input[name="oldprice2"]').val(oldprice * 23000);
+        modal.find('input[name="price2"]').val(price * 23000);
         modal.find('textarea[name="detail"]').val(detail);
         // modal.find('input[name="namecategory"]').val(category);
         modal.find('select[name="idcategory"] option[value="' + category + '"]').prop('selected', true);
+        modal.find('select[name="idtype"] option[value="' + type + '"]').prop('selected', true);
         modal.find('img.imageblog1').attr('src', image);
     });
 
@@ -403,6 +432,7 @@ $(document).ready(function() {
         var oldprice = button.data('old');
         var price = button.data('new');
         var detail = button.data('detail');
+        var type = button.data('type');
         var category = button.data('cate');
         var image = button.data('image');
         var modal = $(this);
@@ -413,6 +443,7 @@ $(document).ready(function() {
         modal.find('span[name="price"]').text(price);
         modal.find('span[name="detail"]').text(detail);
         modal.find('span[name="namecategory"]').text(category);
+        modal.find('span[name="nametype"]').text(type);
         modal.find('img.imageblog2').attr('src', image);
     });
 

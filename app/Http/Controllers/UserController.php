@@ -76,8 +76,10 @@ class UserController extends Controller
         $list = Product::inRandomOrder()->take(4)->get();
         $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
         $random = Product::inRandomOrder()->take(2)->get();
+        $idcart = Cart::where('iduser', $user->iduser)->first();
+        $cart = Cart_product::where('idcart', $idcart->idcart)->orderBy('created_at', 'asc')->get();
 
-        return view('user/page/Cartpage', compact('user','list','recent','random'));
+        return view('user/page/Cartpage', compact('user','list','recent','random','cart'));
     }
 
     public function checkoutpage(Request $request)

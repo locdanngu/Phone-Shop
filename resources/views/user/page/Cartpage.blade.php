@@ -40,38 +40,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($cart as $c)
                                     <tr class="cart_item">
                                         <td class="product-remove">
                                             <a title="Remove this item" class="remove" href="#">×</a>
                                         </td>
 
                                         <td class="product-thumbnail">
-                                            <a href="single-product.html"><img width="145" height="145"
-                                                    alt="poster_1_up" class="shop_thumbnail"
-                                                    src="img/product-thumb-2.jpg"></a>
+                                            <a
+                                                href="{{ route('product.page', ['nameproduct' => $c->product->nameproduct]) }}"><img
+                                                    width="145" height="145" alt="poster_1_up" class="shop_thumbnail"
+                                                    src="{{ $c->product->imageproduct }}"></a>
                                         </td>
 
                                         <td class="product-name">
-                                            <a href="single-product.html">Ship Your Idea</a>
+                                            <a
+                                                href="{{ route('product.page', ['nameproduct' => $c->product->nameproduct]) }}">{{ $c->product->nameproduct }}</a>
                                         </td>
 
                                         <td class="product-price">
-                                            <span class="amount">£15.00</span>
+                                            <span class="amount">${{ $c->product->price }}</span>
                                         </td>
 
-                                        <td class="product-quantity">
+                                        <td class="product-quantity" style="padding:0 5px">
                                             <div class="quantity buttons_added">
                                                 <input type="button" class="minus" value="-">
                                                 <input type="number" size="4" class="input-text qty text" title="Qty"
-                                                    value="1" min="0" step="1">
+                                                    value="{{ $c->quantity }}" min="0" step="1">
                                                 <input type="button" class="plus" value="+">
                                             </div>
                                         </td>
 
                                         <td class="product-subtotal">
-                                            <span class="amount">£15.00</span>
+                                            <span class="amount">${{ $c->quantity * $c->product->price }}</span>
                                         </td>
                                     </tr>
+
+                                    @endforeach
                                     <tr>
                                         <td class="actions" colspan="6">
                                             <div class="coupon">
@@ -81,7 +86,7 @@
                                                 <input type="submit" value="Apply Coupon" name="apply_coupon"
                                                     class="button">
                                             </div>
-                                            <input type="submit" value="Update Cart" name="update_cart" class="button">
+                                            <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
                                             <input type="submit" value="Checkout" name="proceed"
                                                 class="checkout-button button alt wc-forward">
                                         </td>

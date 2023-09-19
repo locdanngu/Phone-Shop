@@ -29,15 +29,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#"
+                    <a href="{{ route('listproduct.page') }}"
                         class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
                         <i class="nav-icon bi-box-seam-fill"></i>
                         <p>
                             Quản lý sản phẩm
-                            <i class="bi bi-arrow-left right"></i>
+                            <!-- <i class="bi bi-arrow-left right"></i> -->
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    <!-- <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('listproduct.page') }}"
                                 class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
@@ -45,18 +45,18 @@
                                 <p>Danh sách sản phẩm</p>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </li>
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{ route('listcategory.page') }}"
                         class="nav-link {{ request()->routeIs('listcategory.page', 'searchcategory') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-ui-checks-grid"></i>
                         <p>
                             Quản lý danh mục
-                            <i class="bi bi-arrow-left right"></i>
+                            <!-- <i class="bi bi-arrow-left right"></i> -->
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    <!-- <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('listcategory.page') }}"
                                 class="nav-link {{ request()->routeIs('listcategory.page', 'searchcategory') ? 'active' : '' }}">
@@ -64,7 +64,16 @@
                                 <p>Danh sách danh mục</p>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('listtype.page') }}"
+                        class="nav-link {{ request()->routeIs('listtype.page', 'searchtype') ? 'active' : '' }}">
+                        <i class="nav-icon bi-list-task"></i>
+                        <p>
+                            Quản lý loại hàng
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="#"

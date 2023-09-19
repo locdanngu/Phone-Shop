@@ -1,6 +1,6 @@
 @extends('admin.layouts.Adminlayout')
 
-@section('title', 'Danh sách danh mục')
+@section('title', 'Danh sách loại hàng')
 <!-- Content Wrapper. Contains page content -->
 @section('body')
 <div class="content-wrapper">
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Quản lý danh mục</h1>
+                    <h1 class="m-0">Quản lý loại hàng</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-center mb-3">
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#modal-add"><i
-                        class="bi bi-plus-circle-fill"></i> Thêm 1 danh mục mới</button>
+                        class="bi bi-plus-circle-fill"></i> Thêm 1 loại mới</button>
             </div>
         </div>
     </div>
@@ -30,12 +30,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tổng cộng : {{ $countcategory }} danh mục</h3>
+                        <h3 class="card-title">Tổng cộng : {{ $counttype }} danh mục</h3>
                         <div class="card-tools" style="width: 45%;">
-                            <form action="{{ route('searchcategory') }}" method="get"
+                            <form action="{{ route('searchtype') }}" method="get"
                                 class="input-group input-group-sm">
-                                <input type="text" name="searchcategory" class="form-control float-right"
-                                    placeholder="Tìm kiếm" value="{{ request('searchcategory')}}">
+                                <input type="text" name="searchtype" class="form-control float-right"
+                                    placeholder="Tìm kiếm" value="{{ request('searchtype')}}">
                                 <button class="btn-success" type="submit">Tìm</button>
                             </form>
                         </div>
@@ -47,43 +47,36 @@
                                 <thead>
                                     <tr>
                                         <th>Tên danh mục</th>
-                                        <th class="text-center">Logo danh mục</th>
                                         <th class="text-center">Số sản phẩm</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($category as $row)
+                                    @foreach($type as $row)
                                     <tr>
-                                        <td class="font-weight-bold" style="color:red">{{ $row->namecategory }}</td>
-                                        <td class="text-center"><img src="{{ $row->imagecategory }}" alt="" height="50">
+                                        <td class="font-weight-bold" style="color:red">{{ $row->nametype }}</td>
                                         </td>
                                         <td class="text-center font-weight-bold"><a
-                                                href="{{ route('searchproduct', ['searchproduct' => $row->namecategory]) }}">{{ $row->product_count }}</a>
+                                                href="{{ route('searchproduct', ['searchproduct' => $row->nametype]) }}">{{ $row->product_count }}</a>
                                         </td>
                                         <td>
                                             <button class="btn btn-success btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-change" data-id="{{ $row->idcategory }}"
-                                                data-name="{{ $row->namecategory }}"
-                                                data-image="{{ $row->imagecategory }}"
-                                                data-count="{{ $row->product_count }}">
+                                                data-target="#modal-change" data-id="{{ $row->idtype }}"
+                                                data-name="{{ $row->nametype }}">
                                                 <i class="bi bi-pencil"></i>
                                                 Sửa
                                             </button>
                                             @if($row->product_count== 0)
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-delete" data-id="{{ $row->idcategory }}"
-                                                data-name="{{ $row->namecategory }}"
-                                                data-image="{{ $row->imagecategory }}"
+                                                data-target="#modal-delete" data-id="{{ $row->idtype }}"
+                                                data-name="{{ $row->nametype }}"
                                                 data-count="{{ $row->product_count }}">
                                                 <i class="bi bi-trash"></i> Xóa
                                             </button>
                                             @else
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-delete-cant" data-id="{{ $row->idcategory }}"
-                                                data-name="{{ $row->namecategory }}"
-                                                data-image="{{ $row->imagecategory }}"
-                                                data-count="{{ $row->product_count }}">
+                                                data-target="#modal-delete-cant" data-id="{{ $row->idtype }}"
+                                                data-name="{{ $row->nametype }}" data-count="{{ $row->product_count }}">
                                                 <i class="bi bi-trash"></i> Xóa
                                             </button>
                                             @endif
@@ -93,7 +86,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination">
-                                {{ $category->links() }}
+                                {{ $type->links() }}
                             </div>
                         </div>
                     </div>
@@ -113,7 +106,7 @@
 <!-- Modal trả lời đơn tư vấn -->
 <div class="modal fade" id="modal-add">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.add') }}" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('type.add') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Tạo danh mục</h4>
@@ -125,7 +118,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="namecategory">
+                        aria-describedby="inputGroup-sizing-default" required name="nametype">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Logo</span>
@@ -147,7 +140,7 @@
 
 <div class="modal fade" id="modal-change">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.change') }}" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('type.change') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Chỉnh sửa danh mục</h4>
@@ -155,12 +148,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input type="hidden" name="idcategory">
+            <input type="hidden" name="idtype">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="namecategory">
+                        aria-describedby="inputGroup-sizing-default" required name="nametype">
                 </div>
                 <div class="w-100 d-flex">
                     <div class="w-100 mb-3 d-flex flex-column align-items-center">
@@ -190,7 +183,7 @@
 
 <div class="modal fade" id="modal-delete">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.delete') }}" method="post">
+        <form class="modal-content" action="{{ route('type.delete') }}" method="post">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Xóa 1 danh mục</h4>
@@ -198,11 +191,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input type="hidden" name="idcategory">
+            <input type="hidden" name="idtype">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <span name="namecategory" class="spanpopup"></span>
+                    <span name="nametype" class="spanpopup"></span>
                 </div>
                 <div class="input-group mb-3 d-flex align-items-center">
                     <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
@@ -221,7 +214,7 @@
 
 <div class="modal fade" id="modal-delete-cant">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.delete') }}" method="post">
+        <form class="modal-content" action="{{ route('type.delete') }}" method="post">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Xóa 1 danh mục</h4>
@@ -229,11 +222,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input type="hidden" name="idcategory">
+            <input type="hidden" name="idtype">
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Tên danh mục</span>
-                    <span name="namecategory" class="spanpopup"></span>
+                    <span name="nametype" class="spanpopup"></span>
                 </div>
                 <div class="input-group mb-3 d-flex align-items-center">
                     <span class="input-group-text" id="inputGroup-sizing-default">Ảnh nền</span>
@@ -281,8 +274,8 @@ $(document).ready(function() {
         var name = button.data('name');
         var image = button.data('image');
         var modal = $(this);
-        modal.find('input[name="namecategory"]').val(name);
-        modal.find('input[name="idcategory"]').val(id);
+        modal.find('input[name="nametype"]').val(name);
+        modal.find('input[name="idtype"]').val(id);
         modal.find('img.imageblog1').attr('src', image);
     });
 
@@ -292,8 +285,8 @@ $(document).ready(function() {
         var name = button.data('name');
         var image = button.data('image');
         var modal = $(this);
-        modal.find('span[name="namecategory"]').text(name);
-        modal.find('input[name="idcategory"]').val(id);
+        modal.find('span[name="nametype"]').text(name);
+        modal.find('input[name="idtype"]').val(id);
         modal.find('img.imageblog2').attr('src', image);
     });
 
@@ -303,8 +296,8 @@ $(document).ready(function() {
         var name = button.data('name');
         var image = button.data('image');
         var modal = $(this);
-        modal.find('span[name="namecategory"]').text(name);
-        modal.find('input[name="idcategory"]').val(id);
+        modal.find('span[name="nametype"]').text(name);
+        modal.find('input[name="idtype"]').val(id);
         modal.find('img.imageblog2').attr('src', image);
     });
 });

@@ -17,7 +17,7 @@ use Mail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class TypeController extends Controller
 {
     public function listtypepage(Request $request)
     {

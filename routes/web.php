@@ -80,7 +80,6 @@ Route::prefix('/admin')->group(function () {
         Route::get('/listexpiredcouponpage', [CouponController::class, 'listexpiredcouponpage'])->name('listexpiredcoupon.page');
         Route::get('/listexpiredcouponpage/search', [CouponController::class, 'listexpiredcouponpage'])->name('searchcouponexpired');
 
-
         //Order (chờ xác nhận)
         Route::get('/listorderpage', [OrderController::class, 'listorderpage'])->name('listorder.page');
         Route::get('/listorderpage/search', [OrderController::class, 'listorderpage'])->name('order.search');

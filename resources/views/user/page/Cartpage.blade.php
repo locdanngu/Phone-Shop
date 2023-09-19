@@ -97,7 +97,7 @@
                                 <ul class="products">
                                     @foreach($random as $rd)
                                     <li class="product">
-                                        <a href="single-product.html">
+                                        <a href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}">
                                             <img style="height: 250px;" alt="T_4_front"
                                                 class="attachment-shop_catalog wp-post-image"
                                                 src="{{ $rd->imageproduct }}">
@@ -105,8 +105,7 @@
                                             <span class="price"><span class="amount">${{ $rd->price }}</span></span>
                                         </a>
 
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku=""
-                                            data-product_id="22" rel="nofollow"
+                                        <a class="add_to_cart_button" rel="nofollow"
                                             href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}">Select
                                             options</a>
                                     </li>

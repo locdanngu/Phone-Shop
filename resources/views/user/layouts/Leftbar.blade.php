@@ -1,8 +1,9 @@
 <div class="col-md-4">
     <div class="single-sidebar">
         <h2 class="sidebar-title">Search Products</h2>
-        <form action="">
-            <input type="text" placeholder="Search products...">
+        <form action="{{ route('shop.search') }}" method="get">
+            <input type="text" placeholder="Search products..." value="{{ request('searchproduct') }}"
+                name="searchproduct">
             <input type="submit" value="Search">
         </form>
     </div>

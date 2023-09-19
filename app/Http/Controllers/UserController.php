@@ -191,10 +191,9 @@ class UserController extends Controller
         $checkproduct = Cart_product::where('idproduct', $request['id'])->where('idcart', $cart->idcart)->first();
         if($checkproduct){
             $checkproduct->quantity = $checkproduct->quantity + $request['quantity'];
+            $checkproduct->totalprice = $checkproduct->quantity * $in4product->price;
             $checkproduct->save();
-            return response()->json([
-                're' => 1,
-            ]);
+            $re = 1;
         }else{
             $product = new Cart_product();
             $product->idcart = $cart->idcart;
@@ -202,10 +201,26 @@ class UserController extends Controller
             $product->quantity = $request['quantity'];
             $product->totalprice = $request['quantity'] * $in4product->price;
             $product->save();
-            return response()->json([
-                're' => 0,
-            ]);
+            $re = 0;
         }
+
+        if($user){
+            $cart = Cart::where('iduser', $user->iduser)->first();
+            if($cart){
+                $ccart_product = Cart_product::where('idcart', $cart->idcart)->count();
+                $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
+            }else{
+                $ccart_product = 0;
+                $scart_product = 0;
+            }
+        }
+
+        $html = '<a href="' . route('cart.page') . '">Cart - <span class="cart-amunt">$' . $scart_product . '</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
+
+        return response()->json([
+            're' => $re,
+            'html' => $html,
+        ]);
     }
 
     public function addcart(Request $request)
@@ -222,10 +237,9 @@ class UserController extends Controller
         $checkproduct = Cart_product::where('idproduct', $request['id'])->where('idcart', $cart->idcart)->first();
         if($checkproduct){
             $checkproduct->quantity = $checkproduct->quantity + 1;
+            $checkproduct->totalprice = $checkproduct->quantity * $in4product->price;
             $checkproduct->save();
-            return response()->json([
-                're' => 1,
-            ]);
+            $re = 1;
         }else{
             $product = new Cart_product();
             $product->idcart = $cart->idcart;
@@ -233,10 +247,27 @@ class UserController extends Controller
             $product->quantity = 1;
             $product->totalprice = $in4product->price;
             $product->save();
-            return response()->json([
-                're' => 0,
-            ]);
+            $re = 0;
         }
+
+        if($user){
+            $cart = Cart::where('iduser', $user->iduser)->first();
+            if($cart){
+                $ccart_product = Cart_product::where('idcart', $cart->idcart)->count();
+                $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
+            }else{
+                $ccart_product = 0;
+                $scart_product = 0;
+            }
+        }
+
+        $html = '<a href="' . route('cart.page') . '">Cart - <span class="cart-amunt">$' . $scart_product . '</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
+
+        return response()->json([
+            're' => $re,
+            'html' => $html,
+        ]);
+
     }
 
 }

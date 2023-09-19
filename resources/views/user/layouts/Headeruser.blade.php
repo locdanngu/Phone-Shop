@@ -64,7 +64,7 @@
             </div>
             @if($user)
             <div class="col-sm-6">
-                <div class="shopping-item">
+                <div class="shopping-item" id="capnhatcart">
                     <a href="{{ route('cart.page') }}">Cart - <span class="cart-amunt">${{ $scart_product }}</span> <i
                             class="fa fa-shopping-cart"></i>
                         <span class="product-count">{{ $ccart_product }}</span></a>

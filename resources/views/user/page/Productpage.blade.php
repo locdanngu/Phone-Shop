@@ -173,6 +173,8 @@ $('#btn-add-to-cart').on('click', function() {
         },
         success: function(response) {
             var re = response.re;
+            var html = response.html;
+
             if (re == 1) {
                 toastr.success(
                     '<b>The product already exists, the quantity has been updated</b>'
@@ -183,6 +185,7 @@ $('#btn-add-to-cart').on('click', function() {
                 )
             }
 
+            $("#capnhatcart").html(html);
         }
     });
 });

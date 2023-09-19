@@ -806,9 +806,9 @@ a {
     color: #5a88ca
 }
 
-a:hover, a:focus {
+/* a:hover, a:focus {
     color: #17a78b
-}
+} */
 
 .footer-bottom-area {
     background: none repeat scroll 0 0 #000;

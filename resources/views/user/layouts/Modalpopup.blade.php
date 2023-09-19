@@ -107,20 +107,22 @@
             <div class="modal-body">
                 <div class="content__inputs">
                     <label>
-                        <input required type="text" name="username" autocomplete="off">
+                        <input required type="text" name="username" autocomplete="off" id="checkuser">
                         <span>Username</span>
                     </label>
-                    <h5 class="h5" id="username">Username already exists</h5>
+                    <h6 class="h6 noti" id="username1">Username already exists</h6>
+                    <h6 class="h6 noti" id="username2">Username must be more than 5 and less than 18 characters</h6>
+                    <h6 class="h6 noti" id="username3">Username can be used</h6>
                     <label>
-                        <input required type="password" name="password" autocomplete="off">
+                        <input required type="password" name="password" autocomplete="off" id="checkpassword">
                         <span>Password</span>
                     </label>
-                    <h5 class="h5" id="password">Password must be more than 6 and less than 18 characters</h5>
+                    <h6 class="h6 noti" id="password">Password must be more than 6 and less than 18 characters</h6>
                     <label>
-                        <input required type="password" name="repassword" autocomplete="off">
+                        <input required type="password" name="repassword" autocomplete="off" id="checkrepassword">
                         <span>Re-enter password</span>
                     </label>
-                    <h5 class="h5" id="repassword">The re-entered password does not match</h5>
+                    <h6 class="h6 noti" id="repassword">The re-entered password does not match</h6>
                     <div style="display: flex; justify-content:space-between">
                         <label>
                             <input required type="password" name="firstname" autocomplete="off">
@@ -132,15 +134,15 @@
                         </label>
                     </div>
                     <label>
-                        <input required type="email" name="email" autocomplete="off">
+                        <input required type="email" name="email" autocomplete="off" id="checkemail">
                         <span>Email</span>
                     </label>
-                    <h5 class="h5" id="email">Email already exists</h5>
+                    <h6 class="h6 noti" id="email">Email already exists</h6>
                     <label>
-                        <input required type="text" name="name" autocomplete="off">
+                        <input required type="text" name="name" autocomplete="off" id="checkphone">
                         <span>Phone</span>
                     </label>
-                    <h5 class="h5" id="phone">Phone already exists</h5>
+                    <h6 class="h6 noti" id="phone">Phone already exists</h6>
                 </div>
                 <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
                     <h5 style="margin:0">Already have an account? <a href="#" type="button" data-toggle="modal"

@@ -118,6 +118,21 @@ class UserController extends Controller
         }
     }
 
+    public function checkusername(Request $request)
+    {
+        $user = User::where('username',$request['username'])->first();
+        if($user == null){
+            return response()->json([
+                're' => 1,
+            ]);
+        }else{
+            return response()->json([
+                're' => 0,
+            ]);
+        }
+    }
+
+
     public function registeruser(Request $request)
     {
         // $input = $request->all();

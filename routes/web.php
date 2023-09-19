@@ -27,6 +27,7 @@ Route::prefix('/')->group(function () {
     Route::post('/loginuser', [UserController::class, 'loginuser'])->name('loginuser');
     Route::post('/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
     Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
+    Route::post('/checkuser', [UserController::class, 'checkusername'])->name('checkuser');
 
 });
 

@@ -1319,9 +1319,9 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
   }
 
 
-  .h5{
+  .h6{
     color: red;
-    margin: .5em 0;
+    margin: 2px 0;
     font-weight: bold;
   }
 

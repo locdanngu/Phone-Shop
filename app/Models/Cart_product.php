@@ -13,6 +13,7 @@ class Cart_product extends Model
         'idcart',
         'idproduct',
         'quantity',
+        'totalprice',
     ];
 
     // Các quan hệ nếu có

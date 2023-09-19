@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Order; // Import model Friend
 use App\Models\Category; // Import model Friend
 use App\Models\Type; // Import model Friend
+use App\Models\Cart; // Import model Friend
+use App\Models\Cart_product; // Import model Friend
 
 use Illuminate\Support\ServiceProvider;
 
@@ -55,6 +58,18 @@ class AppServiceProvider extends ServiceProvider
                         'user/page/Checkoutpage', 
                         'user/page/Productpage', 
                         'user/page/Shoppage',], function ($view) {
+
+            $user = Auth::user();
+            if($user){
+                $cart = Cart::where('iduser', $user->iduser)->first();
+                if($cart){
+                    $ccart_product = Cart_product::where('idcart', $cart->idcart)->count();
+                    $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
+                }else{
+                    $ccart_product = 0;
+                    $scart_product = 0;
+                }
+            }
                             
                             
             $category = Category::orderBy('namecategory', 'asc')->get();
@@ -63,7 +78,8 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 'category' => $category,
                 'type' => $type,
-
+                'ccart_product' => $ccart_product,
+                'scart_product' => $scart_product,
             ]);
             
         });

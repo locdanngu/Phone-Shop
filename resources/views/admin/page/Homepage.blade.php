@@ -118,7 +118,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Revenue Overview({{$currentYear }})
+                        <h6 class="m-0 font-weight-bold text-primary">Thu nhập năm nay({{$currentYear }})
                         </h6>
 
                     </div>
@@ -136,7 +136,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Categories({{$cproduct}})</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Tất cả sản phẩm({{$cproduct}})</h6>
 
                     </div>
                     <!-- Card Body -->
@@ -239,7 +239,7 @@ new Chart(ctx, {
             'Dec'
         ],
         datasets: [{
-            label: 'Revenue of Year',
+            label: 'Đầu vào của năm nay',
             data: <?php echo $dauvaoTotal; ?>,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.8)',
@@ -294,7 +294,7 @@ new Chart(ctx2, {
             <?php echo $categoryvalue; ?>
         ],
         datasets: [{
-            label: 'Number Product of Categories',
+            label: 'Số sản phẩm danh mục',
             data: <?php echo $result; ?>,
             backgroundColor: [
                 'rgb(255, 99, 132)',

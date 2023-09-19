@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Type;
+use App\Models\Cart;
+use App\Models\Cart_product;
 use App\Models\Coupon;
 use App\Models\Spend;
 use App\Models\Product_coupon;
@@ -174,5 +176,39 @@ class UserController extends Controller
         return redirect()->route('home.page');
     }
 
-    
+
+    public function addcartwithquantity(Request $request)
+    {
+        $user = Auth::user();
+        $cart = Cart::where('iduser', $user->iduser)->first();
+        $in4product = Product::where('idproduct', $request['id'])->first();
+        if(!$cart){
+            $cart = new Cart();
+            $cart->iduser = $user->iduser;
+            $cart->save();
+        }
+
+        $checkproduct = Cart_product::where('idproduct', $request['id'])->where('idcart', $cart->idcart)->first();
+        if($checkproduct){
+            $checkproduct->quantity = $checkproduct->quantity + $request['quantity'];
+            $checkproduct->save();
+            return response()->json([
+                're' => 1,
+            ]);
+        }else{
+            $product = new Cart_product();
+            $product->idcart = $cart->idcart;
+            $product->idproduct = $request['id'];
+            $product->quantity = $request['quantity'];
+            $product->totalprice = $request['quantity'] * $in4product->price;
+            $product->save();
+            return response()->json([
+                're' => 0,
+            ]);
+        }
+        
+
+        
+    }
+
 }

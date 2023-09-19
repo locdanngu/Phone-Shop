@@ -25,9 +25,11 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="product-breadcroumb">
-                        <a href="">Home</a>
-                        <a href="">{{ $product->category->namecategory }}</a>
-                        <a href="">{{ $product->nameproduct }}</a>
+                        <a href="{{ route('home.page') }}">Home</a>
+                        <a
+                            href="{{ route('shop.search', ['searchproduct' => $product->category->namecategory]) }}">{{ $product->category->namecategory }}</a>
+                        <a
+                            href="{{ route('shop.search', ['searchproduct' => $product->nameproduct]) }}">{{ $product->nameproduct }}</a>
                     </div>
 
                     <div class="row">
@@ -57,14 +59,17 @@
                                         <input type="number" class="input-text qty text" title="Qty" value="1"
                                             name="quantity" min="1" step="1">
                                     </div>
-                                    <button class="add_to_cart_button" type="submit">Add to cart</button>
-                                   
+                                    <button class="add_to_cart_button" id="btn-add-to-cart"
+                                        data-idproduct="{{ $product->idproduct }}">Add to cart</button>
+
                                 </div>
 
-                                <button class="add_to_cart_button" style="margin:.5em 0" type="submit">Add to wishlist</button>
+                                <button class="add_to_cart_button" style="margin:.5em 0"
+                                    data-idproduct="{{ $product->idproduct }}">Add to wishlist</button>
                                 <div class="product-inner-category">
-                                    <p>Category: <a href="">{{ $product->category->namecategory }}</a>. Tags: <a
-                                            href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a
+                                    <p>Category: <a
+                                            href="{{ route('shop.search', ['searchproduct' => $product->category->namecategory]) }}">{{ $product->category->namecategory }}</a>.
+                                        Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a
                                             href="">shoes</a>. </p>
                                 </div>
 
@@ -146,5 +151,39 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+
+@section('js')
+<script>
+$('#btn-add-to-cart').on('click', function() {
+    var id = $(this).data('idproduct');
+    var quantity = $('input[name="quantity"]').val();
+
+    $.ajax({
+        type: 'POST',
+        url: "{{ route('addcartwithquantity') }}",
+        data: {
+            _token: '{{ csrf_token() }}',
+            id: id,
+            quantity: quantity,
+        },
+        success: function(response) {
+            var re = response.re;
+            if (re == 1) {
+                toastr.success(
+                    '<b>The product already exists, the quantity has been updated</b>'
+                )
+            } else {
+                toastr.success(
+                    '<b>Product added to cart</b>'
+                )
+            }
+
+        }
+    });
+});
+</script>
 
 @endsection

@@ -26,6 +26,7 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
+                        @if($ccart_product != 0)
                         <form method="post" action="#">
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
@@ -89,9 +90,8 @@
                             </table>
                         </form>
 
+
                         <div class="cart-collaterals">
-
-
                             <div class="cross-sells">
                                 <h2>You may be interested in...</h2>
                                 <ul class="products">
@@ -413,6 +413,13 @@
 
 
                         </div>
+                        @else
+                        <div class="box">
+                            <h2>Your cart is empty! <a href="{{ route('shop.page') }}">Go to shop now</a></h2>
+                            <i class="bi bi-emoji-frown-fill"></i>
+                        </div>
+
+                        @endif
                     </div>
                 </div>
             </div>

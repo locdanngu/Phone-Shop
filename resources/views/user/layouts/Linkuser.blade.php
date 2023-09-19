@@ -14,3 +14,4 @@
 <link rel="stylesheet" href="{{ asset('stylesheets/User.css') }}">
 <link rel="stylesheet" href="{{ asset('bootstrap/responsive.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">

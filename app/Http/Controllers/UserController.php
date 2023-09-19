@@ -161,6 +161,7 @@ class UserController extends Controller
             'lastname' => $input['lastname'],
             'username' => $input['username'],
             'password' => Hash::make($input['password']),
+            'status' => 'ok',
         ]);
         Auth::login($user);
 

@@ -11,10 +11,10 @@ $(document).ready(function() {
 
     $('#checkuser').on('input', function() {
         var username = $(this).val();
-
+        $('#username2').hide();
         // Kiểm tra xem tên người dùng có ít nhất 6 ký tự
         if (username.length >= 5 && username.length <= 18) {
-            $('#username2').hide();
+            
             $.ajax({
                 type: 'POST',
                 url: "{{ route('checkuser') }}",

@@ -110,26 +110,30 @@
                         <input required type="text" name="username" autocomplete="off" id="checkuser">
                         <span>Username</span>
                     </label>
-                    <h6 class="h6 noti" id="username1">Username already exists</h6>
-                    <h6 class="h6 noti" id="username2">Username must be more than 5 and less than 18 characters</h6>
-                    <h6 class="h6 noti" id="username3">Username can be used</h6>
+                    <h6 class="h6 noti" id="username1"><i class="bi bi-exclamation-circle-fill"></i> Username already
+                        exists</h6>
+                    <h6 class="h6 noti" id="username2"><i class="bi bi-exclamation-circle-fill"></i> Username must be
+                        more than 5 and less than 18 characters</h6>
+                    <h6 class="h6 noti" id="username3"><i class="bi bi-check-circle-fill"></i> Username can be used</h6>
                     <label>
                         <input required type="password" name="password" autocomplete="off" id="checkpassword">
                         <span>Password</span>
                     </label>
-                    <h6 class="h6 noti" id="password">Password must be more than 6 and less than 18 characters</h6>
+                    <h6 class="h6 noti" id="password"><i class="bi bi-exclamation-circle-fill"></i> Password must be
+                        more than 6 and less than 18 characters</h6>
                     <label>
                         <input required type="password" name="repassword" autocomplete="off" id="checkrepassword">
                         <span>Re-enter password</span>
                     </label>
-                    <h6 class="h6 noti" id="repassword">The re-entered password does not match</h6>
-                    <div style="display: flex; justify-content:space-between">
+                    <h6 class="h6 noti" id="repassword"><i class="bi bi-exclamation-circle-fill"></i> The re-entered
+                        password does not match</h6>
+                    <div class="fixmobile">
                         <label>
-                            <input required type="password" name="firstname" autocomplete="off">
+                            <input required type="text" name="firstname" autocomplete="off">
                             <span>First name</span>
                         </label>
                         <label>
-                            <input required type="password" name="lastname" autocomplete="off">
+                            <input required type="text" name="lastname" autocomplete="off">
                             <span>Last name</span>
                         </label>
                     </div>
@@ -137,15 +141,18 @@
                         <input required type="text" name="email" autocomplete="off" id="checkemail">
                         <span>Email</span>
                     </label>
-                    <h6 class="h6 noti" id="email1">Email already exists</h6>
-                    <h6 class="h6 noti" id="email2">Email can be used</h6>
-                    <h6 class="h6 noti" id="email3">Please enter the correct email format</h6>
+                    <h6 class="h6 noti" id="email1"><i class="bi bi-exclamation-circle-fill"></i> Email already exists
+                    </h6>
+                    <h6 class="h6 noti" id="email2"><i class="bi bi-check-circle-fill"></i> Email can be used</h6>
+                    <h6 class="h6 noti" id="email3"><i class="bi bi-exclamation-circle-fill"></i> Please enter the
+                        correct email format</h6>
                     <label>
-                        <input required type="text" name="name" autocomplete="off" id="checkphone">
+                        <input required type="text" name="phone" autocomplete="off" id="checkphone">
                         <span>Phone</span>
                     </label>
-                    <h6 class="h6 noti" id="phone1">Phone already exists</h6>
-                    <h6 class="h6 noti" id="phone2">Phone can be used</h6>
+                    <h6 class="h6 noti" id="phone1"><i class="bi bi-exclamation-circle-fill"></i> Phone already exists
+                    </h6>
+                    <h6 class="h6 noti" id="phone2"><i class="bi bi-check-circle-fill"></i> Phone can be used</h6>
                 </div>
                 <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
                     <h5 style="margin:0">Already have an account? <a href="#" type="button" data-toggle="modal"

@@ -128,7 +128,9 @@
                                 <div class="product-f-image">
                                     <img src="{{ $rd->imageproduct }}" alt="" style="height:300px">
                                     <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
+                                        <a href="#" class="add-to-cart-link them-sp-vao-gio"
+                                            data-idproduct="{{ $rd->idproduct }}"><i class="fa fa-shopping-cart"></i>
+                                            Add to
                                             cart</a>
                                         <a href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}"
                                             class="view-details-link"><i class="fa fa-link"></i> See details</a>

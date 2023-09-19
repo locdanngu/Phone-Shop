@@ -14,7 +14,7 @@ $(document).ready(function() {
         $('#username2').hide();
         // Kiểm tra xem tên người dùng có ít nhất 6 ký tự
         if (username.length >= 5 && username.length <= 18) {
-            
+
             $.ajax({
                 type: 'POST',
                 url: "{{ route('checkuser') }}",
@@ -117,7 +117,32 @@ $(document).ready(function() {
         });
     });
 
-    
+
+    $('.them-sp-vao-gio').on('click', function(event) {
+        event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+        var id = $(this).data('idproduct');
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('addcart') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: id,
+            },
+            success: function(response) {
+                var re = response.re;
+                if (re == 1) {
+                    toastr.success(
+                        '<b>The product already exists, the quantity has been updated</b>'
+                    )
+                } else {
+                    toastr.success(
+                        '<b>Product added to cart</b>'
+                    )
+                }
+            }
+        });
+    });
 
 
 

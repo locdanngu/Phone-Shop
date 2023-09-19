@@ -29,7 +29,7 @@ Route::prefix('/')->group(function () {
     Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
     Route::post('/checkuser', [UserController::class, 'checkusername'])->name('checkuser');
     Route::post('/addcartwithquantity', [UserController::class, 'addcartwithquantity'])->name('addcartwithquantity');
-
+    Route::post('/addcart', [UserController::class, 'addcart'])->name('addcart');
 });
 
 

@@ -206,9 +206,37 @@ class UserController extends Controller
                 're' => 0,
             ]);
         }
-        
+    }
 
-        
+    public function addcart(Request $request)
+    {
+        $user = Auth::user();
+        $cart = Cart::where('iduser', $user->iduser)->first();
+        $in4product = Product::where('idproduct', $request['id'])->first();
+        if(!$cart){
+            $cart = new Cart();
+            $cart->iduser = $user->iduser;
+            $cart->save();
+        }
+
+        $checkproduct = Cart_product::where('idproduct', $request['id'])->where('idcart', $cart->idcart)->first();
+        if($checkproduct){
+            $checkproduct->quantity = $checkproduct->quantity + 1;
+            $checkproduct->save();
+            return response()->json([
+                're' => 1,
+            ]);
+        }else{
+            $product = new Cart_product();
+            $product->idcart = $cart->idcart;
+            $product->idproduct = $request['id'];
+            $product->quantity = 1;
+            $product->totalprice = $in4product->price;
+            $product->save();
+            return response()->json([
+                're' => 0,
+            ]);
+        }
     }
 
 }

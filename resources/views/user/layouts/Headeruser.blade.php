@@ -102,7 +102,8 @@
                         <a href="#" class="dropbtn" type="button" data-toggle="modal"
                             data-target="#modal-category">Category</a>
                     </li>
-                    <li><a href="#" class="dropbtn">Type</a></li>
+                    <li><a href="#" class="dropbtn" type="button" data-toggle="modal"
+                            data-target="#modal-type">Type</a></li>
                 </ul>
             </div>
         </div>

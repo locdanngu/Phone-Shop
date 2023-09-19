@@ -57,8 +57,8 @@ class AppServiceProvider extends ServiceProvider
                         'user/page/Shoppage',], function ($view) {
                             
                             
-            $category = Category::all();
-            $type = Type::all();
+            $category = Category::orderBy('namecategory', 'asc')->get();
+            $type = Type::orderBy('nametype', 'asc')->get();
 
             $view->with([
                 'category' => $category,

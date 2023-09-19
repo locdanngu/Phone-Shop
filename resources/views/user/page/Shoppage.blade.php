@@ -16,7 +16,7 @@
                             name="searchproduct">
                         <input type="submit" value="Search">
                     </form>
-                    @if(request('searchproduct'))
+                    @if(request('searchproduct') || request('page'))
                     <h3 style="margin-top:1em"><span class="font-weight-bold"
                             style="color:red">{{ $countproduct }}</span> valid product</h3>
                     @endif

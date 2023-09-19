@@ -221,8 +221,7 @@
 
 <div class="modal fade" id="modal-delete-cant">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('category.delete') }}" method="post">
-            @csrf
+        <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Xóa 1 danh mục</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -240,11 +239,12 @@
                     <img src="" alt="" style="height:100px;margin-left:1em" class="imageblog2">
                 </div>
             </div>
+            <p class="font-weight-bold ml-3" style="color:red">Bạn không thể xóa danh mục nếu có nhiều sản phẩm thuộc danh mục đó</p>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-danger">Xóa</button>
+                <button type="submit" class="btn btn-danger" disabled>Xóa</button>
             </div>
-        </form>
+        </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->

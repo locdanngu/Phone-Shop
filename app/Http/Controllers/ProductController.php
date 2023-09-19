@@ -70,6 +70,10 @@ class ProductController extends Controller
         $category->product_count += 1;
         $category->save();
 
+        $type = Type::where('idtype', $request['idtype'])->first();
+        $type->product_count += 1;
+        $type->save();
+
         return redirect()->route('listproduct.page');
     }
 

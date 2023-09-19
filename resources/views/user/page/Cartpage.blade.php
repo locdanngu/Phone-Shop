@@ -39,11 +39,14 @@
                                         <th class="product-subtotal">Total</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="capnhatdanhsachcart">
                                     @foreach($cart as $c)
-                                    <tr class="cart_item">
+                                    <tr class="cart_item" data-product-id="{{ $c->idcart_product }}">
                                         <td class="product-remove">
-                                            <a title="Remove this item" class="remove" href="#">×</a>
+                                            <a title="Remove this item" class="remove" href="#" type="button"
+                                                data-toggle="modal" data-target="#modal-deleteproduct"
+                                                data-id="{{ $c->idcart_product }}"
+                                                data-name="{{ $c->product->nameproduct }}">×</a>
                                         </td>
 
                                         <td class="product-thumbnail">
@@ -64,15 +67,16 @@
 
                                         <td class="product-quantity" style="padding:0 5px">
                                             <div class="quantity buttons_added">
-                                                <input type="button" class="minus" value="-">
+                                                <input type="button" class="minus" value="-" data-quantity="1">
                                                 <input type="number" size="4" class="input-text qty text" title="Qty"
-                                                    value="{{ $c->quantity }}" min="0" step="1">
-                                                <input type="button" class="plus" value="+">
+                                                    value="{{ $c->quantity }}" min="1" step="1">
+                                                <input type="button" class="plus" value="+" data-quantity="1">
                                             </div>
                                         </td>
 
                                         <td class="product-subtotal">
-                                            <span class="amount">${{ $c->quantity * $c->product->price }}</span>
+                                            <span class="amount"
+                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
                                         </td>
                                     </tr>
 
@@ -433,8 +437,118 @@
 </div>
 @endsection
 
+
+@section('popup')
+<div class="modal fade" id="modal-deleteproduct">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Deleteproduct</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 style="color:red; font-weight: bold">Delete this product?</h3>
+                <span name="nameproduct"></span>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-danger" id="deleteproduct">Delete</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+@endsection
+
 @section('js')
 <script>
+$('body').on('click', '.plus', function() {
+    var inputElement = $(this).siblings('.qty');
+    var quantity = parseInt(inputElement.val()) + parseInt($(this).data('quantity'));
 
+    // Kiểm tra giới hạn số lượng nếu cần
+    if (quantity > 0) {
+        inputElement.val(quantity);
+    }
+
+    updateSubtotal(inputElement);
+});
+
+// Xử lý sự kiện khi nhấn nút "minus"
+$('body').on('click', '.minus', function() {
+    var inputElement = $(this).siblings('.qty');
+    var quantity = parseInt(inputElement.val()) - parseInt($(this).data('quantity'));
+
+    // Kiểm tra giới hạn số lượng nếu cần
+    if (quantity > 0) {
+        inputElement.val(quantity);
+    }
+
+    updateSubtotal(inputElement);
+});
+
+function updateSubtotal(inputElement) {
+    var quantity = parseInt(inputElement.val());
+    var price = parseFloat(inputElement.closest('tr').find('.product-price .amount').text().replace('$', ''));
+
+    var subtotal = quantity * price;
+    inputElement.closest('tr').find('.product-subtotal .amount').text('$' + subtotal.toFixed(2));
+}
+
+$('body').on('change', '.qty', function() {
+    var inputElement = $(this);
+    var quantity = parseInt(inputElement.val());
+    var price = parseFloat(inputElement.closest('tr').find('.product-price .amount').text().replace('$', ''));
+
+    if (quantity < 0) {
+        quantity = 0;
+    }
+
+    var subtotal = quantity * price;
+    inputElement.closest('tr').find('.product-subtotal .amount').text('$' + subtotal.toFixed(2));
+});
+
+
+
+
+
+$('#modal-deleteproduct').on('shown.bs.modal', function(event) {
+    var button = $(event.relatedTarget); // Nút "Change" được nhấn
+    var id = button.data('id');
+    var name = button.data('name');
+    var modal = $(this);
+    $('#deleteproduct').attr('data-id', id);
+    modal.find('span[name="nameproduct"]').text(name);
+
+    $('#deleteproduct').on('click', function(event) {
+        var id = $(this).data('id');
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('deleteproductcart') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: id,
+            },
+            success: function(response) {
+
+                var html2 = response.html2;
+
+                $("#capnhatcart").html(html2);
+
+                // Xóa phần tử HTML của sản phẩm khỏi danh sách
+                $('#capnhatdanhsachcart tr[data-product-id="' + id + '"]').remove();
+                toastr.success('Sản phẩm đã được xóa khỏi giỏ hàng.');
+                $('#modal-deleteproduct').modal('hide');
+
+
+            }
+        });
+    });
+});
 </script>
 @endsection

@@ -269,7 +269,62 @@ class UserController extends Controller
             're' => $re,
             'html' => $html,
         ]);
-
     }
+
+    public function deleteproductcart(Request $request)
+    {
+        $user = Auth::user();
+        $product_cart = Cart_product::where('idcart_product', $request['id'])->first();
+        $product_cart->delete();
+        $idcart = Cart::where('iduser', $user->iduser)->first();
+        $cart = Cart_product::where('idcart', $idcart->idcart)->orderBy('created_at', 'asc')->get();
+
+        $html = ''; // Khởi tạo chuỗi HTML rỗng
+
+        foreach($cart as $c){
+            $html .= '<tr class="cart_item">';
+            $html .= '<td class="product-remove">';
+            $html .= '<a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" data-id="' . $c->idcart_product . '" data-name="' . $c->product->nameproduct . '">×</a>';
+            $html .= '</td>';
+            $html .= '<td class="product-thumbnail">';
+            $html .= '<a href="' . route('product.page', ['nameproduct' => $c->product->nameproduct]) . '"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="' . $c->product->imageproduct . '"></a>';
+            $html .= '</td>';
+            $html .= '<td class="product-name">';
+            $html .= '<a href="' . route('product.page', ['nameproduct' => $c->product->nameproduct]) . '">' . $c->product->nameproduct . '</a>';
+            $html .= '</td>';
+            $html .= '<td class="product-price">';
+            $html .= '<span class="amount">$' . $c->product->price . '</span>';
+            $html .= '</td>';
+            $html .= '<td class="product-quantity" style="padding:0 5px">';
+            $html .= '<div class="quantity buttons_added">';
+            $html .= '<input type="button" class="minus" value="-" data-quantity="1">';
+            $html .= '<input type="number" size="4" class="input-text qty text" title="Qty" value="' . $c->quantity . '" min="1" step="1">';
+            $html .= '<input type="button" class="plus" value="+" data-quantity="1">';
+            $html .= '</div>';
+            $html .= '</td>';
+            $html .= '<td class="product-subtotal">';
+            $html .= '<span class="amount" style="color:red; font-weight:bold">$' . number_format($c->quantity * $c->product->price, 2) . '</span>';
+            $html .= '</td>';
+            $html .= '</tr>';
+        }
+        if($user){
+            $cart = Cart::where('iduser', $user->iduser)->first();
+            if($cart){
+                $ccart_product = Cart_product::where('idcart', $cart->idcart)->count();
+                $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
+            }else{
+                $ccart_product = 0;
+                $scart_product = 0;
+            }
+        }
+
+        $html2 = '<a href="' . route('cart.page') . '">Cart - <span class="cart-amunt">$' . $scart_product . '</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
+
+        return response()->json([
+            'html' => $html,
+            'html2' => $html2,
+        ]);
+    }
+
 
 }

@@ -1188,6 +1188,9 @@ div.quantity input.plus, div.quantity input.minus {
 td.product-quantity div.quantity {
     float: none;
     margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 td.actions div.coupon {

@@ -87,4 +87,43 @@ class UserController extends Controller
 
         return view('user/page/Checkoutpage', compact('user','list','recent','random'));
     }
+
+    public function loginuser(Request $request)
+    {
+        $this->validate($request, ['username' => 'required',
+                                    'password' => 'required']);
+        
+        // Lấy thông tin đăng nhập từ đầu vào
+        $credentials = $request->only('username', 'password');
+        
+        // if (Auth::attempt($credentials)) {
+        //     // Người dùng admin đã được xác thực
+        //     return redirect()->back();
+        // } else {
+        //     return redirect()->back()->withErrors(['adminname' => 'Sai tên đăng nhập hoặc mật khẩu!!!']);
+        // }
+
+        $user = User::where('username', $credentials['username'])
+            ->orWhere('email', $credentials['username'])
+            ->orWhere('phone', $credentials['username'])
+            ->first();
+
+        if ($user) {
+            // Kiểm tra xác thực với thông tin đăng nhập đã tìm thấy
+            if (Auth::attempt(['username' => $user->username, 'password' => $credentials['password']]) ||
+                Auth::attempt(['email' => $user->email, 'password' => $credentials['password']]) ||
+                Auth::attempt(['phone' => $user->phone, 'password' => $credentials['password']])) {
+                // Người dùng đã được xác thực thành công
+                return redirect()->back();
+            } else {
+                // Xác thực không thành công
+                return redirect()->back()->withErrors(['login' => 'Sai tên đăng nhập, email hoặc số điện thoại hoặc mật khẩu!!!']);
+            }
+        } else {
+            // Không tìm thấy người dùng với thông tin đăng nhập
+            return redirect()->back()->withErrors(['login' => 'Không tìm thấy người dùng với thông tin đăng nhập đã nhập!!!']);
+        }
+
+        
+    }
 }

@@ -59,7 +59,7 @@
 
 <div class="modal fade" id="modal-login">
     <div class="modal-dialog">
-        <form action="" method="post" class="modal-content content__form">
+        <form action="{{ route('loginuser') }}" method="post" class="modal-content content__form">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Login</h4>
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" style="width: 100%;">Đăng nhập</button>
+                <button type="submit" style="width: 100%;">Đăng nhập</button>
             </div>
         </form>
         <!-- /.modal-content -->

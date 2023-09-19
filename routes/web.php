@@ -24,6 +24,7 @@ Route::prefix('/')->group(function () {
     Route::get('/productpage', [UserController::class, 'productpage'])->name('product.page');
     Route::get('/cartpage', [UserController::class, 'cartpage'])->name('cart.page');
     Route::get('/checkoutpage', [UserController::class, 'checkoutpage'])->name('checkout.page');
+    Route::post('/loginuser', [UserController::class, 'loginuser'])->name('loginuser');
 
 });
 

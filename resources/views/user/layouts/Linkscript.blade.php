@@ -17,3 +17,5 @@
 <!-- Slider -->
 <script type="text/javascript" src="{{ asset('bootstrap/bxslider.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bootstrap/script.slider.js') }}"></script>
+<!--Toastr -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

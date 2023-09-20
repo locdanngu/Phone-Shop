@@ -1679,10 +1679,22 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
     min-height: 60px;
 }
 
+.review{
+    display: flex;
+    padding: .5em 1em;
+    flex-direction: column;
+    border: 1px solid #ddd;
+}
 
+.username{
+    font-weight: bold;
+    margin: .25em 0 !important;
+}
 
-
-
+.watchmore{
+    margin: 1em 0 0 0;
+    width: 100%;
+}
 
 
 

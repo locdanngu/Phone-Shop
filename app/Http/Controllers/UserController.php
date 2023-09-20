@@ -12,6 +12,7 @@ use App\Models\Cart_product;
 use App\Models\Coupon;
 use App\Models\Spend;
 use App\Models\Product_coupon;
+use App\Models\Review;
 use App\Models\Order;
 use App\Models\Order_product;
 use App\Models\Category_coupon;
@@ -66,8 +67,10 @@ class UserController extends Controller
         $list = Product::inRandomOrder()->take(4)->get();
         $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
         $random = Product::inRandomOrder()->take(6)->get();
+        $review = Review::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('user/page/Productpage', compact('user','product','list','recent','random'));
+
+        return view('user/page/Productpage', compact('user','product','list','recent','random','review'));
     }
 
     public function cartpage(Request $request)

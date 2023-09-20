@@ -108,7 +108,7 @@
                                                 </div>
                                                 <p><label for="review">Your review</label> <textarea name="review" id=""
                                                         cols="30" rows="10"></textarea></p>
-                                                <p><input type="submit" value="Submit"></p>
+                                                <input type="submit" value="Submit">
                                             </div>
                                         </div>
                                     </div>
@@ -116,6 +116,25 @@
 
                             </div>
                         </div>
+                    </div>
+
+                    <div class="related-products-wrapper" id="review">
+                        <h2 class="related-products-title">All product reviews</h2>
+                        <div class="reviewlist" id="capnhatreview">
+                            @foreach($review as $r)
+                            <div class="review">
+                                <h5 class="username">{{ $r->name }} - {{ $r->email }}</h5>
+                                <h5>{{ $r->review}}</h5>
+                                <div class="rating-wrap-post" style="display: flex;align-items: center">
+                                    @for ($i = 0; $i < $r->rating; $i++)
+                                        <i class="fa fa-star" style="margin-right:.25em"></i>
+                                        @endfor
+                                        <h6 style="margin:0"> ({{ $r->created_at }})</h6>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        <input type="submit" value="more review" class="watchmore">
                     </div>
 
 
@@ -158,33 +177,49 @@
 
 @section('js')
 <script>
-$('#btn-add-to-cart').on('click', function() {
-    var id = $(this).data('idproduct');
-    var quantity = $('input[name="quantity"]').val();
+$(document).ready(function() {
+    $('#btn-add-to-cart').on('click', function() {
+        var id = $(this).data('idproduct');
+        var quantity = $('input[name="quantity"]').val();
 
-    $.ajax({
-        type: 'POST',
-        url: "{{ route('addcartwithquantity') }}",
-        data: {
-            _token: '{{ csrf_token() }}',
-            id: id,
-            quantity: quantity,
-        },
-        success: function(response) {
-            var re = response.re;
-            var html = response.html;
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('addcartwithquantity') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: id,
+                quantity: quantity,
+            },
+            success: function(response) {
+                var re = response.re;
+                var html = response.html;
 
-            if (re == 1) {
-                toastr.success(
-                    '<b>The product already exists, the quantity has been updated</b>'
-                )
-            } else {
-                toastr.success(
-                    '<b>Product added to cart</b>'
-                )
+                if (re == 1) {
+                    toastr.success(
+                        '<b>The product already exists, the quantity has been updated</b>'
+                    )
+                } else {
+                    toastr.success(
+                        '<b>Product added to cart</b>'
+                    )
+                }
+
+                $("#capnhatcart").html(html);
             }
+        });
+    });
 
-            $("#capnhatcart").html(html);
+    $('#review').hide();
+
+    // Bắt sự kiện khi tab "Reviews" được nhấn
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+        // Kiểm tra xem tab "Reviews" đã được nhấn
+        if (e.target.getAttribute('href') === '#profile') {
+            // Hiển thị nội dung của tab "Reviews" bằng cách sử dụng id "review"
+            $('#review').show();
+        } else {
+            // Ẩn nội dung của tab "Reviews" khi tab khác được nhấn
+            $('#review').hide();
         }
     });
 });

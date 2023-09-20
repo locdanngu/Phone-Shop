@@ -17,11 +17,10 @@
 
 
 <div class="single-product-area">
-    <div class="container">
+    <div class="container" id="container1">
         <div class="row" style="display: flex; justify-content:space-between">
             <div class="col-md-5">
                 <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-
                     <div id="customer_details" class="col2-set">
                         <div class="">
                             <div class="woocommerce-billing-fields">
@@ -373,6 +372,55 @@
                 </form>
             </div>
         </div>
+    </div>
+
+    <div class="container" id="container2">
+        <table cellspacing="0" class="shop_table cart">
+            <thead>
+                <tr>
+                    <th class="product-remove">&nbsp;</th>
+                    <th class="product-thumbnail"></th>
+                    <th class="product-name">Product</th>
+                    <th class="product-price">Price</th>
+                    <th class="product-quantity">Quantity</th>
+                    <th class="product-subtotal">Total</th>
+                </tr>
+            </thead>
+            <tbody id="capnhatdanhsachcart">
+                <tr class="cart_item" data-product-id="">
+                    <td class="product-remove">
+                        <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
+                            data-target="#modal-deleteproduct" data-id="" data-name="">×</a>
+                    </td>
+
+                    <td class="product-thumbnail">
+                        <span class="amount"></span>
+                    </td>
+
+                    <td class="product-name">
+                        <span class="amount"></span>
+                    </td>
+
+                    <td class="product-price">
+                        <span class="amount"></span>
+                    </td>
+
+                    <td class="product-quantity" style="padding:0 5px">
+                        <div class="quantity buttons_added">
+                            <input type="button" class="minus" value="-" data-quantity="1" data-id="">
+                            <input type="number" size="4" class="input-text qty text" title="Qty" value="" step="1"
+                                min="1" data-id="">
+                            <input type="button" class="plus" value="+" data-quantity="1" data-id="">
+                        </div>
+                    </td>
+
+                    <td class="product-subtotal">
+                        <span class="amount" style="color:red; font-weight:bold">$</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 </div>
 @endsection

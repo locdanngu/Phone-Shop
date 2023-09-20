@@ -111,6 +111,7 @@ class UserController extends Controller
         $user = User::where('username', $credentials['username'])
             ->orWhere('email', $credentials['username'])
             ->orWhere('phone', $credentials['username'])
+            ->where('status', 'ok')
             ->first();
 
         if ($user) {

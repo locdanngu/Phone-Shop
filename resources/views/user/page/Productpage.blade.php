@@ -114,6 +114,8 @@
                                                         <label for="1-star" class="star">&#9733;</label>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" value="{{ $product->idproduct }}"
+                                                    id="idproductreview">
                                                 <p><label for="review">Your review</label> <textarea name="review"
                                                         id="reviewreview" cols="30" rows="10"></textarea></p>
                                                 @if(!$user)
@@ -235,29 +237,61 @@ $(document).ready(function() {
         }
     });
 
-    $('#sendreview1').on('click', function() {       //Chưa đăng nhập
+    $('#sendreview1').on('click', function() { //Chưa đăng nhập
         var name = $('#namereview').val();
         var email = $('#emailreview').val();
+        var id = $('#idproductreview').val();
         var reviewreview = $('#reviewreview').val();
         var selectedRating = $('input[name="rating"]:checked').val();
 
-        if(reviewreview == null || selectedRating == null || name == null || email == null){
+        if (reviewreview == null || selectedRating == null || name == null || email == null) {
             toastr.error('Please complete all information.');
         }
 
-        
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('addreview') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                name: name,
+                email: email,
+                review: reviewreview,
+                rating: selectedRating,
+                id: id,
+            },
+            success: function(response) {
+                var html = response.html;
+                $('#capnhatreview').prepend(html);
+                toastr.success('Review added successfully');
+            }
+        });
 
     });
 
-    $('#sendreview2').on('click', function() {      //ĐÃ đăng nhập
+    $('#sendreview2').on('click', function() { //ĐÃ đăng nhập
         var reviewreview = $('#reviewreview').val();
         var selectedRating = $('input[name="rating"]:checked').val();
+        var id = $('#idproductreview').val();
 
-        if(reviewreview == null || selectedRating == null){
+        if (reviewreview == null || selectedRating == null) {
             toastr.error('Please complete all information.');
         }
 
-
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('addreview') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                review: reviewreview,
+                rating: selectedRating,
+                id: id,
+            },
+            success: function(response) {
+                var html = response.html;
+                $('#capnhatreview').prepend(html);
+                toastr.success('Review added successfully');
+            }
+        });
 
     });
 });

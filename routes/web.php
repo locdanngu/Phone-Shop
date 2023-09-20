@@ -32,6 +32,7 @@ Route::prefix('/')->group(function () {
     Route::post('/addcart', [UserController::class, 'addcart'])->name('addcart');
     Route::post('/deleteproductcart', [UserController::class, 'deleteproductcart'])->name('deleteproductcart');
     Route::post('/updateproductcart', [UserController::class, 'updateproductcart'])->name('updateproductcart');
+    Route::post('/addreview', [UserController::class, 'addreview'])->name('addreview');
 
 });
 

@@ -348,4 +348,47 @@ class UserController extends Controller
         ]);
     }
 
+    public function addreview(Request $request)
+    {
+        $user = Auth::user();
+        $add = new Review();
+        $add->idproduct = $request['id']; 
+
+        if($user){
+            $add->name = $user->firstname . ' ' . $user->lastname;
+            $add->email = $user->email; 
+            $add->rating = $request['rating']; 
+            $add->review = $request['review']; 
+            $add->save();
+            
+        }else{
+            $add->name = $request['name']; 
+            $add->email = $request['email']; 
+            $add->rating = $request['rating']; 
+            $add->review = $request['review']; 
+            $add->save();
+        }
+
+        $html = '';
+    
+        $html .= '<div class="review">';
+        $html .= '<h5 class="username">' . $add->name . ' - ' . $add->email . '</h5>';
+        $html .= '<h5>' . $add->review . '</h5>';
+        $html .= '<div class="rating-wrap-post" style="display: flex;align-items: center">';
+        for ($i = 0; $i < $add->rating; $i++) {
+            $html .= '<i class="fa fa-star" style="margin-right:.25em"></i>';
+        }
+        $html .= '<h6 style="margin:0"> (' . $add->created_at . ')</h6>';
+        $html .= '</div>';
+        $html .= '</div>';
+ 
+
+
+        return response()->json([
+            'html' => $html,
+        ]);
+        
+         
+
+    }
 }

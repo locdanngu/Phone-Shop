@@ -875,9 +875,9 @@ ol.slide-indicators li.active {
     margin: 10px 0 0;
 }
 
-.product-big-title-area {
+/* .product-big-title-area {
     background: url(img/crossword.png) repeat scroll 0 0 #5a88ca
-}
+} */
 
 .product-bit-title h2 {
     font-family: raleway;
@@ -1644,18 +1644,18 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 }
 
 
-#username3, #email2, #phone2{
+#username3, #email2, #phone2 {
     color: rgb(1, 180, 1) !important;
 }
 
 
-.fixmobile{
-    display: flex; 
-    justify-content:space-between;
+.fixmobile {
+    display: flex;
+    justify-content: space-between;
 }
 
 
-.box{
+.box {
     padding: 2em;
     border: 1px solid black;
     background-color: transparent;
@@ -1665,33 +1665,34 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
     align-items: center;
 }
 
-.box i{
+.box i {
     font-size: 5em !important;
 }
 
-.fixheight{
+.fixheight {
     display: flex;
     min-height: 50px;
 }
 
-.fixheight2{
+.fixheight2 {
     display: flex;
     min-height: 60px;
 }
 
-.review{
+.review {
     display: flex;
     padding: .5em 1em;
     flex-direction: column;
     border: 1px solid #ddd;
+    margin-top: .75em;
 }
 
-.username{
+.username {
     font-weight: bold;
     margin: .25em 0 !important;
 }
 
-.watchmore{
+.watchmore {
     margin: 1em 0 0 0;
     width: 100%;
 }
@@ -1700,34 +1701,34 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 .star-rating {
     justify-content: space-between;
     display: flex;
-flex-direction: row-reverse;
-width: 7em;
+    flex-direction: row-reverse;
+    width: 7em;
 
-  }
-  
-  .star-rating input {
-    display:none;
-    
-  }
-  
-  .star-rating label {
-    color:#ccc;
-    cursor:pointer;
+}
+
+.star-rating input {
+    display: none;
+
+}
+
+.star-rating label {
+    color: #ccc;
+    cursor: pointer;
     font-size: 1.5em;
-  }
-  
-  .star-rating :checked ~ label {
-    color:#333;
-  }
-  
-  .star-rating label:hover,
-  .star-rating label:hover ~ label {
-    color:#333;
-  }
+}
 
-  .noidung3{
+.star-rating :checked~label {
+    color: #333;
+}
+
+.star-rating label:hover,
+.star-rating label:hover~label {
+    color: #333;
+}
+
+.noidung3 {
     font-weight: bold;
-  }
+}
 
 
 @media screen and (max-width: 767px) {
@@ -1738,12 +1739,12 @@ width: 7em;
         display: grid;
     }
 
-    .fixmobile{
-        display: flex; 
+    .fixmobile {
+        display: flex;
         flex-direction: column;
         row-gap: 8px;
     }
-    
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {

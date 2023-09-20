@@ -514,40 +514,35 @@ $('body').on('change', '.qty', function() {
 
 
 
-
+var globalId;
 
 $('#modal-deleteproduct').on('shown.bs.modal', function(event) {
     var button = $(event.relatedTarget); // Nút "Change" được nhấn
     var id = button.data('id');
     var name = button.data('name');
     var modal = $(this);
-    $('#deleteproduct').attr('data-id', id);
+    globalId = id;
     modal.find('span[name="nameproduct"]').text(name);
+});
 
-    $('#deleteproduct').on('click', function(event) {
-        var id = $(this).data('id');
-
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('deleteproductcart') }}",
-            data: {
-                _token: '{{ csrf_token() }}',
-                id: id,
-            },
-            success: function(response) {
-
-                var html2 = response.html2;
-
-                $("#capnhatcart").html(html2);
-
-                // Xóa phần tử HTML của sản phẩm khỏi danh sách
-                $('#capnhatdanhsachcart tr[data-product-id="' + id + '"]').remove();
-                toastr.success('Sản phẩm đã được xóa khỏi giỏ hàng.');
-                $('#modal-deleteproduct').modal('hide');
-
-
-            }
-        });
+$('#deleteproduct').on('click', function(event) {
+    var id = globalId;
+    console.log(id);
+    $.ajax({
+        type: 'POST',
+        url: "{{ route('deleteproductcart') }}",
+        data: {
+            _token: '{{ csrf_token() }}',
+            id: id,
+        },
+        success: function(response) {
+            var html = response.html;
+            $("#capnhatcart").html(html);
+            // Xóa phần tử HTML của sản phẩm khỏi danh sách
+            $('#capnhatdanhsachcart tr[data-product-id="' + id + '"]').remove();
+            toastr.success('Sản phẩm đã được xóa khỏi giỏ hàng.');
+            $('#modal-deleteproduct').modal('hide');
+        }
     });
 });
 </script>

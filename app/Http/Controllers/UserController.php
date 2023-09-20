@@ -280,9 +280,6 @@ class UserController extends Controller
         $user = Auth::user();
         $product_cart = Cart_product::where('idcart_product', $request['id'])->first();
         $product_cart->delete();
-        $idcart = Cart::where('iduser', $user->iduser)->first();
-        $cart = Cart_product::where('idcart', $idcart->idcart)->orderBy('created_at', 'asc')->get();
-
 
         if($user){
             $cart = Cart::where('iduser', $user->iduser)->first();

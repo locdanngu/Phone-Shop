@@ -532,6 +532,11 @@ class UserController extends Controller
         $user->postcode = null;
         $user->country = null;
         $user->address = null;
+        $user->companyname = null;
+        $user->town_city = null;
+        $user->state_country = null;
+        $user->ordernote = null;
+        $user->apartment = null;
         $user->save();
     }
 

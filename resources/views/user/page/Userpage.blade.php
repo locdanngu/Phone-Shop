@@ -451,13 +451,13 @@
                         @if(count($listaddress))
                         @foreach($listaddress as $la)
                         <tr class="cart_item" data-product-id="{{ $la->idaddress }}">
-                            <td class="product-remove">
+                            <td class="product-name">
                                 <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
                                     data-target="#modal-deleteproduct" data-id="{{ $la->idaddress }}"
                                     data-name="{{ $la->address }}">×</a>
                             </td>
 
-                            <td class="product-thumbnail">
+                            <td class="product-name">
                                 <span class="amount">{{ $la->state_country }}</span>
                             </td>
 
@@ -465,24 +465,24 @@
                                 <span class="amount">{{ $la->country }}</span>
                             </td>
 
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $la->town_city }}</span>
                             </td>
 
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $la->address }}</span>
                             </td>
 
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $la->companyname }}</span>
                             </td>
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $la->postcode }}</span>
                             </td>
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $la->apartment }}</span>
                             </td>
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $la->ordernote }}</span>
                             </td>
                         </tr>

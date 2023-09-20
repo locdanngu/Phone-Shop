@@ -36,6 +36,7 @@ Route::prefix('/')->group(function () {
     Route::post('/morereview', [UserController::class, 'morereview'])->name('morereview');
     Route::get('/wishlistpage', [UserController::class, 'wishlistpage'])->name('wishlist.page');
     Route::post('/deleteproductwishlist', [UserController::class, 'deleteproductwishlist'])->name('deleteproductwishlist');
+    Route::post('/addwishlist', [UserController::class, 'addwishlist'])->name('addwishlist');
 
 });
 

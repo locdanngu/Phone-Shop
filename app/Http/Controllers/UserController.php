@@ -430,4 +430,23 @@ class UserController extends Controller
         $product_wishlist = Wishlist::where('idwishlist', $request['id'])->first();
         $product_wishlist->delete();
     }
+
+    public function addwishlist(Request $request)
+    {
+        $user = Auth::user();
+        $wishlist = Wishlist::where('iduser', $user->iduser)->where('idproduct', $request['id'])->first();
+        if($wishlist){
+            return response()->json([
+                're' => 1,
+            ]);
+        }else{
+            $add = new Wishlist();
+            $add->iduser = $user->iduser;
+            $add->idproduct = $request['id'];
+            $add->save();
+            return response()->json([
+                're' => 0,
+            ]);
+        }
+    }
 }

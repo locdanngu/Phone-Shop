@@ -62,8 +62,7 @@
                                         data-idproduct="{{ $product->idproduct }}">Add to cart</button>
 
                                 </div>
-
-                                <button class="add_to_cart_button" style="margin:.5em 0"
+                                <button class="add_to_cart_button" id="btn-add-to-wishlist" style="margin:.5em 0"
                                     data-idproduct="{{ $product->idproduct }}">Add to wishlist</button>
                                 <div class="product-inner-category">
                                     <p>Category: <a
@@ -221,6 +220,32 @@ $(document).ready(function() {
                 }
 
                 $("#capnhatcart").html(html);
+            }
+        });
+    });
+
+
+    $('#btn-add-to-wishlist').on('click', function() {
+        var id = $(this).data('idproduct');
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('addwishlist') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: id,
+            },
+            success: function(response) {
+                var re = response.re;
+                if (re == 1) {
+                    toastr.error(
+                        '<b>The product already exists</b>'
+                    )
+                } else {
+                    toastr.success(
+                        '<b>Product added to wish list</b>'
+                    )
+                }
             }
         });
     });

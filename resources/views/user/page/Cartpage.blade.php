@@ -85,14 +85,14 @@
 
                                     @endforeach
                                     <tr>
-                                        <td class="actions" colspan="6">
-                                            <div class="coupon">
+                                        <td class="actions" colspan="6" style="text-align:end">
+                                            <!-- <div class="coupon">
                                                 <label for="coupon_code">Coupon:</label>
                                                 <input type="text" placeholder="Coupon code" value="" id="coupon_code"
                                                     class="input-text" name="coupon_code">
                                                 <input type="submit" value="Apply Coupon" name="apply_coupon"
                                                     class="button">
-                                            </div>
+                                            </div> -->
                                             <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
                                             <input type="submit" value="Checkout" name="proceed"
                                                 class="checkout-button button alt wc-forward">
@@ -131,7 +131,7 @@
 
                                 <table cellspacing="0">
                                     <tbody>
-                                        <tr class="cart-subtotal">
+                                        <!-- <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
                                             <td><span class="amount">£15.00</span></td>
                                         </tr>
@@ -139,11 +139,13 @@
                                         <tr class="shipping">
                                             <th>Shipping and Handling</th>
                                             <td>Free Shipping</td>
-                                        </tr>
+                                        </tr> -->
 
-                                        <tr class="order-total">
+                                        <tr class="order-total" id="capnhattotalprice">
                                             <th>Order Total</th>
-                                            <td><strong><span class="amount">£15.00</span></strong> </td>
+                                            <td><strong><span class="amount"
+                                                        style="font-weight:bold;color:red">${{ $scart_product }}</span></strong>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -489,6 +491,8 @@ $('body').on('click', '.plus', function() {
             success: function(response) {
                 var html = response.html;
                 $("#capnhatcart").html(html);
+                var html2 = response.html2;
+                $("#capnhattotalprice").html(html2);
             }
         });
     }
@@ -518,6 +522,8 @@ $('body').on('click', '.minus', function() {
             success: function(response) {
                 var html = response.html;
                 $("#capnhatcart").html(html);
+                var html2 = response.html2;
+                $("#capnhattotalprice").html(html2);
             }
         });
     }
@@ -556,6 +562,8 @@ $('body').on('change', '.qty', function() {
         success: function(response) {
             var html = response.html;
             $("#capnhatcart").html(html);
+            var html2 = response.html2;
+            $("#capnhattotalprice").html(html2);
         }
     });
 
@@ -590,6 +598,8 @@ $('#deleteproduct').on('click', function(event) {
         success: function(response) {
             var html = response.html;
             $("#capnhatcart").html(html);
+            var html2 = response.html2;
+            $("#capnhattotalprice").html(html2);
             // Xóa phần tử HTML của sản phẩm khỏi danh sách
             $('#capnhatdanhsachcart tr[data-product-id="' + id + '"]').remove();
             toastr.success('Sản phẩm đã được xóa khỏi giỏ hàng.');

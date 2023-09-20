@@ -294,8 +294,13 @@ class UserController extends Controller
 
         $html = '<a href="' . route('cart.page') . '">Cart - <span class="cart-amunt">$' . $scart_product . '</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
 
+        $html2 ='';
+        $html2 = '<th>Order Total</th>';
+        $html2 .= '<td><strong><span class="amount" style="font-weight:bold;color:red">${' . $scart_product . '}</span></strong></td>';
+
         return response()->json([
             'html' => $html,
+            'html2' => $html2,
         ]);
     }
 
@@ -330,8 +335,13 @@ class UserController extends Controller
 
         $html = '<a href="' . route('cart.page') . '">Cart - <span class="cart-amunt">$' . $scart_product . '</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
 
+        $html2 ='';
+        $html2 = '<th>Order Total</th>';
+        $html2 .= '<td><strong><span class="amount" style="font-weight:bold;color:red">$' . $scart_product . '</span></strong></td>';
+
         return response()->json([
             'html' => $html,
+            'html2' => $html2,
         ]);
     }
 

@@ -157,7 +157,7 @@
 
 
 
-                            
+
 
 
                         </div>
@@ -182,7 +182,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Deleteproduct</h4>
+                <h4 class="modal-title">Delete product</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -336,7 +336,7 @@ $('#deleteproduct').on('click', function(event) {
             $("#capnhattotalprice").html(html2);
             // Xóa phần tử HTML của sản phẩm khỏi danh sách
             $('#capnhatdanhsachcart tr[data-product-id="' + id + '"]').remove();
-            toastr.success('Sản phẩm đã được xóa khỏi giỏ hàng.');
+            toastr.success('Delete product successful.');
             $('#modal-deleteproduct').modal('hide');
         }
     });

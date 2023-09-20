@@ -26,7 +26,7 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        @if($ccart_product != 0)
+                        @if(count($listwish) != 0)
                         <form method="post" action="#">
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
@@ -35,69 +35,52 @@
                                         <th class="product-thumbnail">&nbsp;</th>
                                         <th class="product-name">Product</th>
                                         <th class="product-price">Price</th>
-                                        <th class="product-quantity">Quantity</th>
-                                        <th class="product-subtotal">Total</th>
+                                        <th class="product-quantity">Category</th>
+                                        <th class="product-quantity">Add</th>
+                                        <th class="product-remove">&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody id="capnhatdanhsachcart">
-                                    @foreach($cart as $c)
-                                    <tr class="cart_item" data-product-id="{{ $c->idcart_product }}">
+                                    @foreach($listwish as $l)
+                                    <tr class="cart_item" data-product-id="{{ $l->idwishlist }}">
                                         <td class="product-remove">
                                             <a title="Remove this item" class="remove" href="#" type="button"
                                                 data-toggle="modal" data-target="#modal-deleteproduct"
-                                                data-id="{{ $c->idcart_product }}"
-                                                data-name="{{ $c->product->nameproduct }}">×</a>
+                                                data-id="{{ $l->idwishlist }}"
+                                                data-name="{{ $l->product->nameproduct }}">×</a>
                                         </td>
 
                                         <td class="product-thumbnail">
                                             <a
-                                                href="{{ route('product.page', ['nameproduct' => $c->product->nameproduct]) }}"><img
+                                                href="{{ route('product.page', ['nameproduct' => $l->product->nameproduct]) }}"><img
                                                     width="145" height="145" alt="poster_1_up" class="shop_thumbnail"
-                                                    src="{{ $c->product->imageproduct }}"></a>
+                                                    src="{{ $l->product->imageproduct }}"></a>
                                         </td>
 
                                         <td class="product-name">
                                             <a
-                                                href="{{ route('product.page', ['nameproduct' => $c->product->nameproduct]) }}">{{ $c->product->nameproduct }}</a>
+                                                href="{{ route('product.page', ['nameproduct' => $l->product->nameproduct]) }}">{{ $l->product->nameproduct }}</a>
                                         </td>
 
                                         <td class="product-price">
-                                            <span class="amount">${{ $c->product->price }}</span>
+                                            <span class="amount">${{ $l->product->price }}</span>
                                         </td>
 
-                                        <td class="product-quantity" style="padding:0 5px">
-                                            <div class="quantity buttons_added">
-                                                <input type="button" class="minus" value="-" data-quantity="1"
-                                                    data-id="{{ $c->idcart_product }}">
-                                                <input type="number" size="4" class="input-text qty text" title="Qty"
-                                                    value="{{ $c->quantity }}" step="1" min="1"
-                                                    data-id="{{ $c->idcart_product }}">
-                                                <input type="button" class="plus" value="+" data-quantity="1"
-                                                    data-id="{{ $c->idcart_product }}">
-                                            </div>
+                                        <td class="product-quantity">
+                                            <a
+                                                href="{{ route('shop.page', ['searchproduct' => $l->product->category->namecategory]) }}">{{ $l->product->category->namecategory }}</a>
                                         </td>
 
                                         <td class="product-subtotal">
-                                            <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
+                                            <span class="amount">{{ $l->created_at }}</span>
+                                        </td>
+                                        <td class="product-subtotal">
+                                            <a class="add_to_cart_button them-sp-vao-gio" href="#"
+                                                data-idproduct="{{ $l->idproduct }}">Add to cart</a>
                                         </td>
                                     </tr>
 
                                     @endforeach
-                                    <tr>
-                                        <td class="actions" colspan="6" style="text-align:end">
-                                            <!-- <div class="coupon">
-                                                <label for="coupon_code">Coupon:</label>
-                                                <input type="text" placeholder="Coupon code" value="" id="coupon_code"
-                                                    class="input-text" name="coupon_code">
-                                                <input type="submit" value="Apply Coupon" name="apply_coupon"
-                                                    class="button">
-                                            </div> -->
-                                            <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
-                                            <input type="submit" value="Checkout" name="proceed"
-                                                class="checkout-button button alt wc-forward">
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </form>
@@ -124,46 +107,10 @@
                                     @endforeach
                                 </ul>
                             </div>
-
-
-                            <div class="cart_totals ">
-                                <h2>Cart Totals</h2>
-
-                                <table cellspacing="0">
-                                    <tbody>
-                                        <!-- <tr class="cart-subtotal">
-                                            <th>Cart Subtotal</th>
-                                            <td><span class="amount">£15.00</span></td>
-                                        </tr>
-
-                                        <tr class="shipping">
-                                            <th>Shipping and Handling</th>
-                                            <td>Free Shipping</td>
-                                        </tr> -->
-
-                                        <tr class="order-total" id="capnhattotalprice">
-                                            <th>Order Total</th>
-                                            <td><strong><span class="amount"
-                                                        style="font-weight:bold;color:red">${{ $scart_product }}</span></strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-                            
-
-
-
-
-                            
-
-
                         </div>
                         @else
                         <div class="box">
-                            <h2>Your cart is empty! <a href="{{ route('shop.page') }}">Go to shop now</a></h2>
+                            <h2>Your wish list is empty! <a href="{{ route('shop.page') }}">Go to shop now</a></h2>
                             <i class="bi bi-emoji-frown-fill"></i>
                         </div>
 
@@ -182,7 +129,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Deleteproduct</h4>
+                <h4 class="modal-title">Delete product</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -205,109 +152,6 @@
 
 @section('js')
 <script>
-$('body').on('click', '.plus', function() {
-    var inputElement = $(this).siblings('.qty');
-    var quantity = parseInt(inputElement.val()) + parseInt($(this).data('quantity'));
-
-    if (quantity > 0) {
-        inputElement.val(quantity);
-
-        var productId = $(this).data('id');
-
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('updateproductcart') }}",
-            data: {
-                _token: '{{ csrf_token() }}',
-                id: productId,
-                code: 0,
-            },
-            success: function(response) {
-                var html = response.html;
-                $("#capnhatcart").html(html);
-                var html2 = response.html2;
-                $("#capnhattotalprice").html(html2);
-            }
-        });
-    }
-
-    updateSubtotal(inputElement);
-});
-
-// Xử lý sự kiện khi nhấn nút "minus"
-$('body').on('click', '.minus', function() {
-    var inputElement = $(this).siblings('.qty');
-    var quantity = parseInt(inputElement.val()) - parseInt($(this).data('quantity'));
-
-    // Kiểm tra giới hạn số lượng nếu cần
-    if (quantity > 0) {
-        inputElement.val(quantity);
-
-        var productId = $(this).data('id');
-
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('updateproductcart') }}",
-            data: {
-                _token: '{{ csrf_token() }}',
-                id: productId,
-                code: 1,
-            },
-            success: function(response) {
-                var html = response.html;
-                $("#capnhatcart").html(html);
-                var html2 = response.html2;
-                $("#capnhattotalprice").html(html2);
-            }
-        });
-    }
-
-    updateSubtotal(inputElement);
-});
-
-function updateSubtotal(inputElement) {
-    var quantity = parseInt(inputElement.val());
-    var price = parseFloat(inputElement.closest('tr').find('.product-price .amount').text().replace('$', ''));
-
-    var subtotal = quantity * price;
-    inputElement.closest('tr').find('.product-subtotal .amount').text('$' + subtotal.toFixed(2));
-}
-
-$('body').on('change', '.qty', function() {
-    var inputElement = $(this);
-    var quantity = parseInt(inputElement.val());
-    var price = parseFloat(inputElement.closest('tr').find('.product-price .amount').text().replace('$', ''));
-
-    if (quantity < 0) {
-        quantity = 0;
-    }
-
-    var productId = $(this).data('id');
-
-    $.ajax({
-        type: 'POST',
-        url: "{{ route('updateproductcart') }}",
-        data: {
-            _token: '{{ csrf_token() }}',
-            id: productId,
-            quantity: quantity,
-            code: 2,
-        },
-        success: function(response) {
-            var html = response.html;
-            $("#capnhatcart").html(html);
-            var html2 = response.html2;
-            $("#capnhattotalprice").html(html2);
-        }
-    });
-
-
-    var subtotal = quantity * price;
-    inputElement.closest('tr').find('.product-subtotal .amount').text('$' + subtotal.toFixed(2));
-});
-
-
-
 var globalId;
 
 $('#modal-deleteproduct').on('shown.bs.modal', function(event) {
@@ -324,19 +168,15 @@ $('#deleteproduct').on('click', function(event) {
     console.log(id);
     $.ajax({
         type: 'POST',
-        url: "{{ route('deleteproductcart') }}",
+        url: "{{ route('deleteproductwishlist') }}",
         data: {
             _token: '{{ csrf_token() }}',
             id: id,
         },
         success: function(response) {
-            var html = response.html;
-            $("#capnhatcart").html(html);
-            var html2 = response.html2;
-            $("#capnhattotalprice").html(html2);
             // Xóa phần tử HTML của sản phẩm khỏi danh sách
             $('#capnhatdanhsachcart tr[data-product-id="' + id + '"]').remove();
-            toastr.success('Sản phẩm đã được xóa khỏi giỏ hàng.');
+            toastr.success('Delete product successful.');
             $('#modal-deleteproduct').modal('hide');
         }
     });

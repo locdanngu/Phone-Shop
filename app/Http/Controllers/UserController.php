@@ -11,6 +11,7 @@ use App\Models\Cart;
 use App\Models\Cart_product;
 use App\Models\Coupon;
 use App\Models\Spend;
+use App\Models\Wishlist;
 use App\Models\Product_coupon;
 use App\Models\Review;
 use App\Models\Order;
@@ -414,16 +415,19 @@ class UserController extends Controller
     public function wishlistpage(Request $request)
     {
         $user = Auth::user();
+        $listwish = Wishlist::orderBy('created_at', 'desc')->get();
         $list = Product::inRandomOrder()->take(4)->get();
         $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
         $random = Product::inRandomOrder()->take(2)->get();
-        $idcart = Cart::where('iduser', $user->iduser)->first();
-        if($idcart){
-            $cart = Cart_product::where('idcart', $idcart->idcart)->orderBy('created_at', 'asc')->get();
-        }else{
-            $cart = '';
-        }
+        
 
-        return view('user/page/Wishlistpage', compact('user','list','recent','random','cart'));
+        return view('user/page/Wishlistpage', compact('user','listwish','recent','random','list'));
+    }
+
+    public function deleteproductwishlist(Request $request)
+    {
+        $user = Auth::user();
+        $product_wishlist = Wishlist::where('idwishlist', $request['id'])->first();
+        $product_wishlist->delete();
     }
 }

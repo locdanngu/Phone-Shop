@@ -93,21 +93,23 @@
                     <li class="{{ request()->routeIs('shop.page','shop.search') ? 'active' : '' }}"><a
                             href="{{ route('shop.page') }}">Shop page</a></li>
                     <!-- <li><a href="{{ route('product.page') }}">Single product</a></li> -->
-                    @if($user)
-                    <li class="{{ request()->routeIs('cart.page') ? 'active' : '' }}"><a
-                            href="{{ route('cart.page') }}">Cart</a></li>
-                    <li class="{{ request()->routeIs('checkout.page') ? 'active' : '' }}"><a
-                            href="{{ route('checkout.page') }}">Checkout</a></li>
-                    <li class="{{ request()->routeIs('wishlist.page') ? 'active' : '' }}"><a
-                            href="{{ route('wishlist.page') }}">Wishlist</a></li>
-                    <li><a href="#">Contact</a></li>
-                    @endif
                     <li>
                         <a href="#" class="dropbtn" type="button" data-toggle="modal"
                             data-target="#modal-category">Category</a>
                     </li>
                     <li><a href="#" class="dropbtn" type="button" data-toggle="modal" data-target="#modal-type">Type</a>
                     </li>
+                    @if($user)
+                    <!-- <li class="{{ request()->routeIs('checkout.page') ? 'active' : '' }}"><a
+                            href="{{ route('checkout.page') }}">Checkout</a></li> -->
+                    <li class="{{ request()->routeIs('wishlist.page') ? 'active' : '' }}"><a
+                            href="{{ route('wishlist.page') }}">Wishlist</a></li>
+                    <li class="{{ request()->routeIs('cart.page') ? 'active' : '' }}"><a
+                            href="{{ route('cart.page') }}">Cart</a></li>
+                    <li class=""><a href="#">History order</a></li>
+                    <li><a href="#">Contact</a></li>
+                    @endif
+
                 </ul>
             </div>
         </div>

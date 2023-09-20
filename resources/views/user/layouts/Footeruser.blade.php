@@ -24,9 +24,9 @@
                     <ul>
                         <li><a href="#">My account</a></li>
                         <li><a href="#">Order history</a></li>
-                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="{{ route('wishlist.page') }}">Wishlist</a></li>
                         <li><a href="#">Vendor contact</a></li>
-                        <li><a href="#">Front page</a></li>
+                        <li><a href="{{ route('home.page') }}">Home page</a></li>
                     </ul>
                 </div>
             </div>

@@ -59,15 +59,15 @@ class AppServiceProvider extends ServiceProvider
                         'user/page/Productpage', 
                         'user/page/Shoppage',], function ($view) {
 
+            $ccart_product = 0;
+            $scart_product = 0;
+
             $user = Auth::user();
             if($user){
                 $cart = Cart::where('iduser', $user->iduser)->first();
                 if($cart){
                     $ccart_product = Cart_product::where('idcart', $cart->idcart)->count();
                     $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
-                }else{
-                    $ccart_product = 0;
-                    $scart_product = 0;
                 }
             }
                             

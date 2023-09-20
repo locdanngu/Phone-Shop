@@ -20,49 +20,50 @@
     <div class="container" id="container1">
         <div class="row" style="display: flex; justify-content:space-between">
             <div class="col-md-5">
-                <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+                <form action="#" class="checkout" method="post" name="checkout">
+                    @csrf
                     <div id="customer_details" class="col2-set">
-                        <div class="">
-                            <div class="woocommerce-billing-fields">
-                                <h3>Personal information</h3>
-                                <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                    <label class="" for="billing_first_name">First Name
-                                    </label>
-                                    <input type="text" value="{{ $user->firstname }}" placeholder=""
-                                        id="billing_first_name" name="billing_first_name" class="input-text ">
-                                </p>
-                                <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                    <label class="" for="billing_first_name">Last Name
-                                    </label>
-                                    <input type="text" value="{{ $user->lastname }}" placeholder=""
-                                        id="billing_first_name" name="billing_first_name" class="input-text ">
-                                </p>
-                                <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                    <label class="" for="billing_first_name">Username
-                                    </label>
-                                    <input type="text" value="{{ $user->username }}" placeholder=""
-                                        id="billing_first_name" name="billing_first_name" class="input-text" disabled>
-                                </p>
-                                <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                    <label class="" for="billing_first_name">Email
-                                    </label>
-                                    <input type="text" value="{{ $user->email }}" placeholder="" id="billing_first_name"
-                                        name="billing_first_name" class="input-text" disabled>
-                                </p>
-                                <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                    <label class="" for="billing_first_name">Phone
-                                    </label>
-                                    <input type="text" value="{{ $user->phone }}" placeholder="" id="billing_first_name"
-                                        name="billing_first_name" class="input-text" disabled>
-                                </p>
-                            </div>
+
+                        <div class="woocommerce-billing-fields">
+                            <h3>Personal information</h3>
+                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                <label class="" for="billing_first_name">First Name
+                                </label>
+                                <input type="text" value="{{ $user->firstname }}" placeholder="" id="billing_first_name"
+                                    name="billing_first_name" class="input-text ">
+                            </p>
+                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                <label class="" for="billing_first_name">Last Name
+                                </label>
+                                <input type="text" value="{{ $user->lastname }}" placeholder="" id="billing_first_name"
+                                    name="billing_first_name" class="input-text ">
+                            </p>
+                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                <label class="" for="billing_first_name">Username
+                                </label>
+                                <input type="text" value="{{ $user->username }}" placeholder="" id="billing_first_name"
+                                    name="billing_first_name" class="input-text" disabled>
+                            </p>
+                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                <label class="" for="billing_first_name">Email
+                                </label>
+                                <input type="text" value="{{ $user->email }}" placeholder="" id="billing_first_name"
+                                    name="billing_first_name" class="input-text" disabled>
+                            </p>
+                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                <label class="" for="billing_first_name">Phone
+                                </label>
+                                <input type="text" value="{{ $user->phone }}" placeholder="" id="billing_first_name"
+                                    name="billing_first_name" class="input-text" disabled>
+                            </p>
                         </div>
+                        <input type="submit" value="Submit">
                     </div>
                 </form>
             </div>
             <div class="col-md-5">
-                <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-
+                <form action="#" class="checkout" method="post" name="checkout">
+                    @csrf
                     <div id="customer_details" class="col2-set">
                         <div class="">
                             <div class="woocommerce-billing-fields">
@@ -368,6 +369,7 @@
                                 </p>
                             </div>
                         </div>
+                        <input type="submit" value="Submit">
                     </div>
                 </form>
             </div>
@@ -379,14 +381,18 @@
             <thead>
                 <tr>
                     <th class="product-remove">&nbsp;</th>
-                    <th class="product-thumbnail"></th>
-                    <th class="product-name">Product</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-quantity">Quantity</th>
-                    <th class="product-subtotal">Total</th>
+                    <th class="product-thumbnail">State contry</th>
+                    <th class="product-name">Contry</th>
+                    <th class="product-price">Town city</th>
+                    <th class="product-quantity">Address</th>
+                    <th class="product-subtotal">companyname</th>
+                    <th class="product-subtotal">Postcode</th>
+                    <th class="product-subtotal">Apartment</th>
+                    <th class="product-subtotal">Order note</th>
                 </tr>
             </thead>
-            <tbody id="capnhatdanhsachcart">
+            <tbody id="capnhatdanhsachdiachi">
+                @if($user->postcode != null)
                 <tr class="cart_item" data-product-id="">
                     <td class="product-remove">
                         <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
@@ -394,30 +400,78 @@
                     </td>
 
                     <td class="product-thumbnail">
-                        <span class="amount"></span>
+                        <span class="amount">{{ $user->state_country }}</span>
                     </td>
 
                     <td class="product-name">
-                        <span class="amount"></span>
+                        <span class="amount">{{ $user->country }}</span>
                     </td>
 
                     <td class="product-price">
-                        <span class="amount"></span>
+                        <span class="amount">{{ $user->town_city }}</span>
                     </td>
 
-                    <td class="product-quantity" style="padding:0 5px">
-                        <div class="quantity buttons_added">
-                            <input type="button" class="minus" value="-" data-quantity="1" data-id="">
-                            <input type="number" size="4" class="input-text qty text" title="Qty" value="" step="1"
-                                min="1" data-id="">
-                            <input type="button" class="plus" value="+" data-quantity="1" data-id="">
-                        </div>
+                    <td class="product-price">
+                        <span class="amount">{{ $user->address }}</span>
                     </td>
 
-                    <td class="product-subtotal">
-                        <span class="amount" style="color:red; font-weight:bold">$</span>
+                    <td class="product-price">
+                        <span class="amount">{{ $user->companyname }}</span>
+                    </td>
+                    <td class="product-price">
+                        <span class="amount">{{ $user->postcode }}</span>
+                    </td>
+                    <td class="product-price">
+                        <span class="amount">{{ $user->apartment }}</span>
+                    </td>
+                    <td class="product-price">
+                        <span class="amount">{{ $user->ordernote }}</span>
                     </td>
                 </tr>
+                @else
+                <tr>
+                    <td colspan=9 style="text-align:center; font-weight:bold">You do not have a delivery address</td>
+                </tr>
+                @endif
+                @if(count($listaddress))
+                @foreach($listaddress as $la)
+                <tr class="cart_item" data-product-id="">
+                    <td class="product-remove">
+                        <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
+                            data-target="#modal-deleteproduct" data-id="" data-name="">×</a>
+                    </td>
+
+                    <td class="product-thumbnail">
+                        <span class="amount">{{ $la->state_country }}</span>
+                    </td>
+
+                    <td class="product-name">
+                        <span class="amount">{{ $la->country }}</span>
+                    </td>
+
+                    <td class="product-price">
+                        <span class="amount">{{ $la->town_city }}</span>
+                    </td>
+
+                    <td class="product-price">
+                        <span class="amount">{{ $la->address }}</span>
+                    </td>
+
+                    <td class="product-price">
+                        <span class="amount">{{ $la->companyname }}</span>
+                    </td>
+                    <td class="product-price">
+                        <span class="amount">{{ $la->postcode }}</span>
+                    </td>
+                    <td class="product-price">
+                        <span class="amount">{{ $la->apartment }}</span>
+                    </td>
+                    <td class="product-price">
+                        <span class="amount">{{ $la->ordernote }}</span>
+                    </td>
+                </tr>
+                @endforeach
+                @endif
             </tbody>
         </table>
 

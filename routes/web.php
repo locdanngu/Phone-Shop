@@ -40,6 +40,7 @@ Route::prefix('/')->group(function () {
     Route::get('/userpage', [UserController::class, 'userpage'])->name('user.page');
     Route::post('/changenameuser', [UserController::class, 'changenameuser'])->name('changenameuser');
     Route::post('/addaddress', [UserController::class, 'addaddress'])->name('addaddress');
+    Route::post('/changepassword', [UserController::class, 'changepassword'])->name('changepassword');
 
 });
 

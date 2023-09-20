@@ -18,11 +18,19 @@
 
 <div class="single-product-area">
     <div style="display: flex;justify-content:center;margin:3em 0">
+        @error('name')
+        <h3 style="color:red;font-weight:bold">{{ $message }}</h3>
+        @enderror
+        @error('addaddress')
+        <h3 style="color:red;font-weight:bold">{{ $message }}</h3>
+        @enderror
+    </div>
+
+    <div style="display: flex;justify-content:center;margin:3em 0">
         <button class="btnchangeuser active" data-target="container1">List address</button>
         <button class="btnchangeuser" data-target="container2">Information / Add address</button>
         <button class="btnchangeuser" data-target="container3">Change password</button>
     </div>
-
 
     <div class="container hidecontainer" id="container2" style="display: none;">
         <div class="row fixcolumn">
@@ -79,8 +87,7 @@
                                     <label class="" for="billing_country">Country <abbr title="required"
                                             class="required">*</abbr>
                                     </label>
-                                    <select class="country_to_state country_select" id="billing_country"
-                                        name="country">
+                                    <select class="country_to_state country_select" id="billing_country" name="country">
                                         <option value="AX">Åland Islands</option>
                                         <option value="AF">Afghanistan</option>
                                         <option value="AL">Albania</option>
@@ -331,8 +338,8 @@
                                     <label class="" for="billing_first_name">Town / City <abbr title="required"
                                             class="required">*</abbr>
                                     </label>
-                                    <input type="text" value="" placeholder="" id="billing_first_name"
-                                        name="town_city" class="input-text " required>
+                                    <input type="text" value="" placeholder="" id="billing_first_name" name="town_city"
+                                        class="input-text " required>
                                 </p>
                                 <p id="billing_state_field" class="form-row form-row-first address-field validate-state"
                                     data-o_class="form-row form-row-first address-field validate-state">
@@ -354,8 +361,8 @@
                                 </p>
                                 <p id="billing_company_field" class="form-row form-row-wide">
                                     <label class="" for="billing_company">Company Name</label>
-                                    <input type="text" value="" placeholder="" id="billing_company"
-                                        name="companyname" class="input-text ">
+                                    <input type="text" value="" placeholder="" id="billing_company" name="companyname"
+                                        class="input-text ">
                                 </p>
                                 <p id="billing_postcode_field"
                                     class="form-row form-row-last address-field validate-required validate-postcode"
@@ -486,19 +493,85 @@
         </div>
     </div>
 
-    <div class="container hidecontainer" id="container3" style="display: none;">
-
+    <div class="container hidecontainer" id="container3" style="display:none">
+        <div class="col-md-5" style="margin:0 0 3em 0">
+            <form action="{{ route('changepassword') }}" class="checkout" method="post" name="checkout">
+                @csrf
+                <div id="customer_details" class="col2-set">
+                    <div class="woocommerce-billing-fields">
+                        <h3>Change password</h3>
+                        <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                            <label class="" for="billing_first_name">Old password
+                            </label>
+                            <input type="password" placeholder="" id="billing_first_name" name="oldpassword"
+                                class="input-text" required autocomplete="off" style="width:100%">
+                        </p>
+                        @error('passold')
+                        <h5 style="color:red;font-weight:bold">{{ $message }}</h5>
+                        @enderror
+                        <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                            <label class="" for="billing_first_name">New password
+                            </label>
+                            <input type="password" placeholder="" id="billing_first_name" name="newpassword"
+                                class="input-text" required autocomplete="off" style="width:100%">
+                        </p>
+                        @error('passnewshort')
+                        <h5 style="color:red;font-weight:bold">{{ $message }}</h5>
+                        @enderror
+                        @error('passnew')
+                        <h5 style="color:red;font-weight:bold">{{ $message }}</h5>
+                        @enderror
+                        <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                            <label class="" for="billing_first_name">Re-enter password
+                            </label>
+                            <input type="password" placeholder="" id="billing_first_name" autocomplete="off"
+                                name="repassword" class="input-text" style="width:100%">
+                        </p>
+                        @error('passcon')
+                        <h5 style="color:red;font-weight:bold">{{ $message }}</h5>
+                        @enderror
+                        @error('suc')
+                        <h5 style="color:red;font-weight:bold">{{ $message }}</h5>
+                        @enderror
+                    </div>
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-@endsection
-
-
-@section('popup')
 
 
 @endsection
 
 @section('js')
+
+@if ($errors->has('name') || $errors->has('addaddress'))
+<!-- Thêm lớp 'active' cho nút "Information / Add address" -->
+<script>
+$(document).ready(function() {
+    $('.btnchangeuser[data-target="container1"]').removeClass('active');
+    $('.btnchangeuser[data-target="container2"]').addClass('active');
+    $('#container2').show(); // Hiển thị container2
+    $('#container1').hide(); // Hiển thị container2
+});
+</script>
+@endif
+
+@if ($errors->has('passold') || $errors->has('passnewshort') || $errors->has('passnew') || $errors->has('passcon') ||
+$errors->has('suc'))
+
+<script>
+$(document).ready(function() {
+    $('.btnchangeuser[data-target="container1"]').removeClass('active');
+    $('.btnchangeuser[data-target="container3"]').addClass('active');
+    $('#container3').show(); // Hiển thị container2
+    $('#container1').hide(); // Hiển thị container2
+});
+</script>
+
+
+@endif
 <script>
 $(document).ready(function() {
     // Gán sự kiện click cho các nút

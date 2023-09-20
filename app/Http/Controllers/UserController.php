@@ -468,7 +468,7 @@ class UserController extends Controller
         $user->lastname = $request['lastname'];
         $user->save();
 
-        return redirect()->back();
+        return redirect()->back()->withErrors(['name' => 'Change name success']);
     }
 
     public function addaddress(Request $request)
@@ -498,6 +498,33 @@ class UserController extends Controller
             $add->save();
         }
 
-        return redirect()->back();
+        return redirect()->back()->withErrors(['addaddress' => 'Add address success']);
+    }
+
+    public function changepassword(Request $request)
+    {
+        $user = Auth::user();
+        if (!Hash::check($request['oldpassword'], $user->password)) {
+            return redirect()->back()->withInput()->withErrors(['passold' => 'Old password incorrect']);
+        }
+        
+        if (strlen($request->input('newpassword')) < 6) {
+            return redirect()->back()->withInput()->withErrors(['passnewshort' => 'Password requires more than or equal to 6 characters']);
+        }
+        
+        if ($request['oldpassword'] ===  $request['newpassword']) {
+            return redirect()->back()->withInput()->withErrors(['passnew' => 'The new password cannot be the same as the old password']);
+        } 
+
+        if ($request['newpassword'] !== $request['repassword']) {
+            return redirect()->back()->withInput()->withErrors(['passcon' => 'Confirmation password does not match']);
+        } 
+        
+        $user->password = Hash::make($request['newpassword']);
+
+        $user->save();
+        return redirect()->back()->withInput()->withErrors(['suc' => 'Password changed successfully']);
+
+        
     }
 }

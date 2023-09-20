@@ -29,7 +29,7 @@
                         <div class="product-upper">
                             <img src="{{ $pr->imageproduct }}" alt="">
                         </div>
-                        <h2 class="text-center"><a
+                        <h2 class="text-center fixheight"><a
                                 href="{{ route('product.page', ['nameproduct' => $pr->nameproduct]) }}">{{ $pr->nameproduct }}</a>
                         </h2>
                         <div class="product-carousel-price">

@@ -113,7 +113,7 @@
                                             <img style="height: 250px;" alt="T_4_front"
                                                 class="attachment-shop_catalog wp-post-image"
                                                 src="{{ $rd->imageproduct }}">
-                                            <h3>{{ $rd->nameproduct }}</h3>
+                                            <h3 class="fixheight2">{{ $rd->nameproduct }}</h3>
                                             <span class="price"><span class="amount">${{ $rd->price }}</span></span>
                                         </a>
 

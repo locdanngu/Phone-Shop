@@ -1669,6 +1669,15 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
     font-size: 5em !important;
 }
 
+.fixheight{
+    display: flex;
+    min-height: 50px;
+}
+
+.fixheight2{
+    display: flex;
+    min-height: 60px;
+}
 
 
 

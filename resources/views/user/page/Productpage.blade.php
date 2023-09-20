@@ -92,8 +92,8 @@
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
                                             <h2>Reviews</h2>
                                             <div class="submit-review">
-                                                <p><label for="name">Name</label> <input name="name" type="text"></p>
-                                                <p><label for="email">Email</label> <input name="email" type="email">
+                                                <p><label for="name">Name</label> <input name="name" type="text" id="namereview"></p>
+                                                <p><label for="email">Email</label> <input name="email" type="email" id="emailreview">
                                                 </p>
                                                 <div class="rating-chooser">
                                                     <p>Your rating</p>
@@ -106,9 +106,9 @@
                                                         <i class="fa fa-star"></i>
                                                     </div>
                                                 </div>
-                                                <p><label for="review">Your review</label> <textarea name="review" id=""
+                                                <p><label for="review">Your review</label> <textarea name="review" id="reviewreview"
                                                         cols="30" rows="10"></textarea></p>
-                                                <input type="submit" value="Submit">
+                                                <input type="submit" value="Submit" id="sendreview">
                                             </div>
                                         </div>
                                     </div>
@@ -221,6 +221,13 @@ $(document).ready(function() {
             // Ẩn nội dung của tab "Reviews" khi tab khác được nhấn
             $('#review').hide();
         }
+    });
+
+
+    $('#sendreview').on('click', function() {
+        var name = $('#namereview').val();
+        var email = $('#emailreview').val();
+        var reviewreview = $('#reviewreview').val();
     });
 });
 </script>

@@ -382,13 +382,31 @@ class UserController extends Controller
         $html .= '</div>';
         $html .= '</div>';
  
+        return response()->json([
+            'html' => $html,
+        ]);
+    }
 
+    public function morereview(Request $request)
+    {
+        $review = Review::where('idproduct', $request['id'])->orderBy('created_at', 'desc')->take(10)->get();
+        $html = ''; // Khởi tạo biến $html là chuỗi rỗng
+
+        foreach($review as $r){
+            $html .= '<div class="review">';
+            $html .= '<h5 class="username">' . $r->name . ' - ' . $r->email . '</h5>';
+            $html .= '<h5>' . $r->review . '</h5>';
+            $html .= '<div class="rating-wrap-post" style="display: flex;align-items: center">';
+            for ($i = 0; $i < $r->rating; $i++){
+                $html .= '<i class="fa fa-star" style="margin-right:.25em"></i>';
+            }
+            $html .= '<h6 style="margin:0"> (' . $r->created_at . ')</h6>';
+            $html .= '</div>';
+            $html .= '</div>';
+        }
 
         return response()->json([
             'html' => $html,
         ]);
-        
-         
-
     }
 }

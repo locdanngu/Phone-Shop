@@ -148,7 +148,9 @@
                             </div>
                             @endforeach
                         </div>
-                        <input type="submit" value="more review" class="watchmore">
+                        @if(count($review) >= 5)
+                        <input type="submit" value="more review" class="watchmore" id="morereview">
+                        @endif
                     </div>
 
 
@@ -263,6 +265,10 @@ $(document).ready(function() {
                 var html = response.html;
                 $('#capnhatreview').prepend(html);
                 toastr.success('Review added successfully');
+                $('#namereview').val('');
+                $('#emailreview').val('');
+                $('#reviewreview').val('');
+                $('input[name="rating"]').prop('checked', false);
             }
         });
 
@@ -290,9 +296,28 @@ $(document).ready(function() {
                 var html = response.html;
                 $('#capnhatreview').prepend(html);
                 toastr.success('Review added successfully');
+                $('#reviewreview').val('');
+                $('input[name="rating"]').prop('checked', false);
             }
         });
 
+    });
+
+    $('#morereview').on('click', function() {
+        var id = $('#idproductreview').val();
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('morereview') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: id,
+            },
+            success: function(response) {
+                var html = response.html;
+                $('#capnhatreview').html(html);
+                $('#morereview').hide();
+            }
+        });
     });
 });
 </script>

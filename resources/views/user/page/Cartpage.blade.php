@@ -67,10 +67,13 @@
 
                                         <td class="product-quantity" style="padding:0 5px">
                                             <div class="quantity buttons_added">
-                                                <input type="button" class="minus" value="-" data-quantity="1">
+                                                <input type="button" class="minus" value="-" data-quantity="1"
+                                                    data-id="{{ $c->idcart_product }}">
                                                 <input type="number" size="4" class="input-text qty text" title="Qty"
-                                                    value="{{ $c->quantity }}" min="1" step="1">
-                                                <input type="button" class="plus" value="+" data-quantity="1">
+                                                    value="{{ $c->quantity }}" step="1" min="1"
+                                                    data-id="{{ $c->idcart_product }}">
+                                                <input type="button" class="plus" value="+" data-quantity="1"
+                                                    data-id="{{ $c->idcart_product }}">
                                             </div>
                                         </td>
 
@@ -470,9 +473,24 @@ $('body').on('click', '.plus', function() {
     var inputElement = $(this).siblings('.qty');
     var quantity = parseInt(inputElement.val()) + parseInt($(this).data('quantity'));
 
-    // Kiểm tra giới hạn số lượng nếu cần
     if (quantity > 0) {
         inputElement.val(quantity);
+
+        var productId = $(this).data('id');
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('updateproductcart') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: productId,
+                code: 0,
+            },
+            success: function(response) {
+                var html = response.html;
+                $("#capnhatcart").html(html);
+            }
+        });
     }
 
     updateSubtotal(inputElement);
@@ -486,6 +504,22 @@ $('body').on('click', '.minus', function() {
     // Kiểm tra giới hạn số lượng nếu cần
     if (quantity > 0) {
         inputElement.val(quantity);
+
+        var productId = $(this).data('id');
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('updateproductcart') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: productId,
+                code: 1,
+            },
+            success: function(response) {
+                var html = response.html;
+                $("#capnhatcart").html(html);
+            }
+        });
     }
 
     updateSubtotal(inputElement);
@@ -507,6 +541,24 @@ $('body').on('change', '.qty', function() {
     if (quantity < 0) {
         quantity = 0;
     }
+
+    var productId = $(this).data('id');
+
+    $.ajax({
+        type: 'POST',
+        url: "{{ route('updateproductcart') }}",
+        data: {
+            _token: '{{ csrf_token() }}',
+            id: productId,
+            quantity: quantity,
+            code: 2,
+        },
+        success: function(response) {
+            var html = response.html;
+            $("#capnhatcart").html(html);
+        }
+    });
+
 
     var subtotal = quantity * price;
     inputElement.closest('tr').find('.product-subtotal .amount').text('$' + subtotal.toFixed(2));

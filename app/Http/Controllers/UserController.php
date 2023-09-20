@@ -281,16 +281,16 @@ class UserController extends Controller
         $product_cart = Cart_product::where('idcart_product', $request['id'])->first();
         $product_cart->delete();
 
-        if($user){
-            $cart = Cart::where('iduser', $user->iduser)->first();
-            if($cart){
-                $ccart_product = Cart_product::where('idcart', $cart->idcart)->count();
-                $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
-            }else{
-                $ccart_product = 0;
-                $scart_product = 0;
-            }
+        
+        $cart = Cart::where('iduser', $user->iduser)->first();
+        if($cart){
+            $ccart_product = Cart_product::where('idcart', $cart->idcart)->count();
+            $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
+        }else{
+            $ccart_product = 0;
+            $scart_product = 0;
         }
+        
 
         $html = '<a href="' . route('cart.page') . '">Cart - <span class="cart-amunt">$' . $scart_product . '</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
 
@@ -299,5 +299,40 @@ class UserController extends Controller
         ]);
     }
 
+    public function updateproductcart(Request $request)
+    {
+        $user = Auth::user();
+        $product_cart = Cart_product::where('idcart_product', $request['id'])->first();
+        $price2 = Product::where('idproduct', $product_cart->idproduct)->first();
+        $price = $price2->price;
+        if($request['code'] == 1){
+            $product_cart->quantity = $product_cart->quantity - 1;
+            $product_cart->totalprice = $product_cart->totalprice - $price;
+            $product_cart->save();
+        }elseif($request['code'] == 0){
+            $product_cart->quantity = $product_cart->quantity + 1;
+            $product_cart->totalprice = $product_cart->totalprice + $price;
+            $product_cart->save();
+        }else{
+            $product_cart->quantity = $request['quantity'];
+            $product_cart->totalprice = $price * $request['quantity'];
+            $product_cart->save();
+        }
+
+        $cart = Cart::where('iduser', $user->iduser)->first();
+        if($cart){
+            $ccart_product = Cart_product::where('idcart', $cart->idcart)->count();
+            $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
+        }else{
+            $ccart_product = 0;
+            $scart_product = 0;
+        }
+
+        $html = '<a href="' . route('cart.page') . '">Cart - <span class="cart-amunt">$' . $scart_product . '</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
+
+        return response()->json([
+            'html' => $html,
+        ]);
+    }
 
 }

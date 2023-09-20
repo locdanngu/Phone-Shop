@@ -92,23 +92,35 @@
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
                                             <h2>Reviews</h2>
                                             <div class="submit-review">
-                                                <p><label for="name">Name</label> <input name="name" type="text" id="namereview"></p>
-                                                <p><label for="email">Email</label> <input name="email" type="email" id="emailreview">
+                                                @if(!$user)
+                                                <p><label for="name">Name</label> <input name="name" type="text"
+                                                        id="namereview"></p>
+                                                <p><label for="email">Email</label> <input name="email" type="email"
+                                                        id="emailreview">
                                                 </p>
-                                                <div class="rating-chooser">
-                                                    <p>Your rating</p>
-
-                                                    <div class="rating-wrap-post">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
+                                                @endif
+                                                <div class="rating">
+                                                    <p class="noidung3">Your Rating</p>
+                                                    <div class="star-rating">
+                                                        <input type="radio" id="5-stars" name="rating" value="5" />
+                                                        <label for="5-stars" class="star">&#9733;</label>
+                                                        <input type="radio" id="4-stars" name="rating" value="4" />
+                                                        <label for="4-stars" class="star">&#9733;</label>
+                                                        <input type="radio" id="3-stars" name="rating" value="3" />
+                                                        <label for="3-stars" class="star">&#9733;</label>
+                                                        <input type="radio" id="2-stars" name="rating" value="2" />
+                                                        <label for="2-stars" class="star">&#9733;</label>
+                                                        <input type="radio" id="1-star" name="rating" value="1" />
+                                                        <label for="1-star" class="star">&#9733;</label>
                                                     </div>
                                                 </div>
-                                                <p><label for="review">Your review</label> <textarea name="review" id="reviewreview"
-                                                        cols="30" rows="10"></textarea></p>
-                                                <input type="submit" value="Submit" id="sendreview">
+                                                <p><label for="review">Your review</label> <textarea name="review"
+                                                        id="reviewreview" cols="30" rows="10"></textarea></p>
+                                                @if(!$user)
+                                                <input type="submit" value="Submit" id="sendreview1">
+                                                @else
+                                                <input type="submit" value="Submit" id="sendreview2">
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -223,11 +235,30 @@ $(document).ready(function() {
         }
     });
 
-
-    $('#sendreview').on('click', function() {
+    $('#sendreview1').on('click', function() {       //Chưa đăng nhập
         var name = $('#namereview').val();
         var email = $('#emailreview').val();
         var reviewreview = $('#reviewreview').val();
+        var selectedRating = $('input[name="rating"]:checked').val();
+
+        if(reviewreview == null || selectedRating == null || name == null || email == null){
+            toastr.error('Please complete all information.');
+        }
+
+        
+
+    });
+
+    $('#sendreview2').on('click', function() {      //ĐÃ đăng nhập
+        var reviewreview = $('#reviewreview').val();
+        var selectedRating = $('input[name="rating"]:checked').val();
+
+        if(reviewreview == null || selectedRating == null){
+            toastr.error('Please complete all information.');
+        }
+
+
+
     });
 });
 </script>

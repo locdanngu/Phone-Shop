@@ -94,8 +94,12 @@
                                                     class="button">
                                             </div> -->
                                             <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
+                                            @if($user->postcode == null)
+                                            <a href="{{ route('chuyenhuong') }}" class="btnchangeuser">Checkout</a>
+                                            @else
                                             <input type="submit" value="Checkout" name="proceed"
                                                 class="checkout-button button alt wc-forward">
+                                            @endif
                                         </td>
                                     </tr>
                                 </tbody>
@@ -152,7 +156,7 @@
                             </div>
 
 
-                            
+
 
 
 

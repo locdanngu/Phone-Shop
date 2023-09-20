@@ -1743,6 +1743,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
     background: white;
     border: 1px solid #5a88ca;
     color: #5a88ca;
+    text-decoration: none;
 }
 
 .btnchangeuser.active {

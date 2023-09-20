@@ -302,7 +302,7 @@ class UserController extends Controller
 
         $html2 ='';
         $html2 = '<th>Order Total</th>';
-        $html2 .= '<td><strong><span class="amount" style="font-weight:bold;color:red">${' . $scart_product . '}</span></strong></td>';
+        $html2 .= '<td><strong><span class="amount" style="font-weight:bold;color:red">$' . $scart_product . '</span></strong></td>';
 
         return response()->json([
             'html' => $html,
@@ -545,5 +545,10 @@ class UserController extends Controller
     {
         $address = Address::where('idaddress', $request['id'])->first();
         $address->delete();
+    }
+
+    public function chuyenhuong(Request $request)
+    {
+        return redirect()->route('user.page')->withErrors(['need' => 'You need at least 1 delivery address']);
     }
 }

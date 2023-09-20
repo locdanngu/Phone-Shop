@@ -24,6 +24,9 @@
         @error('addaddress')
         <h3 style="color:red;font-weight:bold">{{ $message }}</h3>
         @enderror
+        @error('need')
+        <h3 style="color:red;font-weight:bold">{{ $message }}</h3>
+        @enderror
     </div>
 
     <div style="display: flex;justify-content:center;margin:3em 0">
@@ -601,7 +604,7 @@
 
 @section('js')
 
-@if ($errors->has('name') || $errors->has('addaddress'))
+@if ($errors->has('name') || $errors->has('addaddress') || $errors->has('need'))
 <!-- Thêm lớp 'active' cho nút "Information / Add address" -->
 <script>
 $(document).ready(function() {

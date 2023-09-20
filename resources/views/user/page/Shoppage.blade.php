@@ -37,8 +37,13 @@
                         </div>
 
                         <div class="product-option-shop">
+                            @if($user)
                             <a class="add_to_cart_button them-sp-vao-gio" href="#"
                                 data-idproduct="{{ $pr->idproduct }}">Add to cart</a>
+                            @else
+                            <a class="add_to_cart_button" href="#" type="button" data-toggle="modal"
+                                data-target="#modal-login">Add to cart</a>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -72,9 +72,15 @@
                             <div class="product-f-image">
                                 <img src="{{ $lp->imageproduct }}" alt="">
                                 <div class="product-hover" style="height: 270px;">
+                                    @if($user)
                                     <a href="#" class="add-to-cart-link them-sp-vao-gio"
                                         data-idproduct="{{ $lp->idproduct }}"><i class="fa fa-shopping-cart"></i> Add to
                                         cart</a>
+                                    @else
+                                    <a href="#" class="add-to-cart-link" type="button" data-toggle="modal"
+                                        data-target="#modal-login"><i class="fa fa-shopping-cart"></i> Add to
+                                        cart</a>
+                                    @endif
                                     <a href="{{ route('product.page', ['nameproduct' => $lp->nameproduct]) }}"
                                         class="view-details-link"><i class="fa fa-link"></i>
                                         See details</a>

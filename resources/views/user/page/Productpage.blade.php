@@ -58,12 +58,21 @@
                                         <input type="number" class="input-text qty text" title="Qty" value="1"
                                             name="quantity" min="1" step="1">
                                     </div>
+                                    @if($user)
                                     <button class="add_to_cart_button" id="btn-add-to-cart"
                                         data-idproduct="{{ $product->idproduct }}">Add to cart</button>
-
+                                    @else
+                                    <button class="add_to_cart_button" type="button" data-toggle="modal"
+                                        data-target="#modal-login">Add to cart</button>
+                                    @endif
                                 </div>
+                                @if($user)
                                 <button class="add_to_cart_button" id="btn-add-to-wishlist" style="margin:.5em 0"
                                     data-idproduct="{{ $product->idproduct }}">Add to wishlist</button>
+                                @else
+                                <button class="add_to_cart_button" style="margin:.5em 0" type="button"
+                                    data-toggle="modal" data-target="#modal-login">Add to wishlist</button>
+                                @endif
                                 <div class="product-inner-category">
                                     <p>Category: <a
                                             href="{{ route('shop.search', ['searchproduct' => $product->category->namecategory]) }}">{{ $product->category->namecategory }}</a>.
@@ -161,10 +170,17 @@
                                 <div class="product-f-image">
                                     <img src="{{ $rd->imageproduct }}" alt="" style="height:300px">
                                     <div class="product-hover">
+                                        @if($user)
                                         <a href="#" class="add-to-cart-link them-sp-vao-gio"
                                             data-idproduct="{{ $rd->idproduct }}"><i class="fa fa-shopping-cart"></i>
                                             Add to
                                             cart</a>
+                                        @else
+                                        <a href="#" class="add-to-cart-link" type="button" data-toggle="modal"
+                                            data-target="#modal-login"><i class="fa fa-shopping-cart"></i>
+                                            Add to
+                                            cart</a>
+                                        @endif
                                         <a href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}"
                                             class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>

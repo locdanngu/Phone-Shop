@@ -76,7 +76,7 @@
                                         </td>
                                         <td class="product-subtotal">
                                             <a class="add_to_cart_button them-sp-vao-gio" href="#"
-                                                data-idproduct="{{ $l->idproduct }}">Add to cart</a>
+                                                data-idproduct="{{ $l->idproduct }}"><i class="bi bi-cart-plus-fill"></i></a>
                                         </td>
                                     </tr>
 

@@ -22,11 +22,21 @@
                 <div class="footer-menu">
                     <h2 class="footer-wid-title">User Navigation </h2>
                     <ul>
-                        <li><a href="#">My account</a></li>
-                        <li><a href="#">Order history</a></li>
-                        <li><a href="{{ route('wishlist.page') }}">Wishlist</a></li>
-                        <li><a href="#">Vendor contact</a></li>
-                        <li><a href="{{ route('home.page') }}">Home page</a></li>
+                        <li>
+                            <a href="#">My account</a>
+                        </li>
+                        <li>
+                            <a href="#">Order history</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('wishlist.page') }}">Wishlist</a>
+                        </li>
+                        <li>
+                            <a href="#">Vendor contact</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home.page') }}">Home page</a>
+                        </li>
                     </ul>
                 </div>
             </div>

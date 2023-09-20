@@ -41,6 +41,8 @@ Route::prefix('/')->group(function () {
     Route::post('/changenameuser', [UserController::class, 'changenameuser'])->name('changenameuser');
     Route::post('/addaddress', [UserController::class, 'addaddress'])->name('addaddress');
     Route::post('/changepassword', [UserController::class, 'changepassword'])->name('changepassword');
+    Route::post('/deletemainaddress', [UserController::class, 'deletemainaddress'])->name('deletemainaddress');
+    Route::post('/deleteanotheraddress', [UserController::class, 'deleteanotheraddress'])->name('deleteanotheraddress');
 
 });
 

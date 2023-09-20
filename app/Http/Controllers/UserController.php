@@ -524,7 +524,21 @@ class UserController extends Controller
 
         $user->save();
         return redirect()->back()->withInput()->withErrors(['suc' => 'Password changed successfully']);
+    }
 
-        
+    public function deletemainaddress(Request $request)
+    {
+        $user = Auth::user();
+        $user->postcode = null;
+        $user->country = null;
+        $user->address = null;
+        $user->save();
+    }
+
+
+    public function deleteanotheraddress(Request $request)
+    {
+        $address = Address::where('idaddress', $request['id'])->first();
+        $address->delete();
     }
 }

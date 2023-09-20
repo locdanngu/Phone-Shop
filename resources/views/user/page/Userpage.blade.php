@@ -407,7 +407,7 @@
                     </thead>
                     <tbody id="capnhatdanhsachdiachi">
                         @if($user->postcode != null)
-                        <tr class="cart_item">
+                        <tr class="cart_item" id="mainaddress">
                             <td class="product-name">
                                 <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
                                     data-target="#modal-deleteproduct2" data-name="{{ $user->address }}">×</a>
@@ -672,7 +672,7 @@ $('#deleteproduct').on('click', function(event) {
     var id = globalId;
     $.ajax({
         type: 'POST',
-        url: "{{ route('deleteproductwishlist') }}",
+        url: "{{ route('deleteanotheraddress') }}",
         data: {
             _token: '{{ csrf_token() }}',
             id: id,
@@ -680,8 +680,24 @@ $('#deleteproduct').on('click', function(event) {
         success: function(response) {
             // Xóa phần tử HTML của sản phẩm khỏi danh sách
             $('#capnhatdanhsachdiachi tr[data-product-id="' + id + '"]').remove();
-            toastr.success('Delete product successful.');
+            toastr.success('Delete address successful.');
             $('#modal-deleteproduct').modal('hide');
+        }
+    });
+});
+
+$('#deleteproduct2').on('click', function(event) {
+    $.ajax({
+        type: 'POST',
+        url: "{{ route('deletemainaddress') }}",
+        data: {
+            _token: '{{ csrf_token() }}',
+        },
+        success: function(response) {
+            // Xóa phần tử HTML của sản phẩm khỏi danh sách
+            $('#mainaddress').remove();
+            toastr.success('Delete address successful.');
+            $('#modal-deleteproduct2').modal('hide');
         }
     });
 });

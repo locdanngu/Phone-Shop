@@ -394,26 +394,26 @@
                 <table cellspacing="0" class="shop_table cart table text-nowrap">
                     <thead>
                         <tr>
-                            <th class="product-remove">&nbsp;</th>
-                            <th class="product-thumbnail">State contry</th>
+                            <th class="product-name">&nbsp;</th>
+                            <th class="product-name">State contry</th>
                             <th class="product-name">Contry</th>
-                            <th class="product-price">Town city</th>
-                            <th class="product-quantity">Address</th>
-                            <th class="product-subtotal">company name</th>
-                            <th class="product-subtotal">Post code</th>
-                            <th class="product-subtotal">Apartment</th>
-                            <th class="product-subtotal">Order note</th>
+                            <th class="product-name">Town city</th>
+                            <th class="product-name">Address</th>
+                            <th class="product-name">company name</th>
+                            <th class="product-name">Post code</th>
+                            <th class="product-name">Apartment</th>
+                            <th class="product-name">Order note</th>
                         </tr>
                     </thead>
                     <tbody id="capnhatdanhsachdiachi">
                         @if($user->postcode != null)
-                        <tr class="cart_item" data-product-id="">
-                            <td class="product-remove">
+                        <tr class="cart_item">
+                            <td class="product-name">
                                 <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
-                                    data-target="#modal-deleteproduct" data-id="" data-name="">×</a>
+                                    data-target="#modal-deleteproduct2" data-name="{{ $user->address }}">×</a>
                             </td>
 
-                            <td class="product-thumbnail">
+                            <td class="product-name">
                                 <span class="amount">{{ $user->state_country }}</span>
                             </td>
 
@@ -421,24 +421,24 @@
                                 <span class="amount">{{ $user->country }}</span>
                             </td>
 
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $user->town_city }}</span>
                             </td>
 
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $user->address }}</span>
                             </td>
 
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $user->companyname }}</span>
                             </td>
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $user->postcode }}</span>
                             </td>
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $user->apartment }}</span>
                             </td>
-                            <td class="product-price">
+                            <td class="product-name">
                                 <span class="amount">{{ $user->ordernote }}</span>
                             </td>
                         </tr>
@@ -450,10 +450,11 @@
                         @endif
                         @if(count($listaddress))
                         @foreach($listaddress as $la)
-                        <tr class="cart_item" data-product-id="">
+                        <tr class="cart_item" data-product-id="{{ $la->idaddress }}">
                             <td class="product-remove">
                                 <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
-                                    data-target="#modal-deleteproduct" data-id="" data-name="">×</a>
+                                    data-target="#modal-deleteproduct" data-id="{{ $la->idaddress }}"
+                                    data-name="{{ $la->address }}">×</a>
                             </td>
 
                             <td class="product-thumbnail">
@@ -544,6 +545,60 @@
 
 @endsection
 
+
+
+@section('popup')
+<div class="modal fade" id="modal-deleteproduct">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete product</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 style="color:red; font-weight: bold">Delete this product?</h3>
+                <span name="nameproduct"></span>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-danger" id="deleteproduct">Delete</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-deleteproduct2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete product</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 style="color:red; font-weight: bold">Delete this product?</h3>
+                <span name="nameproduct"></span>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="button" class="btn btn-danger" id="deleteproduct2">Delete</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+@endsection
+
+
+
+
+
 @section('js')
 
 @if ($errors->has('name') || $errors->has('addaddress'))
@@ -592,6 +647,43 @@ $(document).ready(function() {
         $('#' + target).show();
     });
 
+});
+
+
+var globalId;
+
+$('#modal-deleteproduct').on('shown.bs.modal', function(event) {
+    var button = $(event.relatedTarget); // Nút "Change" được nhấn
+    var id = button.data('id');
+    var name = button.data('name');
+    var modal = $(this);
+    globalId = id;
+    modal.find('span[name="nameproduct"]').text(name);
+});
+
+$('#modal-deleteproduct2').on('shown.bs.modal', function(event) {
+    var button = $(event.relatedTarget); // Nút "Change" được nhấn
+    var name = button.data('name');
+    var modal = $(this);
+    modal.find('span[name="nameproduct"]').text(name);
+});
+
+$('#deleteproduct').on('click', function(event) {
+    var id = globalId;
+    $.ajax({
+        type: 'POST',
+        url: "{{ route('deleteproductwishlist') }}",
+        data: {
+            _token: '{{ csrf_token() }}',
+            id: id,
+        },
+        success: function(response) {
+            // Xóa phần tử HTML của sản phẩm khỏi danh sách
+            $('#capnhatdanhsachdiachi tr[data-product-id="' + id + '"]').remove();
+            toastr.success('Delete product successful.');
+            $('#modal-deleteproduct').modal('hide');
+        }
+    });
 });
 </script>
 @endsection

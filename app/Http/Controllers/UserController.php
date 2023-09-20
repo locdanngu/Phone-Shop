@@ -409,4 +409,21 @@ class UserController extends Controller
             'html' => $html,
         ]);
     }
+
+
+    public function wishlistpage(Request $request)
+    {
+        $user = Auth::user();
+        $list = Product::inRandomOrder()->take(4)->get();
+        $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
+        $random = Product::inRandomOrder()->take(2)->get();
+        $idcart = Cart::where('iduser', $user->iduser)->first();
+        if($idcart){
+            $cart = Cart_product::where('idcart', $idcart->idcart)->orderBy('created_at', 'asc')->get();
+        }else{
+            $cart = '';
+        }
+
+        return view('user/page/Wishlistpage', compact('user','list','recent','random','cart'));
+    }
 }

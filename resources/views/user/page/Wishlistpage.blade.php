@@ -1,6 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'Cart')
+@section('title', 'Wish list')
 
 @section('body')
 <div class="product-big-title-area">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Shopping Cart</h2>
+                    <h2>Wish list</h2>
                 </div>
             </div>
         </div>

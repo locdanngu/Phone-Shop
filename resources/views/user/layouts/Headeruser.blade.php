@@ -6,7 +6,7 @@
                     <ul>
                         @if($user)
                         <li><a href="#"><i class="fa fa-user"></i> {{ $user->firstname }} {{ $user->lastname }}</a></li>
-                        <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+                        <li><a href="{{ route('wishlist.page') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
                         <li><a href="{{ route('cart.page') }}"><i class="fa fa-user"></i> My Cart</a></li>
                         <!-- <li><a href="{{ route('checkout.page') }}"><i class="fa fa-user"></i> Checkout</a></li> -->
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-logout"><i
@@ -98,7 +98,8 @@
                             href="{{ route('cart.page') }}">Cart</a></li>
                     <li class="{{ request()->routeIs('checkout.page') ? 'active' : '' }}"><a
                             href="{{ route('checkout.page') }}">Checkout</a></li>
-                    <li><a href="#">Wishlist</a></li>
+                    <li class="{{ request()->routeIs('wishlist.page') ? 'active' : '' }}"><a
+                            href="{{ route('wishlist.page') }}">Wishlist</a></li>
                     <li><a href="#">Contact</a></li>
                     @endif
                     <li>

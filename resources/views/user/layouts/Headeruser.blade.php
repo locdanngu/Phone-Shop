@@ -5,7 +5,7 @@
                 <div class="user-menu">
                     <ul>
                         @if($user)
-                        <li><a href="#"><i class="fa fa-user"></i> {{ $user->firstname }} {{ $user->lastname }}</a></li>
+                        <li><a href="{{ route('user.page') }}"><i class="fa fa-user"></i> {{ $user->firstname }} {{ $user->lastname }}</a></li>
                         <li><a href="{{ route('wishlist.page') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
                         <li><a href="{{ route('cart.page') }}"><i class="fa fa-user"></i> My Cart</a></li>
                         <!-- <li><a href="{{ route('checkout.page') }}"><i class="fa fa-user"></i> Checkout</a></li> -->

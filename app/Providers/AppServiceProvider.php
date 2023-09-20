@@ -58,7 +58,8 @@ class AppServiceProvider extends ServiceProvider
                         'user/page/Checkoutpage', 
                         'user/page/Productpage', 
                         'user/page/Shoppage',
-                        'user/page/Wishlistpage',], function ($view) {
+                        'user/page/Wishlistpage',
+                        'user/page/Userpage',], function ($view) {
 
             $ccart_product = 0;
             $scart_product = 0;

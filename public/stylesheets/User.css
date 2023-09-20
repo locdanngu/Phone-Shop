@@ -1751,9 +1751,12 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
     color: #5a88ca;
 }
 
-#container2,#container3{
-    display: none;
+.fixcolumn{
+    display: flex;
+    justify-content: space-between;
 }
+
+
 
 
 @media screen and (max-width: 767px) {
@@ -1768,6 +1771,11 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
         display: flex;
         flex-direction: column;
         row-gap: 8px;
+    }
+
+    .fixcolumn{
+        display: flex;
+        flex-direction: column;
     }
 
 }

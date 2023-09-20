@@ -18,16 +18,16 @@
 
 <div class="single-product-area">
     <div style="display: flex;justify-content:center;margin:3em 0">
-        <button class="btnchangeuser active">List address</button>
-        <button class="btnchangeuser">Information / Add address</button>
-        <button class="btnchangeuser">Change password</button>
+        <button class="btnchangeuser active" data-target="container1">List address</button>
+        <button class="btnchangeuser" data-target="container2">Information / Add address</button>
+        <button class="btnchangeuser" data-target="container3">Change password</button>
     </div>
 
 
-    <div class="container" id="container2">
-        <div class="row" style="display: flex; justify-content:space-between">
-            <div class="col-md-5">
-                <form action="#" class="checkout" method="post" name="checkout">
+    <div class="container hidecontainer" id="container2" style="display: none;">
+        <div class="row fixcolumn">
+            <div class="col-md-5" style="margin:0 0 3em 0">
+                <form action="{{ route('changenameuser') }}" class="checkout" method="post" name="checkout">
                     @csrf
                     <div id="customer_details" class="col2-set">
                         <div class="woocommerce-billing-fields">
@@ -36,31 +36,31 @@
                                 <label class="" for="billing_first_name">First Name
                                 </label>
                                 <input type="text" value="{{ $user->firstname }}" placeholder="" id="billing_first_name"
-                                    name="billing_first_name" class="input-text ">
+                                    name="firstname" class="input-text" required>
                             </p>
                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                 <label class="" for="billing_first_name">Last Name
                                 </label>
                                 <input type="text" value="{{ $user->lastname }}" placeholder="" id="billing_first_name"
-                                    name="billing_first_name" class="input-text ">
+                                    name="lastname" class="input-text" required>
                             </p>
                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                 <label class="" for="billing_first_name">Username
                                 </label>
                                 <input type="text" value="{{ $user->username }}" placeholder="" id="billing_first_name"
-                                    name="billing_first_name" class="input-text" disabled>
+                                    name="" class="input-text" disabled>
                             </p>
                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                 <label class="" for="billing_first_name">Email
                                 </label>
                                 <input type="text" value="{{ $user->email }}" placeholder="" id="billing_first_name"
-                                    name="billing_first_name" class="input-text" disabled>
+                                    name="" class="input-text" disabled>
                             </p>
                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                 <label class="" for="billing_first_name">Phone
                                 </label>
                                 <input type="text" value="{{ $user->phone }}" placeholder="" id="billing_first_name"
-                                    name="billing_first_name" class="input-text" disabled>
+                                    name="" class="input-text" disabled>
                             </p>
                         </div>
                         <input type="submit" value="Submit">
@@ -68,7 +68,7 @@
                 </form>
             </div>
             <div class="col-md-5">
-                <form action="#" class="checkout" method="post" name="checkout">
+                <form action="{{ route('addaddress') }}" class="checkout" method="post" name="checkout">
                     @csrf
                     <div id="customer_details" class="col2-set">
                         <div class="">
@@ -80,8 +80,7 @@
                                             class="required">*</abbr>
                                     </label>
                                     <select class="country_to_state country_select" id="billing_country"
-                                        name="billing_country">
-                                        <option value="">Select a country…</option>
+                                        name="country">
                                         <option value="AX">Åland Islands</option>
                                         <option value="AF">Afghanistan</option>
                                         <option value="AL">Albania</option>
@@ -333,13 +332,13 @@
                                             class="required">*</abbr>
                                     </label>
                                     <input type="text" value="" placeholder="" id="billing_first_name"
-                                        name="billing_first_name" class="input-text ">
+                                        name="town_city" class="input-text " required>
                                 </p>
                                 <p id="billing_state_field" class="form-row form-row-first address-field validate-state"
                                     data-o_class="form-row form-row-first address-field validate-state">
                                     <label class="" for="billing_state">County</label>
-                                    <input type="text" id="billing_state" name="billing_state"
-                                        placeholder="State / County" value="" class="input-text ">
+                                    <input type="text" id="billing_state" name="state_country"
+                                        placeholder="State / County" value="" class="input-text">
                                 </p>
                                 <p id="billing_address_1_field"
                                     class="form-row form-row-wide address-field validate-required">
@@ -347,16 +346,16 @@
                                             class="required">*</abbr>
                                     </label>
                                     <input type="text" value="" placeholder="Street address" id="billing_address_1"
-                                        name="billing_address_1" class="input-text ">
+                                        name="address" class="input-text " required>
                                 </p>
                                 <p id="billing_address_2_field" class="form-row form-row-wide address-field">
                                     <input type="text" value="" placeholder="Apartment, suite, unit etc. (optional)"
-                                        id="billing_address_2" name="billing_address_2" class="input-text ">
+                                        id="apartment" name="apartment" class="input-text ">
                                 </p>
                                 <p id="billing_company_field" class="form-row form-row-wide">
                                     <label class="" for="billing_company">Company Name</label>
                                     <input type="text" value="" placeholder="" id="billing_company"
-                                        name="billing_company" class="input-text ">
+                                        name="companyname" class="input-text ">
                                 </p>
                                 <p id="billing_postcode_field"
                                     class="form-row form-row-last address-field validate-required validate-postcode"
@@ -365,13 +364,13 @@
                                             class="required">*</abbr>
                                     </label>
                                     <input type="text" value="" placeholder="Postcode / Zip" id="billing_postcode"
-                                        name="billing_postcode" class="input-text ">
+                                        name="postcode" class="input-text" required>
                                 </p>
                                 <p id="order_comments_field" class="form-row notes">
                                     <label class="" for="order_comments">Order Notes</label>
                                     <textarea cols="5" rows="2"
                                         placeholder="Notes about your order, e.g. special notes for delivery."
-                                        id="order_comments" class="input-text " name="order_comments"></textarea>
+                                        id="order_comments" class="input-text " name="ordernote"></textarea>
                                 </p>
                             </div>
                         </div>
@@ -382,104 +381,112 @@
         </div>
     </div>
 
-    <div class="container" id="container1">
-        <table cellspacing="0" class="shop_table cart">
-            <thead>
-                <tr>
-                    <th class="product-remove">&nbsp;</th>
-                    <th class="product-thumbnail">State contry</th>
-                    <th class="product-name">Contry</th>
-                    <th class="product-price">Town city</th>
-                    <th class="product-quantity">Address</th>
-                    <th class="product-subtotal">companyname</th>
-                    <th class="product-subtotal">Postcode</th>
-                    <th class="product-subtotal">Apartment</th>
-                    <th class="product-subtotal">Order note</th>
-                </tr>
-            </thead>
-            <tbody id="capnhatdanhsachdiachi">
-                @if($user->postcode != null)
-                <tr class="cart_item" data-product-id="">
-                    <td class="product-remove">
-                        <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
-                            data-target="#modal-deleteproduct" data-id="" data-name="">×</a>
-                    </td>
+    <div class="container hidecontainer" id="container1">
+        <div class="card-body table-responsive p-0">
+            <div class="d-flex flex-column justify-content-between">
+                <table cellspacing="0" class="shop_table cart table text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="product-remove">&nbsp;</th>
+                            <th class="product-thumbnail">State contry</th>
+                            <th class="product-name">Contry</th>
+                            <th class="product-price">Town city</th>
+                            <th class="product-quantity">Address</th>
+                            <th class="product-subtotal">company name</th>
+                            <th class="product-subtotal">Post code</th>
+                            <th class="product-subtotal">Apartment</th>
+                            <th class="product-subtotal">Order note</th>
+                        </tr>
+                    </thead>
+                    <tbody id="capnhatdanhsachdiachi">
+                        @if($user->postcode != null)
+                        <tr class="cart_item" data-product-id="">
+                            <td class="product-remove">
+                                <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
+                                    data-target="#modal-deleteproduct" data-id="" data-name="">×</a>
+                            </td>
 
-                    <td class="product-thumbnail">
-                        <span class="amount">{{ $user->state_country }}</span>
-                    </td>
+                            <td class="product-thumbnail">
+                                <span class="amount">{{ $user->state_country }}</span>
+                            </td>
 
-                    <td class="product-name">
-                        <span class="amount">{{ $user->country }}</span>
-                    </td>
+                            <td class="product-name">
+                                <span class="amount">{{ $user->country }}</span>
+                            </td>
 
-                    <td class="product-price">
-                        <span class="amount">{{ $user->town_city }}</span>
-                    </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $user->town_city }}</span>
+                            </td>
 
-                    <td class="product-price">
-                        <span class="amount">{{ $user->address }}</span>
-                    </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $user->address }}</span>
+                            </td>
 
-                    <td class="product-price">
-                        <span class="amount">{{ $user->companyname }}</span>
-                    </td>
-                    <td class="product-price">
-                        <span class="amount">{{ $user->postcode }}</span>
-                    </td>
-                    <td class="product-price">
-                        <span class="amount">{{ $user->apartment }}</span>
-                    </td>
-                    <td class="product-price">
-                        <span class="amount">{{ $user->ordernote }}</span>
-                    </td>
-                </tr>
-                @else
-                <tr>
-                    <td colspan=9 style="text-align:center; font-weight:bold">You do not have a delivery address</td>
-                </tr>
-                @endif
-                @if(count($listaddress))
-                @foreach($listaddress as $la)
-                <tr class="cart_item" data-product-id="">
-                    <td class="product-remove">
-                        <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
-                            data-target="#modal-deleteproduct" data-id="" data-name="">×</a>
-                    </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $user->companyname }}</span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $user->postcode }}</span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $user->apartment }}</span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $user->ordernote }}</span>
+                            </td>
+                        </tr>
+                        @else
+                        <tr>
+                            <td colspan=9 style="text-align:center; font-weight:bold">You do not have a delivery address
+                            </td>
+                        </tr>
+                        @endif
+                        @if(count($listaddress))
+                        @foreach($listaddress as $la)
+                        <tr class="cart_item" data-product-id="">
+                            <td class="product-remove">
+                                <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
+                                    data-target="#modal-deleteproduct" data-id="" data-name="">×</a>
+                            </td>
 
-                    <td class="product-thumbnail">
-                        <span class="amount">{{ $la->state_country }}</span>
-                    </td>
+                            <td class="product-thumbnail">
+                                <span class="amount">{{ $la->state_country }}</span>
+                            </td>
 
-                    <td class="product-name">
-                        <span class="amount">{{ $la->country }}</span>
-                    </td>
+                            <td class="product-name">
+                                <span class="amount">{{ $la->country }}</span>
+                            </td>
 
-                    <td class="product-price">
-                        <span class="amount">{{ $la->town_city }}</span>
-                    </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $la->town_city }}</span>
+                            </td>
 
-                    <td class="product-price">
-                        <span class="amount">{{ $la->address }}</span>
-                    </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $la->address }}</span>
+                            </td>
 
-                    <td class="product-price">
-                        <span class="amount">{{ $la->companyname }}</span>
-                    </td>
-                    <td class="product-price">
-                        <span class="amount">{{ $la->postcode }}</span>
-                    </td>
-                    <td class="product-price">
-                        <span class="amount">{{ $la->apartment }}</span>
-                    </td>
-                    <td class="product-price">
-                        <span class="amount">{{ $la->ordernote }}</span>
-                    </td>
-                </tr>
-                @endforeach
-                @endif
-            </tbody>
-        </table>
+                            <td class="product-price">
+                                <span class="amount">{{ $la->companyname }}</span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $la->postcode }}</span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $la->apartment }}</span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">{{ $la->ordernote }}</span>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container hidecontainer" id="container3" style="display: none;">
 
     </div>
 </div>
@@ -493,6 +500,25 @@
 
 @section('js')
 <script>
+$(document).ready(function() {
+    // Gán sự kiện click cho các nút
+    $('.btnchangeuser').click(function() {
+        // Loại bỏ lớp 'active' từ tất cả các nút
+        $('.btnchangeuser').removeClass('active');
 
+        // Thêm lớp 'active' cho nút được nhấp
+        $(this).addClass('active');
+
+        // Lấy giá trị của thuộc tính data-target từ nút được nhấp
+        var target = $(this).data('target');
+
+        // Ẩn tất cả các container trước khi hiển thị container cần thiết
+        $('.hidecontainer').hide();
+
+        // Hiển thị container được chọn
+        $('#' + target).show();
+    });
+
+});
 </script>
 @endsection

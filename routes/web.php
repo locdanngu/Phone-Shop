@@ -38,6 +38,8 @@ Route::prefix('/')->group(function () {
     Route::post('/deleteproductwishlist', [UserController::class, 'deleteproductwishlist'])->name('deleteproductwishlist');
     Route::post('/addwishlist', [UserController::class, 'addwishlist'])->name('addwishlist');
     Route::get('/userpage', [UserController::class, 'userpage'])->name('user.page');
+    Route::post('/changenameuser', [UserController::class, 'changenameuser'])->name('changenameuser');
+    Route::post('/addaddress', [UserController::class, 'addaddress'])->name('addaddress');
 
 });
 

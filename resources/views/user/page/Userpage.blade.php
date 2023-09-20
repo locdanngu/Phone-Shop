@@ -17,13 +17,19 @@
 
 
 <div class="single-product-area">
-    <div class="container" id="container1">
+    <div style="display: flex;justify-content:center;margin:3em 0">
+        <button class="btnchangeuser active">List address</button>
+        <button class="btnchangeuser">Information / Add address</button>
+        <button class="btnchangeuser">Change password</button>
+    </div>
+
+
+    <div class="container" id="container2">
         <div class="row" style="display: flex; justify-content:space-between">
             <div class="col-md-5">
                 <form action="#" class="checkout" method="post" name="checkout">
                     @csrf
                     <div id="customer_details" class="col2-set">
-
                         <div class="woocommerce-billing-fields">
                             <h3>Personal information</h3>
                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
@@ -376,7 +382,7 @@
         </div>
     </div>
 
-    <div class="container" id="container2">
+    <div class="container" id="container1">
         <table cellspacing="0" class="shop_table cart">
             <thead>
                 <tr>

@@ -74,7 +74,7 @@
 
                                         <td class="product-price">
                                             <span class="amount"
-                                                style="color:red; font-weight:bold">${{ $c->beforecoupon }}</span>
+                                                style="color:red; font-weight:bold">${{ number_format($c->beforecoupon, 2) }}</span>
                                         </td>
                                         @else
                                         <td class="product-price">

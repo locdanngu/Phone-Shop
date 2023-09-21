@@ -409,7 +409,7 @@ class UserController extends Controller
                 
                 if ($c->idcoupon) {
                     $html2 .= '<td class="product-price">';
-                    $html2 .= '<span class="amount" style="color:red; font-weight:bold">${' . $c->beforecoupon . '}</span>';
+                    $html2 .= '<span class="amount" style="color:red; font-weight:bold">$' . number_format($c->beforecoupon, 2) . '</span>';
                     $html2 .= '</td>';
                 } else {
                     $html2 .= '<td class="product-price">';

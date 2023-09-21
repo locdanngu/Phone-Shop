@@ -73,12 +73,12 @@
                                         @if($c->coupon->discount_type == 'amount')
                                         <td class="product-price">
                                             <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price - $c->coupon->discount_amount * $c->quantity, 2) }}</span>
+                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * ($c->product->price - $c->coupon->discount_amount), 2) }}</span>
                                         </td>
                                         @else
                                         <td class="product-price">
                                             <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
+                                                style="color:red; font-weight:bold">${{ number_format($c->quantity *($c->product->price - $c->coupon->discount_amount), 2) }}</span>
                                         </td>
                                         @endif
                                     </tr>

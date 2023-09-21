@@ -37,7 +37,7 @@
                                         <th class="product-subtotal">Total</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="capnhatdanhsachorder">
                                     @foreach($listorder as $c)
                                     <tr class="cart_item" data-product-id="{{ $c->idcart_product }}">
                                         <td class="product-thumbnail">
@@ -71,17 +71,11 @@
                                                 style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
                                         </td>
                                         @if($c->idcoupon)
-                                        @if($c->coupon->discount_type == 'amount')
+
                                         <td class="product-price">
                                             <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * ($c->product->price - $c->coupon->discount_amount), 2) }}</span>
+                                                style="color:red; font-weight:bold">${{ $c->beforecoupon }}</span>
                                         </td>
-                                        @else
-                                        <td class="product-price">
-                                            <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * ($c->product->price - $c->product->price) * $c->coupon->discount_amount / 100, 2) }}</span>
-                                        </td>
-                                        @endif
                                         @else
                                         <td class="product-price">
                                             <span class="amount"
@@ -260,19 +254,19 @@ $('#checkcoupon').on('click', function(event) {
             success: function(response) {
                 var html = response.html;
                 var re = response.re;
-                if(re == 0){
+                if (re == 0) {
                     toastr.error('Coupon does not exist.');
-                }else if(re == 1){
+                } else if (re == 1) {
                     toastr.error('This coupon has not started yet.');
-                }else if(re == 2){
+                } else if (re == 2) {
                     toastr.error('This coupon has expired.');
-                }else if(re == 3){
+                } else if (re == 3) {
                     toastr.error('This coupon does not apply to you.');
-                }else if(re == 4){
+                } else if (re == 4) {
                     toastr.error('The order does not meet the specified price.');
-                }else if(re == 6){
+                } else if (re == 6) {
                     toastr.error('No applicable products.');
-                }else{
+                } else {
                     $("#capnhatdanhsachcoupon").html(html);
                     toastr.success('Apply discount coupon successfully.');
                 }

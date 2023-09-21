@@ -81,14 +81,14 @@
                                                             data-id="{{ $c->idcart_product }}">
                                                     </div>
                                                 </td>
-                                                <td class="product-price">
+                                                <td class="product-coupon">
                                                     @if($c->idcoupon)
                                                     <span class="amount">{{ $c->coupon->code }}</span>
                                                     @else
                                                     <span class="amount">None</span>
                                                     @endif
                                                 </td>
-                                                <td class="product-price">
+                                                <td class="product-subtotal">
                                                     <span class="amount"
                                                         style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
                                                 </td>

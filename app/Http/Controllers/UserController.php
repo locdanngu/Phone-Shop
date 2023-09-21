@@ -100,23 +100,24 @@ class UserController extends Controller
         $order = new Order();
         $order->iduser = $user->iduser;
         $order->status = 'wait2';
-        $order->price = $scart_product;
+        $order->totalprice = $scart_product;
         $order->note = '';
         $order->reason = '';
         $order->save();
 
        
-        foreach ($cart->idcart as $product) {
+
+        foreach ($listcart as $cartItem) {
             $order_product = new Order_product();
             $order_product->idorder = $order->idorder;
-            $order_product->idproduct = $listcart->idproduct; 
-            $order_product->quantity = $listcart->quantity; 
-
+            $order_product->idproduct = $cartItem->idproduct; // Sử dụng idproduct từ $cartItem
+            $order_product->quantity = $cartItem->quantity; // Sử dụng quantity từ $cartItem
             $order_product->save();
         }
+
         
-        $cart = Cart::where('iduser', $user->iduser)->delete();
         $listcart = Cart_product::where('idcart', $cart->idcart)->delete();
+        $cart = Cart::where('iduser', $user->iduser)->delete();
 
 
 

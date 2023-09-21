@@ -232,13 +232,86 @@ class UserController extends Controller
             $listproduct = Order_product::where('idorder', $request['id'])->get();
 
             if($coupon->productlist == 2){
-                $categorylist = Category_coupon::where('idcoupon', $coupon->idcoupon)->get();
+                $categorylist = Category_coupon::where('idcoupon', $coupon->idcoupon)->pluck('idcategory')->toArray();
+                $count = 0;
+                foreach ($listproduct as $product) {
+                    $idcategory = $product->idcategory;
+                    if (in_array($idcategory, $categorylist)) {
+                        if($coupon->discount_type == 'amount'){
+                            $product->beforecoupon = ($product->product->price  - $coupon->discount_amount) * $product->quantity;
+                        }else{
+                            if(($product->product->price * $product->quantity * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
+                                $product->beforecoupon = $product->product->price * $product->quantity - $coupon->max_discount_amount;
+                            }else{
+                                $product->beforecoupon = $product->product->price * $product->quantity - ($order->totalprice * $coupon->discount_amount / 100);
+                            }
+                        }
+                        $count += 1;
+                    }
+                    $product->save();
+                }
+
+                if($count == 0){
+                    return response()->json([
+                        're' => 6, //không có sản phẩm áp dụng
+                    ]);
+                }else{
+                    return response()->json([
+                        're' => 7, //Áp dụng mã giảm giá thành công
+                    ]);
+                }
             }
 
+            if($coupon->productlist == 1){
+                $productlist = Product_coupon::where('idcoupon', $coupon->idcoupon)->pluck('idproduct')->toArray();
+                $count = 0;
+                foreach ($listproduct as $product) {
+                    $idproduct = $product->idproduct;
+                    if (in_array($idproduct, $productlist)) {
+                        if($coupon->discount_type == 'amount'){
+                            $product->beforecoupon = ($product->product->price  - $coupon->discount_amount) * $product->quantity;
+                        }else{
+                            if(($product->product->price * $product->quantity * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
+                                $product->beforecoupon = $product->product->price * $product->quantity - $coupon->max_discount_amount;
+                            }else{
+                                $product->beforecoupon = $product->product->price * $product->quantity - ($order->totalprice * $coupon->discount_amount / 100);
+                            }
+                        }
+                        $count += 1;
+                    }
+                    $product->save();
+                }
 
+                if($count == 0){
+                    return response()->json([
+                        're' => 6, //không có sản phẩm áp dụng
+                    ]);
+                }else{
+                    return response()->json([
+                        're' => 7, //Áp dụng mã giảm giá thành công
+                    ]);
+                }
+            }
 
+            if($coupon->productlist == 0){
+                foreach ($listproduct as $product) {
+                    if($coupon->discount_type == 'amount'){
+                        $product->beforecoupon = ($product->product->price  - $coupon->discount_amount) * $product->quantity;
+                    }else{
+                        if(($product->product->price * $product->quantity * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
+                            $product->beforecoupon = $product->product->price * $product->quantity - $coupon->max_discount_amount;
+                        }else{
+                            $product->beforecoupon = $product->product->price * $product->quantity - ($order->totalprice * $coupon->discount_amount / 100);
+                        }
+                    }
+                }
+                return response()->json([
+                    're' => 7, //Áp dụng mã giảm giá thành công
+                ]);
+            }
         }
 
+        
         
 
 

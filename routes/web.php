@@ -23,7 +23,8 @@ Route::prefix('/')->group(function () {
     Route::get('/shoppage/search', [UserController::class, 'shoppage'])->name('shop.search');
     Route::get('/productpage', [UserController::class, 'productpage'])->name('product.page');
     Route::get('/cartpage', [UserController::class, 'cartpage'])->name('cart.page');
-    Route::post('/checkoutpage', [UserController::class, 'checkoutpage'])->name('checkout.page');
+    Route::get('/checkoutpage', [UserController::class, 'checkoutpage'])->name('checkout.page');
+    Route::post('/checkoutpage', [UserController::class, 'addorder'])->name('checkout');
     Route::post('/loginuser', [UserController::class, 'loginuser'])->name('loginuser');
     Route::post('/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
     Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');

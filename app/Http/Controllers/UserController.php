@@ -88,11 +88,10 @@ class UserController extends Controller
         return view('user/page/Cartpage', compact('user','cart'));
     }
 
-    public function checkoutpage(Request $request)
+    public function addorder(Request $request)
     {
         $user = Auth::user();
 
-        
         $cart = Cart::where('iduser', $user->iduser)->first();
         $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
         $listcart = Cart_product::where('idcart', $cart->idcart)->get();
@@ -105,8 +104,6 @@ class UserController extends Controller
         $order->reason = '';
         $order->save();
 
-       
-
         foreach ($listcart as $cartItem) {
             $order_product = new Order_product();
             $order_product->idorder = $order->idorder;
@@ -115,11 +112,8 @@ class UserController extends Controller
             $order_product->save();
         }
 
-        
         $listcart = Cart_product::where('idcart', $cart->idcart)->delete();
         $cart = Cart::where('iduser', $user->iduser)->delete();
-
-
 
         return view('user/page/Checkoutpage', compact('user',));
     }

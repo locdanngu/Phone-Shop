@@ -27,7 +27,7 @@
                 <div class="product-content-right">
                     <div class="woocommerce">
                         @if($ccart_product != 0)
-                        <form method="post" action="{{ route('checkout.page') }}">
+                        <form method="post" action="{{ route('checkout') }}">
                             @csrf
                             <div class="card-body table-responsive p-0">
                                 <div class="d-flex flex-column justify-content-between">

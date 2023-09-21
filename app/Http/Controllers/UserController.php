@@ -121,10 +121,14 @@ class UserController extends Controller
     public function checkoutpage(Request $request)
     {
         $user = Auth::user();
-        
-        $order = Order::where('iduser', $user->iduser)->get();
+        $order = Order::where('idorder', $request['idorder'])->first();
+        if($order->iduser != $user->iduser){
+            return redirect()->route('home.page');
+        }else{
+            $listorder = Order_product::where('idorder', $request['idorder'])->get();
+        }
 
-        return view('user/page/Checkoutpage', compact('user',));
+        return view('user/page/Checkoutpage', compact('user','listorder'));
     }
 
     public function checkoutlist(Request $request)

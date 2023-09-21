@@ -56,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['user/page/Cartpage', 
                         'user/page/Homepage', 
                         'user/page/Checkoutpage', 
+                        'user/page/Checkoutlistpage', 
                         'user/page/Productpage', 
                         'user/page/Shoppage',
                         'user/page/Wishlistpage',

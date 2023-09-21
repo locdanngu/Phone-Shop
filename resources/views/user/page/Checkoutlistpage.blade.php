@@ -51,7 +51,8 @@
                                             <span class="amount">{{ $o->created_at }}</span>
                                         </td>
                                         <td class="actions">
-                                            <a href="" class="btnchangeuser">Watch</a>
+                                            <a href="{{ route('checkout.page', ['idorder' => $o->idorder]) }}"
+                                                class="btnchangeuser">Watch</a>
                                         </td>
                                     </tr>
                                     @endforeach

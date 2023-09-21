@@ -86,7 +86,7 @@
                                         <td class="product-price">
                                             <span class="amount"
                                                 style="color:red; font-weight:bold">{{ $c->product->price }}</span>
-                                        </td> 
+                                        </td>
                                         @endif
                                     </tr>
                                     @endforeach
@@ -114,6 +114,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            <span class="amount"
+                                                style="text-transform: uppercase;font-weight:bold">{{ $couponcart->applicable_to }}</span>
+                                        </td>
+
+                                        <td class="product-price">
+                                            <span class="amount"
+                                                style="font-weight:bold; color:red">{{ $couponcart->code }}</span>
+                                        </td>
+                                        @if($couponcart->discount_type == 'percentage')
+                                        <td class="product-quantity">
+                                            <span class="amount">{{ $couponcart->discount_amount }}%</span>
+                                        </td>
+                                        @else
+                                        <td class="product-quantity">
+                                            <span class="amount">{{ $couponcart->discount_amount }}$</span>
+                                        </td>
+                                        @endif
+                                        <td class="actions" style="display: flex;justify-content:center">
+                                            <a href="#" type="button" data-toggle="modal"
+                                                data-target="#modal-deleteproduct" class="btnchangeuser"
+                                                data-id="{{ $couponcart->idcoupon }}" data-code="{{ $couponcart->code }}">
+                                                <i class="bi bi-trash-fill"></i> Delete</a>
+                                        </td>
+                                    </tr>
                                     @foreach($listcoupon as $c)
                                     <tr class="cart_item">
                                         <td class="product-name">

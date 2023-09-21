@@ -5,7 +5,8 @@
                 <div class="user-menu">
                     <ul>
                         @if($user)
-                        <li><a href="{{ route('user.page') }}"><i class="fa fa-user"></i> {{ $user->firstname }} {{ $user->lastname }}</a></li>
+                        <li><a href="{{ route('user.page') }}"><i class="fa fa-user"></i> {{ $user->firstname }}
+                                {{ $user->lastname }}</a></li>
                         <li><a href="{{ route('wishlist.page') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
                         <li><a href="{{ route('cart.page') }}"><i class="fa fa-user"></i> My Cart</a></li>
                         <li><a href="{{ route('checkoutlist.page') }}"><i class="fa fa-user"></i> Checkout</a></li>
@@ -106,6 +107,8 @@
                             href="{{ route('wishlist.page') }}">Wishlist</a></li>
                     <li class="{{ request()->routeIs('cart.page') ? 'active' : '' }}"><a
                             href="{{ route('cart.page') }}">Cart</a></li>
+                    <li class="{{ request()->routeIs('checkoutlist.page') ? 'active' : '' }}"><a
+                            href="{{ route('checkoutlist.page') }}">Checkout</a></li>
                     <li class=""><a href="#">History order</a></li>
                     <li><a href="#">Contact</a></li>
                     @endif

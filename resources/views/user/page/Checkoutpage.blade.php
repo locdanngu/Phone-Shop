@@ -36,21 +36,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($order as $o)
                                     <tr>
                                         <td>
-
+                                            <span class="amount"></span>
+                                        </td>
+                                        <td>
+                                            <span class="amount">{{ $o->idorder }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="amount">${{ $o->totalprice }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="amount">{{ $o->created_at }}</span>
+                                        </td>
+                                        <td class="actions">
+                                            <a href="" class="btnchangeuser">Watch</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
-
-
-
-
-                    
                 </div>
             </div>
         </div>

@@ -115,7 +115,7 @@ class UserController extends Controller
         $listcart = Cart_product::where('idcart', $cart->idcart)->delete();
         $cart = Cart::where('iduser', $user->iduser)->delete();
 
-        return redirect()->route('checkout.page');
+        return redirect()->route('checkoutlist.page');
     }
 
     public function checkoutpage(Request $request)
@@ -129,7 +129,7 @@ class UserController extends Controller
     public function checkoutlist(Request $request)
     {
         $user = Auth::user();
-        $order = Order::where('iduser', $user->iduser)->get();
+        $order = Order::where('iduser', $user->iduser)->where('status', 'wait2')->orderBy('created_at', 'desc')->get();
         return view('user/page/Checkoutpage', compact('user','order'));
     }
 

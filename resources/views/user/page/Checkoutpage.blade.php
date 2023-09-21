@@ -261,7 +261,24 @@ $('#checkcoupon').on('click', function(event) {
             },
             success: function(response) {
                 var html = response.html;
-
+                var re = response.re;
+                if(re == 0){
+                    toastr.error('Coupon does not exist.');
+                }else if(re == 1){
+                    toastr.error('This coupon has not started yet.');
+                }else if(re == 2){
+                    toastr.error('This coupon has expired.');
+                }else if(re == 3){
+                    toastr.error('This coupon does not apply to you.');
+                }else if(re == 4){
+                    toastr.error('The order does not meet the specified price.');
+                }else if(re == 5){
+                    toastr.success('Order already has a discount code, apply new discount code.');
+                }else if(re == 6){
+                    toastr.error('No applicable products.');
+                }else{
+                    toastr.success('Apply discount coupon successfully.');
+                }
             }
         });
     }

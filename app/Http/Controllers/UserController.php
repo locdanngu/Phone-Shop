@@ -78,9 +78,6 @@ class UserController extends Controller
     public function cartpage(Request $request)
     {
         $user = Auth::user();
-        $list = Product::inRandomOrder()->take(4)->get();
-        $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
-        $random = Product::inRandomOrder()->take(2)->get();
         $idcart = Cart::where('iduser', $user->iduser)->first();
         if($idcart){
             $cart = Cart_product::where('idcart', $idcart->idcart)->orderBy('created_at', 'asc')->get();
@@ -88,7 +85,7 @@ class UserController extends Controller
             $cart = '';
         }
 
-        return view('user/page/Cartpage', compact('user','list','recent','random','cart'));
+        return view('user/page/Cartpage', compact('user','cart'));
     }
 
     public function checkoutpage(Request $request)

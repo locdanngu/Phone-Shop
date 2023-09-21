@@ -20,163 +20,145 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            @include('user.layouts.Leftbar')
 
 
-            <div class="col-md-8">
+
+            <div class="col-md-12">
                 <div class="product-content-right">
                     <div class="woocommerce">
                         @if($ccart_product != 0)
                         <form method="get" action="{{ route('checkout.page') }}">
-                            <table cellspacing="0" class="shop_table cart">
-                                <thead>
-                                    <tr>
-                                        <th class="product-remove">&nbsp;</th>
-                                        <th class="product-thumbnail">&nbsp;</th>
-                                        <th class="product-name">Product</th>
-                                        <th class="product-price">Price</th>
-                                        <th class="product-quantity">Quantity</th>
-                                        <th class="product-subtotal">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="capnhatdanhsachcart">
-                                    @foreach($cart as $c)
-                                    <tr class="cart_item" data-product-id="{{ $c->idcart_product }}">
-                                        <td class="product-remove">
-                                            <a title="Remove this item" class="remove" href="#" type="button"
-                                                data-toggle="modal" data-target="#modal-deleteproduct"
-                                                data-id="{{ $c->idcart_product }}"
-                                                data-name="{{ $c->product->nameproduct }}">×</a>
-                                        </td>
+                            <div class="card-body table-responsive p-0">
+                                <div class="d-flex flex-column justify-content-between">
+                                    <table cellspacing="0" class="shop_table cart">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-remove">&nbsp;</th>
+                                                <th class="product-thumbnail">&nbsp;</th>
+                                                <th class="product-name">Product</th>
+                                                <th class="product-price">Price</th>
+                                                <th class="product-quantity">Quantity</th>
+                                                <th class="product-quantity">Coupon</th>
+                                                <th class="product-subtotal">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="capnhatdanhsachcart">
+                                            @foreach($cart as $c)
+                                            <tr class="cart_item" data-product-id="{{ $c->idcart_product }}">
+                                                <td class="product-remove">
+                                                    <a title="Remove this item" class="remove" href="#" type="button"
+                                                        data-toggle="modal" data-target="#modal-deleteproduct"
+                                                        data-id="{{ $c->idcart_product }}"
+                                                        data-name="{{ $c->product->nameproduct }}">×</a>
+                                                </td>
 
-                                        <td class="product-thumbnail">
-                                            <a
-                                                href="{{ route('product.page', ['nameproduct' => $c->product->nameproduct]) }}"><img
-                                                    width="145" height="145" alt="poster_1_up" class="shop_thumbnail"
-                                                    src="{{ $c->product->imageproduct }}"></a>
-                                        </td>
+                                                <td class="product-thumbnail">
+                                                    <a
+                                                        href="{{ route('product.page', ['nameproduct' => $c->product->nameproduct]) }}"><img
+                                                            width="145" height="145" alt="poster_1_up"
+                                                            class="shop_thumbnail"
+                                                            src="{{ $c->product->imageproduct }}"></a>
+                                                </td>
 
-                                        <td class="product-name">
-                                            <a
-                                                href="{{ route('product.page', ['nameproduct' => $c->product->nameproduct]) }}">{{ $c->product->nameproduct }}</a>
-                                        </td>
+                                                <td class="product-name">
+                                                    <a
+                                                        href="{{ route('product.page', ['nameproduct' => $c->product->nameproduct]) }}">{{ $c->product->nameproduct }}</a>
+                                                </td>
 
-                                        <td class="product-price">
-                                            <span class="amount">${{ $c->product->price }}</span>
-                                        </td>
+                                                <td class="product-price">
+                                                    <span class="amount">${{ $c->product->price }}</span>
+                                                </td>
 
-                                        <td class="product-quantity" style="padding:0 5px">
-                                            <div class="quantity buttons_added">
-                                                <input type="button" class="minus" value="-" data-quantity="1"
-                                                    data-id="{{ $c->idcart_product }}">
-                                                <input type="number" size="4" class="input-text qty text" title="Qty"
-                                                    value="{{ $c->quantity }}" step="1" min="1"
-                                                    data-id="{{ $c->idcart_product }}">
-                                                <input type="button" class="plus" value="+" data-quantity="1"
-                                                    data-id="{{ $c->idcart_product }}">
-                                            </div>
-                                        </td>
+                                                <td class="product-quantity" style="padding:0 5px">
+                                                    <div class="quantity buttons_added">
+                                                        <input type="button" class="minus" value="-" data-quantity="1"
+                                                            data-id="{{ $c->idcart_product }}">
+                                                        <input type="number" size="4" class="input-text qty text"
+                                                            title="Qty" value="{{ $c->quantity }}" step="1" min="1"
+                                                            data-id="{{ $c->idcart_product }}">
+                                                        <input type="button" class="plus" value="+" data-quantity="1"
+                                                            data-id="{{ $c->idcart_product }}">
+                                                    </div>
+                                                </td>
+                                                <td class="product-price">
+                                                    @if($c->idcoupon)
+                                                    <span class="amount">{{ $c->coupon->code }}</span>
+                                                    @else
+                                                    <span class="amount">None</span>
+                                                    @endif
+                                                </td>
+                                                <td class="product-price">
+                                                    <span class="amount"
+                                                        style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
+                                                </td>
+                                            </tr>
 
-                                        <td class="product-subtotal">
-                                            <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
-                                        </td>
-                                    </tr>
+                                            @endforeach
+                                            <tr>
+                                                <td class="actions" colspan="7" style="text-align:end">
+                                                    <div class="coupon">
+                                                        <label for="coupon_code">Coupon:</label>
+                                                        <input type="text" placeholder="Coupon code" value=""
+                                                            id="coupon_code" class="input-text" name="coupon_code">
+                                                        <a href="#" class="btnchangeuser">APPLY COUPON</a>
+                                                    </div>
+                                                    <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
+                                                    @if($user->postcode == null)
+                                                    <a href="{{ route('chuyenhuong') }}"
+                                                        class="btnchangeuser">Checkout</a>
+                                                    @else
+                                                    <input type="submit" value="Checkout" name="proceed"
+                                                        class="checkout-button button alt wc-forward">
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
 
-                                    @endforeach
-                                    <tr>
-                                        <td class="actions" colspan="6" style="text-align:end">
-                                            <!-- <div class="coupon">
-                                                <label for="coupon_code">Coupon:</label>
-                                                <input type="text" placeholder="Coupon code" value="" id="coupon_code"
-                                                    class="input-text" name="coupon_code">
-                                                <input type="submit" value="Apply Coupon" name="apply_coupon"
-                                                    class="button">
-                                            </div> -->
-                                            <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
-                                            @if($user->postcode == null)
-                                            <a href="{{ route('chuyenhuong') }}" class="btnchangeuser">Checkout</a>
-                                            @else
-                                            <input type="submit" value="Checkout" name="proceed"
-                                                class="checkout-button button alt wc-forward">
-                                            @endif
+
+
+
+
+                        <div class="cart_totals ">
+                            <h2>Cart Totals</h2>
+
+                            <table cellspacing="0">
+                                <tbody>
+                                    <tr class="order-total" id="capnhattotalprice">
+                                        <th>Order Total</th>
+                                        <td><strong><span class="amount"
+                                                    style="font-weight:bold;color:red">${{ $scart_product }}</span></strong>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </form>
-
-
-                        <div class="cart-collaterals">
-                            <div class="cross-sells">
-                                <h2>You may be interested in...</h2>
-                                <ul class="products">
-                                    @foreach($random as $rd)
-                                    <li class="product">
-                                        <a href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}">
-                                            <img style="height: 250px;" alt="T_4_front"
-                                                class="attachment-shop_catalog wp-post-image"
-                                                src="{{ $rd->imageproduct }}">
-                                            <h3 class="fixheight2">{{ $rd->nameproduct }}</h3>
-                                            <span class="price"><span class="amount">${{ $rd->price }}</span></span>
-                                        </a>
-
-                                        <a class="add_to_cart_button" rel="nofollow"
-                                            href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}">Select
-                                            options</a>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-
-                            <div class="cart_totals ">
-                                <h2>Cart Totals</h2>
-
-                                <table cellspacing="0">
-                                    <tbody>
-                                        <!-- <tr class="cart-subtotal">
-                                            <th>Cart Subtotal</th>
-                                            <td><span class="amount">£15.00</span></td>
-                                        </tr>
-
-                                        <tr class="shipping">
-                                            <th>Shipping and Handling</th>
-                                            <td>Free Shipping</td>
-                                        </tr> -->
-
-                                        <tr class="order-total" id="capnhattotalprice">
-                                            <th>Order Total</th>
-                                            <td><strong><span class="amount"
-                                                        style="font-weight:bold;color:red">${{ $scart_product }}</span></strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-
-
-
-
-
-
-
-
-                        </div>
-                        @else
-                        <div class="box">
-                            <h2>Your cart is empty! <a href="{{ route('shop.page') }}">Go to shop now</a></h2>
-                            <i class="bi bi-emoji-frown-fill"></i>
                         </div>
 
-                        @endif
+
+
+
+
+
+
+
+
+
                     </div>
+                    @else
+                    <div class="box">
+                        <h2>Your cart is empty! <a href="{{ route('shop.page') }}">Go to shop now</a></h2>
+                        <i class="bi bi-emoji-frown-fill"></i>
+                    </div>
+
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
 

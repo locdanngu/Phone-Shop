@@ -85,7 +85,7 @@
                                         @else
                                         <td class="product-price">
                                             <span class="amount"
-                                                style="color:red; font-weight:bold">{{ $c->product->price }}</span>
+                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
                                         </td>
                                         @endif
                                     </tr>
@@ -114,6 +114,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if($couponcart)
                                     <tr class="cart_item">
                                         <td class="product-name">
                                             <span class="amount"
@@ -140,6 +141,7 @@
                                                 <i class="bi bi-trash-fill"></i> Delete</a>
                                         </td>
                                     </tr>
+                                    @endif
                                     @foreach($listcoupon as $c)
                                     <tr class="cart_item">
                                         <td class="product-name">
@@ -195,7 +197,7 @@
             <div class="modal-body">
                 <h3 style="color:red; font-weight: bold">This will remove discount codes on all products</h3>
                 <input type="hidden" name="idcoupon">
-                <input type="text" name="idorder" value="{{ request()->input('idorder') }}">
+                <input type="hidden" name="idorder" value="{{ request()->input('idorder') }}">
                 <span name="code" style="font-weight:bold;"></span>
             </div>
             <div class="modal-footer justify-align-content-end">

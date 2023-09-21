@@ -56,14 +56,13 @@
                                         </td>
 
                                         <td class="product-quantity">
-
                                             <span class="amount">{{ $c->quantity }}</span>
                                         </td>
                                         <td class="product-price">
                                             @if($c->idcoupon)
-                                            <span class="amount">{{ $c->coupon->code }}</span>
+                                            <span class="amount" style="font-weight:bold">{{ $c->coupon->code }}</span>
                                             @else
-                                            <span class="amount">None</span>
+                                            <span class="amount" style="font-weight:bold">None</span>
                                             @endif
                                         </td>
                                         <td class="product-price">
@@ -78,6 +77,58 @@
                     </div>
                 </div>
             </div>
+
+
+            <h2>Coupon: {{ $countcoupon }}</h2>
+            @if($countcoupon == 0)
+            <div class="col-md-12">
+                <div class="product-content-right">
+                    <div class="card-body table-responsive p-0">
+                        <div class="d-flex flex-column justify-content-between">
+                            <table cellspacing="0" class="shop_table cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name">Apply</th>
+                                        <th class="product-price">Code</th>
+                                        <th class="product-quantity">Discount Amount</th>
+                                        <th class="product-quantity"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($listcoupon as $c)
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            <span class="amount">${{ $c->applicable_to }}</span>
+                                        </td>
+
+                                        <td class="product-price">
+                                            <span class="amount"
+                                                style="font-weight:bold; color:red">{{ $c->code }}</span>
+                                        </td>
+                                        @if($c->discount_type == 'percentage')
+                                        <td class="product-quantity">
+                                            <span class="amount">{{ $c->discount_amount }}%</span>
+                                        </td>
+                                        @else
+                                        <td class="product-quantity">
+                                            <span class="amount">{{ $c->discount_amount }}$</span>
+                                        </td>
+                                        @endif
+                                        <td class="actions" style="display: flex;justify-content:center">
+                                            <a href="#" type="button" data-toggle="modal"
+                                                data-target="#modal-deleteproduct" class="btnchangeuser"
+                                                data-id="{{ $c->idorder_product }}">
+                                                <i class="bi bi-trash-fill"></i> Delete</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>

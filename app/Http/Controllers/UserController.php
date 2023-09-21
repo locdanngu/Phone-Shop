@@ -115,7 +115,7 @@ class UserController extends Controller
         $listcart = Cart_product::where('idcart', $cart->idcart)->delete();
         $cart = Cart::where('iduser', $user->iduser)->delete();
 
-        return redirect()->route('checkout.page');
+        return redirect()->route('checkout.page', ['idorder' => $order->idorder]);
     }
 
     public function checkoutpage(Request $request)
@@ -124,11 +124,27 @@ class UserController extends Controller
         $order = Order::where('idorder', $request['idorder'])->first();
         if($order->iduser != $user->iduser){
             return redirect()->route('home.page');
+        }
+        $countcoupon = 0;
+        $listorder = Order_product::where('idorder', $request['idorder'])->get();
+        if($order->idcoupon != null){
+            $countcoupon = 1;
+            $couponcart = Coupon::where('idcoupon', $order->idcoupon)->first();
         }else{
-            $listorder = Order_product::where('idorder', $request['idorder'])->get();
+            $couponcart = '';
         }
 
-        return view('user/page/Checkoutpage', compact('user','listorder','order'));
+        foreach($listorder as $l){
+            if($l->idcoupon != null){
+                $countcoupon += 1;
+            }
+        }
+
+        $idcoupons = $listorder->pluck('idcoupon')->toArray();
+        $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)->get();
+
+
+        return view('user/page/Checkoutpage', compact('user','listorder','order', 'countcoupon','couponcart','listcoupon'));
     }
 
     public function checkoutlist(Request $request)

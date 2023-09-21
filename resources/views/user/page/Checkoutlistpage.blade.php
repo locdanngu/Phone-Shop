@@ -31,6 +31,7 @@
                                         <th class="product-thumbnail">Id order</th>
                                         <th class="product-name">Total price</th>
                                         <th class="product-price">Date</th>
+                                        <th class="product-price">Coupon</th>
                                         <th class="product-quantity">&nbsp;</th>
                                     </tr>
                                 </thead>
@@ -46,6 +47,15 @@
                                         <td>
                                             <span class="amount">{{ $o->created_at }}</span>
                                         </td>
+                                        @if($o->idcoupon)
+                                        <td>
+                                            <span class="amount">{{ $o->coupon->code }}</span>
+                                        </td>
+                                        @else
+                                        <td>
+                                            <span class="amount">None</span>
+                                        </td>
+                                        @endif
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="{{ route('checkout.page', ['idorder' => $o->idorder]) }}"
                                                 class="btnchangeuser"><i class="bi bi-eye-fill"></i> Watch</a>

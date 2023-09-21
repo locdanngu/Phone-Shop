@@ -91,10 +91,36 @@ class UserController extends Controller
     public function checkoutpage(Request $request)
     {
         $user = Auth::user();
-        $list = Product::inRandomOrder()->take(4)->get();
-        $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
 
-        return view('user/page/Checkoutpage', compact('user','list','recent',));
+        
+        $cart = Cart::where('iduser', $user->iduser)->first();
+        $scart_product = Cart_product::where('idcart', $cart->idcart)->sum('totalprice');
+        $listcart = Cart_product::where('idcart', $cart->idcart)->get();
+
+        $order = new Order();
+        $order->iduser = $user->iduser;
+        $order->status = 'wait2';
+        $order->price = $scart_product;
+        $order->note = '';
+        $order->reason = '';
+        $order->save();
+
+       
+        foreach ($cart->idcart as $product) {
+            $order_product = new Order_product();
+            $order_product->idorder = $order->idorder;
+            $order_product->idproduct = $listcart->idproduct; 
+            $order_product->quantity = $listcart->quantity; 
+
+            $order_product->save();
+        }
+        
+        $cart = Cart::where('iduser', $user->iduser)->delete();
+        $listcart = Cart_product::where('idcart', $cart->idcart)->delete();
+
+
+
+        return view('user/page/Checkoutpage', compact('user',));
     }
 
     public function loginuser(Request $request)

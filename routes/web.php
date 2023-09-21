@@ -44,6 +44,8 @@ Route::prefix('/')->group(function () {
     Route::post('/deletemainaddress', [UserController::class, 'deletemainaddress'])->name('deletemainaddress');
     Route::post('/deleteanotheraddress', [UserController::class, 'deleteanotheraddress'])->name('deleteanotheraddress');
     Route::get('/chuyenhuong', [UserController::class, 'chuyenhuong'])->name('chuyenhuong');
+    Route::post('/checkoutpage2', [UserController::class, 'checkoutpage2'])->name('checkout.page2');
+
 
 });
 

@@ -27,7 +27,7 @@
                 <div class="product-content-right">
                     <div class="woocommerce">
                         @if($ccart_product != 0)
-                        <form method="post" action="#">
+                        <form method="get" action="{{ route('checkout.page') }}">
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>

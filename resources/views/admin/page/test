@@ -1,0 +1,15 @@
+        $order = Order::where('idorder', $request['idorder'])->first();
+        $listorder = Order_product::where('idorder', $request['idorder'])->get();
+if($order->idcoupon != null){
+            $couponcart = Coupon::where('idcoupon', $order->idcoupon)
+                                ->where('starttime', '<=', $currentTime) 
+                                ->where('endtime', '>=', $currentTime)   
+                                ->first();
+           
+        }
+
+
+        $idcoupons = $listorder->pluck('idcoupon')->toArray();
+        $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)
+                            ->where('starttime', '<=', $currentTime)
+                            ->where('endtime', '>=', $currentTime)->get();

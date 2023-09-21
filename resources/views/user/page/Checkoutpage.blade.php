@@ -129,7 +129,7 @@
                                         <th class="product-quantity"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="capnhatdanhsachcoupon">
                                     @if($couponcart)
                                     <tr class="cart_item">
                                         <td class="product-name">
@@ -273,10 +273,12 @@ $('#checkcoupon').on('click', function(event) {
                 }else if(re == 4){
                     toastr.error('The order does not meet the specified price.');
                 }else if(re == 5){
+                    $("#capnhatdanhsachcoupon").html(html);
                     toastr.success('Order already has a discount code, apply new discount code.');
                 }else if(re == 6){
                     toastr.error('No applicable products.');
                 }else{
+                    $("#capnhatdanhsachcoupon").html(html);
                     toastr.success('Apply discount coupon successfully.');
                 }
             }

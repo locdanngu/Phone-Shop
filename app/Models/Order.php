@@ -15,6 +15,7 @@ class Order extends Model
         'iduser',
         'status',
         'totalprice',
+        'totalprice2',
         'note',
         'reason',
         'idcoupon',

@@ -140,6 +140,11 @@ class UserController extends Controller
         }else{
             $couponcart = '';
         }
+        $sumallproduct = 0;
+        foreach($listorder as $l){
+            $sumallproduct += $l->product->price * $l->quantity;
+        }
+        $sumproduct = $listorder->sum('beforecoupon');
 
         $idcoupons = $listorder->pluck('idcoupon')->toArray();
         $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)
@@ -166,10 +171,12 @@ class UserController extends Controller
         $pro = Order_product::where('idorder', $request['idorder'])->where('idcoupon', $request['idcoupon'])->get();
         foreach($pro as $p){
             $p->idcoupon = null;
+            $p->beforecoupon = $p->totalprice;
             $p->save();
         }
 
         $order->idcoupon = null;
+        $order->beforecoupon = $order->totalprice;
         $order->save();
         return redirect()->back();
     }
@@ -419,6 +426,12 @@ class UserController extends Controller
                 
                 $html2 .= '</tr>';
             }
+
+            $order_productst = Order_product::where('idorder', $request['idorder'])->get();
+            $sbefore = $order_productst->sum('beforecoupon');
+            $orderst = Order::where('idorder', $request['idorder'])->first();
+            $orderst->totalprice2 = $sbefore;
+            $orderst->save();
 
 
             return response()->json([

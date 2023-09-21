@@ -107,15 +107,30 @@ class UserController extends Controller
         foreach ($listcart as $cartItem) {
             $order_product = new Order_product();
             $order_product->idorder = $order->idorder;
-            $order_product->idproduct = $cartItem->idproduct; // Sử dụng idproduct từ $cartItem
-            $order_product->quantity = $cartItem->quantity; // Sử dụng quantity từ $cartItem
+            $order_product->idproduct = $cartItem->idproduct; 
+            $order_product->quantity = $cartItem->quantity; 
             $order_product->save();
         }
 
         $listcart = Cart_product::where('idcart', $cart->idcart)->delete();
         $cart = Cart::where('iduser', $user->iduser)->delete();
 
+        return redirect()->route('checkout.page');
+    }
+
+    public function checkoutpage(Request $request)
+    {
+        $user = Auth::user();
+        $order = Order::where('iduser', $user->iduser)->get();
+
         return view('user/page/Checkoutpage', compact('user',));
+    }
+
+    public function checkoutlist(Request $request)
+    {
+        $user = Auth::user();
+        $order = Order::where('iduser', $user->iduser)->get();
+        return view('user/page/Checkoutpage', compact('user','order'));
     }
 
     public function loginuser(Request $request)

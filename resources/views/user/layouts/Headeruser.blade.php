@@ -8,7 +8,7 @@
                         <li><a href="{{ route('user.page') }}"><i class="fa fa-user"></i> {{ $user->firstname }} {{ $user->lastname }}</a></li>
                         <li><a href="{{ route('wishlist.page') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
                         <li><a href="{{ route('cart.page') }}"><i class="fa fa-user"></i> My Cart</a></li>
-                        <!-- <li><a href="{{ route('checkout.page') }}"><i class="fa fa-user"></i> Checkout</a></li> -->
+                        <li><a href="{{ route('checkoutlist.page') }}"><i class="fa fa-user"></i> Checkout</a></li>
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-logout"><i
                                     class="fa fa-user"></i> Logout</a></li>
                         @else

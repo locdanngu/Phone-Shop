@@ -138,6 +138,15 @@ class UserController extends Controller
         return view('user/page/Checkoutlistpage', compact('user','order'));
     }
 
+
+    public function deletecheckout(Request $request)
+    {
+        $user = Auth::user();
+        $de = Order_product::where('idorder',$request['idorder'])->delete();
+        $de2 = Order::where('idorder',$request['idorder'])->delete();
+        return redirect()->back();
+    }
+
     public function loginuser(Request $request)
     {
         $this->validate($request, ['username' => 'required',

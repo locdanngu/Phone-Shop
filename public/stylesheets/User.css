@@ -1762,6 +1762,13 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
     justify-content: center;
 }
 
+a:hover{
+    text-decoration: none;
+}
+
+a:focus{
+    text-decoration: none;
+}
 
 
 

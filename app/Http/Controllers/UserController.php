@@ -389,7 +389,7 @@ class UserController extends Controller
                 $html2 .= '<a href="' . route('product.page', ['nameproduct' => $c->product->nameproduct]) . '">' . $c->product->nameproduct . '</a>';
                 $html2 .= '</td>';
                 $html2 .= '<td class="product-price">';
-                $html2 .= '<span class="amount">${' . $c->product->price . '}</span>';
+                $html2 .= '<span class="amount">$' . $c->product->price . '</span>';
                 $html2 .= '</td>';
                 $html2 .= '<td class="product-quantity">';
                 $html2 .= '<span class="amount">' . $c->quantity . '</span>';

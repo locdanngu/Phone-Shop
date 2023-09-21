@@ -195,6 +195,56 @@
                     </div>
                 </div>
             </div>
+
+
+
+            <table class="shop_table">
+                <thead>
+                    <tr>
+                        <th class="product-name"></th>
+                        <th class="product-total">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="cart_item">
+                        <td class="product-name">
+                            All product <strong class="product-quantity"></strong> </td>
+                        <td class="product-total">
+                            <span class="amount">£15.00</span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+
+                    <tr class="cart-subtotal">
+                        <th>Add coupon</th>
+                        <td><span class="amount">£15.00</span>
+                        </td>
+                    </tr>
+                    <tr class="cart-subtotal">
+                        <th>Before coupon</th>
+                        <td><span class="amount">£15.00</span>
+                        </td>
+                    </tr>
+
+                    <tr class="shipping">
+                        <th>Shipping and Handling</th>
+                        <td>
+
+                            Free Shipping
+                            <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0"
+                                data-index="0" name="shipping_method[0]">
+                        </td>
+                    </tr>
+
+
+                    <tr class="order-total">
+                        <th>Order Total</th>
+                        <td><strong><span class="amount">£15.00</span></strong> </td>
+                    </tr>
+
+                </tfoot>
+            </table>
         </div>
     </div>
 </div>

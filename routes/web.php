@@ -49,6 +49,7 @@ Route::prefix('/')->group(function () {
     Route::get('/chuyenhuong', [UserController::class, 'chuyenhuong'])->name('chuyenhuong');
     Route::post('/checkoutpage2', [UserController::class, 'checkoutpage2'])->name('checkout.page2');
     Route::post('/deletecheckout', [UserController::class, 'deletecheckout'])->name('deletecheckout');
+    Route::post('/deleteapplycoupon', [UserController::class, 'deleteapplycoupon'])->name('deleteapplycoupon');
 
 
 });

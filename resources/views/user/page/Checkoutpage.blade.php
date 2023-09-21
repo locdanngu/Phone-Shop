@@ -20,7 +20,7 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <h2>Id order: {{ $order->idorder }}</h2>
+            <h3>Id order: {{ $order->idorder }}</h3>
             <div class="col-md-12">
                 <div class="product-content-right">
                     <div class="card-body table-responsive p-0">
@@ -28,7 +28,7 @@
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
-                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-thumbnail">Image</th>
                                         <th class="product-name">Product</th>
                                         <th class="product-price">Price</th>
                                         <th class="product-quantity">Quantity</th>
@@ -78,7 +78,7 @@
                                         @else
                                         <td class="product-price">
                                             <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->quantity *($c->product->price - $c->coupon->discount_amount), 2) }}</span>
+                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * ($c->product->price - $c->product->price) * $c->coupon->discount_amount / 100, 2) }}</span>
                                         </td>
                                         @endif
                                     </tr>
@@ -91,7 +91,7 @@
             </div>
 
 
-            <h2>Coupon: {{ $countcoupon }}</h2>
+            <h3>Apply coupon: {{ $countcoupon }}</h3>
             @if($countcoupon != 0)
             <div class="col-md-12">
                 <div class="product-content-right">
@@ -130,7 +130,7 @@
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="#" type="button" data-toggle="modal"
                                                 data-target="#modal-deleteproduct" class="btnchangeuser"
-                                                data-id="{{ $c->idorder_product }}">
+                                                data-id="{{ $c->idcoupon }}" data-code="{{ $c->code }}">
                                                 <i class="bi bi-trash-fill"></i> Delete</a>
                                         </td>
                                     </tr>
@@ -145,4 +145,48 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('popup')
+<div class="modal fade" id="modal-deleteproduct">
+    <div class="modal-dialog">
+        <form action="" method="post" class="modal-content">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title">Delete this checkout</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 style="color:red; font-weight: bold">This will remove discount codes on all products</h3>
+                <input type="hidden" name="idcoupon">
+                <span name="code" style="font-weight:bold;"></span>
+            </div>
+            <div class="modal-footer justify-align-content-end">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+@endsection
+
+
+@section('js')
+<script>
+$('#modal-deleteproduct').on('shown.bs.modal', function(event) {
+    var button = $(event.relatedTarget); // Nút "Change" được nhấn
+    var id = button.data('id');
+    var code = button.data('code');
+    var modal = $(this);
+    modal.find('span[name="code"]').text('Code coupon: ' + code);
+    modal.find('input[name="id"]').val(id);
+});
+</script>
+
 @endsection

@@ -179,65 +179,7 @@ class UserController extends Controller
         $user = Auth::user();
         $currentTime = now();
         $coupon = Coupon::where('code', $request['coupon'])->first();
-
-        $order = Order::where('idorder', $request['idorder'])->first();
-        $listorder = Order_product::where('idorder', $request['idorder'])->get();
-        if($order->idcoupon != null){
-            $couponcart = Coupon::where('idcoupon', $order->idcoupon)->where('starttime', '<=', $currentTime) ->where('endtime', '>=', $currentTime)   ->first();
-        }
-
-        $idcoupons = $listorder->pluck('idcoupon')->toArray();
-        $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)->where('starttime', '<=', $currentTime)->where('endtime', '>=', $currentTime)->get();
-
-        $html = '';
-
-        if($couponcart){
-            $html .= '<tr class="cart_item">';
-            $html .= '<td class="product-name">';
-            $html .= '<span class="amount" style="text-transform: uppercase;font-weight:bold">' . $couponcart->applicable_to . '</span>';
-            $html .= '</td>';
-            $html .= '<td class="product-price">';
-            $html .= '<span class="amount" style="font-weight:bold; color:red">' . $couponcart->code . '</span>';
-            $html .= '</td>';
-            if($couponcart->discount_type == 'percentage'){
-                $html .= '<td class="product-quantity">';
-                $html .= '<span class="amount">' . $couponcart->discount_amount . '%</span>';
-                $html .= '</td>';
-            }else{
-            $html .= '<td class="product-quantity">';
-            $html .= '<span class="amount">' . $couponcart->discount_amount . '$</span>';
-            $html .= '</td>';
-            }
-            $html .= '<td class="actions" style="display: flex;justify-content:center">';
-            $html .= '<a href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" class="btnchangeuser" data-id="' . $couponcart->idcoupon . '" data-code="' . $couponcart->code . '">';
-            $html .= '<i class="bi bi-trash-fill"></i> Delete</a>';
-            $html .= '</td>';
-            $html .= '</tr>';
-        }
-
-        foreach($listcoupon as $c){
-            $html .= '<tr class="cart_item">';
-            $html .= '<td class="product-name">';
-            $html .= '<span class="amount" style="text-transform: uppercase;font-weight:bold">' . $c->applicable_to . '</span>';
-            $html .= '</td>';
-            $html .= '<td class="product-price">';
-            $html .= '<span class="amount" style="font-weight:bold; color:red">' . $c->code . '</span>';
-            $html .= '</td>';
-            if($c->discount_type == 'percentage'){
-                $html .= '<td class="product-quantity">';
-                $html .= '<span class="amount">' . $c->discount_amount . '%</span>';
-                $html .= '</td>';
-            }else{
-            $html .= '<td class="product-quantity">';
-            $html .= '<span class="amount">' . $c->discount_amount . '$</span>';
-            $html .= '</td>';
-            }
-        $html .= '<td class="actions" style="display: flex;justify-content:center">';
-        $html .= '<a href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" class="btnchangeuser" data-id="' . $c->idcoupon . '" data-code="' . $c->code . '">';
-        $html .= '<i class="bi bi-trash-fill"></i> Delete</a>';
-        $html .= '</td>';
-        $html .= '</tr>';
-        }
+        $trave = 0;
 
 
         if(!$coupon){
@@ -273,32 +215,29 @@ class UserController extends Controller
                 ]);
             }
 
-            if($order->idcoupon != null){
-                $order->idcoupon = $coupon->idcoupon;
-                if($coupon->discount_type == 'amount'){
-                    $order->beforecoupon = $order->totalprice - $coupon->discount_amount;
+            $order->idcoupon = $coupon->idcoupon;
+            if($coupon->discount_type == 'amount'){
+                $order->beforecoupon = $order->totalprice - $coupon->discount_amount;
+            }else{
+                if(($order->totalprice * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
+                    $order->beforecoupon = $order->totalprice - $coupon->max_discount_amount;
                 }else{
-                    if(($order->totalprice * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
-                        $order->beforecoupon = $order->totalprice - $coupon->max_discount_amount;
-                    }else{
-                        $order->beforecoupon = $order->totalprice - ($order->totalprice * $coupon->discount_amount / 100);
-                    }
+                    $order->beforecoupon = $order->totalprice - ($order->totalprice * $coupon->discount_amount / 100);
                 }
-                $order->save();
-                return response()->json([
-                    're' => 5, //đơn hàng đã có mã giảm giá, áp dụng mã giảm giá mới
-                    'html' => $html,
-                ]);
             }
-        }else{
-            $listproduct = Order_product::where('idorder', $request['id'])->get();
+            $order->save();
+            $trave = 1;
 
-            if($coupon->productlist == 2){
+        }else{
+            $listproduct = Order_product::where('idorder', $request['idorder'])->get();
+
+            if($coupon->product_list == 2){
                 $categorylist = Category_coupon::where('idcoupon', $coupon->idcoupon)->pluck('idcategory')->toArray();
                 $count = 0;
                 foreach ($listproduct as $product) {
                     $idcategory = $product->idcategory;
                     if (in_array($idcategory, $categorylist)) {
+                        $product->idcoupon = $coupon->idcoupon;
                         if($coupon->discount_type == 'amount'){
                             $product->beforecoupon = ($product->product->price  - $coupon->discount_amount) * $product->quantity;
                         }else{
@@ -312,25 +251,23 @@ class UserController extends Controller
                     }
                     $product->save();
                 }
-
+                
                 if($count == 0){
                     return response()->json([
                         're' => 6, //không có sản phẩm áp dụng
                     ]);
                 }else{
-                    return response()->json([
-                        're' => 7, //Áp dụng mã giảm giá thành công
-                        'html' => $html,
-                    ]);
+                    $trave = 1;
                 }
             }
 
-            if($coupon->productlist == 1){
+            if($coupon->product_list == 1){
                 $productlist = Product_coupon::where('idcoupon', $coupon->idcoupon)->pluck('idproduct')->toArray();
                 $count = 0;
                 foreach ($listproduct as $product) {
                     $idproduct = $product->idproduct;
                     if (in_array($idproduct, $productlist)) {
+                        $product->idcoupon = $coupon->idcoupon;
                         if($coupon->discount_type == 'amount'){
                             $product->beforecoupon = ($product->product->price  - $coupon->discount_amount) * $product->quantity;
                         }else{
@@ -343,22 +280,20 @@ class UserController extends Controller
                         $count += 1;
                     }
                     $product->save();
-                }
+                }                
 
                 if($count == 0){
                     return response()->json([
                         're' => 6, //không có sản phẩm áp dụng
                     ]);
                 }else{
-                    return response()->json([
-                        're' => 7, //Áp dụng mã giảm giá thành công
-                        'html' => $html,
-                    ]);
+                    $trave = 1;
                 }
             }
 
-            if($coupon->productlist == 0){
+            if($coupon->product_list == 0){
                 foreach ($listproduct as $product) {
+                    $product->idcoupon = $coupon->idcoupon;
                     if($coupon->discount_type == 'amount'){
                         $product->beforecoupon = ($product->product->price  - $coupon->discount_amount) * $product->quantity;
                     }else{
@@ -368,41 +303,79 @@ class UserController extends Controller
                             $product->beforecoupon = $product->product->price * $product->quantity - ($order->totalprice * $coupon->discount_amount / 100);
                         }
                     }
+                    $product->save();
                 }
-                return response()->json([
-                    're' => 7, //Áp dụng mã giảm giá thành công
-                ]);
+                $trave = 1;
             }
         }
 
 
+        $order = Order::where('idorder', $request['idorder'])->first();
+        if($order->idcoupon != null){
+            $couponcart = Coupon::where('idcoupon', $order->idcoupon)->where('starttime', '<=', $currentTime) ->where('endtime', '>=', $currentTime)   ->first();
+        }
 
+        $listorder = Order_product::where('idorder', $request['idorder'])->get();
+        $idcoupons = $listorder->pluck('idcoupon')->toArray();
+        $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)->where('starttime', '<=', $currentTime)->where('endtime', '>=', $currentTime)->get();
 
+        if($trave == 1){
 
+            $html = '';
 
+            if(isset($couponcart)){
+                $html .= '<tr class="cart_item">';
+                $html .= '<td class="product-name">';
+                $html .= '<span class="amount" style="text-transform: uppercase;font-weight:bold">' . $couponcart->applicable_to . '</span>';
+                $html .= '</td>';
+                $html .= '<td class="product-price">';
+                $html .= '<span class="amount" style="font-weight:bold; color:red">' . $couponcart->code . '</span>';
+                $html .= '</td>';
+                if($couponcart->discount_type == 'percentage'){
+                    $html .= '<td class="product-quantity">';
+                    $html .= '<span class="amount">' . $couponcart->discount_amount . '%</span>';
+                    $html .= '</td>';
+                }else{
+                $html .= '<td class="product-quantity">';
+                $html .= '<span class="amount">' . $couponcart->discount_amount . '$</span>';
+                $html .= '</td>';
+                }
+                $html .= '<td class="actions" style="display: flex;justify-content:center">';
+                $html .= '<a href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" class="btnchangeuser" data-id="' . $couponcart->idcoupon . '" data-code="' . $couponcart->code . '">';
+                $html .= '<i class="bi bi-trash-fill"></i> Delete</a>';
+                $html .= '</td>';
+                $html .= '</tr>';
+            }
 
+            foreach($listcoupon as $c){
+                $html .= '<tr class="cart_item">';
+                $html .= '<td class="product-name">';
+                $html .= '<span class="amount" style="text-transform: uppercase;font-weight:bold">' . $c->applicable_to . '</span>';
+                $html .= '</td>';
+                $html .= '<td class="product-price">';
+                $html .= '<span class="amount" style="font-weight:bold; color:red">' . $c->code . '</span>';
+                $html .= '</td>';
+                if($c->discount_type == 'percentage'){
+                    $html .= '<td class="product-quantity">';
+                    $html .= '<span class="amount">' . $c->discount_amount . '%</span>';
+                    $html .= '</td>';
+                }else{
+                $html .= '<td class="product-quantity">';
+                $html .= '<span class="amount">' . $c->discount_amount . '$</span>';
+                $html .= '</td>';
+                }
+            $html .= '<td class="actions" style="display: flex;justify-content:center">';
+            $html .= '<a href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" class="btnchangeuser" data-id="' . $c->idcoupon . '" data-code="' . $c->code . '">';
+            $html .= '<i class="bi bi-trash-fill"></i> Delete</a>';
+            $html .= '</td>';
+            $html .= '</tr>';
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-        
-
-
-
+            return response()->json([
+                're' => 7, //Áp dụng mã giảm giá thành công
+                'html' => $html,
+            ]);
+        }
     }
 
 

@@ -115,7 +115,6 @@
                     <input type="submit" value="Apply Coupon" name="apply_coupon" class="button" id="checkcoupon">
                 </p>
             </div>
-            @if($countcoupon != 0)
             <div class="col-md-12">
                 <div class="product-content-right">
                     <div class="card-body table-responsive p-0">
@@ -193,7 +192,6 @@
                     </div>
                 </div>
             </div>
-            @endif
         </div>
     </div>
 </div>
@@ -272,9 +270,6 @@ $('#checkcoupon').on('click', function(event) {
                     toastr.error('This coupon does not apply to you.');
                 }else if(re == 4){
                     toastr.error('The order does not meet the specified price.');
-                }else if(re == 5){
-                    $("#capnhatdanhsachcoupon").html(html);
-                    toastr.success('Order already has a discount code, apply new discount code.');
                 }else if(re == 6){
                     toastr.error('No applicable products.');
                 }else{

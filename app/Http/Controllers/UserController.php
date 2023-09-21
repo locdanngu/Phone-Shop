@@ -115,7 +115,7 @@ class UserController extends Controller
         $listcart = Cart_product::where('idcart', $cart->idcart)->delete();
         $cart = Cart::where('iduser', $user->iduser)->delete();
 
-        return redirect()->route('checkoutlist.page');
+        return redirect()->route('checkout.page');
     }
 
     public function checkoutpage(Request $request)
@@ -128,7 +128,7 @@ class UserController extends Controller
             $listorder = Order_product::where('idorder', $request['idorder'])->get();
         }
 
-        return view('user/page/Checkoutpage', compact('user','listorder'));
+        return view('user/page/Checkoutpage', compact('user','listorder','order'));
     }
 
     public function checkoutlist(Request $request)

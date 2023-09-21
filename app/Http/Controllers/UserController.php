@@ -121,6 +121,7 @@ class UserController extends Controller
     public function checkoutpage(Request $request)
     {
         $user = Auth::user();
+        $currentTime = now();
         $order = Order::where('idorder', $request['idorder'])->first();
         if($order->iduser != $user->iduser){
             return redirect()->route('home.page');
@@ -128,21 +129,23 @@ class UserController extends Controller
         $countcoupon = 0;
         $listorder = Order_product::where('idorder', $request['idorder'])->get();
         if($order->idcoupon != null){
-            $countcoupon = 1;
-            $couponcart = Coupon::where('idcoupon', $order->idcoupon)->first();
+            $couponcart = Coupon::where('idcoupon', $order->idcoupon)
+                                ->where('starttime', '<=', $currentTime) 
+                                ->where('endtime', '>=', $currentTime)   
+                                ->first();
+            if($couponcart){
+                $countcoupon = 1;
+            }
         }else{
             $couponcart = '';
         }
 
-        foreach($listorder as $l){
-            if($l->idcoupon != null){
-                $countcoupon += 1;
-            }
-        }
-
         $idcoupons = $listorder->pluck('idcoupon')->toArray();
-        $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)->get();
-
+        $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)
+                            ->where('starttime', '<=', $currentTime)
+                            ->where('endtime', '>=', $currentTime)->get();
+        $coutlistcoupon = $listcoupon->count();
+        $countcoupon = $countcoupon + $coutlistcoupon;
 
         return view('user/page/Checkoutpage', compact('user','listorder','order', 'countcoupon','couponcart','listcoupon'));
     }

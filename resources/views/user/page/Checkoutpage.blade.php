@@ -33,6 +33,7 @@
                                         <th class="product-price">Price</th>
                                         <th class="product-quantity">Quantity</th>
                                         <th class="product-quantity">Coupon</th>
+                                        <th class="product-subtotal">Price</th>
                                         <th class="product-subtotal">Total</th>
                                     </tr>
                                 </thead>
@@ -69,6 +70,17 @@
                                             <span class="amount"
                                                 style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
                                         </td>
+                                        @if($c->coupon->discount_type == 'amount')
+                                        <td class="product-price">
+                                            <span class="amount"
+                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price - $c->coupon->discount_amount * $c->quantity, 2) }}</span>
+                                        </td>
+                                        @else
+                                        <td class="product-price">
+                                            <span class="amount"
+                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
+                                        </td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -80,7 +92,7 @@
 
 
             <h2>Coupon: {{ $countcoupon }}</h2>
-            @if($countcoupon == 0)
+            @if($countcoupon != 0)
             <div class="col-md-12">
                 <div class="product-content-right">
                     <div class="card-body table-responsive p-0">
@@ -98,7 +110,8 @@
                                     @foreach($listcoupon as $c)
                                     <tr class="cart_item">
                                         <td class="product-name">
-                                            <span class="amount">${{ $c->applicable_to }}</span>
+                                            <span class="amount"
+                                                style="text-transform: uppercase;font-weight:bold">{{ $c->applicable_to }}</span>
                                         </td>
 
                                         <td class="product-price">

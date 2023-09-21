@@ -308,7 +308,6 @@ $('#modal-deleteproduct').on('shown.bs.modal', function(event) {
 
 $('#deleteproduct').on('click', function(event) {
     var id = globalId;
-    console.log(id);
     $.ajax({
         type: 'POST',
         url: "{{ route('deleteproductcart') }}",

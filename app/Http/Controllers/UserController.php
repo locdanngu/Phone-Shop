@@ -108,6 +108,7 @@ class UserController extends Controller
             $order_product = new Order_product();
             $order_product->idorder = $order->idorder;
             $order_product->idproduct = $cartItem->idproduct; 
+            $order_product->category = $cartItem->product->category->idcategory; 
             $order_product->quantity = $cartItem->quantity; 
             $order_product->save();
         }
@@ -171,6 +172,76 @@ class UserController extends Controller
         $order->idcoupon = null;
         $order->save();
         return redirect()->back();
+    }
+
+    public function checkcoupon(Request $request)
+    {
+        $user = Auth::user();
+        $currentTime = now();
+        $coupon = Coupon::where('code', $request['coupon'])->first();
+        if(!$coupon){
+            return response()->json([
+                're' => 0, //mã không tồn tại
+            ]);
+        }
+
+        if($coupon->starttime > $currentTime){
+            return response()->json([
+                're' => 1, //mã này chưa bắt đầu
+            ]);
+        }
+
+        if($coupon->endtime < $currentTime){
+            return response()->json([
+                're' => 2, //mã này đã hết hạn sử dụng
+            ]);
+        }
+
+
+        if($coupon->iduser != null && $user->iduser != $coupon->iduser){
+            return response()->json([
+                're' => 3, //mã này ko áp dụng cho bạn
+            ]);
+        }
+
+        if($coupon->applicable_to == 'cart'){
+            $order = Order::where('idorder', $request['id'])->first();
+            if($order->totalprice < $coupon->minimum_order_amount){
+                return response()->json([
+                    're' => 4, //đơn hàng chưa đủ mức giá quy định
+                ]);
+            }
+
+            if($order->idcoupon != null){
+                $order->idcoupon = $coupon->idcoupon;
+                if($coupon->discount_type == 'amount'){
+                    $order->beforecoupon = $order->totalprice - $coupon->discount_amount;
+                }else{
+                    if(($order->totalprice * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
+                        $order->beforecoupon = $order->totalprice - $coupon->max_discount_amount;
+                    }else{
+                        $order->beforecoupon = $order->totalprice - ($order->totalprice * $coupon->discount_amount / 100);
+                    }
+                }
+                $order->save();
+                return response()->json([
+                    're' => 5, //đơn hàng đã có mã giảm giá, áp dụng mã giảm giá mới
+                ]);
+            }
+        }else{
+            $listproduct = Order_product::where('idorder', $request['id'])->get();
+
+            if($coupon->productlist == 2){
+                $categorylist = Category_coupon::where('idcoupon', $coupon->idcoupon)->get();
+            }
+
+
+
+        }
+
+        
+
+
     }
 
 

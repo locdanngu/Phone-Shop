@@ -19,7 +19,7 @@
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
-        <div class="row">
+        <div class="">
             <h3>Id order: {{ $order->idorder }}</h3>
             <div class="col-md-12">
                 <div class="product-content-right">
@@ -99,6 +99,22 @@
 
 
             <h3>Apply coupon: {{ $countcoupon }}</h3>
+            <div class="woocommerce-info">Have a coupon? <a class="showcoupon" data-toggle="collapse"
+                    href="#coupon-collapse-wrap" aria-expanded="false" aria-controls="coupon-collapse-wrap">Click here
+                    to enter your code</a>
+            </div>
+
+            <div id="coupon-collapse-wrap" method="post" class="checkout_coupon collapse">
+
+                <p class="form-row form-row-first">
+                    <input type="text" value="" id="checkcoupon_code" placeholder="Coupon code" class="input-text"
+                        name="coupon_code">
+                </p>
+
+                <p class="form-row form-row-last">
+                    <input type="submit" value="Apply Coupon" name="apply_coupon" class="button" id="checkcoupon">
+                </p>
+            </div>
             @if($countcoupon != 0)
             <div class="col-md-12">
                 <div class="product-content-right">
@@ -137,7 +153,8 @@
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="#" type="button" data-toggle="modal"
                                                 data-target="#modal-deleteproduct" class="btnchangeuser"
-                                                data-id="{{ $couponcart->idcoupon }}" data-code="{{ $couponcart->code }}">
+                                                data-id="{{ $couponcart->idcoupon }}"
+                                                data-code="{{ $couponcart->code }}">
                                                 <i class="bi bi-trash-fill"></i> Delete</a>
                                         </td>
                                     </tr>
@@ -197,7 +214,7 @@
             <div class="modal-body">
                 <h3 style="color:red; font-weight: bold">This will remove discount codes on all products</h3>
                 <input type="hidden" name="idcoupon">
-                <input type="hidden" name="idorder" value="{{ request()->input('idorder') }}">
+                <input type="hidden" name="idorder" value="{{ request()->input('idorder') }}" id="iddonhang">
                 <span name="code" style="font-weight:bold;"></span>
             </div>
             <div class="modal-footer justify-align-content-end">
@@ -222,6 +239,34 @@ $('#modal-deleteproduct').on('shown.bs.modal', function(event) {
     var modal = $(this);
     modal.find('span[name="code"]').text('Code coupon: ' + code);
     modal.find('input[name="idcoupon"]').val(id);
+});
+
+
+$('#checkcoupon').on('click', function(event) {
+    var couponcode = $('#checkcoupon_code').val();
+    var iddonhang = $('#iddonhang').val();
+
+    if (couponcode.length < 6 || couponcode.length > 18) {
+        toastr.error(
+            '<b>Coupon must not be less than 6 characters and more than 18</b>'
+        )
+    } else {
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('checkcoupon') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                coupon: couponcode,
+                idorder: iddonhang,
+            },
+            success: function(response) {
+                var html = response.html;
+
+            }
+        });
+    }
+
+
 });
 </script>
 

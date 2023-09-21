@@ -14,8 +14,10 @@ class Order_product extends Model
     protected $fillable = [
         'idorder',
         'idproduct',
+        'idcategory',
         'quantity',
         'idcoupon',
+        'beforecoupon',
     ];
 
     public function order()

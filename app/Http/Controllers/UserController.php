@@ -208,7 +208,7 @@ class UserController extends Controller
         }
 
         if($coupon->applicable_to == 'cart'){
-            $order = Order::where('idorder', $request['id'])->first();
+            $order = Order::where('idorder', $request['idorder'])->first();
             if($order->totalprice < $coupon->minimum_order_amount){
                 return response()->json([
                     're' => 4, //đơn hàng chưa đủ mức giá quy định

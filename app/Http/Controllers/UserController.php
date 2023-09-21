@@ -158,6 +158,16 @@ class UserController extends Controller
     }
 
 
+    public function deleteapplycoupon(Request $request)
+    {
+        $user = Auth::user();
+        $order = Order::where('idorder', $request['idorder'])->first();
+        $pro = Order_product::where('idorder', $request['idorder'])->where('idcoupon', $request['idcoupon'])->delete();
+        $order->delete();
+        return redirect()->back();
+    }
+
+
     public function deletecheckout(Request $request)
     {
         $user = Auth::user();

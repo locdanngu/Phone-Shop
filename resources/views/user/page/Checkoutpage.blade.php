@@ -70,6 +70,7 @@
                                             <span class="amount"
                                                 style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
                                         </td>
+                                        @if($c->idcoupon)
                                         @if($c->coupon->discount_type == 'amount')
                                         <td class="product-price">
                                             <span class="amount"
@@ -80,6 +81,12 @@
                                             <span class="amount"
                                                 style="color:red; font-weight:bold">${{ number_format($c->quantity * ($c->product->price - $c->product->price) * $c->coupon->discount_amount / 100, 2) }}</span>
                                         </td>
+                                        @endif
+                                        @else
+                                        <td class="product-price">
+                                            <span class="amount"
+                                                style="color:red; font-weight:bold">{{ $c->product->price }}</span>
+                                        </td> 
                                         @endif
                                     </tr>
                                     @endforeach
@@ -151,7 +158,7 @@
 @section('popup')
 <div class="modal fade" id="modal-deleteproduct">
     <div class="modal-dialog">
-        <form action="" method="post" class="modal-content">
+        <form action="{{ route('deleteapplycoupon') }}" method="post" class="modal-content">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Delete this checkout</h4>
@@ -162,6 +169,7 @@
             <div class="modal-body">
                 <h3 style="color:red; font-weight: bold">This will remove discount codes on all products</h3>
                 <input type="hidden" name="idcoupon">
+                <input type="text" name="idorder" value="{{ request()->input('idorder') }}">
                 <span name="code" style="font-weight:bold;"></span>
             </div>
             <div class="modal-footer justify-align-content-end">
@@ -185,7 +193,7 @@ $('#modal-deleteproduct').on('shown.bs.modal', function(event) {
     var code = button.data('code');
     var modal = $(this);
     modal.find('span[name="code"]').text('Code coupon: ' + code);
-    modal.find('input[name="id"]').val(id);
+    modal.find('input[name="idcoupon"]').val(id);
 });
 </script>
 

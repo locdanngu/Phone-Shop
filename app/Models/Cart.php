@@ -11,7 +11,6 @@ class Cart extends Model
     protected $primaryKey = 'idcart'; // Tên trường khóa chính
     protected $fillable = [
         'iduser',
-        'idcoupon',
     ];
 
     // Các quan hệ nếu có
@@ -20,9 +19,5 @@ class Cart extends Model
         return $this->belongsTo(User::class, 'iduser');
     }
 
-    public function coupon()
-    {
-        return $this->belongsTo(Coupon::class, 'idcoupon');
-    }
-
+   
 }

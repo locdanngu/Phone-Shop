@@ -14,7 +14,7 @@ class Cart_product extends Model
         'idproduct',
         'quantity',
         'totalprice',
-        'idcoupon',
+
     ];
 
     // Các quan hệ nếu có
@@ -28,8 +28,4 @@ class Cart_product extends Model
         return $this->belongsTo(Product::class, 'idproduct');
     }
 
-    public function coupon()
-    {
-        return $this->belongsTo(Coupon::class, 'idcoupon');
-    }
 }

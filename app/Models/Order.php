@@ -17,6 +17,7 @@ class Order extends Model
         'totalprice',
         'note',
         'reason',
+        'idcoupon',
     ];
 
 
@@ -29,4 +30,10 @@ class Order extends Model
     {
         return $this->hasMany(Order_product::class, 'idorder');
     }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class, 'idcoupon');
+    }
+
 }

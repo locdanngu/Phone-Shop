@@ -15,6 +15,7 @@ class Order_product extends Model
         'idorder',
         'idproduct',
         'quantity',
+        'idcoupon',
     ];
 
     public function order()
@@ -25,5 +26,10 @@ class Order_product extends Model
     public function product()
     {
         return $this->belongsTo(Product::class, 'idproduct');
+    }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class, 'idcoupon');
     }
 }

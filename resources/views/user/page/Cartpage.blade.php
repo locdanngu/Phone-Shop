@@ -96,12 +96,12 @@
                                             @endforeach
                                             <tr>
                                                 <td class="actions" colspan="7" style="text-align:end">
-                                                    <div class="coupon">
+                                                    <!-- <div class="coupon">
                                                         <label for="coupon_code">Coupon:</label>
                                                         <input type="text" placeholder="Coupon code" value=""
                                                             id="coupon_code" class="input-text" name="coupon_code">
                                                         <a href="#" class="btnchangeuser">APPLY COUPON</a>
-                                                    </div>
+                                                    </div> -->
                                                     <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
                                                     @if($user->postcode == null)
                                                     <a href="{{ route('chuyenhuong') }}"

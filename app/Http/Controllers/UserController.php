@@ -340,6 +340,9 @@ class UserController extends Controller
                 $html .= '<span class="amount">' . $couponcart->discount_amount . '$</span>';
                 $html .= '</td>';
                 }
+                $html .= '<td class="product-quantity">';
+                $html .= '<span class="amount" style="font-weight:bold; color:red">' . $couponcart->max_discount_amount . '$</span>';
+                $html .= '</td>';
                 $html .= '<td class="actions" style="display: flex;justify-content:center">';
                 $html .= '<a href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" class="btnchangeuser" data-id="' . $couponcart->idcoupon . '" data-code="' . $couponcart->code . '">';
                 $html .= '<i class="bi bi-trash-fill"></i> Delete</a>';
@@ -364,16 +367,64 @@ class UserController extends Controller
                 $html .= '<span class="amount">' . $c->discount_amount . '$</span>';
                 $html .= '</td>';
                 }
-            $html .= '<td class="actions" style="display: flex;justify-content:center">';
-            $html .= '<a href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" class="btnchangeuser" data-id="' . $c->idcoupon . '" data-code="' . $c->code . '">';
-            $html .= '<i class="bi bi-trash-fill"></i> Delete</a>';
-            $html .= '</td>';
-            $html .= '</tr>';
+                $html .= '<td class="product-quantity">';
+                $html .= '<span class="amount" style="font-weight:bold; color:red">' . $c->max_discount_amount . '$</span>';
+                $html .= '</td>';
+                $html .= '<td class="actions" style="display: flex;justify-content:center">';
+                $html .= '<a href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" class="btnchangeuser" data-id="' . $c->idcoupon . '" data-code="' . $c->code . '">';
+                $html .= '<i class="bi bi-trash-fill"></i> Delete</a>';
+                $html .= '</td>';
+                $html .= '</tr>';
             }
+
+            $html2 = '';
+            
+
+            foreach($listorder as $c) {
+                $html2 .= '<tr class="cart_item" data-product-id="' . $c->idcart_product . '">';
+                $html2 .= '<td class="product-thumbnail">';
+                $html2 .= '<a href="' . route('product.page', ['nameproduct' => $c->product->nameproduct]) . '"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="' . $c->product->imageproduct . '"></a>';
+                $html2 .= '</td>';
+                $html2 .= '<td class="product-name">';
+                $html2 .= '<a href="' . route('product.page', ['nameproduct' => $c->product->nameproduct]) . '">' . $c->product->nameproduct . '</a>';
+                $html2 .= '</td>';
+                $html2 .= '<td class="product-price">';
+                $html2 .= '<span class="amount">${' . $c->product->price . '}</span>';
+                $html2 .= '</td>';
+                $html2 .= '<td class="product-quantity">';
+                $html2 .= '<span class="amount">' . $c->quantity . '</span>';
+                $html2 .= '</td>';
+                $html2 .= '<td class="product-price">';
+                
+                if ($c->idcoupon) {
+                    $html2 .= '<span class="amount" style="font-weight:bold">' . $c->coupon->code . '</span>';
+                } else {
+                    $html2 .= '<span class="amount" style="font-weight:bold">None</span>';
+                }
+                
+                $html2 .= '</td>';
+                $html2 .= '<td class="product-price">';
+                $html2 .= '<span class="amount" style="color:red; font-weight:bold">$' . number_format($c->quantity * $c->product->price, 2) . '</span>';
+                $html2 .= '</td>';
+                
+                if ($c->idcoupon) {
+                    $html2 .= '<td class="product-price">';
+                    $html2 .= '<span class="amount" style="color:red; font-weight:bold">${' . $c->beforecoupon . '}</span>';
+                    $html2 .= '</td>';
+                } else {
+                    $html2 .= '<td class="product-price">';
+                    $html2 .= '<span class="amount" style="color:red; font-weight:bold">$' . number_format($c->quantity * $c->product->price, 2) . '</span>';
+                    $html2 .= '</td>';
+                }
+                
+                $html2 .= '</tr>';
+            }
+
 
             return response()->json([
                 're' => 7, //Áp dụng mã giảm giá thành công
                 'html' => $html,
+                'html2' => $html2,
             ]);
         }
     }

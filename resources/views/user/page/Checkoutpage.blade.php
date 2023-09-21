@@ -119,6 +119,7 @@
                                         <th class="product-name">Apply</th>
                                         <th class="product-price">Code</th>
                                         <th class="product-quantity">Discount Amount</th>
+                                        <th class="product-quantity">Max discount</th>
                                         <th class="product-quantity"></th>
                                     </tr>
                                 </thead>
@@ -143,6 +144,10 @@
                                             <span class="amount">{{ $couponcart->discount_amount }}$</span>
                                         </td>
                                         @endif
+                                        <td class="product-quantity">
+                                            <span class="amount"
+                                                style="color:red;font-weight:bold">${{ $couponcart->max_discount_amount }}</span>
+                                        </td>
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="#" type="button" data-toggle="modal"
                                                 data-target="#modal-deleteproduct" class="btnchangeuser"
@@ -172,6 +177,10 @@
                                             <span class="amount">{{ $c->discount_amount }}$</span>
                                         </td>
                                         @endif
+                                        <td class="product-quantity">
+                                            <span class="amount"
+                                                style="color:red;font-weight:bold">${{ $c->max_discount_amount }}</span>
+                                        </td>
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="#" type="button" data-toggle="modal"
                                                 data-target="#modal-deleteproduct" class="btnchangeuser"
@@ -252,7 +261,7 @@ $('#checkcoupon').on('click', function(event) {
                 idorder: iddonhang,
             },
             success: function(response) {
-                var html = response.html;
+
                 var re = response.re;
                 if (re == 0) {
                     toastr.error('Coupon does not exist.');
@@ -267,7 +276,10 @@ $('#checkcoupon').on('click', function(event) {
                 } else if (re == 6) {
                     toastr.error('No applicable products.');
                 } else {
+                    var html = response.html;
+                    var html2 = response.html2;
                     $("#capnhatdanhsachcoupon").html(html);
+                    $("#capnhatdanhsachorder").html(html2);
                     toastr.success('Apply discount coupon successfully.');
                 }
             }

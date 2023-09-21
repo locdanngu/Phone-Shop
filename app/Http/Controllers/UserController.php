@@ -121,6 +121,7 @@ class UserController extends Controller
     public function checkoutpage(Request $request)
     {
         $user = Auth::user();
+        
         $order = Order::where('iduser', $user->iduser)->get();
 
         return view('user/page/Checkoutpage', compact('user',));
@@ -130,7 +131,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $order = Order::where('iduser', $user->iduser)->where('status', 'wait2')->orderBy('created_at', 'desc')->get();
-        return view('user/page/Checkoutpage', compact('user','order'));
+        return view('user/page/Checkoutlistpage', compact('user','order'));
     }
 
     public function loginuser(Request $request)

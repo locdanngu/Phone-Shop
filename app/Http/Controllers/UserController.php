@@ -100,6 +100,8 @@ class UserController extends Controller
         $order->iduser = $user->iduser;
         $order->status = 'wait2';
         $order->totalprice = $scart_product;
+        $order->totalprice2 = $scart_product;
+        $order->beforecoupon = $scart_product;
         $order->note = '';
         $order->reason = '';
         $order->save();
@@ -288,13 +290,16 @@ class UserController extends Controller
                         're' => 6, //không có sản phẩm áp dụng
                     ]);
                 }else{
+                    $order = Order::where('idorder', $request['idorder'])->first();
+                    $order->totalprice2 = $listproduct->sum('beforecoupon');
+                    $order->save();
                     $trave = 1;
                 }
             }
 
             if($coupon->product_list == 1){
                 $productlist = Product_coupon::where('idcoupon', $coupon->idcoupon)->pluck('idproduct')->toArray();
-                $order = Order::where('idorder', $request['idorder'])->first();
+                
                 $count = 0;
                 foreach ($listproduct as $product) {
                     $idproduct = $product->idproduct;
@@ -310,8 +315,7 @@ class UserController extends Controller
                             }
                         }
                         $count += 1;
-                        $order->totalprice2 = $listproduct->sum('beforecoupon');
-                        $order->save();
+                        
                     }
                     $product->save();
                 }                
@@ -321,6 +325,9 @@ class UserController extends Controller
                         're' => 6, //không có sản phẩm áp dụng
                     ]);
                 }else{
+                    $order = Order::where('idorder', $request['idorder'])->first();
+                    $order->totalprice2 = $listproduct->sum('beforecoupon');
+                    $order->save();
                     $trave = 1;
                 }
             }
@@ -342,7 +349,7 @@ class UserController extends Controller
                 }
                 $trave = 1;
                 $order->totalprice2 = $listproduct->sum('beforecoupon');
-                    $order->save();
+                $order->save();
             }
         }
 
@@ -937,12 +944,26 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $listorder = Order_product::where('idorder', $request['idorder'])->get();
+        $order_product = Order_product::where('idorder', $request['idorder'])
+                                        ->whereNotNull('idcoupon')
+                                        ->get();
+        $order = Order::where('idorder', $request['idorder'])->first();
         $sumallproduct = 0;
-        foreach($listorder as $l){
-            $sumallproduct += $l->product->price * $l->quantity;
+        if ($order_product->isEmpty()) {
+            // Không có bản ghi nào có cột idcoupon khác null
+            foreach($listorder as $l){
+                $sumallproduct += $l->product->price * $l->quantity;
+            }
+        } else {
+            // Có ít nhất một bản ghi có cột idcoupon khác null
+            $sumproduct = $listorder->sum('beforecoupon');
+            if($order->idcoupon != null){
+                $sumallproduct = $order->beforecoupon;
+            }else{
+                $sumallproduct = $order->totalprice2 ;
+            }
         }
-        $sumproduct = $listorder->sum('beforecoupon');
-
+    
         if($request['payment_method'] == 'bank'){
             return view('user/page/Bankpayment', compact('user','sumallproduct', 'sumproduct'));
         }

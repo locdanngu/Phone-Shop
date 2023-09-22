@@ -929,7 +929,7 @@ class UserController extends Controller
     public function listhistoryorder(Request $request)
     {
         $user = Auth::user();
-        $order = Order::where('iduser', $user->iduser)->orderBy('updated_at', 'desc')->get();
+        $order = Order::where('iduser', $user->iduser)->where('status','!=', 'wait2')->orderBy('updated_at', 'desc')->get();
         return view('user/page/Listhistoryorder', compact('user', 'order'));
     }
 

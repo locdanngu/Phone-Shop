@@ -22,7 +22,7 @@
         <div class="">
             <h3>Id order: {{ $order->idorder }}</h3>
             <h3>Status:
-                @if($order->status == 'wait2' || $order->status == 'paypal')
+                @if($order->status == 'wait' || $order->status == 'paypal')
                 <span style="color:brown">Wait for confirmation</span>
                 @elseif($order->status == 'cancel')
                 <span style="color:red">Deny</span>
@@ -34,6 +34,13 @@
                 <span>Unknown</span> <!-- Hoặc bạn có thể sử dụng nội dung mặc định khác -->
                 @endif
             </h3>
+            @if($order->pay != null)
+            @if($order->pay == 'bank')
+            <h3>Payment: <span>Bank</span></h3>
+            @else
+            <h3>Payment: <span>Paypal</span></h3>
+            @endif
+            @endif
 
 
             <div class="col-md-12">

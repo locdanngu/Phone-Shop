@@ -942,7 +942,11 @@ class UserController extends Controller
             $sumallproduct += $l->product->price * $l->quantity;
         }
         $sumproduct = $listorder->sum('beforecoupon');
-        return view('user/page/Bankpayment', compact('user','sumallproduct', 'sumproduct'));
+
+        if($request['payment_method'] == 'bank'){
+            return view('user/page/Bankpayment', compact('user','sumallproduct', 'sumproduct'));
+        }
+        
     }
 
 }

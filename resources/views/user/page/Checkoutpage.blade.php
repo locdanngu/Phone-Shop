@@ -258,8 +258,7 @@
                 </tfoot>
             </table>
 
-            <form action="" method="post" id="payment">
-                @csrf
+            <form action="" method="get" id="payment">
                 <ul class="payment_methods methods">
                     <li class="payment_method_bacs">
                         <input type="radio" data-order_button_text="" checked="checked" value="bank"

@@ -958,7 +958,10 @@ class UserController extends Controller
     public function contact(Request $request)
     {
         $user = Auth::user();
-
-        return view('user/page/Contactpage', compact('user'));
+        $list = Product::inRandomOrder()->take(4)->get();
+        $recent = Product::orderBy('updated_at', 'desc')->take(5)->get();
+        $random = Product::inRandomOrder()->take(6)->get();
+        $review = Review::orderBy('created_at', 'desc')->take(5)->get();
+        return view('user/page/Contactpage', compact('user','list','recent','random','review'));
     }
 }

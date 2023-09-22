@@ -109,11 +109,12 @@
                             href="{{ route('cart.page') }}">Cart</a></li>
                     <li class="{{ request()->routeIs('checkoutlist.page') ? 'active' : '' }}"><a
                             href="{{ route('checkoutlist.page') }}">Checkout</a></li>
-                            <li class="{{ request()->routeIs('listhistoryorder.page') ? 'active' : '' }}"><a
+                    <li class="{{ request()->routeIs('listhistoryorder.page') ? 'active' : '' }}"><a
                             href="{{ route('listhistoryorder.page') }}">History order</a></li>
-                    <li><a href="#">Contact</a></li>
-                    @endif
 
+                    @endif
+                    <li class="{{ request()->routeIs('contact.page') ? 'active' : '' }}"><a
+                            href="{{ route('contact.page') }}">Contact</a></li>
                 </ul>
             </div>
         </div>

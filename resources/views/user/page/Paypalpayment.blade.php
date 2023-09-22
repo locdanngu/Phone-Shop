@@ -1,6 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'Bank Payment')
+@section('title', 'Paypal Payment')
 
 @section('body')
 <div class="product-big-title-area">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Bank payment</h2>
+                    <h2>Paypal payment</h2>
                 </div>
             </div>
         </div>
@@ -80,21 +80,15 @@
                             </table>
 
 
-                            <form action="{{ route('bankpay') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('user.pay') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <div class="d-flex flex-column">
-                                    <p>Bill: </p>
-                                    <input class="form-control" type="file" id="formFile" accept="image/*"
-                                        style="max-width:100%" onchange="previewImage(event)" name="image" required>
-                                </div>
                                 <input type="hidden" value="{{ request()->input('idorder') }}" name="idorder">
-                                <input type="hidden" value="{{ $order->beforecoupon }}" name="amount">
-                                <img id="preview" src="" alt="" style="height:300px">
+                                <input type="hidden" value="{{ $order->beforecoupon }}" name="amount">  
                                 <div class="d-flex flex-column mb-2">
                                     <p>Note order: </p>
                                     <textarea name="" id="" cols="30" rows="5" name="note"></textarea>
                                 </div>
-                                <input type="submit" data-value="Place order" value="Submit"
+                                <input type="submit" data-value="Place order" value="Pay"
                                     name="woocommerce_checkout_place_order" class="button alt">
                             </form>
                         </div>
@@ -114,15 +108,7 @@
 
 @section('js')
 <script>
-function previewImage(event) {
-    const preview = document.getElementById('preview');
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function() {
-        preview.src = reader.result;
-    }
-    reader.readAsDataURL(file);
-}
+
 </script>
 
 @endsection

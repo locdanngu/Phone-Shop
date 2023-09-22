@@ -898,7 +898,13 @@ class UserController extends Controller
     
         if($request['payment_method'] == 'bank'){
             return view('user/page/Bankpayment', compact('user', 'order'));
-        } 
+        }
+
+        if($request['payment_method'] == 'paypal'){
+            return view('user/page/Paypalpayment', compact('user', 'order'));
+            // return redirect()->route('user.pay', ['amount' => $request['amount']]);
+        }
+
     }
 
     public function bankpay(Request $request)

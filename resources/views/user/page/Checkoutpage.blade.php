@@ -203,61 +203,7 @@
 
 
 
-            <div class="col-md-12">
-                <div class="product-content-right">
-                    <div class="card-body table-responsive p-0">
-                        <div class="d-flex flex-column justify-content-between">
-                            <table cellspacing="0" class="shop_table cart">
-                                <thead>
-                                    <tr>
-                                        <th class="product-thumbnail"></th>
-                                        <th class="product-name">Address</th>
-                                        <th class="product-price">state country</th>
-                                        <th class="product-quantity">country</th>
-                                        <th class="product-quantity">town city</th>
-                                        <th class="product-quantity">company name</th>
-                                        <th class="product-subtotal">post code</th>
-                                        <th class="product-subtotal">apartment</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="capnhatdanhsachorder">
-                                    @foreach($listaddress as $c)
-                                    <tr class="cart_item">
-                                        <td class="product-thumbnail">
-                                            <input type="radio" name="address" value="{{ $c->idaddress }}">
-                                        </td>
-                                        <td class="product-thumbnail">
-                                            <span class="amount">{{ $c->address }}</span>
-                                        </td>
 
-                                        <td class="product-name">
-                                            <span class="amount">{{ $c->state_country }}</span>
-                                        </td>
-
-                                        <td class="product-price">
-                                            <span class="amount">{{ $c->country }}</span>
-                                        </td>
-
-                                        <td class="product-quantity">
-                                            <span class="amount">{{ $c->town_city }}</span>
-                                        </td>
-                                        <td class="product-quantity">
-                                            <span class="amount">{{ $c->companyname }}</span>
-                                        </td>
-                                        <td class="product-quantity">
-                                            <span class="amount">{{ $c->postcode }}</span>
-                                        </td>
-                                        <td class="product-quantity">
-                                            <span class="amount">{{ $c->apartment }}</span>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
 
@@ -325,6 +271,75 @@
             </table>
 
             <form action="{{ route('bankpayment') }}" method="get" id="payment">
+
+
+
+
+
+                <div class="col-md-12">
+                    <div class="product-content-right">
+                        <div class="card-body table-responsive p-0">
+                            <div class="d-flex flex-column justify-content-between">
+                                <table cellspacing="0" class="shop_table cart">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-thumbnail"></th>
+                                            <th class="product-name">Address</th>
+                                            <th class="product-price">state country</th>
+                                            <th class="product-quantity">country</th>
+                                            <th class="product-quantity">town city</th>
+                                            <th class="product-quantity">company name</th>
+                                            <th class="product-subtotal">post code</th>
+                                            <th class="product-subtotal">apartment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="capnhatdanhsachorder">
+                                        @foreach($listaddress as $c)
+                                        <tr class="cart_item">
+                                            <td class="product-thumbnail">
+                                                <input type="radio" name="address" value="{{ $c->idaddress }}" required>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span class="amount">{{ $c->address }}</span>
+                                            </td>
+
+                                            <td class="product-name">
+                                                <span class="amount">{{ $c->state_country }}</span>
+                                            </td>
+
+                                            <td class="product-price">
+                                                <span class="amount">{{ $c->country }}</span>
+                                            </td>
+
+                                            <td class="product-quantity">
+                                                <span class="amount">{{ $c->town_city }}</span>
+                                            </td>
+                                            <td class="product-quantity">
+                                                <span class="amount">{{ $c->companyname }}</span>
+                                            </td>
+                                            <td class="product-quantity">
+                                                <span class="amount">{{ $c->postcode }}</span>
+                                            </td>
+                                            <td class="product-quantity">
+                                                <span class="amount">{{ $c->apartment }}</span>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
                 <ul class="payment_methods methods">
                     <li class="payment_method_bacs">
                         <input type="radio" data-order_button_text="" checked="checked" value="bank"

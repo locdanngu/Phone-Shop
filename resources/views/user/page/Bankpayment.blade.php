@@ -80,6 +80,9 @@
                             </table>
 
 
+                            
+
+
                             <form action="{{ route('bankpay') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="d-flex flex-column">

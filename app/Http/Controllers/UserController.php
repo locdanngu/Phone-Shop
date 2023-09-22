@@ -889,6 +889,9 @@ class UserController extends Controller
                 $sumallproduct = $order->totalprice2 ;
             }
         }
+
+
+        dd($request['address']);
     
         if($request['payment_method'] == 'bank'){
             return view('user/page/Bankpayment', compact('user', 'order'));

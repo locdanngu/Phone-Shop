@@ -22,6 +22,7 @@ class Order extends Model
         'idcoupon',
         'beforecoupon',
         'pay',
+        'idaddress'
     ];
 
 
@@ -39,5 +40,11 @@ class Order extends Model
     {
         return $this->belongsTo(Coupon::class, 'idcoupon');
     }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'idaddress');
+    }
+
 
 }

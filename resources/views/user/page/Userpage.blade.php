@@ -409,49 +409,13 @@
                         </tr>
                     </thead>
                     <tbody id="capnhatdanhsachdiachi">
-                        @if($user->postcode != null)
-                        <tr class="cart_item" id="mainaddress">
-                            <td class="product-name">
-                                <a title="Remove this item" class="remove" href="#" type="button" data-toggle="modal"
-                                    data-target="#modal-deleteproduct2" data-name="{{ $user->address }}">×</a>
-                            </td>
 
-                            <td class="product-name">
-                                <span class="amount">{{ $user->state_country }}</span>
-                            </td>
-
-                            <td class="product-name">
-                                <span class="amount">{{ $user->country }}</span>
-                            </td>
-
-                            <td class="product-name">
-                                <span class="amount">{{ $user->town_city }}</span>
-                            </td>
-
-                            <td class="product-name">
-                                <span class="amount">{{ $user->address }}</span>
-                            </td>
-
-                            <td class="product-name">
-                                <span class="amount">{{ $user->companyname }}</span>
-                            </td>
-                            <td class="product-name">
-                                <span class="amount">{{ $user->postcode }}</span>
-                            </td>
-                            <td class="product-name">
-                                <span class="amount">{{ $user->apartment }}</span>
-                            </td>
-                            <td class="product-name">
-                                <span class="amount">{{ $user->ordernote }}</span>
-                            </td>
-                        </tr>
-                        @else
+                        @if(count($listaddress) == 0)
                         <tr>
                             <td colspan=9 style="text-align:center; font-weight:bold">You do not have a delivery address
                             </td>
                         </tr>
-                        @endif
-                        @if(count($listaddress))
+                        @else
                         @foreach($listaddress as $la)
                         <tr class="cart_item" data-product-id="{{ $la->idaddress }}">
                             <td class="product-name">

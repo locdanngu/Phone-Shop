@@ -792,29 +792,19 @@ class UserController extends Controller
     public function addaddress(Request $request)
     {
         $user = Auth::user();
-        if($user->postcode == null){
-            $user->country = $request['country'];
-            $user->town_city = $request['town_city'];
-            $user->state_country = $request['state_country'];
-            $user->address = $request['address'];
-            $user->apartment = $request['apartment'];
-            $user->companyname = $request['companyname'];
-            $user->postcode = $request['postcode'];
-            $user->ordernote = $request['ordernote'];
-            $user->save();
-        }else{
-            $add = new Address();
-            $add->iduser = $user->iduser;
-            $add->country = $request['country'];
-            $add->town_city = $request['town_city'];
-            $add->state_country = $request['state_country'];
-            $add->address = $request['address'];
-            $add->apartment = $request['apartment'];
-            $add->companyname = $request['companyname'];
-            $add->postcode = $request['postcode'];
-            $add->ordernote = $request['ordernote'];
-            $add->save();
-        }
+        
+        $add = new Address();
+        $add->iduser = $user->iduser;
+        $add->country = $request['country'];
+        $add->town_city = $request['town_city'];
+        $add->state_country = $request['state_country'];
+        $add->address = $request['address'];
+        $add->apartment = $request['apartment'];
+        $add->companyname = $request['companyname'];
+        $add->postcode = $request['postcode'];
+        $add->ordernote = $request['ordernote'];
+        $add->save();
+        
 
         return redirect()->back()->withErrors(['addaddress' => 'Add address success']);
     }

@@ -108,7 +108,7 @@ class UserController extends Controller
             $order_product = new Order_product();
             $order_product->idorder = $order->idorder;
             $order_product->idproduct = $cartItem->idproduct; 
-            $order_product->category = $cartItem->product->category->idcategory; 
+            $order_product->idcategory = $cartItem->product->category->idcategory; 
             $order_product->quantity = $cartItem->quantity; 
             $order_product->save();
         }

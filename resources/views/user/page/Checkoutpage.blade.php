@@ -210,7 +210,7 @@
                         <td class="product-name">
                             All product <strong class="product-quantity"></strong> </td>
                         <td class="product-total">
-                            <span class="amount">${{ number_format($sumallproduct, 2) }}</span>
+                            <span class="amount font-weight-bold">${{ number_format($sumallproduct, 2) }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -218,12 +218,20 @@
 
                     <tr class="cart-subtotal">
                         <th>Add coupon</th>
+                        @if($sumproduct == 0)
+                        <td><span class="amount">${{ number_format(0, 2) }}</span>
+                        @else
                         <td><span class="amount">${{ number_format($sumallproduct - $sumproduct, 2) }}</span>
+                        @endif
                         </td>
                     </tr>
                     <tr class="cart-subtotal">
                         <th>Before coupon</th>
-                        <td><span class="amount">${{ number_format($sumproduct, 2) }}</span>
+                        @if($sumproduct == 0)
+                        <td><span class="amount font-weight-bold">${{ number_format($sumallproduct, 2) }}</span>
+                        @else
+                        <td><span class="amount font-weight-bold">${{ number_format($sumproduct, 2) }}</span>
+                        @endif
                         </td>
                     </tr>
 
@@ -240,11 +248,62 @@
 
                     <tr class="order-total">
                         <th>Order Total</th>
+                        @if($sumproduct != 0)
                         <td><strong><span class="amount red">${{ number_format($sumproduct, 2) }}</span></strong> </td>
+                        @else
+                        <td><strong><span class="amount red">${{ number_format($sumallproduct, 2) }}</span></strong> </td>
+                        @endif
                     </tr>
 
                 </tfoot>
             </table>
+
+            <div id="payment">
+                <ul class="payment_methods methods">
+                    <li class="payment_method_bacs">
+                        <input type="radio" data-order_button_text="" checked="checked" value="bacs"
+                            name="payment_method" class="input-radio" id="payment_method_bacs">
+                        <label for="payment_method_bacs">Direct Bank Transfer </label>
+                        <div class="payment_box payment_method_bacs">
+                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment
+                                reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="payment_method_paypal">
+                        <input type="radio" data-order_button_text="Proceed to PayPal" value="paypal"
+                            name="payment_method" class="input-radio" id="payment_method_paypal">
+                        <label for="payment_method_paypal">PayPal <img alt="PayPal Acceptance Mark"
+                                src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"><a
+                                title="What is PayPal?"
+                                onclick="javascript:window.open('https://www.paypal.com/gb/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"
+                                class="about_paypal" href="https://www.paypal.com/gb/webapps/mpp/paypal-popup">What is
+                                PayPal?</a>
+                        </label>
+                        <div style="display:none;" class="payment_box payment_method_paypal">
+                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                        </div>
+                    </li>
+                    <!-- <li class="payment_method_cheque">
+                        <input type="radio" data-order_button_text="" value="cheque" name="payment_method"
+                            class="input-radio" id="payment_method_cheque">
+                        <label for="payment_method_cheque">Payment on delivery </label>
+                        <div style="display:none;" class="payment_box payment_method_cheque">
+                        </div>
+                    </li> -->
+                </ul>
+
+                <div class="form-row place-order">
+
+                    <input type="submit" data-value="Place order" value="Place order" id="place_order"
+                        name="woocommerce_checkout_place_order" class="button alt">
+
+
+                </div>
+
+                <div class="clear"></div>
+
+            </div>
         </div>
     </div>
 </div>

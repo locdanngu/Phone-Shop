@@ -1774,6 +1774,10 @@ a:focus{
     color: red;
 }
 
+.font-weight-bold{
+    font-weight: bold;
+}
+
 
 
 @media screen and (max-width: 767px) {

@@ -48,19 +48,19 @@
                                         <td>
                                             <span class="amount">{{ $o->created_at }}</span>
                                         </td>
-                                        @if($o->status == 'wait')
+                                        @if($o->status == 'wait2' || $o->status == 'paypal')
                                         <td>
                                             <span class="amount" style="color:brown">Wait for confirmation</span>
                                         </td>
-                                        @elif($o->status == 'cancel')
+                                        @elseif($o->status == 'cancel')
                                         <td>
                                             <span class="amount" style="color:red">Deny</span>
                                         </td>
-                                        @elif($o->status == 'done')
+                                        @elseif($o->status == 'done')
                                         <td>
                                             <span class="amount" style="color:green">Success</span>
                                         </td>
-                                        @elif($o->status == 'ship')
+                                        @elseif($o->status == 'ship')
                                         <td>
                                             <span class="amount" style="color:green">Delivery</span>
                                         </td>

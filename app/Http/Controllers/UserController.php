@@ -902,4 +902,11 @@ class UserController extends Controller
         return redirect()->route('user.page')->withErrors(['need' => 'You need at least 1 delivery address']);
     }
 
+    
+    public function bankpayment(Request $request)
+    {
+        $user = Auth::user();
+        return view('user/page/Bankpayment', compact('user'));
+    }
+
 }

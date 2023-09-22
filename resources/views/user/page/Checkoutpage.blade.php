@@ -258,10 +258,11 @@
                 </tfoot>
             </table>
 
-            <div id="payment">
+            <form action="" method="post" id="payment">
+                @csrf
                 <ul class="payment_methods methods">
                     <li class="payment_method_bacs">
-                        <input type="radio" data-order_button_text="" checked="checked" value="bacs"
+                        <input type="radio" data-order_button_text="" checked="checked" value="bank"
                             name="payment_method" class="input-radio" id="payment_method_bacs">
                         <label for="payment_method_bacs">Direct Bank Transfer </label>
                         <div class="payment_box payment_method_bacs">
@@ -303,7 +304,7 @@
 
                 <div class="clear"></div>
 
-            </div>
+            </form>
         </div>
     </div>
 </div>

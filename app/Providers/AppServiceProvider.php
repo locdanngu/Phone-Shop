@@ -60,6 +60,7 @@ class AppServiceProvider extends ServiceProvider
                         'user/page/Productpage', 
                         'user/page/Shoppage',
                         'user/page/Wishlistpage',
+                        'user/page/Bankpayment',
                         'user/page/Userpage',], function ($view) {
 
             $ccart_product = 0;

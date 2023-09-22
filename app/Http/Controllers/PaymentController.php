@@ -69,30 +69,10 @@ class PaymentController extends Controller
                 $payment->payment_status = $arr['state'];
                 $payment->save();
 
-                // return "Payment is successful. Your transaction id is: ". $arr['id'];
-                $user = Auth::user();
-                $totalPrice = $payment->amount;
                 $order = Order::where('idorder', $request->input('idorder'))->first();
-
-                
+                dd($order);
                 $order->status = 'paypal';
                 $order->save();
-                // dd($cartItems);
-                // foreach ($cartItems as $cartItem) {
-                //     $notification = new Notification;
-                //     $notification->id = $user->id;
-                //     $productName = Product::select('nameproduct')->where('idproduct', $cartItem->idproduct)->first()->nameproduct;
-                //     $image = Product::select('image')->where('idproduct', $cartItem->idproduct)->first()->image;
-                //     $notification->notification = 'Your order for product "' . $productName . '" x' . $cartItem->quatifier . ' is "waiting for confirmation"';
-                //     $notification->image = $image;
-                //     $notification->status = 1;
-                //     // dd($notification);
-                //     $notification->save();  
-                // }
-                // Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
-                // $user = User::findOrFail($user->id);
-                // $user->balance -= $totalPrice;
-                // $user->save();
                 return redirect()->route('home.page');
 
 

@@ -45,19 +45,30 @@
                                 <tfoot>
 
                                     <tr class="cart-subtotal">
-                                        <th>Add coupon</th>
-                                        <td><span
-                                                class="amount">${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
+                                        <th>Add coupon product</th>
+                                        <td><span class="amount font-weight-bold"> -
+                                                ${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
                                         </td>
                                     </tr>
+
+                                    <tr class="cart-subtotal">
+                                        <th>Add coupon cart</th>
+                                        <td><span class="amount font-weight-bold"> -
+                                                ${{ number_format($order->totalprice2 - $order->beforecoupon, 2) }}</span>
+                                        </td>
+                                    </tr>
+
                                     <tr class="shipping">
                                         <th>Shipping and Handling</th>
                                         <td>
+
                                             Free Shipping
                                             <input type="hidden" class="shipping_method" value="free_shipping"
                                                 id="shipping_method_0" data-index="0" name="shipping_method[0]">
                                         </td>
                                     </tr>
+
+
                                     <tr class="order-total">
                                         <th>Order Total</th>
                                         <td><strong><span

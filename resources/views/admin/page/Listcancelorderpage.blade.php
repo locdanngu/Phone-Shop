@@ -59,7 +59,7 @@
                                         <td class="font-weight-bold">{{ $od->user->email }}</td>
                                         <td class="font-weight-bold">{{ $od->user->phone }}</td>
                                         <td>{{ $od->user->address }}</td>
-                                        <td class="font-weight-bold" style="color:red">{{ $od->totalprice }} $</td>
+                                        <td class="font-weight-bold" style="color:red">{{ $od->beforecoupon }} $</td>
                                         @if(strlen($od->note) > 30)
                                         <td>{!! mb_substr(strip_tags($od->note), 0, 30) !!}...</td>
                                         @elseif(strlen($od->note) == 0)

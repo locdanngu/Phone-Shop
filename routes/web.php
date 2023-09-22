@@ -62,7 +62,7 @@ Route::prefix('/')->group(function () {
     Route::get('/listhistoryorder', [UserController::class, 'listhistoryorder'])->name('listhistoryorder.page');
     Route::get('/historyorder', [UserController::class, 'historyorder'])->name('historyorder.page');
     Route::get('/contact', [UserController::class, 'contact'])->name('contact.page');
-
+    Route::post('/contact', [UserController::class, 'addcontact'])->name('contact.add');
 });
 
 
@@ -147,6 +147,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/listuserpage/search', [AdminController::class, 'listuserpage'])->name('searchuser');
         Route::post('/changepassuser', [AdminController::class, 'changepassuser'])->name('user.changepass');
         Route::post('/changestatususer', [AdminController::class, 'changestatususer'])->name('user.changestatus');
+
+        //Contact
+        Route::get('/contactpage', [ContactController::class, 'contactpage'])->name('contact.page');
 
     });
 });

@@ -970,11 +970,20 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $contact = new Contact();
-        $contact->name = $request['name'];
-        $contact->email = $request['email'];
-        $contact->phone = $request['phone'];
-        $contact->content = $request['content'];
-        $contact->save();
+        if($user){
+            $contact->name = $user->firstname . ' ' . $user->lastname;
+            $contact->email = $user->email;
+            $contact->phone = $user->phone;
+            $contact->content = $request['content'];
+            $contact->save();
+        }else{
+            $contact->name = $request['name'];
+            $contact->email = $request['email'];
+            $contact->phone = $request['phone'];
+            $contact->content = $request['content'];
+            $contact->save();
+        }
+        
         return redirect()->back()->withErrors(['suc' => 'submitted successfully!!!']);
     }
 

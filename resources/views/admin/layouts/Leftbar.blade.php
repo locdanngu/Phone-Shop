@@ -174,6 +174,15 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('contact.page') }}"
+                        class="nav-link {{ request()->routeIs('contact.page') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-person-circle"></i>
+                        <p>
+                            Quản lý liên hệ
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

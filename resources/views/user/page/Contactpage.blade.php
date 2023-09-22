@@ -35,32 +35,34 @@
 
                         <div class="col-sm-12">
                             @if(!$user)
-                            <form action="" method="post">
+                            <form action="{{ route('contact.add') }}" method="post">
                                 @csrf
                                 <h2 style="text-align:center" class="font-weight-bold mb-2">Contact us</h2>
                                 <h4>Your name:</h4>
-                                <input type="text" name="name" class="w-100 mb-2">
+                                <input type="text" name="name" class="w-100 mb-2" required>
                                 <h4>Email:</h4>
-                                <input type="email" name="email" class="w-100 mb-2">
+                                <input type="email" name="email" class="w-100 mb-2" required>
                                 <h4>Phone:</h4>
-                                <input type="text" name="phone" class="w-100 mb-2">
+                                <input type="text" name="phone" class="w-100 mb-2" required>
                                 <h4>Content:</h4>
-                                <textarea name="content" id="" cols="30" rows="10" class="w-100"></textarea>
+                                <textarea name="content" id="" cols="30" rows="10" class="w-100" required></textarea>
                                 <input type="submit" class="add_to_cart_button" value="Send" style="float:right">
                             </form>
                             @else
-                            <form action="" method="post">
+                            <form action="{{ route('contact.add') }}" method="post">
                                 @csrf
                                 <h2 style="text-align:center" class="font-weight-bold mb-2">Contact us</h2>
                                 <h4>Your name:</h4>
                                 <input type="text" name="name" class="w-100 mb-2" disabled
-                                    value="{{$user->firstname}} {{$user->lastname}}">
+                                    value="{{$user->firstname}} {{$user->lastname}}" required>
                                 <h4>Email:</h4>
-                                <input type="email" name="email" class="w-100 mb-2" disabled value="{{$user->email}}">
+                                <input type="email" name="email" class="w-100 mb-2" disabled value="{{$user->email}}"
+                                    required>
                                 <h4>Phone:</h4>
-                                <input type="text" name="phone" class="w-100 mb-2" disabled value="{{$user->phone}}">
+                                <input type="text" name="phone" class="w-100 mb-2" disabled value="{{$user->phone}}"
+                                    required>
                                 <h4>Content:</h4>
-                                <textarea name="content" id="" cols="30" rows="10" class="w-100"></textarea>
+                                <textarea name="content" id="" cols="30" rows="10" class="w-100" required></textarea>
                                 <input type="submit" class="add_to_cart_button" value="Send" style="float:right">
                             </form>
                             @endif

@@ -28,5 +28,15 @@ class ContactController extends Controller
         return view('admin/page/Contactpage', compact('admin','contact','ccontact'));
     }
 
+    public function requestcontact(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        
+
+
+
+        return redirect()->back();
+    }
+
     
 }

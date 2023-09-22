@@ -150,6 +150,6 @@ Route::prefix('/admin')->group(function () {
 
         //Contact
         Route::get('/contactpage', [ContactController::class, 'contactpage'])->name('contact.page');
-
+        Route::post('/requestcontact', [ContactController::class, 'requestcontact'])->name('request.contact');
     });
 });

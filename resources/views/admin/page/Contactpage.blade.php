@@ -79,7 +79,7 @@
 @section('popup')
 <div class="modal fade" id="modal-change">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('user.changepass') }}" method="post" id="formchangepass">
+        <form class="modal-content" action="{{ route('request.contact') }}" method="post" id="formchangepass">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Trả lời người dùng</h4>

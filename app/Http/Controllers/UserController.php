@@ -155,16 +155,21 @@ class UserController extends Controller
             ->get();
 
         if ($order_product->isEmpty()) {
-            // // Không có bản ghi nào có cột idcoupon khác null
-            // foreach($listorder as $l){
-            //     $order->totalprice += $l->product->price * $l->quantity;
-            //     $order->save();
-            // }
-            if($order->idcoupon == null){
-                $order->beforecoupon = $order->totalprice;
-                $order->totalprice2 = $order->totalprice;
-                $order->save();
-            }else{
+            // Không có mã giảm giá cho product
+            $order_product = Order_product::where('idorder', $request['idorder'])->get();
+            foreach($order_product as $op){
+                if($op->idcoupon == null){
+                    $op->totalprice = $p->product->price * $p->quantity;
+                }
+                $op->save();
+            }
+
+            $order->totalprice = $order_product->sum('totalprice');
+            $order->beforecoupon = $order->totalprice;
+            $order->totalprice2 = $order->totalprice;
+            $order->save();
+
+            if($order->idcoupon != null){
                 $coupon = Coupon::where('idcoupon', $order->idcoupon)->first();
                 if($coupon->discount_type == 'amount'){
                     $order->beforecoupon = $order->totalprice2 - $coupon->discount_amount;
@@ -182,6 +187,35 @@ class UserController extends Controller
                 
             }
         } else {
+            // Có mã giảm giá cho product
+            $order_product = Order_product::where('idorder', $request['idorder'])->get();
+            
+            foreach($order_product as $op){
+                $op->totalprice = $op->product->price * $op->quantity;
+                if($op->idcoupon == null){
+                    $op->beforecoupon = $op->totalprice;
+                }else{
+                    $coupon = Coupon::where('idcoupon', $op->idcoupon)->first();
+                    if($coupon->discount_type == 'amount'){
+                        $op->beforecoupon = $op->totalprice - $coupon->discount_amount;
+                        $op->save();
+                    }else{
+                        if(($op->totalprice * $coupon->discount_amount / 100) > $coupon->max_discount_amount){
+                            $op->beforecoupon = $op->totalprice  - $coupon->max_discount_amount;
+                            $op->save();
+                        }else{
+                            $op->beforecoupon = $op->totalprice  * $coupon->discount_amount - ($op->totalprice  * $coupon->discount_amount / 100) ;
+                            $op->save();
+                        }
+                        
+                    }
+                }
+               
+            }
+
+            $order = Order::where('idorder', $request['idorder'])->first();
+            $listorder = Order_product::where('idorder', $request['idorder'])->get();
+
             $order->totalprice2 = $listorder->sum('beforecoupon');
             if($order->idcoupon == null){
                 $order->beforecoupon = $order->totalprice2;
@@ -193,7 +227,7 @@ class UserController extends Controller
                     $order->save();
                 }else{
                     if(($order->totalprice2 * $coupon->discount_amount / 100) > $coupon->max_discount_amount){
-                        $order->beforecoupon = $order->totalprice2  - $max_discount_amount;
+                        $order->beforecoupon = $order->totalprice2  - $coupon->max_discount_amount;
                         $order->save();
                     }else{
                         $order->beforecoupon = $order->totalprice2  * $coupon->discount_amount - ($order->totalprice2  * $coupon->discount_amount / 100) ;

@@ -17,6 +17,7 @@ class Order_product extends Model
         'idcategory',
         'quantity',
         'idcoupon',
+        'totalprice',
         'beforecoupon',
     ];
 

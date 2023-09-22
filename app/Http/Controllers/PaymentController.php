@@ -70,6 +70,7 @@ class PaymentController extends Controller
 
                 $order = Order::where('idorder', $idorder)->first();
                 $order->status = 'paypal';
+                $order->pay = 'paypal';
                 $order->save();
                 return redirect()->route('home.page');
             }else{

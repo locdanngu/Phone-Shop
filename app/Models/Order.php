@@ -21,6 +21,7 @@ class Order extends Model
         'bill',
         'idcoupon',
         'beforecoupon',
+        'pay',
     ];
 
 

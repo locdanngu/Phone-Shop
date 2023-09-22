@@ -133,8 +133,8 @@ class UserController extends Controller
         $listorder = Order_product::where('idorder', $request['idorder'])->get();
         if($order->idcoupon != null){
             $couponcart = Coupon::where('idcoupon', $order->idcoupon)
-                                ->where('starttime', '<=', $currentTime) 
-                                ->where('endtime', '>=', $currentTime)   
+                                // ->where('starttime', '<=', $currentTime) 
+                                // ->where('endtime', '>=', $currentTime)   
                                 ->first();
             if($couponcart){
                 $countcoupon = 1;
@@ -145,8 +145,9 @@ class UserController extends Controller
         
         $idcoupons = $listorder->pluck('idcoupon')->toArray();
         $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)
-                            ->where('starttime', '<=', $currentTime)
-                            ->where('endtime', '>=', $currentTime)->get();
+                            // ->where('starttime', '<=', $currentTime)
+                            // ->where('endtime', '>=', $currentTime)
+                            ->get();
         $coutlistcoupon = $listcoupon->count();
         $countcoupon = $countcoupon + $coutlistcoupon;
 
@@ -919,6 +920,7 @@ class UserController extends Controller
         }
         $order->note = $request['note'];
         $order->status = 'wait';
+        $order->pay = 'bank';
         $order->save();
 
 
@@ -936,8 +938,20 @@ class UserController extends Controller
         $user = Auth::user();
         $order = Order::where('iduser', $user->iduser)->orderBy('updated_at', 'desc')->where('idorder', $request['idorder'])->first();
         $listorder = Order_product::where('idorder', $request['idorder'])->get();
-
+        $countcoupon = 0;
+        if($order->idcoupon != null){
+            $couponcart = Coupon::where('idcoupon', $order->idcoupon) ->first();
+            if($couponcart){
+                $countcoupon = 1;
+            }
+        }else{
+            $couponcart = '';
+        }
         
-        return view('user/page/Historyorder', compact('user', 'order','listorder'));
+        $idcoupons = $listorder->pluck('idcoupon')->toArray();
+        $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)->get();
+        $coutlistcoupon = $listcoupon->count();
+        $countcoupon = $countcoupon + $coutlistcoupon;
+        return view('user/page/Historyorder', compact('user', 'order','listorder','listcoupon','couponcart','countcoupon'));
     }
 }

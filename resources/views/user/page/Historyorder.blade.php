@@ -107,6 +107,134 @@
             </div>
 
 
+            <h3>Apply coupon: {{ $countcoupon }}</h3>
+            <div class="col-md-12">
+                <div class="product-content-right">
+                    <div class="card-body table-responsive p-0">
+                        <div class="d-flex flex-column justify-content-between">
+                            <table cellspacing="0" class="shop_table cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name">Apply</th>
+                                        <th class="product-price">Code</th>
+                                        <th class="product-quantity">Discount Amount</th>
+                                        <th class="product-quantity">Max discount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="capnhatdanhsachcoupon">
+                                    @if($couponcart)
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            <span class="amount"
+                                                style="text-transform: uppercase;font-weight:bold">{{ $couponcart->applicable_to }}</span>
+                                        </td>
+
+                                        <td class="product-price">
+                                            <span class="amount"
+                                                style="font-weight:bold; color:red">{{ $couponcart->code }}</span>
+                                        </td>
+                                        @if($couponcart->discount_type == 'percentage')
+                                        <td class="product-quantity">
+                                            <span class="amount">{{ $couponcart->discount_amount }}%</span>
+                                        </td>
+                                        @else
+                                        <td class="product-quantity">
+                                            <span class="amount">{{ $couponcart->discount_amount }}$</span>
+                                        </td>
+                                        @endif
+                                        <td class="product-quantity">
+                                            <span class="amount"
+                                                style="color:red;font-weight:bold">${{ $couponcart->max_discount_amount }}</span>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @foreach($listcoupon as $c)
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            <span class="amount"
+                                                style="text-transform: uppercase;font-weight:bold">{{ $c->applicable_to }}</span>
+                                        </td>
+
+                                        <td class="product-price">
+                                            <span class="amount"
+                                                style="font-weight:bold; color:red">{{ $c->code }}</span>
+                                        </td>
+                                        @if($c->discount_type == 'percentage')
+                                        <td class="product-quantity">
+                                            <span class="amount">{{ $c->discount_amount }}%</span>
+                                        </td>
+                                        @else
+                                        <td class="product-quantity">
+                                            <span class="amount">{{ $c->discount_amount }}$</span>
+                                        </td>
+                                        @endif
+                                        <td class="product-quantity">
+                                            <span class="amount"
+                                                style="color:red;font-weight:bold">${{ $c->max_discount_amount }}</span>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <table class="shop_table">
+                <thead>
+                    <tr>
+                        <th class="product-name"></th>
+                        <th class="product-total">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="cart_item">
+                        <td class="product-name">
+                            All product <strong class="product-quantity"></strong> </td>
+                        <td class="product-total">
+                            <span class="amount font-weight-bold">${{ number_format($order->totalprice, 2) }}</span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+
+                    <tr class="cart-subtotal">
+                        <th>Add coupon product</th>
+                        <td><span class="amount font-weight-bold"> -
+                                ${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
+                        </td>
+                    </tr>
+
+                    <tr class="cart-subtotal">
+                        <th>Add coupon cart</th>
+                        <td><span class="amount font-weight-bold"> -
+                                ${{ number_format($order->totalprice2 - $order->beforecoupon, 2) }}</span>
+                        </td>
+                    </tr>
+
+                    <tr class="shipping">
+                        <th>Shipping and Handling</th>
+                        <td>
+
+                            Free Shipping
+                            <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0"
+                                data-index="0" name="shipping_method[0]">
+                        </td>
+                    </tr>
+
+
+                    <tr class="order-total">
+                        <th>Order Total</th>
+                        <td><strong><span
+                                    class="amount red">${{ number_format($order->beforecoupon, 2) }}</span></strong>
+                        </td>
+                    </tr>
+
+                </tfoot>
+            </table>
 
 
         </div>

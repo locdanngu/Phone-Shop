@@ -159,7 +159,7 @@ class UserController extends Controller
             $order_product = Order_product::where('idorder', $request['idorder'])->get();
             foreach($order_product as $op){
                 if($op->idcoupon == null){
-                    $op->totalprice = $p->product->price * $p->quantity;
+                    $op->totalprice = $op->product->price * $op->quantity;
                 }
                 $op->save();
             }
@@ -253,7 +253,6 @@ class UserController extends Controller
     public function deleteapplycoupon(Request $request)
     {
         $user = Auth::user();
-        $order = Order::where('idorder', $request['idorder'])->first();
         $pro = Order_product::where('idorder', $request['idorder'])->where('idcoupon', $request['idcoupon'])->get();
         foreach($pro as $p){
             $p->idcoupon = null;
@@ -261,6 +260,15 @@ class UserController extends Controller
             $p->save();
         }
 
+        return redirect()->route('checkout.page', ['idorder' => $request['idorder']]);
+    }
+
+    public function deleteapplycouponcart(Request $request)
+    {
+        $user = Auth::user();
+        $order = Order::where('idorder', $request['idorder'])->first();
+
+        dd($order);
         $order->idcoupon = null;
         $order->beforecoupon = $order->totalprice;
         $order->save();

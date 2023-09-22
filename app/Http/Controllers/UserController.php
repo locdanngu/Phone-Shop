@@ -216,20 +216,44 @@ class UserController extends Controller
 
         if($coupon->applicable_to == 'cart'){
             $order = Order::where('idorder', $request['idorder'])->first();
-            if($order->totalprice < $coupon->minimum_order_amount){
-                return response()->json([
-                    're' => 4, //đơn hàng chưa đủ mức giá quy định
-                ]);
-            }
-
+            
             $order->idcoupon = $coupon->idcoupon;
-            if($coupon->discount_type == 'amount'){
-                $order->beforecoupon = $order->totalprice - $coupon->discount_amount;
-            }else{
-                if(($order->totalprice * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
-                    $order->beforecoupon = $order->totalprice - $coupon->max_discount_amount;
+            $order_product = Order_product::where('idorder', $request['idorder'])
+                ->whereNotNull('idcoupon')
+                ->get();
+
+            if ($order_product->isEmpty()) {
+                if($order->totalprice < $coupon->minimum_order_amount){
+                    return response()->json([
+                        're' => 4, //đơn hàng chưa đủ mức giá quy định
+                    ]);
+                }
+
+                if($coupon->discount_type == 'amount'){
+                    $order->beforecoupon = $order->totalprice - $coupon->discount_amount;
                 }else{
-                    $order->beforecoupon = $order->totalprice - ($order->totalprice * $coupon->discount_amount / 100);
+                    if(($order->totalprice * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
+                        $order->beforecoupon = $order->totalprice - $coupon->max_discount_amount;
+                    }else{
+                        $order->beforecoupon = $order->totalprice - ($order->totalprice * $coupon->discount_amount / 100);
+                    }
+                }
+            } else {
+                if($order->totalprice2 < $coupon->minimum_order_amount){
+                    return response()->json([
+                        're' => 4, //đơn hàng chưa đủ mức giá quy định
+                    ]);
+                }
+
+                // Có ít nhất một bản ghi có cột idcoupon khác null
+                if($coupon->discount_type == 'amount'){
+                    $order->beforecoupon = $order->totalprice2 - $coupon->discount_amount;
+                }else{
+                    if(($order->totalprice2 * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
+                        $order->beforecoupon = $order->totalprice2 - $coupon->max_discount_amount;
+                    }else{
+                        $order->beforecoupon = $order->totalprice2 - ($order->totalprice2 * $coupon->discount_amount / 100);
+                    }
                 }
             }
             $order->save();

@@ -94,10 +94,10 @@ class OrderController extends Controller
         $html .= '<span class="spanpopup font-weight-bold">' . $user->phone . '</span>';
         $html .= '</div>';
 
-        $html .= '<div class="input-group mb-3">';
-        $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Địa chỉ</span>';
-        $html .= '<span class="spanpopup font-weight-bold">' . $user->address . '</span>';
-        $html .= '</div>';
+        // $html .= '<div class="input-group mb-3">';
+        // $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Địa chỉ</span>';
+        // $html .= '<span class="spanpopup font-weight-bold">' . $user->address . '</span>';
+        // $html .= '</div>';
 
         $html .= '<div class="input-group mb-3">';
         $html .= '<span class="input-group-text" id="inputGroup-sizing-default">Thời gian đặt</span>';
@@ -136,6 +136,7 @@ class OrderController extends Controller
         $html .= '<th>Giá</th>';
         $html .= '<th>Hãng</th>';
         $html .= '<th>Số lượng</th>';
+        $html .= '<th>Giảm giá</th>';
         $html .= '<th>Thành tiền</th>';
         $html .= '</tr>';
         $html .= '</thead>';
@@ -148,11 +149,18 @@ class OrderController extends Controller
             $html .= '<td class="font-weight-bold" style="color:red">' . $pr->product->price . ' $</td>';
             $html .= '<td class="font-weight-bold">' . $pr->product->category->namecategory . '</td>';
             $html .= '<td class="font-weight-bold">' . $pr->quantity . '</td>';
-            $html .= '<td class="font-weight-bold" style="color:red">' . ($pr->product->price * $pr->quantity) . ' $</td>';
+            if($pr->idcoupon == null){
+                $html .= '<td class="font-weight-bold" style="color:red"><i class="bi bi-x"></i></td>';
+                $html .= '<td class="font-weight-bold" style="color:red">' . ($pr->totalprice) . ' $</td>';
+            }else{
+                $html .= '<td class="font-weight-bold" style="color:red"><i class="bi bi-check2"></i></td>';
+                $html .= '<td class="font-weight-bold" style="color:red">' . ($pr->beforecoupon) . ' $</td>';
+            }
             $html .= '</tr>';
         }
 
         $html .= '<tr>';
+        $html .= '<td></td>';
         $html .= '<td></td>';
         $html .= '<td></td>';
         $html .= '<td></td>';
@@ -166,8 +174,9 @@ class OrderController extends Controller
         $html .= '<td></td>';
         $html .= '<td></td>';
         $html .= '<td></td>';
+        $html .= '<td></td>';
         $html .= '<td class="font-weight-bold" style="color:red">Tổng tiền:</td>';
-        $html .= '<td class="font-weight-bold" style="color:red">' . $pr->order->totalprice . ' $</td>';
+        $html .= '<td class="font-weight-bold" style="color:red">' . $pr->order->beforecoupon . ' $</td>';
         $html .= '</tr>';
         
         $html .= '</tbody>';

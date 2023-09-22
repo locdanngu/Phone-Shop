@@ -1790,6 +1790,9 @@ a:focus{
     margin-bottom: 2em !important;
 }
 
+.product-hover{
+    height: 270px !important;
+}
 
 @media screen and (max-width: 767px) {
     .gridlist {
@@ -1810,13 +1813,26 @@ a:focus{
         flex-direction: column;
     }
 
+    .product-hover{
+        height: 100% !important;
+    }
+
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1200px) {
     .gridlist {
         grid-template-columns: repeat(3, 1fr);
         /* Ba cột bằng nhau */
         gap: 1em;
         display: grid;
     }
+
+    .product-hover a.view-details-link {
+        font-size: 12px !important;
+    }
+
+    .product-hover a.add-to-cart-link {
+        font-size: 12px !important;
+    }
+
 }

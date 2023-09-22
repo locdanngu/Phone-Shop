@@ -93,7 +93,7 @@
                                     @foreach($random as $rd)
                                     <li class="product">
                                         <a href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}">
-                                            <img style="height: 250px;" alt="T_4_front"
+                                            <img alt="T_4_front"
                                                 class="attachment-shop_catalog wp-post-image"
                                                 src="{{ $rd->imageproduct }}">
                                             <h3 class="fixheight2">{{ $rd->nameproduct }}</h3>

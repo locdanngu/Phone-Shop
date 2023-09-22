@@ -40,9 +40,9 @@
                                         <th>Id</th>
                                         <th class="text-center">Username</th>
                                         <th class="text-center">Họ tên</th>
-                                        <th>Quốc gia</th>
+                                        <!-- <th>Quốc gia</th>
                                         <th>Địa chỉ</th>
-                                        <th>Thành phố</th>
+                                        <th>Thành phố</th> -->
                                         <th>Email</th>
                                         <th>Số điện thoại</th>
                                         <th>Trạng thái</th>
@@ -54,9 +54,9 @@
                                         <td class="font-weight-bold" style="color:red">{{ $u->iduser }}</td>
                                         <td class="font-weight-bold">{{ $u->username }}</td>
                                         <td>{{ $u->firstname }} {{ $u->lastname }}</td>
-                                        <td>{{ $u->country }}</td>
+                                        <!-- <td>{{ $u->country }}</td>
                                         <td>{{ $u->address }}</td>
-                                        <td>{{ $u->town_city }}</td>
+                                        <td>{{ $u->town_city }}</td> -->
                                         <td>{{ $u->email }}</td>
                                         <td>{{ $u->phone }}</td>
                                         @if($u->status == 'ok')

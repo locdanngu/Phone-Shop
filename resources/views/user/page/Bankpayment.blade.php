@@ -78,6 +78,24 @@
 
                                 </tfoot>
                             </table>
+
+
+                            <form action="{{ route('bankpay') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="d-flex flex-column">
+                                    <p>Bill: </p>
+                                    <input class="form-control" type="file" id="formFile" accept="image/*"
+                                        style="max-width:100%" onchange="previewImage(event)" name="image" required>
+                                </div>
+                                <input type="hidden" value="{{ request()->input('idorder') }}" name="idorder">
+                                <img id="preview" src="" alt="" style="height:300px">
+                                <div class="d-flex flex-column mb-2">
+                                    <p>Note order: </p>
+                                    <textarea name="" id="" cols="30" rows="5" name="note"></textarea>
+                                </div>
+                                <input type="submit" data-value="Place order" value="Submit"
+                                    name="woocommerce_checkout_place_order" class="button alt">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -95,7 +113,15 @@
 
 @section('js')
 <script>
-
+function previewImage(event) {
+    const preview = document.getElementById('preview');
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function() {
+        preview.src = reader.result;
+    }
+    reader.readAsDataURL(file);
+}
 </script>
 
 @endsection

@@ -51,9 +51,9 @@ Route::prefix('/')->group(function () {
     Route::post('/deletecheckout', [UserController::class, 'deletecheckout'])->name('deletecheckout');
     Route::post('/deleteapplycoupon', [UserController::class, 'deleteapplycoupon'])->name('deleteapplycoupon');
     Route::post('/deleteapplycouponcart', [UserController::class, 'deleteapplycouponcart'])->name('deleteapplycouponcart');
-
     Route::post('/checkcoupon', [UserController::class, 'checkcoupon'])->name('checkcoupon');
     Route::get('/bankpayment', [UserController::class, 'bankpayment'])->name('bankpayment');
+    Route::post('/bankpayment', [UserController::class, 'bankpay'])->name('bankpay');
 
 
 });

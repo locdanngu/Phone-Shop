@@ -18,6 +18,7 @@ class Order extends Model
         'totalprice2',
         'note',
         'reason',
+        'bill',
         'idcoupon',
         'beforecoupon',
     ];

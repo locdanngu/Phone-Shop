@@ -1778,6 +1778,17 @@ a:focus{
     font-weight: bold;
 }
 
+.d-flex{
+    display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.mb-2{
+    margin-bottom: 2em !important;
+}
 
 
 @media screen and (max-width: 767px) {

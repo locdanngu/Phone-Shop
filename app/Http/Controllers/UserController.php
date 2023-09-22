@@ -870,6 +870,11 @@ class UserController extends Controller
     public function bankpayment(Request $request)
     {
         $user = Auth::user();
+        $order = Order::where('idorder', $request['idorder'])->first();
+        if($order->iduser != $user->iduser){
+            return redirect()->route('home.page');
+        }
+
         $listorder = Order_product::where('idorder', $request['idorder'])->get();
         $order_product = Order_product::where('idorder', $request['idorder'])
                                         ->whereNotNull('idcoupon')
@@ -893,8 +898,22 @@ class UserController extends Controller
     
         if($request['payment_method'] == 'bank'){
             return view('user/page/Bankpayment', compact('user', 'order'));
-        }
-        
+        } 
     }
 
+    public function bankpay(Request $request)
+    {
+        $order = Order::where('idorder', $request['idorder'])->first();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('image/bill/');
+            $image->move($path, $filename);
+            $order->bill = '/image/bill/' . $filename;
+        }
+        $order->note = $request['note'];
+        $order->status = 'wait';
+        $order->save();
+
+    }
 }

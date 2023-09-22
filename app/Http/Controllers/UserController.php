@@ -890,16 +890,16 @@ class UserController extends Controller
             }
         }
 
-
-        dd($request['address']);
+        $order->idaddress = $request['address'];
+        $order->save();
+        $address = Address::where('idaddress', $request['address'])->first();
     
         if($request['payment_method'] == 'bank'){
-            return view('user/page/Bankpayment', compact('user', 'order'));
+            return view('user/page/Bankpayment', compact('user', 'order','address'));
         }
 
         if($request['payment_method'] == 'paypal'){
-            return view('user/page/Paypalpayment', compact('user', 'order'));
-            // return redirect()->route('user.pay', ['amount' => $request['amount']]);
+            return view('user/page/Paypalpayment', compact('user', 'order','address'));
         }
 
     }
@@ -919,6 +919,7 @@ class UserController extends Controller
         $order->pay = 'bank';
         $order->save();
 
+        return redirect()->route('checkout.page', ['idorder' => $request['idorder']]);
 
     }
 

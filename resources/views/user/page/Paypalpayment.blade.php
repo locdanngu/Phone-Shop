@@ -80,6 +80,69 @@
                             </table>
                         </div>
                     </div>
+
+
+
+                    <div class="col-md-12">
+                        <div class="product-content-right">
+                            <div class="card-body table-responsive p-0">
+                                <div class="d-flex flex-column justify-content-between">
+                                    <table cellspacing="0" class="shop_table cart">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-thumbnail"></th>
+                                                <th class="product-name">Address</th>
+                                                <th class="product-price">state country</th>
+                                                <th class="product-quantity">country</th>
+                                                <th class="product-quantity">town city</th>
+                                                <th class="product-quantity">company name</th>
+                                                <th class="product-subtotal">post code</th>
+                                                <th class="product-subtotal">apartment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="capnhatdanhsachorder">
+                                            <tr class="cart_item">
+                                                <td class="product-thumbnail">
+                                                    <input type="radio" name="address" value="{{ $address->idaddress }}"
+                                                        required>
+                                                </td>
+                                                <td class="product-thumbnail">
+                                                    <span class="amount">{{ $address->address }}</span>
+                                                </td>
+
+                                                <td class="product-name">
+                                                    <span class="amount">{{ $address->state_country }}</span>
+                                                </td>
+
+                                                <td class="product-price">
+                                                    <span class="amount">{{ $address->country }}</span>
+                                                </td>
+
+                                                <td class="product-quantity">
+                                                    <span class="amount">{{ $address->town_city }}</span>
+                                                </td>
+                                                <td class="product-quantity">
+                                                    <span class="amount">{{ $address->companyname }}</span>
+                                                </td>
+                                                <td class="product-quantity">
+                                                    <span class="amount">{{ $address->postcode }}</span>
+                                                </td>
+                                                <td class="product-quantity">
+                                                    <span class="amount">{{ $address->apartment }}</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
                     <form action="{{ route('user.pay') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" value="{{ request()->input('idorder') }}" name="idorder">

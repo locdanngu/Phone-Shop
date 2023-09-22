@@ -919,7 +919,7 @@ class UserController extends Controller
         $order->pay = 'bank';
         $order->save();
 
-        return redirect()->route('checkout.page', ['idorder' => $request['idorder']]);
+        return redirect()->route('historyorder.page', ['idorder' => $request['idorder']]);
 
     }
 

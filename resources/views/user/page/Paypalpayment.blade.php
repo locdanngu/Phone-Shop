@@ -90,7 +90,6 @@
                                     <table cellspacing="0" class="shop_table cart">
                                         <thead>
                                             <tr>
-                                                <th class="product-thumbnail"></th>
                                                 <th class="product-name">Address</th>
                                                 <th class="product-price">state country</th>
                                                 <th class="product-quantity">country</th>
@@ -102,10 +101,6 @@
                                         </thead>
                                         <tbody id="capnhatdanhsachorder">
                                             <tr class="cart_item">
-                                                <td class="product-thumbnail">
-                                                    <input type="radio" name="address" value="{{ $address->idaddress }}"
-                                                        required>
-                                                </td>
                                                 <td class="product-thumbnail">
                                                     <span class="amount">{{ $address->address }}</span>
                                                 </td>

@@ -72,7 +72,7 @@ class PaymentController extends Controller
                 $order->status = 'paypal';
                 $order->pay = 'paypal';
                 $order->save();
-                return redirect()->route('home.page');
+                return redirect()->route('historyorder.page', ['idorder' => $idorder]);
             }else{
                 return $response->getMessage();
             }

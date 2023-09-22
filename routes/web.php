@@ -61,6 +61,7 @@ Route::prefix('/')->group(function () {
 
     Route::get('/listhistoryorder', [UserController::class, 'listhistoryorder'])->name('listhistoryorder.page');
     Route::get('/historyorder', [UserController::class, 'historyorder'])->name('historyorder.page');
+    Route::get('/contact', [UserController::class, 'contact'])->name('contact.page');
 
 });
 

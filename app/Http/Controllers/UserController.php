@@ -954,4 +954,11 @@ class UserController extends Controller
         $countcoupon = $countcoupon + $coutlistcoupon;
         return view('user/page/Historyorder', compact('user', 'order','listorder','listcoupon','couponcart','countcoupon'));
     }
+
+    public function contact(Request $request)
+    {
+        $user = Auth::user();
+
+        return view('user/page/Contactpage', compact('user'));
+    }
 }

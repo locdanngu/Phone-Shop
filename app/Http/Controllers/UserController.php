@@ -126,7 +126,7 @@ class UserController extends Controller
         $user = Auth::user();
         $currentTime = now();
         $order = Order::where('idorder', $request['idorder'])->first();
-        if($order->iduser != $user->iduser){
+        if($order->iduser != $user->iduser && $order->status != 'wait2'){
             return redirect()->route('home.page');
         }
         $countcoupon = 0;
@@ -871,7 +871,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $order = Order::where('idorder', $request['idorder'])->first();
-        if($order->iduser != $user->iduser){
+        if($order->iduser != $user->iduser && $order->status != 'wait2'){
             return redirect()->route('home.page');
         }
 
@@ -929,5 +929,12 @@ class UserController extends Controller
         $user = Auth::user();
         $order = Order::where('iduser', $user->iduser)->orderBy('updated_at', 'desc')->get();
         return view('user/page/Listhistoryorder', compact('user', 'order'));
+    }
+
+    public function historyorder(Request $request)
+    {
+        $user = Auth::user();
+        $order = Order::where('iduser', $user->iduser)->orderBy('updated_at', 'desc')->where('idorder', $request['idorder'])->get();
+        return view('user/page/Historyorder', compact('user', 'order'));
     }
 }

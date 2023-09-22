@@ -60,6 +60,7 @@ Route::prefix('/')->group(function () {
     Route::get('error/{idorder}', [PaymentController::class, 'error'])->name('user.errorpay');
 
     Route::get('/listhistoryorder', [UserController::class, 'listhistoryorder'])->name('listhistoryorder.page');
+    Route::get('/historyorder', [UserController::class, 'historyorder'])->name('historyorder.page');
 
 });
 

@@ -934,7 +934,10 @@ class UserController extends Controller
     public function historyorder(Request $request)
     {
         $user = Auth::user();
-        $order = Order::where('iduser', $user->iduser)->orderBy('updated_at', 'desc')->where('idorder', $request['idorder'])->get();
-        return view('user/page/Historyorder', compact('user', 'order'));
+        $order = Order::where('iduser', $user->iduser)->orderBy('updated_at', 'desc')->where('idorder', $request['idorder'])->first();
+        $listorder = Order_product::where('idorder', $request['idorder'])->get();
+
+        
+        return view('user/page/Historyorder', compact('user', 'order','listorder'));
     }
 }

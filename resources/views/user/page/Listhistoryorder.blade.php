@@ -66,7 +66,7 @@
                                         </td>
                                         @endif
                                         <td class="actions" style="display: flex;justify-content:center">
-                                            <a href="{{ route('checkout.page', ['idorder' => $o->idorder]) }}"
+                                            <a href="{{ route('historyorder.page', ['idorder' => $o->idorder]) }}"
                                                 class="btnchangeuser"><i class="bi bi-eye-fill"></i> Watch</a>
                                         </td>
                                     </tr>

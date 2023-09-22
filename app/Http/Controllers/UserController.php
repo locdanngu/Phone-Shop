@@ -965,7 +965,7 @@ class UserController extends Controller
         }
     
         if($request['payment_method'] == 'bank'){
-            return view('user/page/Bankpayment', compact('user','sumallproduct', 'sumproduct'));
+            return view('user/page/Bankpayment', compact('user', 'order'));
         }
         
     }

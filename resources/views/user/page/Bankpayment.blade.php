@@ -38,7 +38,7 @@
                                             All product <strong class="product-quantity"></strong> </td>
                                         <td class="product-total">
                                             <span
-                                                class="amount font-weight-bold">${{ number_format($sumallproduct, 2) }}</span>
+                                                class="amount font-weight-bold">${{ number_format($order->totalprice, 2) }}</span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -46,48 +46,29 @@
 
                                     <tr class="cart-subtotal">
                                         <th>Add coupon</th>
-                                        @if($sumproduct == 0)
-                                        <td><span class="amount">${{ number_format(0, 2) }}</span>
-                                            @else
                                         <td><span
-                                                class="amount">${{ number_format($sumallproduct - $sumproduct, 2) }}</span>
-                                            @endif
+                                                class="amount">${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
                                         </td>
                                     </tr>
                                     <tr class="cart-subtotal">
                                         <th>Before coupon</th>
-                                        @if($sumproduct == 0)
                                         <td><span
-                                                class="amount font-weight-bold">${{ number_format($sumallproduct, 2) }}</span>
-                                            @else
-                                        <td><span
-                                                class="amount font-weight-bold">${{ number_format($sumproduct, 2) }}</span>
-                                            @endif
+                                                class="amount font-weight-bold">${{ number_format($order->totalprice2, 2) }}</span>
                                         </td>
                                     </tr>
-
                                     <tr class="shipping">
                                         <th>Shipping and Handling</th>
                                         <td>
-
                                             Free Shipping
                                             <input type="hidden" class="shipping_method" value="free_shipping"
                                                 id="shipping_method_0" data-index="0" name="shipping_method[0]">
                                         </td>
                                     </tr>
-
-
                                     <tr class="order-total">
                                         <th>Order Total</th>
-                                        @if($sumproduct != 0)
                                         <td><strong><span
-                                                    class="amount red">${{ number_format($sumproduct, 2) }}</span></strong>
+                                                    class="amount red">${{ number_format($order->beforecoupon, 2) }}</span></strong>
                                         </td>
-                                        @else
-                                        <td><strong><span
-                                                    class="amount red">${{ number_format($sumallproduct, 2) }}</span></strong>
-                                        </td>
-                                        @endif
                                     </tr>
 
                                 </tfoot>

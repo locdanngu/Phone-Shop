@@ -30,11 +30,13 @@ class PaymentController extends Controller
         
         try{
             $response = $this->gateway->purchase(array(
+                'idorder' => $request->idorder,
                 'amount' => $request->amount,
                 'currency' => env('PAYPAL_CURRENCY'),
-                'returnUrl' => url('success'),
+                'returnUrl' => url('success', ['idorder' => $request->idorder]), // Thêm idorder vào returnUrl
                 'cancelUrl' => url('error'),
             ))->send();
+
 
             if($response->isRedirect()){
                 $response->redirect();
@@ -55,7 +57,6 @@ class PaymentController extends Controller
             ));
 
             $response = $transaction->send();
-
             if($response->isSuccessful()){
                 $arr = $response->getData();
                 $payment = new Payment;
@@ -63,6 +64,7 @@ class PaymentController extends Controller
                 $payment->payer_id = $arr['payer']['payer_info']['payer_id'];
                 $payment->payer_email = $arr['payer']['payer_info']['email'];
                 $payment->amount = $arr['transactions'][0]['amount']['total'];
+                $payment->idorder = $request->input('idorder');
                 $payment->currency = env('PAYPAL_CURRENCY');
                 $payment->payment_status = $arr['state'];
                 $payment->save();
@@ -70,24 +72,28 @@ class PaymentController extends Controller
                 // return "Payment is successful. Your transaction id is: ". $arr['id'];
                 $user = Auth::user();
                 $totalPrice = $payment->amount;
-                $cartItems = Cart::where('id', $user->id)->where('status', 0)->get();
+                $order = Order::where('idorder', $request->input('idorder'))->first();
+
+                
+                $order->status = 'paypal';
+                $order->save();
                 // dd($cartItems);
-                foreach ($cartItems as $cartItem) {
-                    $notification = new Notification;
-                    $notification->id = $user->id;
-                    $productName = Product::select('nameproduct')->where('idproduct', $cartItem->idproduct)->first()->nameproduct;
-                    $image = Product::select('image')->where('idproduct', $cartItem->idproduct)->first()->image;
-                    $notification->notification = 'Your order for product "' . $productName . '" x' . $cartItem->quatifier . ' is "waiting for confirmation"';
-                    $notification->image = $image;
-                    $notification->status = 1;
-                    // dd($notification);
-                    $notification->save();  
-                }
-                Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
-                $user = User::findOrFail($user->id);
-                $user->balance -= $totalPrice;
-                $user->save();
-                return redirect()->route('order.page');
+                // foreach ($cartItems as $cartItem) {
+                //     $notification = new Notification;
+                //     $notification->id = $user->id;
+                //     $productName = Product::select('nameproduct')->where('idproduct', $cartItem->idproduct)->first()->nameproduct;
+                //     $image = Product::select('image')->where('idproduct', $cartItem->idproduct)->first()->image;
+                //     $notification->notification = 'Your order for product "' . $productName . '" x' . $cartItem->quatifier . ' is "waiting for confirmation"';
+                //     $notification->image = $image;
+                //     $notification->status = 1;
+                //     // dd($notification);
+                //     $notification->save();  
+                // }
+                // Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
+                // $user = User::findOrFail($user->id);
+                // $user->balance -= $totalPrice;
+                // $user->save();
+                return redirect()->route('home.page');
 
 
             }else{

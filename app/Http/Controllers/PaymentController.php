@@ -34,7 +34,7 @@ class PaymentController extends Controller
                 'amount' => $request->amount,
                 'currency' => env('PAYPAL_CURRENCY'),
                 'returnUrl' => url('success', ['idorder' => $request->idorder]), // Thêm idorder vào returnUrl
-                'cancelUrl' => url('error'),
+                'cancelUrl' => url('error', ['idorder' => $request->idorder]),
             ))->send();
 
             if($response->isRedirect()){
@@ -76,11 +76,11 @@ class PaymentController extends Controller
                 return $response->getMessage();
             }
         }else{
-            return 'Payment declined';
+            return redirect()->route('checkout.page', ['idorder' => $idorder]);
         }
     }
 
-    public function error(){
-        return 'User cancelled the payment';
+    public function error(Request $request, $idorder){
+        return redirect()->route('checkout.page', ['idorder' => $idorder]);
     }
 }

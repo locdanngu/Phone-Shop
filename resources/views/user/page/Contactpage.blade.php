@@ -27,7 +27,11 @@
 
 
                     <div class="row">
-
+                        @error('suc')
+                        <div class="input-group">
+                            <h2 style="color:green" class="font-weight-bold mb-2">{{ $message }}</h2>
+                        </div>
+                        @enderror
 
                         <div class="col-sm-12">
                             @if(!$user)
@@ -49,7 +53,8 @@
                                 @csrf
                                 <h2 style="text-align:center" class="font-weight-bold mb-2">Contact us</h2>
                                 <h4>Your name:</h4>
-                                <input type="text" name="name" class="w-100 mb-2" disabled value="{{$user->firstname}} {{$user->lastname}}">
+                                <input type="text" name="name" class="w-100 mb-2" disabled
+                                    value="{{$user->firstname}} {{$user->lastname}}">
                                 <h4>Email:</h4>
                                 <input type="email" name="email" class="w-100 mb-2" disabled value="{{$user->email}}">
                                 <h4>Phone:</h4>

@@ -15,6 +15,7 @@ use App\Models\Wishlist;
 use App\Models\Product_coupon;
 use App\Models\Address;
 use App\Models\Review;
+use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Order_product;
 use App\Models\Category_coupon;
@@ -964,4 +965,19 @@ class UserController extends Controller
         $review = Review::orderBy('created_at', 'desc')->take(5)->get();
         return view('user/page/Contactpage', compact('user','list','recent','random','review'));
     }
+
+    public function addcontact(Request $request)
+    {
+        $user = Auth::user();
+        $contact = new Contact();
+        $contact->name = $request['name'];
+        $contact->email = $request['email'];
+        $contact->phone = $request['phone'];
+        $contact->content = $request['content'];
+        $contact->save();
+        return redirect()->back()->withErrors(['suc' => 'submitted successfully!!!']);
+    }
+
+
+
 }

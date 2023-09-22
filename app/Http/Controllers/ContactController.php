@@ -49,9 +49,6 @@ class ContactController extends Controller
             $email->subject('Về đơn liên hệ của bạn');
             $email->to($mail);
         });
-
-
-
         return redirect()->back();
     }
 

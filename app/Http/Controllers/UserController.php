@@ -241,7 +241,9 @@ class UserController extends Controller
             }
         }
 
-        return view('user/page/Checkoutpage', compact('user','listorder','order', 'countcoupon','couponcart','listcoupon'));
+        $listaddress = Address::where('iduser', $user->iduser)->get();
+
+        return view('user/page/Checkoutpage', compact('user','listorder','order', 'countcoupon','couponcart','listcoupon','listaddress'));
     }
 
     public function checkoutlist(Request $request)

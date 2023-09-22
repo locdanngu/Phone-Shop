@@ -268,11 +268,21 @@ class UserController extends Controller
         $user = Auth::user();
         $order = Order::where('idorder', $request['idorder'])->first();
 
-        dd($order);
-        $order->idcoupon = null;
-        $order->beforecoupon = $order->totalprice;
-        $order->save();
+        $order_product = Order_product::where('idorder', $request['idorder'])
+            ->whereNotNull('idcoupon')
+            ->get();
 
+        if ($order_product->isEmpty()) {
+            // Không có mã giảm giá cho product
+            $order->idcoupon = null;
+            $order->totalprice2 = $order->totalprice;
+            $order->beforecoupon = $order->totalprice;
+            $order->save();
+        }else{
+            $order->idcoupon = null;
+            $order->beforecoupon = $order->totalprice2;
+            $order->save();
+        }
 
         return redirect()->route('checkout.page', ['idorder' => $request['idorder']]);
     }

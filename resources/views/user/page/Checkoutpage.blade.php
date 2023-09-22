@@ -150,7 +150,7 @@
                                         </td>
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="#" type="button" data-toggle="modal"
-                                                data-target="#modal-deleteproduct" class="btnchangeuser"
+                                                data-target="#modal-deleteproduct2" class="btnchangeuser"
                                                 data-id="{{ $couponcart->idcoupon }}"
                                                 data-code="{{ $couponcart->code }}">
                                                 <i class="bi bi-trash-fill"></i> Delete</a>
@@ -181,21 +181,12 @@
                                             <span class="amount"
                                                 style="color:red;font-weight:bold">${{ $c->max_discount_amount }}</span>
                                         </td>
-                                        @if($c->applicable_to == 'product')
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="#" type="button" data-toggle="modal"
                                                 data-target="#modal-deleteproduct" class="btnchangeuser"
                                                 data-id="{{ $c->idcoupon }}" data-code="{{ $c->code }}">
                                                 <i class="bi bi-trash-fill"></i> Delete</a>
                                         </td>
-                                        @else
-                                        <td class="actions" style="display: flex;justify-content:center">
-                                            <a href="#" type="button" data-toggle="modal"
-                                                data-target="#modal-deleteproduct2" class="btnchangeuser"
-                                                data-id="{{ $c->idcoupon }}" data-code="{{ $c->code }}">
-                                                <i class="bi bi-trash-fill"></i> Delete</a>
-                                        </td>
-                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>

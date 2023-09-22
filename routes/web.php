@@ -57,7 +57,7 @@ Route::prefix('/')->group(function () {
 
 
     Route::post('pay', [PaymentController::class, 'pay'])->name('user.pay');
-    Route::get('success', [PaymentController::class, 'success'])->name('user.successpay');
+    Route::get('success/{idorder}', [PaymentController::class, 'success'])->name('user.successpay');
     Route::get('error', [PaymentController::class, 'error'])->name('user.errorpay');
 });
 

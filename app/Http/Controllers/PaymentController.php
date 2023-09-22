@@ -37,7 +37,6 @@ class PaymentController extends Controller
                 'cancelUrl' => url('error'),
             ))->send();
 
-
             if($response->isRedirect()){
                 $response->redirect();
             }else{
@@ -49,7 +48,7 @@ class PaymentController extends Controller
         
     }
 
-    public function success(Request $request){
+    public function success(Request $request, $idorder){
         if($request->input('paymentId') && $request->input('PayerID')){
             $transaction = $this->gateway->completePurchase(array(
                 'payer_id'              => $request->input('PayerID'),
@@ -64,18 +63,15 @@ class PaymentController extends Controller
                 $payment->payer_id = $arr['payer']['payer_info']['payer_id'];
                 $payment->payer_email = $arr['payer']['payer_info']['email'];
                 $payment->amount = $arr['transactions'][0]['amount']['total'];
-                $payment->idorder = $request->input('idorder');
+                $payment->idorder = $idorder;
                 $payment->currency = env('PAYPAL_CURRENCY');
                 $payment->payment_status = $arr['state'];
                 $payment->save();
 
-                $order = Order::where('idorder', $request->input('idorder'))->first();
-                dd($order);
+                $order = Order::where('idorder', $idorder)->first();
                 $order->status = 'paypal';
                 $order->save();
                 return redirect()->route('home.page');
-
-
             }else{
                 return $response->getMessage();
             }

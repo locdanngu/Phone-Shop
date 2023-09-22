@@ -109,7 +109,8 @@
                             href="{{ route('cart.page') }}">Cart</a></li>
                     <li class="{{ request()->routeIs('checkoutlist.page') ? 'active' : '' }}"><a
                             href="{{ route('checkoutlist.page') }}">Checkout</a></li>
-                    <li class=""><a href="#">History order</a></li>
+                            <li class="{{ request()->routeIs('listhistoryorder.page') ? 'active' : '' }}"><a
+                            href="{{ route('listhistoryorder.page') }}">History order</a></li>
                     <li><a href="#">Contact</a></li>
                     @endif
 

@@ -921,5 +921,13 @@ class UserController extends Controller
         $order->status = 'wait';
         $order->save();
 
+
+    }
+
+    public function listhistoryorder(Request $request)
+    {
+        $user = Auth::user();
+        $order = Order::where('iduser', $user->iduser)->orderBy('updated_at', 'desc')->get();
+        return view('user/page/Listhistoryorder', compact('user', 'order'));
     }
 }

@@ -55,10 +55,12 @@ Route::prefix('/')->group(function () {
     Route::get('/bankpayment', [UserController::class, 'bankpayment'])->name('bankpayment');
     Route::post('/bankpayment', [UserController::class, 'bankpay'])->name('bankpay');
 
-
     Route::post('pay', [PaymentController::class, 'pay'])->name('user.pay');
     Route::get('success/{idorder}', [PaymentController::class, 'success'])->name('user.successpay');
     Route::get('error/{idorder}', [PaymentController::class, 'error'])->name('user.errorpay');
+
+    Route::get('/listhistoryorder', [UserController::class, 'listhistoryorder'])->name('listhistoryorder.page');
+
 });
 
 

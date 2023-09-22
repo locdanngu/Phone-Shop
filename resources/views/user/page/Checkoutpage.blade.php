@@ -210,7 +210,7 @@
                         <td class="product-name">
                             All product <strong class="product-quantity"></strong> </td>
                         <td class="product-total">
-                            <span class="amount">£15.00</span>
+                            <span class="amount">${{ number_format($sumallproduct, 2) }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -218,12 +218,12 @@
 
                     <tr class="cart-subtotal">
                         <th>Add coupon</th>
-                        <td><span class="amount">£15.00</span>
+                        <td><span class="amount">${{ number_format($sumallproduct - $sumproduct, 2) }}</span>
                         </td>
                     </tr>
                     <tr class="cart-subtotal">
                         <th>Before coupon</th>
-                        <td><span class="amount">£15.00</span>
+                        <td><span class="amount">${{ number_format($sumproduct, 2) }}</span>
                         </td>
                     </tr>
 
@@ -240,7 +240,7 @@
 
                     <tr class="order-total">
                         <th>Order Total</th>
-                        <td><strong><span class="amount">£15.00</span></strong> </td>
+                        <td><strong><span class="amount red">${{ number_format($sumproduct, 2) }}</span></strong> </td>
                     </tr>
 
                 </tfoot>

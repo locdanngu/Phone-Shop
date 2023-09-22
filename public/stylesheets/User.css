@@ -1770,6 +1770,10 @@ a:focus{
     text-decoration: none;
 }
 
+.red{
+    color: red;
+}
+
 
 
 @media screen and (max-width: 767px) {

@@ -153,7 +153,7 @@ class UserController extends Controller
         $coutlistcoupon = $listcoupon->count();
         $countcoupon = $countcoupon + $coutlistcoupon;
 
-        return view('user/page/Checkoutpage', compact('user','listorder','order', 'countcoupon','couponcart','listcoupon'));
+        return view('user/page/Checkoutpage', compact('user','listorder','order', 'countcoupon','couponcart','listcoupon','sumallproduct','sumproduct'));
     }
 
     public function checkoutlist(Request $request)

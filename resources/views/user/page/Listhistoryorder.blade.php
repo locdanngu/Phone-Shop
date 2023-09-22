@@ -48,7 +48,7 @@
                                         <td>
                                             <span class="amount">{{ $o->created_at }}</span>
                                         </td>
-                                        @if($o->status == 'wait2' || $o->status == 'paypal')
+                                        @if($o->status == 'wait' || $o->status == 'paypal')
                                         <td>
                                             <span class="amount" style="color:brown">Wait for confirmation</span>
                                         </td>

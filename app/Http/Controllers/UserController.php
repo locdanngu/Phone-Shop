@@ -949,7 +949,8 @@ class UserController extends Controller
         $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)->get();
         $coutlistcoupon = $listcoupon->count();
         $countcoupon = $countcoupon + $coutlistcoupon;
-        return view('user/page/Historyorder', compact('user', 'order','listorder','listcoupon','couponcart','countcoupon'));
+        $address = Address::where('idaddress', $order->idaddress)->first();
+        return view('user/page/Historyorder', compact('user', 'order','listorder','listcoupon','couponcart','countcoupon','address'));
     }
 
     public function contact(Request $request)

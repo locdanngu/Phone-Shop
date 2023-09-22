@@ -96,7 +96,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Trả lời</span>
                     <textarea class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="request"></textarea>
+                        aria-describedby="inputGroup-sizing-default" required name="resend"></textarea>
                 </div>
 
             </div>
@@ -120,7 +120,7 @@ $(document).ready(function() {
         var id = button.data('id');
         var email = button.data('email');
         var modal = $(this);
-        modal.find('input[name="iduser"]').val(id);
+        modal.find('input[name="idcontact"]').val(id);
         modal.find('span[name="email"]').text(email);
     });
 

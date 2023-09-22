@@ -8,8 +8,10 @@
         <p style="color: #333333;">{{ $send }}</p>
     </blockquote>
 
+    <p style="color: #333333;">Câu trả lời của chúng tôi</p>
+
     <blockquote style="background-color: #f5f5f5; border-left: 5px solid #cccccc; padding: 10px;">
-        <p style="color: #333333;">{{ $request }}</p>
+        <p style="color: #333333;">{{ $resend }}</p>
     </blockquote>
 
     <p style="color: #333333;">Cảm ơn bạn đã tin tưởng dịch vụ của chúng tôi.</p>

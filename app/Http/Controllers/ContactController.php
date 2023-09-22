@@ -32,10 +32,9 @@ class ContactController extends Controller
     {
         $admin = Auth::guard('admin')->user();
 
-
         $contact = Contact::where('idcontact', $request['idcontact'])->first();
-        $request = $request['request'];
-        $contact->request = $request['request'];
+        $resend = $request['resend'];
+        $contact->resend = $request['resend'];
         $contact->status = 'done';
         $contact->save();
 
@@ -45,7 +44,7 @@ class ContactController extends Controller
         $phone = $contact->phone;
         $send = $contact->content;
 
-        $result = Mail::send('admin/page/Contactemail', compact('name', 'request', 'send'), function($email) use ($request, $send, $mail, $name) {
+        $result = Mail::send('admin/page/Contactemail', compact('name', 'resend', 'send'), function($email) use ($request,$resend, $send, $mail, $name) {
             $email->subject('Về đơn liên hệ của bạn');
             $email->to($mail);
         });

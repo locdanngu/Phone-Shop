@@ -210,7 +210,7 @@
                         <td class="product-name">
                             All product <strong class="product-quantity"></strong> </td>
                         <td class="product-total">
-                            <span class="amount font-weight-bold">${{ number_format($sumallproduct, 2) }}</span>
+                            <span class="amount font-weight-bold">${{ number_format($order->totalprice, 2) }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -218,20 +218,8 @@
 
                     <tr class="cart-subtotal">
                         <th>Add coupon</th>
-                        @if($sumproduct == 0)
-                        <td><span class="amount">${{ number_format(0, 2) }}</span>
-                        @else
-                        <td><span class="amount">${{ number_format($sumallproduct - $sumproduct, 2) }}</span>
-                        @endif
-                        </td>
-                    </tr>
-                    <tr class="cart-subtotal">
-                        <th>Before coupon</th>
-                        @if($sumproduct == 0)
-                        <td><span class="amount font-weight-bold">${{ number_format($sumallproduct, 2) }}</span>
-                        @else
-                        <td><span class="amount font-weight-bold">${{ number_format($sumproduct, 2) }}</span>
-                        @endif
+                        <td><span
+                                class="amount">${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
                         </td>
                     </tr>
 
@@ -248,11 +236,9 @@
 
                     <tr class="order-total">
                         <th>Order Total</th>
-                        @if($sumproduct != 0)
-                        <td><strong><span class="amount red">${{ number_format($sumproduct, 2) }}</span></strong> </td>
-                        @else
-                        <td><strong><span class="amount red">${{ number_format($sumallproduct, 2) }}</span></strong> </td>
-                        @endif
+                        <td><strong><span
+                                    class="amount red">${{ number_format($order->beforecoupon, 2) }}</span></strong>
+                        </td>
                     </tr>
 
                 </tfoot>
@@ -385,11 +371,12 @@ $('#checkcoupon').on('click', function(event) {
                 } else if (re == 6) {
                     toastr.error('No applicable products.');
                 } else {
-                    var html = response.html;
-                    var html2 = response.html2;
-                    $("#capnhatdanhsachcoupon").html(html);
-                    $("#capnhatdanhsachorder").html(html2);
-                    toastr.success('Apply discount coupon successfully.');
+                    // var html = response.html;
+                    // var html2 = response.html2;
+                    // $("#capnhatdanhsachcoupon").html(html);
+                    // $("#capnhatdanhsachorder").html(html2);
+                    // toastr.success('Apply discount coupon successfully.');
+                    window.location.href = "{{ route('checkout.page') }}?idorder=" + iddonhang;
                 }
             }
         });

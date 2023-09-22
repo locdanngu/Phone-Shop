@@ -50,12 +50,6 @@
                                                 class="amount">${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
                                         </td>
                                     </tr>
-                                    <tr class="cart-subtotal">
-                                        <th>Before coupon</th>
-                                        <td><span
-                                                class="amount font-weight-bold">${{ number_format($order->totalprice2, 2) }}</span>
-                                        </td>
-                                    </tr>
                                     <tr class="shipping">
                                         <th>Shipping and Handling</th>
                                         <td>

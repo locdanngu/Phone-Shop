@@ -142,12 +142,7 @@ class UserController extends Controller
         }else{
             $couponcart = '';
         }
-        $sumallproduct = 0;
-        foreach($listorder as $l){
-            $sumallproduct += $l->product->price * $l->quantity;
-        }
-        $sumproduct = $listorder->sum('beforecoupon');
-
+        
         $idcoupons = $listorder->pluck('idcoupon')->toArray();
         $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)
                             ->where('starttime', '<=', $currentTime)
@@ -155,7 +150,62 @@ class UserController extends Controller
         $coutlistcoupon = $listcoupon->count();
         $countcoupon = $countcoupon + $coutlistcoupon;
 
-        return view('user/page/Checkoutpage', compact('user','listorder','order', 'countcoupon','couponcart','listcoupon','sumallproduct','sumproduct'));
+        $order_product = Order_product::where('idorder', $request['idorder'])
+            ->whereNotNull('idcoupon')
+            ->get();
+
+        if ($order_product->isEmpty()) {
+            // // Không có bản ghi nào có cột idcoupon khác null
+            // foreach($listorder as $l){
+            //     $order->totalprice += $l->product->price * $l->quantity;
+            //     $order->save();
+            // }
+            if($order->idcoupon == null){
+                $order->beforecoupon = $order->totalprice;
+                $order->totalprice2 = $order->totalprice;
+                $order->save();
+            }else{
+                $coupon = Coupon::where('idcoupon', $order->idcoupon)->first();
+                if($coupon->discount_type == 'amount'){
+                    $order->beforecoupon = $order->totalprice2 - $coupon->discount_amount;
+                    $order->save();
+                }else{
+                    if(($order->totalprice2 * $coupon->discount_amount / 100) > $coupon->max_discount_amount){
+                        $order->beforecoupon = $order->totalprice2  - $max_discount_amount;
+                        $order->save();
+                    }else{
+                        $order->beforecoupon = $order->totalprice2  * $coupon->discount_amount - ($order->totalprice2  * $coupon->discount_amount / 100) ;
+                        $order->save();
+                    }
+                    
+                }
+                
+            }
+        } else {
+            $order->totalprice2 = $listorder->sum('beforecoupon');
+            if($order->idcoupon == null){
+                $order->beforecoupon = $order->totalprice2;
+                $order->save();
+            }else{
+                $coupon = Coupon::where('idcoupon', $order->idcoupon)->first();
+                if($coupon->discount_type == 'amount'){
+                    $order->beforecoupon = $order->totalprice2 - $coupon->discount_amount;
+                    $order->save();
+                }else{
+                    if(($order->totalprice2 * $coupon->discount_amount / 100) > $coupon->max_discount_amount){
+                        $order->beforecoupon = $order->totalprice2  - $max_discount_amount;
+                        $order->save();
+                    }else{
+                        $order->beforecoupon = $order->totalprice2  * $coupon->discount_amount - ($order->totalprice2  * $coupon->discount_amount / 100) ;
+                        $order->save();
+                    }
+                    
+                }
+                
+            }
+        }
+
+        return view('user/page/Checkoutpage', compact('user','listorder','order', 'countcoupon','couponcart','listcoupon'));
     }
 
     public function checkoutlist(Request $request)
@@ -173,14 +223,16 @@ class UserController extends Controller
         $pro = Order_product::where('idorder', $request['idorder'])->where('idcoupon', $request['idcoupon'])->get();
         foreach($pro as $p){
             $p->idcoupon = null;
-            $p->beforecoupon = $p->totalprice;
+            $p->beforecoupon = $p->product->price * $p->quantity;
             $p->save();
         }
 
         $order->idcoupon = null;
         $order->beforecoupon = $order->totalprice;
         $order->save();
-        return redirect()->back();
+
+
+        return redirect()->route('checkout.page', ['idorder' => $request['idorder']]);
     }
 
     public function checkcoupon(Request $request)
@@ -219,46 +271,23 @@ class UserController extends Controller
         if($coupon->applicable_to == 'cart'){
             $order = Order::where('idorder', $request['idorder'])->first();
             
-            $order->idcoupon = $coupon->idcoupon;
-            $order_product = Order_product::where('idorder', $request['idorder'])
-                ->whereNotNull('idcoupon')
-                ->get();
-
-            if ($order_product->isEmpty()) {
-                if($order->totalprice < $coupon->minimum_order_amount){
-                    return response()->json([
-                        're' => 4, //đơn hàng chưa đủ mức giá quy định
-                    ]);
-                }
-
-                if($coupon->discount_type == 'amount'){
-                    $order->beforecoupon = $order->totalprice - $coupon->discount_amount;
-                }else{
-                    if(($order->totalprice * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
-                        $order->beforecoupon = $order->totalprice - $coupon->max_discount_amount;
-                    }else{
-                        $order->beforecoupon = $order->totalprice - ($order->totalprice * $coupon->discount_amount / 100);
-                    }
-                }
-            } else {
+            if($order->totalprice != $order->totalprice2){
                 if($order->totalprice2 < $coupon->minimum_order_amount){
                     return response()->json([
                         're' => 4, //đơn hàng chưa đủ mức giá quy định
                     ]);
                 }
-
-                // Có ít nhất một bản ghi có cột idcoupon khác null
-                if($coupon->discount_type == 'amount'){
-                    $order->beforecoupon = $order->totalprice2 - $coupon->discount_amount;
-                }else{
-                    if(($order->totalprice2 * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
-                        $order->beforecoupon = $order->totalprice2 - $coupon->max_discount_amount;
-                    }else{
-                        $order->beforecoupon = $order->totalprice2 - ($order->totalprice2 * $coupon->discount_amount / 100);
-                    }
+            }else{
+                if($order->totalprice < $coupon->minimum_order_amount){
+                    return response()->json([
+                        're' => 4, //đơn hàng chưa đủ mức giá quy định
+                    ]);
                 }
             }
+
+            $order->idcoupon = $coupon->idcoupon;
             $order->save();
+
             $trave = 1;
 
         }else{
@@ -271,18 +300,9 @@ class UserController extends Controller
                     $idcategory = $product->idcategory;
                     if (in_array($idcategory, $categorylist)) {
                         $product->idcoupon = $coupon->idcoupon;
-                        if($coupon->discount_type == 'amount'){
-                            $product->beforecoupon = ($product->product->price  - $coupon->discount_amount) * $product->quantity;
-                        }else{
-                            if(($product->product->price * $product->quantity * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
-                                $product->beforecoupon = $product->product->price * $product->quantity - $coupon->max_discount_amount;
-                            }else{
-                                $product->beforecoupon = $product->product->price * $product->quantity - ($order->totalprice * $coupon->discount_amount / 100);
-                            }
-                        }
+                        $product->save();
                         $count += 1;
                     }
-                    $product->save();
                 }
                 
                 if($count == 0){
@@ -290,9 +310,6 @@ class UserController extends Controller
                         're' => 6, //không có sản phẩm áp dụng
                     ]);
                 }else{
-                    $order = Order::where('idorder', $request['idorder'])->first();
-                    $order->totalprice2 = $listproduct->sum('beforecoupon');
-                    $order->save();
                     $trave = 1;
                 }
             }
@@ -305,19 +322,10 @@ class UserController extends Controller
                     $idproduct = $product->idproduct;
                     if (in_array($idproduct, $productlist)) {
                         $product->idcoupon = $coupon->idcoupon;
-                        if($coupon->discount_type == 'amount'){
-                            $product->beforecoupon = ($product->product->price  - $coupon->discount_amount) * $product->quantity;
-                        }else{
-                            if(($product->product->price * $product->quantity * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
-                                $product->beforecoupon = $product->product->price * $product->quantity - $coupon->max_discount_amount;
-                            }else{
-                                $product->beforecoupon = $product->product->price * $product->quantity - ($order->totalprice * $coupon->discount_amount / 100);
-                            }
-                        }
+                        $product->save();
                         $count += 1;
                         
                     }
-                    $product->save();
                 }                
 
                 if($count == 0){
@@ -325,9 +333,6 @@ class UserController extends Controller
                         're' => 6, //không có sản phẩm áp dụng
                     ]);
                 }else{
-                    $order = Order::where('idorder', $request['idorder'])->first();
-                    $order->totalprice2 = $listproduct->sum('beforecoupon');
-                    $order->save();
                     $trave = 1;
                 }
             }
@@ -336,145 +341,15 @@ class UserController extends Controller
                 $order = Order::where('idorder', $request['idorder'])->first();
                 foreach ($listproduct as $product) {
                     $product->idcoupon = $coupon->idcoupon;
-                    if($coupon->discount_type == 'amount'){
-                        $product->beforecoupon = ($product->product->price  - $coupon->discount_amount) * $product->quantity;
-                    }else{
-                        if(($product->product->price * $product->quantity * $coupon->discount_amount / 100) > $coupon->max_discount_amount){ // nếu lớn hơn giá định mức
-                            $product->beforecoupon = $product->product->price * $product->quantity - $coupon->max_discount_amount;
-                        }else{
-                            $product->beforecoupon = $product->product->price * $product->quantity - ($order->totalprice * $coupon->discount_amount / 100);
-                        }
-                    }
                     $product->save();
                 }
                 $trave = 1;
-                $order->totalprice2 = $listproduct->sum('beforecoupon');
-                $order->save();
             }
         }
-
-
-        $order = Order::where('idorder', $request['idorder'])->first();
-        if($order->idcoupon != null){
-            $couponcart = Coupon::where('idcoupon', $order->idcoupon)->where('starttime', '<=', $currentTime) ->where('endtime', '>=', $currentTime)   ->first();
-        }
-
-        $listorder = Order_product::where('idorder', $request['idorder'])->get();
-        $idcoupons = $listorder->pluck('idcoupon')->toArray();
-        $listcoupon = Coupon::whereIn('idcoupon', $idcoupons)->where('starttime', '<=', $currentTime)->where('endtime', '>=', $currentTime)->get();
 
         if($trave == 1){
-
-            $html = '';
-
-            if(isset($couponcart)){
-                $html .= '<tr class="cart_item">';
-                $html .= '<td class="product-name">';
-                $html .= '<span class="amount" style="text-transform: uppercase;font-weight:bold">' . $couponcart->applicable_to . '</span>';
-                $html .= '</td>';
-                $html .= '<td class="product-price">';
-                $html .= '<span class="amount" style="font-weight:bold; color:red">' . $couponcart->code . '</span>';
-                $html .= '</td>';
-                if($couponcart->discount_type == 'percentage'){
-                    $html .= '<td class="product-quantity">';
-                    $html .= '<span class="amount">' . $couponcart->discount_amount . '%</span>';
-                    $html .= '</td>';
-                }else{
-                $html .= '<td class="product-quantity">';
-                $html .= '<span class="amount">' . $couponcart->discount_amount . '$</span>';
-                $html .= '</td>';
-                }
-                $html .= '<td class="product-quantity">';
-                $html .= '<span class="amount" style="font-weight:bold; color:red">' . $couponcart->max_discount_amount . '$</span>';
-                $html .= '</td>';
-                $html .= '<td class="actions" style="display: flex;justify-content:center">';
-                $html .= '<a href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" class="btnchangeuser" data-id="' . $couponcart->idcoupon . '" data-code="' . $couponcart->code . '">';
-                $html .= '<i class="bi bi-trash-fill"></i> Delete</a>';
-                $html .= '</td>';
-                $html .= '</tr>';
-            }
-
-            foreach($listcoupon as $c){
-                $html .= '<tr class="cart_item">';
-                $html .= '<td class="product-name">';
-                $html .= '<span class="amount" style="text-transform: uppercase;font-weight:bold">' . $c->applicable_to . '</span>';
-                $html .= '</td>';
-                $html .= '<td class="product-price">';
-                $html .= '<span class="amount" style="font-weight:bold; color:red">' . $c->code . '</span>';
-                $html .= '</td>';
-                if($c->discount_type == 'percentage'){
-                    $html .= '<td class="product-quantity">';
-                    $html .= '<span class="amount">' . $c->discount_amount . '%</span>';
-                    $html .= '</td>';
-                }else{
-                $html .= '<td class="product-quantity">';
-                $html .= '<span class="amount">' . $c->discount_amount . '$</span>';
-                $html .= '</td>';
-                }
-                $html .= '<td class="product-quantity">';
-                $html .= '<span class="amount" style="font-weight:bold; color:red">' . $c->max_discount_amount . '$</span>';
-                $html .= '</td>';
-                $html .= '<td class="actions" style="display: flex;justify-content:center">';
-                $html .= '<a href="#" type="button" data-toggle="modal" data-target="#modal-deleteproduct" class="btnchangeuser" data-id="' . $c->idcoupon . '" data-code="' . $c->code . '">';
-                $html .= '<i class="bi bi-trash-fill"></i> Delete</a>';
-                $html .= '</td>';
-                $html .= '</tr>';
-            }
-
-            $html2 = '';
-            
-
-            foreach($listorder as $c) {
-                $html2 .= '<tr class="cart_item" data-product-id="' . $c->idcart_product . '">';
-                $html2 .= '<td class="product-thumbnail">';
-                $html2 .= '<a href="' . route('product.page', ['nameproduct' => $c->product->nameproduct]) . '"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="' . $c->product->imageproduct . '"></a>';
-                $html2 .= '</td>';
-                $html2 .= '<td class="product-name">';
-                $html2 .= '<a href="' . route('product.page', ['nameproduct' => $c->product->nameproduct]) . '">' . $c->product->nameproduct . '</a>';
-                $html2 .= '</td>';
-                $html2 .= '<td class="product-price">';
-                $html2 .= '<span class="amount">$' . $c->product->price . '</span>';
-                $html2 .= '</td>';
-                $html2 .= '<td class="product-quantity">';
-                $html2 .= '<span class="amount">' . $c->quantity . '</span>';
-                $html2 .= '</td>';
-                $html2 .= '<td class="product-price">';
-                
-                if ($c->idcoupon) {
-                    $html2 .= '<span class="amount" style="font-weight:bold">' . $c->coupon->code . '</span>';
-                } else {
-                    $html2 .= '<span class="amount" style="font-weight:bold">None</span>';
-                }
-                
-                $html2 .= '</td>';
-                $html2 .= '<td class="product-price">';
-                $html2 .= '<span class="amount" style="color:red; font-weight:bold">$' . number_format($c->quantity * $c->product->price, 2) . '</span>';
-                $html2 .= '</td>';
-                
-                if ($c->idcoupon) {
-                    $html2 .= '<td class="product-price">';
-                    $html2 .= '<span class="amount" style="color:red; font-weight:bold">$' . number_format($c->beforecoupon, 2) . '</span>';
-                    $html2 .= '</td>';
-                } else {
-                    $html2 .= '<td class="product-price">';
-                    $html2 .= '<span class="amount" style="color:red; font-weight:bold">$' . number_format($c->quantity * $c->product->price, 2) . '</span>';
-                    $html2 .= '</td>';
-                }
-                
-                $html2 .= '</tr>';
-            }
-
-            $order_productst = Order_product::where('idorder', $request['idorder'])->get();
-            $sbefore = $order_productst->sum('beforecoupon');
-            $orderst = Order::where('idorder', $request['idorder'])->first();
-            $orderst->totalprice2 = $sbefore;
-            $orderst->save();
-
-
             return response()->json([
                 're' => 7, //Áp dụng mã giảm giá thành công
-                'html' => $html,
-                'html2' => $html2,
             ]);
         }
     }

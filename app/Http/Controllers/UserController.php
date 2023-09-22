@@ -270,6 +270,7 @@ class UserController extends Controller
 
             if($coupon->product_list == 1){
                 $productlist = Product_coupon::where('idcoupon', $coupon->idcoupon)->pluck('idproduct')->toArray();
+                $order = Order::where('idorder', $request['idorder'])->first();
                 $count = 0;
                 foreach ($listproduct as $product) {
                     $idproduct = $product->idproduct;
@@ -285,6 +286,8 @@ class UserController extends Controller
                             }
                         }
                         $count += 1;
+                        $order->totalprice2 = $listproduct->sum('beforecoupon');
+                        $order->save();
                     }
                     $product->save();
                 }                
@@ -299,6 +302,7 @@ class UserController extends Controller
             }
 
             if($coupon->product_list == 0){
+                $order = Order::where('idorder', $request['idorder'])->first();
                 foreach ($listproduct as $product) {
                     $product->idcoupon = $coupon->idcoupon;
                     if($coupon->discount_type == 'amount'){
@@ -313,6 +317,8 @@ class UserController extends Controller
                     $product->save();
                 }
                 $trave = 1;
+                $order->totalprice2 = $listproduct->sum('beforecoupon');
+                    $order->save();
             }
         }
 
@@ -906,7 +912,13 @@ class UserController extends Controller
     public function bankpayment(Request $request)
     {
         $user = Auth::user();
-        return view('user/page/Bankpayment', compact('user'));
+        $listorder = Order_product::where('idorder', $request['idorder'])->get();
+        $sumallproduct = 0;
+        foreach($listorder as $l){
+            $sumallproduct += $l->product->price * $l->quantity;
+        }
+        $sumproduct = $listorder->sum('beforecoupon');
+        return view('user/page/Bankpayment', compact('user','sumallproduct', 'sumproduct'));
     }
 
 }

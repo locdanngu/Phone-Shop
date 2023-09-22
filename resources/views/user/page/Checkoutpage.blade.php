@@ -270,7 +270,7 @@
                                 reference. Your order won’t be shipped until the funds have cleared in our account.</p>
                         </div>
                     </li>
-                    
+                    <input type="hidden" name="idorder" value="{{ request()->input('idorder') }}">
                     <li class="payment_method_paypal">
                         <input type="radio" data-order_button_text="Proceed to PayPal" value="paypal"
                             name="payment_method" class="input-radio" id="payment_method_paypal">

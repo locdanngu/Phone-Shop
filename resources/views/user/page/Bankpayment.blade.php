@@ -25,19 +25,72 @@
                 <div class="product-content-right">
                     <div class="card-body table-responsive p-0">
                         <div class="d-flex flex-column justify-content-between">
-                            <table cellspacing="0" class="shop_table cart">
+                            <table class="shop_table">
                                 <thead>
                                     <tr>
-                                        <th class="product-thumbnail">Id order</th>
-                                        <th class="product-name">Total price</th>
-                                        <th class="product-price">Date</th>
-                                        <th class="product-price">Coupon</th>
-                                        <th class="product-quantity">&nbsp;</th>
+                                        <th class="product-name"></th>
+                                        <th class="product-total">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            All product <strong class="product-quantity"></strong> </td>
+                                        <td class="product-total">
+                                            <span
+                                                class="amount font-weight-bold">${{ number_format($sumallproduct, 2) }}</span>
+                                        </td>
+                                    </tr>
                                 </tbody>
+                                <tfoot>
+
+                                    <tr class="cart-subtotal">
+                                        <th>Add coupon</th>
+                                        @if($sumproduct == 0)
+                                        <td><span class="amount">${{ number_format(0, 2) }}</span>
+                                            @else
+                                        <td><span
+                                                class="amount">${{ number_format($sumallproduct - $sumproduct, 2) }}</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr class="cart-subtotal">
+                                        <th>Before coupon</th>
+                                        @if($sumproduct == 0)
+                                        <td><span
+                                                class="amount font-weight-bold">${{ number_format($sumallproduct, 2) }}</span>
+                                            @else
+                                        <td><span
+                                                class="amount font-weight-bold">${{ number_format($sumproduct, 2) }}</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+
+                                    <tr class="shipping">
+                                        <th>Shipping and Handling</th>
+                                        <td>
+
+                                            Free Shipping
+                                            <input type="hidden" class="shipping_method" value="free_shipping"
+                                                id="shipping_method_0" data-index="0" name="shipping_method[0]">
+                                        </td>
+                                    </tr>
+
+
+                                    <tr class="order-total">
+                                        <th>Order Total</th>
+                                        @if($sumproduct != 0)
+                                        <td><strong><span
+                                                    class="amount red">${{ number_format($sumproduct, 2) }}</span></strong>
+                                        </td>
+                                        @else
+                                        <td><strong><span
+                                                    class="amount red">${{ number_format($sumallproduct, 2) }}</span></strong>
+                                        </td>
+                                        @endif
+                                    </tr>
+
+                                </tfoot>
                             </table>
                         </div>
                     </div>

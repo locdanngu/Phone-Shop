@@ -31,7 +31,7 @@
                                         <th class="product-thumbnail">Id order</th>
                                         <th class="product-name">Total price</th>
                                         <th class="product-price">Date</th>
-                                        <th class="product-price">Coupon</th>
+                                        <th class="product-price">Status</th>
                                         <th class="product-quantity">&nbsp;</th>
                                     </tr>
                                 </thead>
@@ -42,18 +42,27 @@
                                             <span class="amount">{{ $o->idorder }}</span>
                                         </td>
                                         <td>
-                                            <span class="amount">${{ $o->totalprice }}</span>
+                                            <span
+                                                class="amount font-weight-bold red">${{ number_format($o->beforecoupon, 2) }}</span>
                                         </td>
                                         <td>
                                             <span class="amount">{{ $o->created_at }}</span>
                                         </td>
-                                        @if($o->idcoupon)
+                                        @if($o->status == 'wait')
                                         <td>
-                                            <span class="amount">{{ $o->coupon->code }}</span>
+                                            <span class="amount" style="color:brown">Wait for confirmation</span>
                                         </td>
-                                        @else
+                                        @elif($o->status == 'cancel')
                                         <td>
-                                            <span class="amount">None</span>
+                                            <span class="amount" style="color:red">Deny</span>
+                                        </td>
+                                        @elif($o->status == 'done')
+                                        <td>
+                                            <span class="amount" style="color:green">Success</span>
+                                        </td>
+                                        @elif($o->status == 'ship')
+                                        <td>
+                                            <span class="amount" style="color:green">Delivery</span>
                                         </td>
                                         @endif
                                         <td class="actions" style="display: flex;justify-content:center">

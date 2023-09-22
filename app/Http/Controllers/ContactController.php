@@ -31,7 +31,24 @@ class ContactController extends Controller
     public function requestcontact(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        
+
+
+        $contact = Contact::where('idcontact', $request['idcontact'])->first();
+        $request = $request['request'];
+        $contact->request = $request['request'];
+        $contact->status = 'done';
+        $contact->save();
+
+
+        $name = $contact->name;
+        $mail = $contact->email;
+        $phone = $contact->phone;
+        $send = $contact->content;
+
+        $result = Mail::send('admin/page/Contactemail', compact('name', 'request', 'send'), function($email) use ($request, $send, $mail, $name) {
+            $email->subject('Về đơn liên hệ của bạn');
+            $email->to($mail);
+        });
 
 
 

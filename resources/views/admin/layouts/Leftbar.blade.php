@@ -175,8 +175,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('contact.page') }}"
-                        class="nav-link {{ request()->routeIs('contact.page') ? 'active' : '' }}">
+                    <a href="{{ route('admincontact.page') }}"
+                        class="nav-link {{ request()->routeIs('admincontact.page') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-person-circle"></i>
                         <p>
                             Quản lý liên hệ

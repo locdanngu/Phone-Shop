@@ -136,7 +136,7 @@ class OrderController extends Controller
         $html .= '<th>Giá</th>';
         $html .= '<th>Hãng</th>';
         $html .= '<th>Số lượng</th>';
-        $html .= '<th>Giảm giá</th>';
+        $html .= '<th>Giảm giá SP</th>';
         $html .= '<th>Thành tiền</th>';
         $html .= '</tr>';
         $html .= '</thead>';
@@ -167,6 +167,16 @@ class OrderController extends Controller
         $html .= '<td></td>';
         $html .= '<td class="font-weight-bold" style="color:red">Phí giao:</td>';
         $html .= '<td class="font-weight-bold" style="color:red">0 $</td>';
+        $html .= '</tr>';
+
+        $html .= '<tr>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td></td>';
+        $html .= '<td class="font-weight-bold" style="color:red">Giảm giá giỏ hàng:</td>';
+        $html .= '<td class="font-weight-bold" style="color:red"> - ' . $pr->order->totalprice2 - $pr->order->beforecoupon . ' $</td>';
         $html .= '</tr>';
         
         $html .= '<tr>';

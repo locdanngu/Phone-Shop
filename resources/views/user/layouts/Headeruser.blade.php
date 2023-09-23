@@ -113,8 +113,8 @@
                             href="{{ route('listhistoryorder.page') }}">History order</a></li>
 
                     @endif
-                    <li class="{{ request()->routeIs('contact.page') ? 'active' : '' }}"><a
-                            href="{{ route('contact.page') }}">Contact</a></li>
+                    <li class="{{ request()->routeIs('usercontact.page') ? 'active' : '' }}"><a
+                            href="{{ route('usercontact.page') }}">Contact</a></li>
                 </ul>
             </div>
         </div>

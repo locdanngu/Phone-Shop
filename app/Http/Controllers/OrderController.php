@@ -10,6 +10,7 @@ use App\Models\Coupon;
 use App\Models\Spend;
 use App\Models\Product_coupon;
 use App\Models\Order;
+use App\Models\Address;
 use App\Models\Type;
 use App\Models\Order_product;
 use App\Models\Category_coupon;
@@ -134,9 +135,9 @@ class OrderController extends Controller
         $html .= '<th>Tên</th>';
         $html .= '<th class="text-center">Sản phẩm</th>';
         $html .= '<th>Giá</th>';
-        $html .= '<th>Hãng</th>';
         $html .= '<th>Số lượng</th>';
-        $html .= '<th>Giảm giá SP</th>';
+        $html .= '<th>Mã giảm giá</th>';
+        $html .= '<th>Giảm</th>';
         $html .= '<th>Thành tiền</th>';
         $html .= '</tr>';
         $html .= '</thead>';
@@ -147,13 +148,14 @@ class OrderController extends Controller
             $html .= '<td class="font-weight-bold" style="color:red">' . $pr->product->nameproduct . '</td>';
             $html .= '<td class="text-center"><img src="' . $pr->product->imageproduct . '" alt="" height="50"></td>';
             $html .= '<td class="font-weight-bold" style="color:red">' . $pr->product->price . ' $</td>';
-            $html .= '<td class="font-weight-bold">' . $pr->product->category->namecategory . '</td>';
             $html .= '<td class="font-weight-bold">' . $pr->quantity . '</td>';
-            if($pr->idcoupon == null){
+            if($pr->idcoupon == null || $pr->beforecoupon == null){
                 $html .= '<td class="font-weight-bold" style="color:red"><i class="bi bi-x"></i></td>';
+                $html .= '<td class="font-weight-bold" style="color:red">- $0.00</td>';
                 $html .= '<td class="font-weight-bold" style="color:red">' . ($pr->totalprice) . ' $</td>';
             }else{
                 $html .= '<td class="font-weight-bold" style="color:red"><i class="bi bi-check2"></i></td>';
+                $html .= '<td class="font-weight-bold">' . number_format($pr->totalprice - $pr->beforecoupon, 2) . '</td>';
                 $html .= '<td class="font-weight-bold" style="color:red">' . ($pr->beforecoupon) . ' $</td>';
             }
             $html .= '</tr>';
@@ -176,7 +178,7 @@ class OrderController extends Controller
         $html .= '<td></td>';
         $html .= '<td></td>';
         $html .= '<td class="font-weight-bold" style="color:red">Giảm giá giỏ hàng:</td>';
-        $html .= '<td class="font-weight-bold" style="color:red"> - ' . $pr->order->totalprice2 - $pr->order->beforecoupon . ' $</td>';
+        $html .= '<td class="font-weight-bold" style="color:red"> - ' . number_format($pr->order->totalprice2 - $pr->order->beforecoupon, 2) . ' $</td>';
         $html .= '</tr>';
         
         $html .= '<tr>';
@@ -186,13 +188,51 @@ class OrderController extends Controller
         $html .= '<td></td>';
         $html .= '<td></td>';
         $html .= '<td class="font-weight-bold" style="color:red">Tổng tiền:</td>';
-        $html .= '<td class="font-weight-bold" style="color:red">' . $pr->order->beforecoupon . ' $</td>';
+        $html .= '<td class="font-weight-bold" style="color:red">' . number_format($pr->order->beforecoupon, 2) . ' $</td>';
         $html .= '</tr>';
         
         $html .= '</tbody>';
         $html .= '</table>';
         $html .= '</div>';
 
+
+        
+
+
+
+
+
+        $html .= '<div class="card-body table-responsive p-0" style="max-height: 500px;">';
+        $html .= '<table class="table table-head-fixed text-nowrap">';
+        $html .= '<thead>';
+        $html .= '<tr>';
+        $html .= '<th>Địa chỉ</th>';
+        $html .= '<th>Quốc gia</th>';
+        $html .= '<th>Thành phố</th>';
+        $html .= '<th>Tỉnh thành</th>';
+        $html .= '<th>Tên công ty</th>';
+        $html .= '<th>Mã bưu điện</th>';
+        $html .= '<th>Căn hộ</th>';
+        $html .= '</tr>';
+        $html .= '</thead>';
+        $html .= '<tbody>';
+
+        $ad = Address::where('idaddress', $pr->order->idaddress)->first();
+
+        $html .= '<tr>';
+        $html .= '<td>' . $ad->address . '</td>';
+        $html .= '<td>' . $ad->country . '</td>';
+        $html .= '<td>' . $ad->state_country . '</td>';
+        $html .= '<td>' . $ad->town_city . '</td>';
+        $html .= '<td>' . $ad->companyname . '</td>';
+        $html .= '<td>' . $ad->postcode . '</td>';
+        $html .= '<td>' . $ad->apartment . '</td>';
+        $html .= '</tr>';
+
+        if($pr->order->pay == 'bank'){
+            $html .= '<h3>Hình thức thanh toán: Paypal</h3>';
+
+        }
 
         return response()->json([
             'html' => $html,

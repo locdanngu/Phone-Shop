@@ -69,7 +69,7 @@ class PaymentController extends Controller
                 $payment->save();
 
                 $order = Order::where('idorder', $idorder)->first();
-                $order->status = 'paypal';
+                $order->status = 'wait';
                 $order->pay = 'paypal';
                 $order->save();
                 return redirect()->route('historyorder.page', ['idorder' => $idorder]);

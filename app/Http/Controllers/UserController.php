@@ -85,8 +85,10 @@ class UserController extends Controller
         }else{
             $cart = '';
         }
+        $countaddress = Address::where('iduser', $user->iduser)->count();
+        
 
-        return view('user/page/Cartpage', compact('user','cart'));
+        return view('user/page/Cartpage', compact('user','cart','countaddress'));
     }
 
     public function addorder(Request $request)

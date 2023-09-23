@@ -104,7 +104,7 @@
                                                         <a href="#" class="btnchangeuser">APPLY COUPON</a>
                                                     </div> -->
                                                     <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
-                                                    @if($user->postcode == null)
+                                                    @if($countaddress == 0)
                                                     <a href="{{ route('chuyenhuong') }}"
                                                         class="btnchangeuser">Checkout</a>
                                                     @else

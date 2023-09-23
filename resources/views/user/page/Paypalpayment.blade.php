@@ -138,14 +138,12 @@
 
 
 
-                    <form action="{{ route('user.pay') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('user.pay') }}" method="post">
                         @csrf
                         <input type="hidden" value="{{ request()->input('idorder') }}" name="idorder">
                         <input type="hidden" value="{{ $order->beforecoupon }}" name="amount">
-                        <div class="d-flex flex-column mb-2">
-                            <p>Note order: </p>
-                            <textarea id="" cols="30" rows="5" name="note"></textarea>
-                        </div>
+                        <p>Note order: </p>
+                        <textarea id="" cols="30" rows="5" name="note" style="width:100%"></textarea>
                         <input type="submit" data-value="Place order" value="Pay"
                             name="woocommerce_checkout_place_order" class="button alt">
                     </form>

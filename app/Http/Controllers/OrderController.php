@@ -12,6 +12,7 @@ use App\Models\Product_coupon;
 use App\Models\Order;
 use App\Models\Address;
 use App\Models\Type;
+use App\Models\Payment;
 use App\Models\Order_product;
 use App\Models\Category_coupon;
 use Mail;
@@ -232,13 +233,13 @@ class OrderController extends Controller
         if($pr->order->pay == 'bank'){
             $html .= '<h3>Hình thức thanh toán: Chuyển khoản ngân hàng</h3>';
             $html .= '<img src="' . $pr->order->bill . '" style="height: 300px">';
-            $html .= '<span>Lời nhắn: ' . $pr->order->note . '</span>';
+            $html .= '<p>Lời nhắn: ' . $pr->order->note . '</p>';
         }else{
             $html .= '<h3>Hình thức thanh toán: Tài khoản Paypal</h3>';
             $pay = Payment::where('idorder', $pr->order->idorder)->first();
-            $html .= '<span>Mã đơn hàng: ' . $pay->payment_id . '</span>';
-            $html .= '<span>Mã thanh toán: ' . $pay->payer_id . '</span>';
-            $html .= '<span>Lời nhắn: ' . $pr->order->note . '</span>';
+            $html .= '<p>Mã đơn hàng: ' . $pay->payment_id . '</p>';
+            $html .= '<p>Mã thanh toán: ' . $pay->payer_id . '</p>';
+            $html .= '<p>Lời nhắn: ' . $pr->order->note . '</p>';
         }
 
         return response()->json([

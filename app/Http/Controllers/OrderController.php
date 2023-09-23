@@ -230,8 +230,15 @@ class OrderController extends Controller
         $html .= '</tr>';
 
         if($pr->order->pay == 'bank'){
-            $html .= '<h3>Hình thức thanh toán: Paypal</h3>';
-
+            $html .= '<h3>Hình thức thanh toán: Chuyển khoản ngân hàng</h3>';
+            $html .= '<img src="' . $pr->order->bill . '" style="height: 300px">';
+            $html .= '<span>Lời nhắn: ' . $pr->order->note . '</span>';
+        }else{
+            $html .= '<h3>Hình thức thanh toán: Tài khoản Paypal</h3>';
+            $pay = Payment::where('idorder', $pr->order->idorder)->first();
+            $html .= '<span>Mã đơn hàng: ' . $pay->payment_id . '</span>';
+            $html .= '<span>Mã thanh toán: ' . $pay->payer_id . '</span>';
+            $html .= '<span>Lời nhắn: ' . $pr->order->note . '</span>';
         }
 
         return response()->json([

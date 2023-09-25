@@ -22,47 +22,51 @@ Route::prefix('/')->group(function () {
     Route::get('/shoppage', [UserController::class, 'shoppage'])->name('shop.page');
     Route::get('/shoppage/search', [UserController::class, 'shoppage'])->name('shop.search');
     Route::get('/productpage', [UserController::class, 'productpage'])->name('product.page');
-    Route::get('/cartpage', [UserController::class, 'cartpage'])->name('cart.page');
-    Route::get('/checkoutpage', [UserController::class, 'checkoutpage'])->name('checkout.page');
-    Route::get('/checkoutlist', [UserController::class, 'checkoutlist'])->name('checkoutlist.page');
-
-    Route::post('/checkoutpage', [UserController::class, 'addorder'])->name('checkout');
-    Route::post('/loginuser', [UserController::class, 'loginuser'])->name('loginuser');
-    Route::post('/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
-    Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
-    Route::post('/checkuser', [UserController::class, 'checkusername'])->name('checkuser');
-    Route::post('/addcartwithquantity', [UserController::class, 'addcartwithquantity'])->name('addcartwithquantity');
-    Route::post('/addcart', [UserController::class, 'addcart'])->name('addcart');
-    Route::post('/deleteproductcart', [UserController::class, 'deleteproductcart'])->name('deleteproductcart');
-    Route::post('/updateproductcart', [UserController::class, 'updateproductcart'])->name('updateproductcart');
-    Route::post('/addreview', [UserController::class, 'addreview'])->name('addreview');
-    Route::post('/morereview', [UserController::class, 'morereview'])->name('morereview');
-    Route::get('/wishlistpage', [UserController::class, 'wishlistpage'])->name('wishlist.page');
-    Route::post('/deleteproductwishlist', [UserController::class, 'deleteproductwishlist'])->name('deleteproductwishlist');
-    Route::post('/addwishlist', [UserController::class, 'addwishlist'])->name('addwishlist');
-    Route::get('/userpage', [UserController::class, 'userpage'])->name('user.page');
-    Route::post('/changenameuser', [UserController::class, 'changenameuser'])->name('changenameuser');
-    Route::post('/addaddress', [UserController::class, 'addaddress'])->name('addaddress');
-    Route::post('/changepassword', [UserController::class, 'changepassword'])->name('changepassword');
-    Route::post('/deletemainaddress', [UserController::class, 'deletemainaddress'])->name('deletemainaddress');
-    Route::post('/deleteanotheraddress', [UserController::class, 'deleteanotheraddress'])->name('deleteanotheraddress');
-    Route::get('/chuyenhuong', [UserController::class, 'chuyenhuong'])->name('chuyenhuong');
-    Route::post('/checkoutpage2', [UserController::class, 'checkoutpage2'])->name('checkout.page2');
-    Route::post('/deletecheckout', [UserController::class, 'deletecheckout'])->name('deletecheckout');
-    Route::post('/deleteapplycoupon', [UserController::class, 'deleteapplycoupon'])->name('deleteapplycoupon');
-    Route::post('/deleteapplycouponcart', [UserController::class, 'deleteapplycouponcart'])->name('deleteapplycouponcart');
-    Route::post('/checkcoupon', [UserController::class, 'checkcoupon'])->name('checkcoupon');
-    Route::get('/bankpayment', [UserController::class, 'bankpayment'])->name('bankpayment');
-    Route::post('/bankpayment', [UserController::class, 'bankpay'])->name('bankpay');
-
-    Route::post('pay', [PaymentController::class, 'pay'])->name('user.pay');
-    Route::get('success/{idorder}', [PaymentController::class, 'success'])->name('user.successpay');
-    Route::get('error/{idorder}', [PaymentController::class, 'error'])->name('user.errorpay');
-
-    Route::get('/listhistoryorder', [UserController::class, 'listhistoryorder'])->name('listhistoryorder.page');
-    Route::get('/historyorder', [UserController::class, 'historyorder'])->name('historyorder.page');
     Route::get('/contact', [UserController::class, 'contact'])->name('usercontact.page');
-    Route::post('/contact', [UserController::class, 'addcontact'])->name('contact.add');
+
+    Route::middleware(['user'])->group(function () {
+        Route::get('/cartpage', [UserController::class, 'cartpage'])->name('cart.page');
+        Route::get('/checkoutpage', [UserController::class, 'checkoutpage'])->name('checkout.page');
+        Route::get('/checkoutlist', [UserController::class, 'checkoutlist'])->name('checkoutlist.page');
+
+        Route::post('/checkoutpage', [UserController::class, 'addorder'])->name('checkout');
+        Route::post('/loginuser', [UserController::class, 'loginuser'])->name('loginuser');
+        Route::post('/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
+        Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
+        Route::post('/checkuser', [UserController::class, 'checkusername'])->name('checkuser');
+        Route::post('/addcartwithquantity', [UserController::class, 'addcartwithquantity'])->name('addcartwithquantity');
+        Route::post('/addcart', [UserController::class, 'addcart'])->name('addcart');
+        Route::post('/deleteproductcart', [UserController::class, 'deleteproductcart'])->name('deleteproductcart');
+        Route::post('/updateproductcart', [UserController::class, 'updateproductcart'])->name('updateproductcart');
+        Route::post('/addreview', [UserController::class, 'addreview'])->name('addreview');
+        Route::post('/morereview', [UserController::class, 'morereview'])->name('morereview');
+        Route::get('/wishlistpage', [UserController::class, 'wishlistpage'])->name('wishlist.page');
+        Route::post('/deleteproductwishlist', [UserController::class, 'deleteproductwishlist'])->name('deleteproductwishlist');
+        Route::post('/addwishlist', [UserController::class, 'addwishlist'])->name('addwishlist');
+        Route::get('/userpage', [UserController::class, 'userpage'])->name('user.page');
+        Route::post('/changenameuser', [UserController::class, 'changenameuser'])->name('changenameuser');
+        Route::post('/addaddress', [UserController::class, 'addaddress'])->name('addaddress');
+        Route::post('/changepassword', [UserController::class, 'changepassword'])->name('changepassword');
+        Route::post('/deletemainaddress', [UserController::class, 'deletemainaddress'])->name('deletemainaddress');
+        Route::post('/deleteanotheraddress', [UserController::class, 'deleteanotheraddress'])->name('deleteanotheraddress');
+        Route::get('/chuyenhuong', [UserController::class, 'chuyenhuong'])->name('chuyenhuong');
+        Route::post('/checkoutpage2', [UserController::class, 'checkoutpage2'])->name('checkout.page2');
+        Route::post('/deletecheckout', [UserController::class, 'deletecheckout'])->name('deletecheckout');
+        Route::post('/deleteapplycoupon', [UserController::class, 'deleteapplycoupon'])->name('deleteapplycoupon');
+        Route::post('/deleteapplycouponcart', [UserController::class, 'deleteapplycouponcart'])->name('deleteapplycouponcart');
+        Route::post('/checkcoupon', [UserController::class, 'checkcoupon'])->name('checkcoupon');
+        Route::get('/bankpayment', [UserController::class, 'bankpayment'])->name('bankpayment');
+        Route::post('/bankpayment', [UserController::class, 'bankpay'])->name('bankpay');
+
+        Route::post('pay', [PaymentController::class, 'pay'])->name('user.pay');
+        Route::get('success/{idorder}', [PaymentController::class, 'success'])->name('user.successpay');
+        Route::get('error/{idorder}', [PaymentController::class, 'error'])->name('user.errorpay');
+
+        Route::get('/listhistoryorder', [UserController::class, 'listhistoryorder'])->name('listhistoryorder.page');
+        Route::get('/historyorder', [UserController::class, 'historyorder'])->name('historyorder.page');
+        
+        Route::post('/contact', [UserController::class, 'addcontact'])->name('contact.add');
+    });
 });
 
 

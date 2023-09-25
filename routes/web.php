@@ -23,6 +23,9 @@ Route::prefix('/')->group(function () {
     Route::get('/shoppage/search', [UserController::class, 'shoppage'])->name('shop.search');
     Route::get('/productpage', [UserController::class, 'productpage'])->name('product.page');
     Route::get('/contact', [UserController::class, 'contact'])->name('usercontact.page');
+    Route::post('/loginuser', [UserController::class, 'loginuser'])->name('loginuser');
+    Route::post('/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
+    Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
 
     Route::middleware(['user'])->group(function () {
         Route::get('/cartpage', [UserController::class, 'cartpage'])->name('cart.page');
@@ -30,9 +33,7 @@ Route::prefix('/')->group(function () {
         Route::get('/checkoutlist', [UserController::class, 'checkoutlist'])->name('checkoutlist.page');
 
         Route::post('/checkoutpage', [UserController::class, 'addorder'])->name('checkout');
-        Route::post('/loginuser', [UserController::class, 'loginuser'])->name('loginuser');
-        Route::post('/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
-        Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
+        
         Route::post('/checkuser', [UserController::class, 'checkusername'])->name('checkuser');
         Route::post('/addcartwithquantity', [UserController::class, 'addcartwithquantity'])->name('addcartwithquantity');
         Route::post('/addcart', [UserController::class, 'addcart'])->name('addcart');

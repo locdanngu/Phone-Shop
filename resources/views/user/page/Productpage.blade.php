@@ -90,7 +90,13 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="home">
                                             <h2>Product Description</h2>
-                                            <p>{{ $product->detail }}</p>
+                                            <?php
+                                            // Lấy nội dung từ biến $product->detail và thực hiện xuống hàng sau mỗi dấu gạch ngang đầu câu
+                                            $detail = $product->detail;
+                                            $detail = str_replace('- ', '<br>- ', $detail);
+                                            ?>
+
+                                            <p>{!! $detail !!}</p>
 
                                             <!-- <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex.
                                                 Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In

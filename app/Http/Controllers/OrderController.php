@@ -336,7 +336,7 @@ class OrderController extends Controller
             $product = Product::where('idproduct', $op->idproduct)->first();
             $product->sold += $op->quantity;
             $product->save();
-            if($op->idproduct != null){
+            if($op->idcoupon != null){
                 $coupon = Coupon::where('idcoupon', $op->idcoupon)->first();
                 $coupon->used += 1;
                 $coupon->save();

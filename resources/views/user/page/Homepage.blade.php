@@ -210,14 +210,28 @@
 @section('js')
 <script>
 $(document).ready(function() {
-    $('.product-f-image').each(function() {
-        var productHoverHeight = $(this).find('.product-hover').height();
-        var imageHeight = $(this).find('img').height();
-        var paddingTopValue = (productHoverHeight - imageHeight) / 2;
-        $(this).find('img').css('padding-top', paddingTopValue + 'px');
-        $(this).find('img').css('padding-bottom', paddingTopValue + 'px');
-    });
+    function adjustImagePadding() {
+        $('.product-f-image').each(function() {
+            var productHoverHeight = $(this).find('.product-hover').height();
+            var imageHeight = $(this).find('img').height();
+            var paddingTopValue;
+
+            if ($(window).width() > 991 && $(window).width() < 1100) {
+                paddingTopValue = (350 - imageHeight) / 2;
+            } else {
+                paddingTopValue = (300 - imageHeight) / 2;
+            }
+
+            $(this).find('img').css('padding-top', paddingTopValue + 'px');
+            $(this).find('img').css('padding-bottom', paddingTopValue + 'px');
+        });
+    }
+
+    // Gọi hàm khi tải trang và khi thay đổi kích thước cửa sổ
+    adjustImagePadding();
+    $(window).resize(adjustImagePadding);
 });
+
 </script>
 
 

@@ -59,7 +59,7 @@ class CategoryController extends Controller
         $category = Category::where('idcategory', $request['idcategory'])->first();
 
         $category->namecategory = $request['namecategory'];
-        $category->product_count = 0;
+        // $category->product_count = 0;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

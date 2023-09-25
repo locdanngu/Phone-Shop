@@ -10,10 +10,10 @@
                         iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi
                         veritatis magni at?</p>
                     <div class="footer-social">
-                        <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -82,10 +82,10 @@
 
             <div class="col-md-4">
                 <div class="footer-card-icon">
-                    <i class="fa fa-cc-discover"></i>
-                    <i class="fa fa-cc-mastercard"></i>
-                    <i class="fa fa-cc-paypal"></i>
-                    <i class="fa fa-cc-visa"></i>
+                    <i class="bi bi-cc-circle-fill"></i>
+                    <i class="bi bi-credit-card-2-back-fill"></i>
+                    <i class="bi bi-paypal"></i>
+                    <i class="bi bi-passport"></i>
                 </div>
             </div>
         </div>

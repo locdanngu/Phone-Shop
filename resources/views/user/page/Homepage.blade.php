@@ -33,25 +33,25 @@
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo1">
-                    <i class="fa fa-refresh"></i>
+                <i class="bi bi-arrow-clockwise"></i>
                     <p>30 Days return</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo2">
-                    <i class="fa fa-truck"></i>
+                <i class="bi bi-truck"></i>
                     <p>Free shipping</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo3">
-                    <i class="fa fa-lock"></i>
+                <i class="bi bi-lock-fill"></i>
                     <p>Secure payments</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo4">
-                    <i class="fa fa-gift"></i>
+                <i class="bi bi-gift"></i>
                     <p>New products</p>
                 </div>
             </div>
@@ -74,15 +74,15 @@
                                 <div class="product-hover" style="height: 270px;">
                                     @if($user)
                                     <a href="#" class="add-to-cart-link them-sp-vao-gio"
-                                        data-idproduct="{{ $lp->idproduct }}"><i class="fa fa-shopping-cart"></i> Add to
+                                        data-idproduct="{{ $lp->idproduct }}"><i class="bi bi-cart-fill"></i> Add to
                                         cart</a>
                                     @else
                                     <a href="#" class="add-to-cart-link" type="button" data-toggle="modal"
-                                        data-target="#modal-login"><i class="fa fa-shopping-cart"></i> Add to
+                                        data-target="#modal-login"><i class="bi bi-cart-fill"></i> Add to
                                         cart</a>
                                     @endif
                                     <a href="{{ route('product.page', ['nameproduct' => $lp->nameproduct]) }}"
-                                        class="view-details-link"><i class="fa fa-link"></i>
+                                        class="view-details-link"><i class="bi bi-share-fill"></i>
                                         See details</a>
                                 </div>
                             </div>

@@ -178,17 +178,17 @@
                                     <div class="product-hover">
                                         @if($user)
                                         <a href="#" class="add-to-cart-link them-sp-vao-gio"
-                                            data-idproduct="{{ $rd->idproduct }}"><i class="fa fa-shopping-cart"></i>
+                                            data-idproduct="{{ $rd->idproduct }}"><i class="bi bi-cart"></i>
                                             Add to
                                             cart</a>
                                         @else
                                         <a href="#" class="add-to-cart-link" type="button" data-toggle="modal"
-                                            data-target="#modal-login"><i class="fa fa-shopping-cart"></i>
+                                            data-target="#modal-login"><i class="bi bi-cart"></i>
                                             Add to
                                             cart</a>
                                         @endif
                                         <a href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}"
-                                            class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                            class="view-details-link"><i class="bi bi-share-fill"></i> See details</a>
                                     </div>
                                 </div>
 

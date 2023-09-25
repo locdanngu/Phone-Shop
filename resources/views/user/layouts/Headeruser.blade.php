@@ -5,18 +5,19 @@
                 <div class="user-menu">
                     <ul>
                         @if($user)
-                        <li><a href="{{ route('user.page') }}"><i class="fa fa-user"></i> {{ $user->firstname }}
+                        <li><a href="{{ route('user.page') }}"><i class="bi bi-person-fill"></i> {{ $user->firstname }}
                                 {{ $user->lastname }}</a></li>
-                        <li><a href="{{ route('wishlist.page') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
-                        <li><a href="{{ route('cart.page') }}"><i class="fa fa-user"></i> My Cart</a></li>
-                        <li><a href="{{ route('checkoutlist.page') }}"><i class="fa fa-user"></i> Checkout</a></li>
+                        <li><a href="{{ route('wishlist.page') }}"><i class="bi bi-list"></i> Wishlist</a></li>
+                        <li><a href="{{ route('cart.page') }}"><i class="bi bi-cart"></i> My Cart</a></li>
+                        <li><a href="{{ route('checkoutlist.page') }}"><i class="bi bi-credit-card"></i> Checkout</a>
+                        </li>
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-logout"><i
-                                    class="fa fa-user"></i> Logout</a></li>
+                                    class="bi bi-box-arrow-right"></i> Logout</a></li>
                         @else
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-login"><i
-                                    class="fa fa-user"></i> Login</a></li>
+                                    class="bi bi-person-fill"></i> Login</a></li>
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-register"><i
-                                    class="fa fa-plus"></i> Register</a></li>
+                                    class="bi bi-person-fill-add"></i> Register</a></li>
                         @endif
                     </ul>
                 </div>
@@ -67,7 +68,7 @@
             <div class="col-sm-6">
                 <div class="shopping-item" id="capnhatcart">
                     <a href="{{ route('cart.page') }}">Cart - <span class="cart-amunt">${{ $scart_product }}</span> <i
-                            class="fa fa-shopping-cart"></i>
+                            class="bi bi-cart"></i>
                         <span class="product-count">{{ $ccart_product }}</span></a>
                 </div>
             </div>

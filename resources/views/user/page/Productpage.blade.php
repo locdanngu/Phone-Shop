@@ -76,8 +76,8 @@
                                 <div class="product-inner-category">
                                     <p>Category: <a
                                             href="{{ route('shop.search', ['searchproduct' => $product->category->namecategory]) }}">{{ $product->category->namecategory }}</a>.
-                                        Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a
-                                            href="">shoes</a>. </p>
+                                        <!-- Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a
+                                            href="">shoes</a>. </p> -->
                                 </div>
 
                                 <div role="tabpanel">

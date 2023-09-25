@@ -137,18 +137,18 @@
                         aria-describedby="inputGroup-sizing-default" required name="nameproduct">
                 </div>
                 <div class="input-group mb-3">
-                    <div class="w-100">
+                    <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá cũ($)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default" required name="oldprice" id="oldpricedola">
                     </div>
-                    <!-- <div class="w-50">
+                    <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá cũ(đ)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" id="oldpricevnd">
-                    </div> -->
+                            aria-describedby="inputGroup-sizing-default" id="oldpricevnd" disabled>
+                    </div>
                 </div>
                 <!-- <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Giá mới($)</span>
@@ -156,18 +156,18 @@
                         aria-describedby="inputGroup-sizing-default" required name="price">
                 </div> -->
                 <div class="input-group mb-3">
-                    <div class="w-100">
+                    <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá mới($)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default" required name="price" id="pricedola">
                     </div>
-                    <!-- <div class="w-50">
+                    <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá mới(đ)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" id="pricevnd">
-                    </div> -->
+                            aria-describedby="inputGroup-sizing-default" id="pricevnd" disabled>
+                    </div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Mô
@@ -238,18 +238,18 @@
                         aria-describedby="inputGroup-sizing-default" required name="oldprice">
                 </div> -->
                 <div class="input-group mb-3">
-                    <div class="w-100">
+                    <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá cũ($)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default" required name="oldprice" id="oldpricedola2">
                     </div>
-                    <!-- <div class="w-50">
+                    <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá cũ(đ)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="oldprice2" id="oldpricevnd2">
-                    </div> -->
+                            aria-describedby="inputGroup-sizing-default" name="oldprice2" id="oldpricevnd2" disabled>
+                    </div>
                 </div>
                 <!-- <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Giá mới($)</span>
@@ -257,18 +257,18 @@
                         aria-describedby="inputGroup-sizing-default" required name="price">
                 </div> -->
                 <div class="input-group mb-3">
-                    <div class="w-100">
+                    <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá mới($)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default" required name="price" id="pricedola2">
                     </div>
-                    <!-- <div class="w-50">
+                    <div class="w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default"
                             style="width: 100% !important;">Giá mới(đ)</span>
                         <input type="number" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="price2" id="pricevnd2">
-                    </div> -->
+                            aria-describedby="inputGroup-sizing-default" name="price2" id="pricevnd2" disabled>
+                    </div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100% !important;">Mô

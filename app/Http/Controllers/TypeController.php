@@ -22,7 +22,7 @@ class TypeController extends Controller
     public function listtypepage(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $limit = $request->limit ?? 4;
+        $limit = $request->limit ?? 6;
         $type = new Type();
         $searchtype = $request['searchtype'];
         if ($searchtype) {

@@ -326,6 +326,13 @@ class OrderController extends Controller
         $order = Order::where('idorder', $request['idorder'])->first();
         $order->status = 'done';
         $order->save();
+        $order_product = Order_product::where('idorder', $request['idorder'])->get();
+        foreach($order_product as $op){
+            $product = Product::where('idproduct', $op->idproduct)->first();
+            $product->sold += $op->quantity;
+            $product->save();
+        }
+
 
         return redirect()->route('listordership.page');
     }

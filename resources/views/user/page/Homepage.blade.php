@@ -125,7 +125,7 @@
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Top Sellers</h2>
-                    <a href="" class="wid-view-more">View All</a>
+                    <!-- <a href="" class="wid-view-more">View All</a> -->
                     @foreach($topseller as $top)
                     <div class="single-wid-product">
                         <a href="{{ route('product.page', ['nameproduct' => $top->nameproduct]) }}"><img
@@ -150,7 +150,7 @@
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Recently Viewed</h2>
-                    <a href="#" class="wid-view-more">View All</a>
+                    <!-- <a href="#" class="wid-view-more">View All</a> -->
                     @foreach($recently as $rc)
                     <div class="single-wid-product">
                         <a href="{{ route('product.page', ['nameproduct' => $rc->nameproduct]) }}"><img
@@ -175,7 +175,7 @@
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Top New</h2>
-                    <a href="#" class="wid-view-more">View All</a>
+                    <!-- <a href="#" class="wid-view-more">View All</a> -->
                     @foreach($randomproduct as $rc)
                     @if($loop->index < 3) <div class="single-wid-product">
                         <a href="{{ route('product.page', ['nameproduct' => $rc->nameproduct]) }}"><img

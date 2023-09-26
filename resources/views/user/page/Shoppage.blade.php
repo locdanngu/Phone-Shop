@@ -1,7 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'Shop')
-
+@section('title', trans('messages.shoppage'))
 
 @section('body')
 <div class="single-product-area">

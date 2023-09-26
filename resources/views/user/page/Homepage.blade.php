@@ -1,6 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'Homepage')
+@section('title', trans('messages.homepage'))
 
 @section('body')
 <div class="slider-area">

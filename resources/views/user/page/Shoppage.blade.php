@@ -40,9 +40,8 @@
                         @endif
 
                         <div class="product-carousel-price">
-                            <ins>{{ app()->getLocale() === 'vi' ? 'VND ' : '$ '}}
-                                {{ $pr->price }}</ins>
-                            <del>{{ app()->getLocale() === 'vi' ? 'VND ' : '$ '}}{{ $pr->oldprice }}</del>
+                            <ins>{{ $currencySymbol }} @convertCurrency($pr->price)</ins>
+                            <del>{{ $currencySymbol }} @convertCurrency($pr->oldprice)</del>
                         </div>
 
                         <div class="product-option-shop">

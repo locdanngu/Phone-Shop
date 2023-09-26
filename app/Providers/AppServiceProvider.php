@@ -20,9 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Đăng ký Blade Directive tùy chỉnh
-        Blade::directive('convert', function ($expression) {
-            return "<?php echo app()->getLocale() === 'vi' ? ($expression * 23000) : $expression; ?>";
-        });
+        
     }
 
     /**
@@ -105,5 +103,10 @@ class AppServiceProvider extends ServiceProvider
             ]);
             
         });
+
+        Blade::directive('convertCurrency', function ($expression) {
+            return "<?php echo app()->getLocale() === 'vi' ? number_format($expression * 23000) : number_format($expression, 2); ?>";
+        });
+        
     }
 }

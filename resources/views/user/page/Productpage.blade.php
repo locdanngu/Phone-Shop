@@ -50,7 +50,7 @@
                             <div class="product-inner">
                                 <h2 class="product-name">{{ $product->nameproduct }}</h2>
                                 <div class="product-inner-price">
-                                    <ins>${{ $product->price }}</ins> <del>${{ $product->oldprice }}</del>
+                                    <ins>{{ $currencySymbol }} {{ $product->price }}</ins> <del>{{ $currencySymbol }} {{ $product->oldprice }}</del>
                                 </div>
 
                                 <div class="cart">
@@ -197,7 +197,7 @@
                                 </h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>${{ $rd->price }}</ins> <del>${{ $rd->oldprice }}</del>
+                                    <ins>{{ $currencySymbol }} {{ $rd->price }}</ins> <del>{{ $currencySymbol }} {{ $rd->oldprice }}</del>
                                 </div>
                             </div>
                             @endforeach

@@ -23,7 +23,7 @@
                     </h2>
                     @endif
 
-                    <h4 class="caption subtitle">${{ $rd->price }}</h4>
+                    <h4 class="caption subtitle">{{ $currencySymbol }} {{ $rd->price }}</h4>
                     <a class="caption button-radius"
                         href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}"><span
                             class="icon"></span>{{ trans('messages.shopnow') }}</a>
@@ -98,7 +98,7 @@
                             <h2><a href="single-product.html">{{ $lp->nameproduct }}</a></h2>
 
                             <div class="product-carousel-price">
-                                <ins>${{ $lp->price }}</ins> <del>${{ $lp->oldprice }}</del>
+                                <ins>{{ $currencySymbol }} {{ $lp->price }}</ins> <del>{{ $currencySymbol }} {{ $lp->oldprice }}</del>
                             </div>
                         </div>
                         @endforeach
@@ -149,7 +149,7 @@
                             <i class="fa fa-star"></i>
                         </div>
                         <div class="product-wid-price">
-                            <ins>${{ $top->price }}</ins> <del>${{ $top->oldprice }}</del>
+                            <ins>{{ $currencySymbol }} {{ $top->price }}</ins> <del>{{ $currencySymbol }} {{ $top->oldprice }}</del>
                         </div>
                     </div>
                     @endforeach
@@ -174,7 +174,7 @@
                             <i class="fa fa-star"></i>
                         </div>
                         <div class="product-wid-price">
-                            <ins>${{ $rc->price }}</ins> <del>${{ $rc->oldprice }}</del>
+                            <ins>{{ $currencySymbol }} {{ $rc->price }}</ins> <del>{{ $currencySymbol }} {{ $rc->oldprice }}</del>
                         </div>
                     </div>
                     @endforeach
@@ -199,7 +199,7 @@
                             <i class="fa fa-star"></i>
                         </div>
                         <div class="product-wid-price">
-                            <ins>${{ $rc->price }}</ins> <del>${{ $rc->oldprice }}</del>
+                            <ins>{{ $currencySymbol }} {{ $rc->price }}</ins> <del>{{ $currencySymbol }} {{ $rc->oldprice }}</del>
                         </div>
                 </div>
                 @else

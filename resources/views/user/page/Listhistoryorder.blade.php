@@ -43,7 +43,7 @@
                                         </td>
                                         <td>
                                             <span
-                                                class="amount font-weight-bold red">${{ number_format($o->beforecoupon, 2) }}</span>
+                                                class="amount font-weight-bold red">{{ $currencySymbol }} {{ number_format($o->beforecoupon, 2) }}</span>
                                         </td>
                                         <td>
                                             <span class="amount">{{ $o->created_at }}</span>

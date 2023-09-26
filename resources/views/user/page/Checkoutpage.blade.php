@@ -53,7 +53,7 @@
                                         </td>
 
                                         <td class="product-price">
-                                            <span class="amount">${{ $c->product->price }}</span>
+                                            <span class="amount">{{ $currencySymbol }} {{ $c->product->price }}</span>
                                         </td>
 
                                         <td class="product-quantity">
@@ -69,18 +69,18 @@
                                         </td>
                                         <td class="product-price">
                                             <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
+                                                style="color:red; font-weight:bold">{{ $currencySymbol }} {{ number_format($c->quantity * $c->product->price, 2) }}</span>
                                         </td>
                                         @if($c->idcoupon)
 
                                         <td class="product-price">
                                             <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->beforecoupon, 2) }}</span>
+                                                style="color:red; font-weight:bold">{{ $currencySymbol }} {{ number_format($c->beforecoupon, 2) }}</span>
                                         </td>
                                         @else
                                         <td class="product-price">
                                             <span class="amount"
-                                                style="color:red; font-weight:bold">${{ number_format($c->quantity * $c->product->price, 2) }}</span>
+                                                style="color:red; font-weight:bold">{{ $currencySymbol }} {{ number_format($c->quantity * $c->product->price, 2) }}</span>
                                         </td>
                                         @endif
                                     </tr>
@@ -143,12 +143,12 @@
                                         </td>
                                         @else
                                         <td class="product-quantity">
-                                            <span class="amount">{{ $couponcart->discount_amount }}$</span>
+                                            <span class="amount">{{ $couponcart->discount_amount }}{{ $currencySymbol }}</span>
                                         </td>
                                         @endif
                                         <td class="product-quantity">
                                             <span class="amount"
-                                                style="color:red;font-weight:bold">${{ $couponcart->max_discount_amount }}</span>
+                                                style="color:red;font-weight:bold">{{ $currencySymbol }} {{ $couponcart->max_discount_amount }}</span>
                                         </td>
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="#" type="button" data-toggle="modal"
@@ -176,12 +176,12 @@
                                         </td>
                                         @else
                                         <td class="product-quantity">
-                                            <span class="amount">{{ $c->discount_amount }}$</span>
+                                            <span class="amount">{{ $c->discount_amount }}{{ $currencySymbol }}</span>
                                         </td>
                                         @endif
                                         <td class="product-quantity">
                                             <span class="amount"
-                                                style="color:red;font-weight:bold">${{ $c->max_discount_amount }}</span>
+                                                style="color:red;font-weight:bold">{{ $currencySymbol }} {{ $c->max_discount_amount }}</span>
                                         </td>
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="#" type="button" data-toggle="modal"
@@ -231,7 +231,7 @@
                         <td class="product-name">
                             {{ trans('messages.allproduct') }} <strong class="product-quantity"></strong> </td>
                         <td class="product-total">
-                            <span class="amount font-weight-bold">${{ number_format($order->totalprice, 2) }}</span>
+                            <span class="amount font-weight-bold">{{ $currencySymbol }} {{ number_format($order->totalprice, 2) }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -240,14 +240,14 @@
                     <tr class="cart-subtotal">
                         <th>{{ trans('messages.addcouponproduct') }}</th>
                         <td><span class="amount font-weight-bold"> -
-                                ${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
+                                {{ $currencySymbol }} {{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
                         </td>
                     </tr>
 
                     <tr class="cart-subtotal">
                         <th>{{ trans('messages.addcouponcart') }}</th>
                         <td><span class="amount font-weight-bold"> -
-                                ${{ number_format($order->totalprice2 - $order->beforecoupon, 2) }}</span>
+                                {{ $currencySymbol }} {{ number_format($order->totalprice2 - $order->beforecoupon, 2) }}</span>
                         </td>
                     </tr>
 
@@ -265,7 +265,7 @@
                     <tr class="order-total">
                         <th>{{ trans('messages.ordertotal') }}</th>
                         <td><strong><span
-                                    class="amount red">${{ number_format($order->beforecoupon, 2) }}</span></strong>
+                                    class="amount red">{{ $currencySymbol }} {{ number_format($order->beforecoupon, 2) }}</span></strong>
                         </td>
                     </tr>
 

@@ -63,7 +63,7 @@
                                         </td>
 
                                         <td class="product-price">
-                                            <span class="amount">${{ $l->product->price }}</span>
+                                            <span class="amount">{{ $currencySymbol }} {{ $l->product->price }}</span>
                                         </td>
 
                                         <td class="product-quantity">
@@ -97,7 +97,7 @@
                                             <img alt="T_4_front" class="attachment-shop_catalog wp-post-image"
                                                 src="{{ $rd->imageproduct }}">
                                             <h3 class="fixheight2">{{ $rd->nameproduct }}</h3>
-                                            <span class="price"><span class="amount">${{ $rd->price }}</span></span>
+                                            <span class="price"><span class="amount">{{ $currencySymbol }} {{ $rd->price }}</span></span>
                                         </a>
 
                                         <a class="add_to_cart_button" rel="nofollow"

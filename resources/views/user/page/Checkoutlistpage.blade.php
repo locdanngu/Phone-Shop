@@ -42,7 +42,7 @@
                                             <span class="amount">{{ $o->idorder }}</span>
                                         </td>
                                         <td>
-                                            <span class="amount">${{ $o->beforecoupon }}</span>
+                                            <span class="amount">{{ $currencySymbol }} {{ $o->beforecoupon }}</span>
                                         </td>
                                         <td>
                                             <span class="amount">{{ $o->created_at }}</span>

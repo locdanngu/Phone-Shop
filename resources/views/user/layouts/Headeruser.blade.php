@@ -56,7 +56,7 @@
     </div>
 </div> <!-- End header area -->
 
-{{ app()->getLocale() }}
+<!-- {{ app()->getLocale() }} -->
 
 <div class="site-branding-area">
     <div class="container">

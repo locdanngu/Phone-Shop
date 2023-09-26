@@ -12,9 +12,17 @@
                 <img src="{{ $rd->imageproduct }}" alt="Slide"
                     style="height:300px;width: auto;max-width:max-content;margin-left:50px">
                 <div class="caption-group">
+                    @if(strlen($rd->nameproduct) > 30)
+                    <h2 class="caption title">
+                        <span class="primary"><strong>{!!
+                            mb_substr(strip_tags($rd->nameproduct), 0, 30) !!}...</strong></span>
+                    </h2>
+                    @else
                     <h2 class="caption title">
                         <span class="primary"><strong>{{ $rd->nameproduct }}</strong></span>
                     </h2>
+                    @endif
+                    
                     <h4 class="caption subtitle">${{ $rd->price }}</h4>
                     <a class="caption button-radius"
                         href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}"><span
@@ -33,25 +41,25 @@
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo1">
-                <i class="bi bi-arrow-clockwise"></i>
+                    <i class="bi bi-arrow-clockwise"></i>
                     <p>30 Days return</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo2">
-                <i class="bi bi-truck"></i>
+                    <i class="bi bi-truck"></i>
                     <p>Free shipping</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo3">
-                <i class="bi bi-lock-fill"></i>
+                    <i class="bi bi-lock-fill"></i>
                     <p>Secure payments</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo4">
-                <i class="bi bi-gift"></i>
+                    <i class="bi bi-gift"></i>
                     <p>New products</p>
                 </div>
             </div>
@@ -231,7 +239,6 @@ $(document).ready(function() {
     adjustImagePadding();
     $(window).resize(adjustImagePadding);
 });
-
 </script>
 
 

@@ -69,7 +69,7 @@
             @if($user)
             <div class="col-sm-6">
                 <div class="shopping-item" id="capnhatcart">
-                    <a href="{{ route('cart.page') }}">{{ trans('messages.cartbtn') }} - <span class="cart-amunt">${{ $scart_product }}</span> <i
+                    <a href="{{ route('cart.page') }}">{{ trans('messages.cartbtn') }} - <span class="cart-amunt">{{ $currencySymbol }} @convertCurrency($scart_product)</span> <i
                             class="bi bi-cart"></i>
                         <span class="product-count">{{ $ccart_product }}</span></a>
                 </div>

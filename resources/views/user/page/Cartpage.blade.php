@@ -67,7 +67,7 @@
                                                 </td>
 
                                                 <td class="product-price">
-                                                    <span class="amount">{{ $currencySymbol }} {{ $c->product->price }}</span>
+                                                    <span class="amount">{{ $currencySymbol }} @convertCurrency($c->product->price)</span>
                                                 </td>
 
                                                 <td class="product-quantity" style="padding:0 5px">
@@ -90,7 +90,7 @@
                                                 </td>
                                                 <td class="product-subtotal">
                                                     <span class="amount"
-                                                        style="color:red; font-weight:bold">{{ $currencySymbol }} {{ number_format($c->quantity * $c->product->price, 2) }}</span>
+                                                        style="color:red; font-weight:bold">{{ $currencySymbol }} @convertCurrency(($c->quantity * $c->product->price))</span>
                                                 </td>
                                             </tr>
 
@@ -131,7 +131,7 @@
                                     <tr class="order-total" id="capnhattotalprice">
                                         <th>{{ trans('messages.ordertotal') }}</th>
                                         <td><strong><span class="amount"
-                                                    style="font-weight:bold;color:red">{{ $currencySymbol }} {{ $scart_product }}</span></strong>
+                                                    style="font-weight:bold;color:red">{{ $currencySymbol }} @convertCurrency($scart_product)</span></strong>
                                         </td>
                                     </tr>
                                 </tbody>

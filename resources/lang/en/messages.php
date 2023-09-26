@@ -39,5 +39,6 @@ return [
     'search' => 'Search',
     'validproduct' => 'Valid product',
     'closebtn' => 'Close',
-    
+    'selectcategory' => 'Select category',
+
 ];

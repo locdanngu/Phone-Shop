@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Select category</h4>
+                <h4 class="modal-title">{{ trans('messages.selectcategory') }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('messages.close') }}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('messages.closebtn') }}</button>
             </div>
         </div>
         <!-- /.modal-content -->

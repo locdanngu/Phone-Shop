@@ -39,6 +39,7 @@ return [
     'search' => 'Tìm kiếm',
     'validproduct' => 'Sản phẩm phù hợp',
     'closebtn' => 'Đóng',
-    
+    'selectcategory' => 'Chọn danh mục',
+
 
 ];

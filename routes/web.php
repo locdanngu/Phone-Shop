@@ -25,8 +25,8 @@ Route::prefix('/')->group(function () {
     Route::get('/contact', [UserController::class, 'contact'])->name('usercontact.page');
     Route::post('/loginuser', [UserController::class, 'loginuser'])->name('loginuser');
     Route::post('/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
-    
-    Route::get('change-language/{language}', [UserController::class, 'changelanguage'])->name('user.change-language');
+
+    Route::get('/change-locale', [LocaleController::class, 'changeLocale'])->name('changeLocale');
 
     Route::middleware(['user'])->group(function () {
         Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');

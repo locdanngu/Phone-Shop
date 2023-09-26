@@ -43,10 +43,10 @@
                                     class="key">language :</span><span class="value">English </span><b
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">English</a></li>
+                                <li><a href="{{ route('changeLocale', ['locale' => 'en']) }}">English</a></li>
                                 <!-- <li><a href="#">French</a></li>
                                     <li><a href="#">German</a></li> -->
-                                <li><a href="#">Vietnamese</a></li>
+                                <li><a href="{{ route('changeLocale', ['locale' => 'vi']) }}">Vietnamese</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -55,6 +55,9 @@
         </div>
     </div>
 </div> <!-- End header area -->
+
+{{ app()->getLocale() }}
+
 
 <div class="site-branding-area">
     <div class="container">

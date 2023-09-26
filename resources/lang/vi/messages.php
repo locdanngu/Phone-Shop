@@ -47,6 +47,21 @@ return [
     'add' => 'Ngày thêm',
     'wishlistempty' => 'Mục yêu thích của bạn đang trống',
     'gotoshopnow' => 'Đi tới cửa hàng ngay',
+    'image' => 'Hình ảnh',
+    'quantity' => 'Số lượng',
+    'coupon' => 'Mã Khuyến mãi',
+    'total' => 'Tổng cộng',
+    'carttotal' => 'Tổng tiền giỏ hàng',
+    'ordertotal' => 'Tổng đơn hàng',
+    'cartempty' => 'Giỏ hàng của bạn đang trống',
+    'deleteproduct' => 'Xóa sản phẩm',
+    'deleteproduct2' => 'Xóa sản phẩm này',
+    'delete' => 'Xóa',
+    'listcheckout' => 'Danh sách thanh toán',
+    'idorder' => 'Id hóa đơn',
+    'date' => 'Ngày đặt',
+    'none' => 'Không',
+    'watch' => 'Xem',
     
 
     

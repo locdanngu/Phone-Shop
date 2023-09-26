@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Shopping Cart</h2>
+                    <h2>{{ trans('messages.cartbtn') }}</h2>
                 </div>
             </div>
         </div>
@@ -35,12 +35,12 @@
                                         <thead>
                                             <tr>
                                                 <th class="product-remove">&nbsp;</th>
-                                                <th class="product-thumbnail">Image</th>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-price">Price</th>
-                                                <th class="product-quantity">Quantity</th>
-                                                <th class="product-quantity">Coupon</th>
-                                                <th class="product-subtotal">Total</th>
+                                                <th class="product-thumbnail">{{ trans('messages.image') }}</th>
+                                                <th class="product-name">{{ trans('messages.product') }}</th>
+                                                <th class="product-price">{{ trans('messages.price') }}</th>
+                                                <th class="product-quantity">{{ trans('messages.quantity') }}</th>
+                                                <th class="product-quantity">{{ trans('messages.coupon') }}</th>
+                                                <th class="product-subtotal">{{ trans('messages.total') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody id="capnhatdanhsachcart">
@@ -85,7 +85,7 @@
                                                     @if($c->idcoupon)
                                                     <span class="amount">{{ $c->coupon->code }}</span>
                                                     @else
-                                                    <span class="amount">None</span>
+                                                    <span class="amount">{{ trans('messages.none') }}</span>
                                                     @endif
                                                 </td>
                                                 <td class="product-subtotal">
@@ -106,9 +106,9 @@
                                                     <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
                                                     @if($countaddress == 0)
                                                     <a href="{{ route('chuyenhuong') }}"
-                                                        class="btnchangeuser">Checkout</a>
+                                                        class="btnchangeuser">{{ trans('messages.checkoutbtn') }}</a>
                                                     @else
-                                                    <input type="submit" value="Checkout" name="proceed"
+                                                    <input type="submit" value="{{ trans('messages.checkoutbtn') }}" name="proceed"
                                                         class="checkout-button button alt wc-forward">
                                                     @endif
                                                 </td>
@@ -124,12 +124,12 @@
 
 
                         <div class="cart_totals ">
-                            <h2>Cart Totals</h2>
+                            <h2>{{ trans('messages.carttotal') }}</h2>
 
                             <table cellspacing="0">
                                 <tbody>
                                     <tr class="order-total" id="capnhattotalprice">
-                                        <th>Order Total</th>
+                                        <th>{{ trans('messages.ordertotal') }}</th>
                                         <td><strong><span class="amount"
                                                     style="font-weight:bold;color:red">${{ $scart_product }}</span></strong>
                                         </td>
@@ -150,7 +150,7 @@
                     </div>
                     @else
                     <div class="box">
-                        <h2>Your cart is empty! <a href="{{ route('shop.page') }}">Go to shop now</a></h2>
+                        <h2>{{ trans('messages.cartempty') }}! <a href="{{ route('shop.page') }}">{{ trans('messages.gotoshopnow') }}</a></h2>
                         <i class="bi bi-emoji-frown-fill"></i>
                     </div>
 
@@ -169,17 +169,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delete product</h4>
+                <h4 class="modal-title">{{ trans('messages.deleteproduct') }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h3 style="color:red; font-weight: bold">Delete this product?</h3>
+                <h3 style="color:red; font-weight: bold">{{ trans('messages.deleteproduct2') }}</h3>
                 <span name="nameproduct"></span>
             </div>
             <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-danger" id="deleteproduct">Delete</button>
+                <button type="button" class="btn btn-danger" id="deleteproduct">{{ trans('messages.delete') }}</button>
             </div>
         </div>
         <!-- /.modal-content -->

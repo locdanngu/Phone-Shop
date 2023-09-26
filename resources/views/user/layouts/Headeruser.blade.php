@@ -17,7 +17,7 @@
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-login"><i
                                     class="bi bi-person-fill"></i> {{ trans('messages.dangnhapbtn') }}</a></li>
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-register"><i
-                                    class="bi bi-person-fill-add"></i> Register</a></li>
+                                    class="bi bi-person-fill-add"></i> {{ trans('messages.dangkybtn') }}</a></li>
                         @endif
                     </ul>
                 </div>
@@ -28,7 +28,7 @@
                     <ul class="list-unstyled list-inline">
                         <li class="dropdown dropdown-small">
                             <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
-                                    class="key">currency :</span><span class="value">USD </span><b
+                                    class="key">{{ trans('messages.tientebtn') }}</span><span class="value">{{ trans('messages.tiente') }} </span><b
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">USD</a></li>
@@ -40,7 +40,7 @@
 
                         <li class="dropdown dropdown-small">
                             <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
-                                    class="key">language :</span><span class="value">English </span><b
+                                    class="key">{{ trans('messages.ngonngubtn') }}</span><span class="value">{{ trans('messages.ngonngu') }} </span><b
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('changeLocale', ['locale' => 'en']) }}">English</a></li>

@@ -104,5 +104,13 @@ return [
     'listaddress' => 'List address',
     'in4/address' => 'Information / Add address',
     'changepassword' => 'Change password',
-
+    'user' => 'User',
+    'oldpassword' => 'Old password',
+    'newpassword' => 'New password',
+    'repassword' => 'Re-enter password',
+    'addaddress' => 'Add address',
+    'personal' => 'Personal infomation',
+    'firstname' => 'First name',
+    'lastname' => 'Last name',
+    'username' => 'Username',
 ];

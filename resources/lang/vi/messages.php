@@ -104,7 +104,16 @@ return [
     'listaddress' => 'Danh sách địa chỉ',
     'in4/address' => 'Thông tin / Thêm địa chỉ',
     'changepassword' => 'Đổi mật khẩu',
-    
+    'user' => 'Người dùng',
+    'oldpassword' => 'Mật khẩu hiện tại',
+    'newpassword' => 'Mật khẩu mới',
+    'repassword' => 'Nhập lại mật khẩu',
+    'addaddress' => 'Thêm địa chỉ',
+    'personal' => 'Thông tin cá nhân',
+    'firstname' => 'Họ',
+    'lastname' => 'Tên',
+    'username' => 'Tên người dùng',
+
 
 
 

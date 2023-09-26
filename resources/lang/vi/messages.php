@@ -16,5 +16,20 @@ return [
     'typepage' => 'Loại hàng',
     'historypage' => 'Lịch sử mua',
     'contactpage' => 'Liên hệ',
-
+    'shopnow' => 'Mua ngay',
+    '30dayreturn' => '30 Ngày trả hàng',
+    'freeshipping' => 'Miễn phí giao hàng',
+    'securepayments' => 'Bảo mật thanh toán',
+    'newproduct' => 'Sản phẩm mới',
+    'lastestproduct' => 'Sản phẩm mới nhất',
+    'addtocart' => 'Thêm vào giỏ',
+    'seedetail' => 'Xem chi tiết',
+    'topseller' => 'Bán chạy nhất',
+    'recentlyview' => 'Xem nhiều nhất',
+    'topnew' => 'Mới nhất',
+    'foot' => 'Điều rất quan trọng là khách hàng phải chú ý đến quá trình hấp thụ. Quả thực, họ phải chịu đựng điều này bằng những nỗi đau, chứ không phải những nỗi đau mà những nỗi đau khác gây ra bởi sự vuốt ve đơn thuần, nếu có chuyện gì xảy ra để lựa chọn điều đúng và chính điều này, hãy để tất cả đều bình đẳng! Chấp nhận, nợ nần, bất cứ ai. Nhưng lợi ích của sự thật vĩ đại?',
+    'usernavigation' => 'Điều hướng người dùng',
+    'myaccount' => 'Tài khoản',
+    'banquyen' => 'Đã đăng ký bản quyền',
+    
 ];

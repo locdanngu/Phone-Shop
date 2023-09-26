@@ -26,16 +26,16 @@
                             <a href="#">My account</a>
                         </li>
                         <li>
-                            <a href="#">Order history</a>
+                            <a href="#">{{ trans('messages.historypage') }}</a>
                         </li>
                         <li>
-                            <a href="{{ route('wishlist.page') }}">Wishlist</a>
+                            <a href="{{ route('wishlist.page') }}">{{ trans('messages.wishlistbtn') }}</a>
                         </li>
                         <li>
-                            <a href="#">Vendor contact</a>
+                            <a href="#">{{ trans('messages.contactpage') }}</a>
                         </li>
                         <li>
-                            <a href="{{ route('home.page') }}">Home page</a>
+                            <a href="{{ route('home.page') }}">{{ trans('messages.homepage') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -43,13 +43,18 @@
 
             <div class="col-md-3 col-sm-6">
                 <div class="footer-menu">
-                    <h2 class="footer-wid-title">Categories</h2>
+                    <h2 class="footer-wid-title">{{ trans('messages.categorypage') }}</h2>
                     <ul>
-                        <li><a href="#">Mobile Phone</a></li>
-                        <li><a href="#">Home accesseries</a></li>
-                        <li><a href="#">LED TV</a></li>
-                        <li><a href="#">Computer</a></li>
-                        <li><a href="#">Gadets</a></li>
+                        @php $count = 0 @endphp
+                        @foreach($category as $ct)
+                        @if ($count < 5) <li><a
+                                href="{{ route('shop.search', ['searchproduct' => $ct->namecategory]) }}">{{ $ct->namecategory }}</a>
+                            </li>
+                            @php $count++ @endphp
+                            @else
+                            @break
+                            @endif
+                            @endforeach
                     </ul>
                 </div>
             </div>

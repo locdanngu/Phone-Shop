@@ -15,18 +15,18 @@
                     @if(strlen($rd->nameproduct) > 30)
                     <h2 class="caption title">
                         <span class="primary"><strong>{!!
-                            mb_substr(strip_tags($rd->nameproduct), 0, 30) !!}...</strong></span>
+                                mb_substr(strip_tags($rd->nameproduct), 0, 30) !!}...</strong></span>
                     </h2>
                     @else
                     <h2 class="caption title">
                         <span class="primary"><strong>{{ $rd->nameproduct }}</strong></span>
                     </h2>
                     @endif
-                    
+
                     <h4 class="caption subtitle">${{ $rd->price }}</h4>
                     <a class="caption button-radius"
                         href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}"><span
-                            class="icon"></span>Shop now</a>
+                            class="icon"></span>{{ trans('messages.shopnow') }}</a>
                 </div>
             </li>
             @endforeach
@@ -42,25 +42,25 @@
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo1">
                     <i class="bi bi-arrow-clockwise"></i>
-                    <p>30 Days return</p>
+                    <p>{{ trans('messages.30dayreturn') }}</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo2">
                     <i class="bi bi-truck"></i>
-                    <p>Free shipping</p>
+                    <p>{{ trans('messages.freeshipping') }}</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo3">
                     <i class="bi bi-lock-fill"></i>
-                    <p>Secure payments</p>
+                    <p>{{ trans('messages.securepayments') }}</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo4">
                     <i class="bi bi-gift"></i>
-                    <p>New products</p>
+                    <p>{{ trans('messages.newproduct') }}</p>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="latest-product">
-                    <h2 class="section-title">Latest Products</h2>
+                    <h2 class="section-title">{{ trans('messages.lastestproduct') }}</h2>
                     <div class="product-carousel">
                         @foreach($lastproduct as $lp)
                         <div class="single-product">
@@ -82,16 +82,16 @@
                                 <div class="product-hover" style="height: 270px;">
                                     @if($user)
                                     <a href="#" class="add-to-cart-link them-sp-vao-gio"
-                                        data-idproduct="{{ $lp->idproduct }}"><i class="bi bi-cart-fill"></i> Add to
-                                        cart</a>
+                                        data-idproduct="{{ $lp->idproduct }}"><i class="bi bi-cart-fill"></i>
+                                        {{ trans('messages.addtocart') }}</a>
                                     @else
                                     <a href="#" class="add-to-cart-link" type="button" data-toggle="modal"
-                                        data-target="#modal-login"><i class="bi bi-cart-fill"></i> Add to
-                                        cart</a>
+                                        data-target="#modal-login"><i class="bi bi-cart-fill"></i>
+                                        {{ trans('messages.addtocart') }}</a>
                                     @endif
                                     <a href="{{ route('product.page', ['nameproduct' => $lp->nameproduct]) }}"
                                         class="view-details-link"><i class="bi bi-share-fill"></i>
-                                        See details</a>
+                                        {{ trans('messages.seedetail') }}</a>
                                 </div>
                             </div>
 
@@ -132,7 +132,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="single-product-widget">
-                    <h2 class="product-wid-title">Top Sellers</h2>
+                    <h2 class="product-wid-title">{{ trans('messages.topseller') }}</h2>
                     <!-- <a href="" class="wid-view-more">View All</a> -->
                     @foreach($topseller as $top)
                     <div class="single-wid-product">
@@ -157,7 +157,7 @@
             </div>
             <div class="col-md-4">
                 <div class="single-product-widget">
-                    <h2 class="product-wid-title">Recently Viewed</h2>
+                    <h2 class="product-wid-title">{{ trans('messages.recentlyview') }}</h2>
                     <!-- <a href="#" class="wid-view-more">View All</a> -->
                     @foreach($recently as $rc)
                     <div class="single-wid-product">
@@ -182,7 +182,7 @@
             </div>
             <div class="col-md-4">
                 <div class="single-product-widget">
-                    <h2 class="product-wid-title">Top New</h2>
+                    <h2 class="product-wid-title">{{ trans('messages.topnew') }}</h2>
                     <!-- <a href="#" class="wid-view-more">View All</a> -->
                     @foreach($randomproduct as $rc)
                     @if($loop->index < 3) <div class="single-wid-product">

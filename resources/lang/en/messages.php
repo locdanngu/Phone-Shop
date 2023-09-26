@@ -31,4 +31,9 @@ return [
     'usernavigation' => 'User Navigation',
     'myaccount' => 'My account',
     'banquyen' => 'All Rights Reserved',
+    'newletter' => 'Newsletter',
+    'newletter2' => 'Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!',
+    'typeemail' => 'Type your email',
+    'subscribe' => 'subscibe',
+
 ];

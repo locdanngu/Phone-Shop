@@ -5,10 +5,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="footer-about-us">
                     <h2>u<span>Stora</span></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero
-                        quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi
-                        iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi
-                        veritatis magni at?</p>
+                    <p>{{ trans('messages.foot') }}</p>
                     <div class="footer-social">
                         <a href="#" target="_blank"><i class="bi bi-facebook"></i></a>
                         <a href="#" target="_blank"><i class="bi bi-twitter"></i></a>
@@ -20,10 +17,10 @@
 
             <div class="col-md-3 col-sm-6">
                 <div class="footer-menu">
-                    <h2 class="footer-wid-title">User Navigation </h2>
+                    <h2 class="footer-wid-title">{{ trans('messages.usernavigation') }} </h2>
                     <ul>
                         <li>
-                            <a href="#">My account</a>
+                            <a href="#">{{ trans('messages.myaccount') }}</a>
                         </li>
                         <li>
                             <a href="#">{{ trans('messages.historypage') }}</a>
@@ -61,13 +58,12 @@
 
             <div class="col-md-3 col-sm-6">
                 <div class="footer-newsletter">
-                    <h2 class="footer-wid-title">Newsletter</h2>
-                    <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to
-                        your inbox!</p>
+                    <h2 class="footer-wid-title">{{ trans('messages.newletter') }}</h2>
+                    <p>{{ trans('messages.newletter2') }}</p>
                     <div class="newsletter-form">
                         <form action="#">
-                            <input type="email" placeholder="Type your email">
-                            <input type="submit" value="Subscribe">
+                            <input type="email" placeholder="{{ trans('messages.typeemail') }}">
+                            <input type="submit" value="{{ trans('messages.subscribe') }}">
                         </form>
                     </div>
                 </div>
@@ -81,7 +77,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="copyright">
-                    <p>&copy; 2023. All Rights Reserved.</p>
+                    <p>&copy; 2023. {{ trans('messages.banquyen') }}.</p>
                 </div>
             </div>
 

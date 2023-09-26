@@ -31,5 +31,9 @@ return [
     'usernavigation' => 'Điều hướng người dùng',
     'myaccount' => 'Tài khoản',
     'banquyen' => 'Đã đăng ký bản quyền',
-    
+    'newletter' => 'Thư mới',
+    'newletter2' => 'Đăng ký nhận bản tin của chúng tôi và nhận các ưu đãi độc quyền mà bạn sẽ không tìm thấy ở bất kỳ nơi nào khác hộp thư đến của bạn!',
+    'typeemail' => 'Nhập email của bạn',
+    'subscribe' => 'Theo dõi',
+
 ];

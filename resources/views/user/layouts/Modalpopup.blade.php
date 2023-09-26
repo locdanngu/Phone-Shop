@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('messages.close') }}</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -32,7 +32,7 @@
         <form action="{{ route('loginuser') }}" method="post" class="modal-content content__form">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Login</h4>
+                <h4 class="modal-title">{{ trans('messages.dangnhapbtn') }}</h4>
             </div>
             <div style="display:flex;justify-content:center; margin-top:2em">
                 <h2>u<h2 style="color: #5a88ca">Stora</h2>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" style="width: 100%;">Login</button>
+                <button type="submit" style="width: 100%;">{{ trans('messages.dangnhapbtn') }}</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -68,7 +68,7 @@
         <form action="{{ route('registeruser') }}" method="post" class="modal-content content__form">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Register</h4>
+                <h4 class="modal-title">{{ trans('messages.danhkybtn') }}</h4>
             </div>
             <div style="display:flex;justify-content:center; margin-top:2em">
                 <h2>u<h2 style="color: #5a88ca">Stora</h2>
@@ -130,7 +130,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" style="width: 100%;">Register</button>
+                <button type="submit" style="width: 100%;">{{ trans('messages.dangkybtn') }}</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -143,7 +143,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Logout?</h4>
+                <h4 class="modal-title">{{ trans('messages.logoutbtn') }}?</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -152,7 +152,7 @@
                 <h3 style="color:red" class="font-weight-bold">You sure want to quit?</h3>
             </div>
             <div class="modal-footer justify-align-content-end">
-                <a href="{{ route('logoutuser') }}" class="btn btn-danger">Logout</a>
+                <a href="{{ route('logoutuser') }}" class="btn btn-danger">{{ trans('messages.logoutbtn') }}</a>
             </div>
         </div>
         <!-- /.modal-content -->

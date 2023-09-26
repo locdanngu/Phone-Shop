@@ -35,5 +35,9 @@ return [
     'newletter2' => 'Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!',
     'typeemail' => 'Type your email',
     'subscribe' => 'subscibe',
-
+    'searchproduct' => 'Search products',
+    'search' => 'Search',
+    'validproduct' => 'Valid product',
+    'closebtn' => 'Close',
+    
 ];

@@ -10,15 +10,15 @@
         <div class="row" style="display: flex; flex-direction: column;">
             <div class="col-md-12">
                 <div class="single-sidebar">
-                    <h2 class="sidebar-title">Search Products</h2>
+                    <h2 class="sidebar-title">{{ trans('messages.searchproduct') }}</h2>
                     <form action="{{ route('shop.search') }}" method="get">
-                        <input type="text" placeholder="Search products..." value="{{ request('searchproduct') }}"
+                        <input type="text" placeholder="{{ trans('messages.searchproduct') }}..." value="{{ request('searchproduct') }}"
                             name="searchproduct">
-                        <input type="submit" value="Search">
+                        <input type="submit" value="{{ trans('messages.search') }}">
                     </form>
                     @if(request('searchproduct') || request('page'))
                     <h3 style="margin-top:1em"><span class="font-weight-bold"
-                            style="color:red">{{ $countproduct }}</span> valid product</h3>
+                            style="color:red">{{ $countproduct }}</span> {{ trans('messages.validproduct') }}</h3>
                     @endif
                 </div>
             </div>
@@ -47,10 +47,10 @@
                         <div class="product-option-shop">
                             @if($user)
                             <a class="add_to_cart_button them-sp-vao-gio" href="#"
-                                data-idproduct="{{ $pr->idproduct }}">Add to cart</a>
+                                data-idproduct="{{ $pr->idproduct }}">{{ trans('messages.addtocart') }}</a>
                             @else
                             <a class="add_to_cart_button" href="#" type="button" data-toggle="modal"
-                                data-target="#modal-login">Add to cart</a>
+                                data-target="#modal-login">{{ trans('messages.addtocart') }}</a>
                             @endif
                         </div>
                     </div>

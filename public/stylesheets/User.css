@@ -193,10 +193,18 @@ body {
     padding: 20px;
 }
 
-.mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {
+.fixpadding{
+    padding: 5px 15px !important;
+}
+
+
+/* Chọn tất cả các phần tử <li> trừ những phần tử có class "dropdown" và "dropdown-small" */
+.mainmenu-area ul.navbar-nav li:not(.dropdown.dropdown-small):hover a,
+.mainmenu-area ul.navbar-nav li:not(.dropdown.dropdown-small).active a {
     background: #5a88ca;
     color: #FFF;
 }
+
 
 /* .mainmenu-area .nav > li > a:focus {color: #FFF;} */
 
@@ -1819,6 +1827,11 @@ a:focus{
 
     .product-hover{
         height: 100% !important;
+    }
+
+    .block-slider .caption-group {
+        visibility: hidden;
+        display: none;
     }
 
 }

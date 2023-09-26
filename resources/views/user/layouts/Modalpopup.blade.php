@@ -27,36 +27,6 @@
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="modal-type">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Select type</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('shop.search') }}" method="get" style="display: flex;">
-                    <select style="width: 100%" name="searchproduct">
-                        @foreach($type as $ty)
-                        <option value="{{ $ty->nametype }}">{{ $loop->iteration }}.
-                            {{ $ty->nametype }}</option>
-                        @endforeach
-                    </select>
-                    <button type="submit">Submit</button>
-                </form>
-
-            </div>
-            <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
 <div class="modal fade" id="modal-login">
     <div class="modal-dialog">
         <form action="{{ route('loginuser') }}" method="post" class="modal-content content__form">

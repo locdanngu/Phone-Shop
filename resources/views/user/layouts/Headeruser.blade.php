@@ -99,7 +99,15 @@
                         <a href="#" class="dropbtn" type="button" data-toggle="modal"
                             data-target="#modal-category">Category</a>
                     </li>
-                    <li><a href="#" class="dropbtn" type="button" data-toggle="modal" data-target="#modal-type">Type</a>
+                    <li class="dropdown dropdown-small">
+                        <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
+                                class="key">Type</span><span class="value"></span><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            @foreach($type as $ty)
+                            <li><a href="{{ route('shop.search', ['searchproduct' => $ty->nametype]) }}"
+                                    class="fixpadding">{{ $ty->nametype }}</a></li>
+                            @endforeach
+                        </ul>
                     </li>
                     @if($user)
                     <!-- <li class="{{ request()->routeIs('checkout.page') ? 'active' : '' }}"><a
@@ -116,6 +124,7 @@
                     @endif
                     <li class="{{ request()->routeIs('usercontact.page') ? 'active' : '' }}"><a
                             href="{{ route('usercontact.page') }}">Contact</a></li>
+
                 </ul>
             </div>
         </div>

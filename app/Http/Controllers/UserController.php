@@ -618,11 +618,23 @@ class UserController extends Controller
         }
         
 
-        $html = '<a href="' . route('cart.page') . '">Cart - <span class="cart-amunt">$' . $scart_product . '</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
+        // $html = '<a href="' . route('cart.page') . '">Cart - <span class="cart-amunt">$' . $scart_product . '</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
+
+        // $html2 ='';
+        // $html2 = '<th>Order Total</th>';
+        // $html2 .= '<td><strong><span class="amount" style="font-weight:bold;color:red">$' . $scart_product . '</span></strong></td>';
+
+        if(app()->getLocale() === 'vi'){
+            $currencySymbol = 'VND';
+        }else{
+            $currencySymbol = '$';
+        }
+
+        $html = '<a href="' . route('cart.page') . '">' . trans('messages.cartbtn') . ' - <span class="cart-amunt">' . $currencySymbol . ' ' . ($currencySymbol === 'VND' ? number_format($scart_product * 23000) : number_format($scart_product, 2)) . '</span> <i class="bi bi-cart"></i> <span class="product-count">' . $ccart_product . '</span></a>';
 
         $html2 ='';
         $html2 = '<th>Order Total</th>';
-        $html2 .= '<td><strong><span class="amount" style="font-weight:bold;color:red">$' . $scart_product . '</span></strong></td>';
+        $html2 .= '<td><strong><span class="amount" style="font-weight:bold;color:red">' . $currencySymbol . ' ' . ($currencySymbol === 'VND' ? number_format($scart_product * 23000) : number_format($scart_product, 2)) . '</span></strong></td>';
 
         return response()->json([
             'html' => $html,

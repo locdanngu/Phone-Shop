@@ -42,21 +42,21 @@
                     @csrf
                     <div id="customer_details" class="col2-set">
                         <div class="woocommerce-billing-fields">
-                            <h3>Personal information</h3>
+                            <h3>{{ trans('messages.personal') }}</h3>
                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                <label class="" for="billing_first_name">First Name
+                                <label class="" for="billing_first_name">{{ trans('messages.firstname') }}
                                 </label>
                                 <input type="text" value="{{ $user->firstname }}" placeholder="" id="billing_first_name"
                                     name="firstname" class="input-text" required>
                             </p>
                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                <label class="" for="billing_first_name">Last Name
+                                <label class="" for="billing_first_name">{{ trans('messages.lastname') }}
                                 </label>
                                 <input type="text" value="{{ $user->lastname }}" placeholder="" id="billing_first_name"
                                     name="lastname" class="input-text" required>
                             </p>
                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                <label class="" for="billing_first_name">Username
+                                <label class="" for="billing_first_name">{{ trans('messages.username') }}
                                 </label>
                                 <input type="text" value="{{ $user->username }}" placeholder="" id="billing_first_name"
                                     name="" class="input-text" disabled>
@@ -68,7 +68,7 @@
                                     name="" class="input-text" disabled>
                             </p>
                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                <label class="" for="billing_first_name">Phone
+                                <label class="" for="billing_first_name">{{ trans('messages.phone') }}
                                 </label>
                                 <input type="text" value="{{ $user->phone }}" placeholder="" id="billing_first_name"
                                     name="" class="input-text" disabled>
@@ -84,7 +84,7 @@
                     <div id="customer_details" class="col2-set">
                         <div class="">
                             <div class="woocommerce-billing-fields">
-                                <h3>Add address</h3>
+                                <h3>{{ trans('messages.addaddress') }}</h3>
                                 <p id="billing_country_field"
                                     class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
                                     <label class="" for="billing_country">{{ trans('messages.country') }} <abbr title="required"
@@ -338,7 +338,7 @@
                                     </select>
                                 </p>
                                 <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                    <label class="" for="billing_first_name">Town / City <abbr title="required"
+                                    <label class="" for="billing_first_name">{{ trans('messages.towncity') }} <abbr title="required"
                                             class="required">*</abbr>
                                     </label>
                                     <input type="text" value="" placeholder="" id="billing_first_name" name="town_city"
@@ -348,23 +348,23 @@
                                     data-o_class="form-row form-row-first address-field validate-state">
                                     <label class="" for="billing_state">{{ trans('messages.country') }}</label>
                                     <input type="text" id="billing_state" name="state_country"
-                                        placeholder="State / County" value="" class="input-text">
+                                        placeholder="{{ trans('messages.country') }}" value="" class="input-text">
                                 </p>
                                 <p id="billing_address_1_field"
                                     class="form-row form-row-wide address-field validate-required">
                                     <label class="" for="billing_address_1">{{ trans('messages.address') }} <abbr title="required"
                                             class="required">*</abbr>
                                     </label>
-                                    <input type="text" value="" placeholder="Street address" id="billing_address_1"
+                                    <input type="text" value="" placeholder="{{ trans('messages.address') }}" id="billing_address_1"
                                         name="address" class="input-text " required>
                                 </p>
                                 <p id="billing_address_2_field" class="form-row form-row-wide address-field">
-                                    <input type="text" value="" placeholder="Apartment, suite, unit etc. (optional)"
+                                    <input type="text" value="" placeholder="{{ trans('messages.address') }} ({{ trans('messages.opti') }})"
                                         id="apartment" name="apartment" class="input-text ">
                                 </p>
                                 <p id="billing_company_field" class="form-row form-row-wide">
                                     <label class="" for="billing_company">{{ trans('messages.companyname') }}</label>
-                                    <input type="text" value="" placeholder="" id="billing_company" name="companyname"
+                                    <input type="text" value="" placeholder="" id="{{ trans('messages.companyname') }}" name="companyname"
                                         class="input-text ">
                                 </p>
                                 <p id="billing_postcode_field"
@@ -373,13 +373,13 @@
                                     <label class="" for="billing_postcode">{{ trans('messages.postcode') }} <abbr title="required"
                                             class="required">*</abbr>
                                     </label>
-                                    <input type="text" value="" placeholder="Postcode / Zip" id="billing_postcode"
+                                    <input type="text" value="" placeholder="{{ trans('messages.postcode') }}" id="billing_postcode"
                                         name="postcode" class="input-text" required>
                                 </p>
                                 <p id="order_comments_field" class="form-row notes">
                                     <label class="" for="order_comments">{{ trans('messages.noteorder') }}</label>
                                     <textarea cols="5" rows="2"
-                                        placeholder="Notes about your order, e.g. special notes for delivery."
+                                        placeholder="{{ trans('messages.noteorder') }}"
                                         id="order_comments" class="input-text " name="ordernote"></textarea>
                                 </p>
                             </div>
@@ -412,7 +412,7 @@
 
                         @if(count($listaddress) == 0)
                         <tr>
-                            <td colspan=9 style="text-align:center; font-weight:bold">You do not have a delivery address
+                            <td colspan=9 style="text-align:center; font-weight:bold">{{ trans('messages.noaddress') }}
                             </td>
                         </tr>
                         @else
@@ -469,7 +469,7 @@
                     <div class="woocommerce-billing-fields">
                         <h3>{{ trans('messages.changepassword') }}</h3>
                         <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                            <label class="" for="billing_first_name">Old password
+                            <label class="" for="billing_first_name">{{ trans('messages.oldpassword') }}
                             </label>
                             <input type="password" placeholder="" id="billing_first_name" name="oldpassword"
                                 class="input-text" required autocomplete="off" style="width:100%">
@@ -478,7 +478,7 @@
                         <h5 style="color:red;font-weight:bold">{{ $message }}</h5>
                         @enderror
                         <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                            <label class="" for="billing_first_name">New password
+                            <label class="" for="billing_first_name">{{ trans('messages.newpassword') }}
                             </label>
                             <input type="password" placeholder="" id="billing_first_name" name="newpassword"
                                 class="input-text" required autocomplete="off" style="width:100%">
@@ -490,7 +490,7 @@
                         <h5 style="color:red;font-weight:bold">{{ $message }}</h5>
                         @enderror
                         <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                            <label class="" for="billing_first_name">Re-enter password
+                            <label class="" for="billing_first_name">{{ trans('messages.repassword') }}
                             </label>
                             <input type="password" placeholder="" id="billing_first_name" autocomplete="off"
                                 name="repassword" class="input-text" style="width:100%">
@@ -519,13 +519,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delete address</h4>
+                <h4 class="modal-title">{{ trans('messages.deleteaddress') }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h3 style="color:red; font-weight: bold">Delete this address?</h3>
+                <h3 style="color:red; font-weight: bold">{{ trans('messages.deleteaddress2') }}?</h3>
                 <span name="nameproduct"></span>
             </div>
             <div class="modal-footer justify-align-content-end">

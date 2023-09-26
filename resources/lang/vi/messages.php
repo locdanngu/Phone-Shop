@@ -113,7 +113,11 @@ return [
     'firstname' => 'Họ',
     'lastname' => 'Tên',
     'username' => 'Tên người dùng',
-
+    'noaddress' => 'Bạn không có địa chỉ giao hàng',
+    '1address' => 'Bạn cần ít nhất 1 địa chỉ giao hàng',
+    'deleteaddress' => 'Xóa địa chỉ',
+    'deleteaddress2' => 'Xóa địa chỉ này',
+    'opti' => 'Tùy chỉnh',
 
 
 

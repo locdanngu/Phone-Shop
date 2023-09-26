@@ -88,7 +88,12 @@ return [
     'paypal2' => 'Thanh toán qua PayPal; bạn có thể thanh toán bằng thẻ tín dụng nếu bạn không có tài khoản PayPal.',
     'freeshipping' => 'Miễn phí giao hàng',
     'placeorder' => 'Đặt hàng',
+    'bankpayment' => 'Thanh toán ngân hàng',
+    'bill' => 'Hóa đơn',
+    'noteorder' => 'Ghi chú',
+    'submit' => 'Đồng ý',
     
+
 
 
 ];

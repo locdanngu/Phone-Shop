@@ -11,8 +11,8 @@
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">{{ trans('messages.searchproduct') }}</h2>
                     <form action="{{ route('shop.search') }}" method="get">
-                        <input type="text" placeholder="{{ trans('messages.searchproduct') }}..." value="{{ request('searchproduct') }}"
-                            name="searchproduct">
+                        <input type="text" placeholder="{{ trans('messages.searchproduct') }}..."
+                            value="{{ request('searchproduct') }}" name="searchproduct">
                         <input type="submit" value="{{ trans('messages.search') }}">
                     </form>
                     @if(request('searchproduct') || request('page'))
@@ -40,7 +40,9 @@
                         @endif
 
                         <div class="product-carousel-price">
-                            <ins>${{ $pr->price }}</ins> <del>${{ $pr->oldprice }}</del>
+                            <ins>{{ app()->getLocale() === 'vi' ? 'VND ' : '$ '}}
+                                {{ $pr->price }}</ins>
+                            <del>{{ app()->getLocale() === 'vi' ? 'VND ' : '$ '}}{{ $pr->oldprice }}</del>
                         </div>
 
                         <div class="product-option-shop">

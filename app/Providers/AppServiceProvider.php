@@ -7,6 +7,7 @@ use App\Models\Order; // Import model Friend
 use App\Models\Category; // Import model Friend
 use App\Models\Type; // Import model Friend
 use App\Models\Cart; // Import model Friend
+use Illuminate\Support\Facades\Blade; // Import the Blade facade
 use App\Models\Cart_product; // Import model Friend
 
 use Illuminate\Support\ServiceProvider;
@@ -18,7 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Đăng ký Blade Directive tùy chỉnh
+        Blade::directive('convert', function ($expression) {
+            return "<?php echo app()->getLocale() === 'vi' ? ($expression * 23000) : $expression; ?>";
+        });
     }
 
     /**
@@ -84,11 +88,20 @@ class AppServiceProvider extends ServiceProvider
             $category = Category::orderBy('namecategory', 'asc')->get();
             $type = Type::orderBy('nametype', 'asc')->get();
 
+            if(app()->getLocale() === 'vi'){
+                $currencySymbol = 'VND';
+            }else{
+                $currencySymbol = '$';
+            }
+
+             
+
             $view->with([
                 'category' => $category,
                 'type' => $type,
                 'ccart_product' => $ccart_product,
                 'scart_product' => $scart_product,
+                'currencySymbol' => $currencySymbol,
             ]);
             
         });

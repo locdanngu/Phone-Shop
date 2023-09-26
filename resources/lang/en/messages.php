@@ -98,6 +98,11 @@ return [
     'deny' => 'Deny',
     'success' => 'Success',
     'delivery' => 'Delivery',
-
+    'yourname' => 'Your name',
+    'phone' => 'Phone',
+    'content' => 'Content',
+    'listaddress' => 'List address',
+    'in4/address' => 'Information / Add address',
+    'changepassword' => 'Change password',
 
 ];

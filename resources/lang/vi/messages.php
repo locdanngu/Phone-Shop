@@ -98,6 +98,13 @@ return [
     'deny' => 'Từ chối',
     'success' => 'Thành công',
     'delivery' => 'Giao hàng',
+    'yourname' => 'Tên của bạn',
+    'phone' => 'Số điện thoại',
+    'content' => 'Nội dung',
+    'listaddress' => 'Danh sách địa chỉ',
+    'in4/address' => 'Thông tin / Thêm địa chỉ',
+    'changepassword' => 'Đổi mật khẩu',
+    
 
 
 

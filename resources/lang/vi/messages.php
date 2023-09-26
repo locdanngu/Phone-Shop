@@ -64,8 +64,30 @@ return [
     'watch' => 'Xem',
     'deletecheckout' => 'Xóa thanh toán này',
     'thisaction' => 'Thao tác này sẽ không thể khôi phục',
-    
-
+    'applycoupon' => 'Sử dụng mã khuyến mãi',
+    'haveacoupon'=> 'Có mã giảm giá',
+    'enteryourcode' => 'Bấm vào đây để nhập mã',
+    'apply' => 'Áp dụng',
+    'code' => 'Mã',
+    'discountamount' => 'Lượng giảm giá',
+    'maxdiscount' => 'Giảm tối đa',
+    'allproduct' => 'Tất cả sản phẩm',
+    'addcouponproduct' => 'Sản phẩm áp dụng mã giảm giá',
+    'addcouponcart' => 'Giỏ hàng áp dụng mã giảm giá',
+    'shippingandhandle' => 'Giao và nhận hàng',
+    'address' => 'Địa chỉ',
+    'statecountry' => 'Quốc gia',
+    'country' => 'Thành phố',
+    'towncity' => 'Tỉnh thành',
+    'companyname' => 'Tên công ty',
+    'postcode' => 'Mã bưu điện',
+    'apartment' => 'Căn hộ',
+    'bank' => 'Chuyển khoản',
+    'bank2' => 'Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán. Đơn đặt hàng của bạn sẽ không được giao cho đến khi tiền đã được xóa trong tài khoản của chúng tôi.',
+    'paypal' => 'Paypal là gì',
+    'paypal2' => 'Thanh toán qua PayPal; bạn có thể thanh toán bằng thẻ tín dụng nếu bạn không có tài khoản PayPal.',
+    'freeshipping' => 'Miễn phí giao hàng',
+    'placeorder' => 'Đặt hàng',
     
 
 

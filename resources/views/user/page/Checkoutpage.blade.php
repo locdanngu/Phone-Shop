@@ -63,7 +63,8 @@
                                             @if($c->idcoupon)
                                             <span class="amount" style="font-weight:bold">{{ $c->coupon->code }}</span>
                                             @else
-                                            <span class="amount" style="font-weight:bold">None</span>
+                                            <span class="amount"
+                                                style="font-weight:bold">{{ trans('messages.none') }}</span>
                                             @endif
                                         </td>
                                         <td class="product-price">
@@ -92,21 +93,22 @@
             </div>
 
 
-            <h3>Apply coupon: {{ $countcoupon }}</h3>
-            <div class="woocommerce-info">Have a coupon? <a class="showcoupon" data-toggle="collapse"
-                    href="#coupon-collapse-wrap" aria-expanded="false" aria-controls="coupon-collapse-wrap">Click here
-                    to enter your code</a>
+            <h3>{{ trans('messages.apply') }}: {{ $countcoupon }}</h3>
+            <div class="woocommerce-info">{{ trans('messages.haveacoupon') }}? <a class="showcoupon"
+                    data-toggle="collapse" href="#coupon-collapse-wrap" aria-expanded="false"
+                    aria-controls="coupon-collapse-wrap">{{ trans('messages.enteryourcode') }}</a>
             </div>
 
             <div id="coupon-collapse-wrap" method="post" class="checkout_coupon collapse">
 
                 <p class="form-row form-row-first">
-                    <input type="text" value="" id="checkcoupon_code" placeholder="Coupon code" class="input-text"
-                        name="coupon_code">
+                    <input type="text" value="" id="checkcoupon_code" placeholder="{{ trans('messages.coupon') }}"
+                        class="input-text" name="coupon_code">
                 </p>
 
                 <p class="form-row form-row-last">
-                    <input type="submit" value="Apply Coupon" name="apply_coupon" class="button" id="checkcoupon">
+                    <input type="submit" value="{{ trans('messages.apply') }} {{ trans('messages.coupon') }}"
+                        name="apply_coupon" class="button" id="checkcoupon">
                 </p>
             </div>
             <div class="col-md-12">
@@ -116,10 +118,10 @@
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
-                                        <th class="product-name">Apply</th>
-                                        <th class="product-price">Code</th>
-                                        <th class="product-quantity">Discount Amount</th>
-                                        <th class="product-quantity">Max discount</th>
+                                        <th class="product-name">{{ trans('messages.apply') }}</th>
+                                        <th class="product-price">{{ trans('messages.code') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.discountamount') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.maxdiscount') }}</th>
                                         <th class="product-quantity"></th>
                                     </tr>
                                 </thead>
@@ -153,7 +155,7 @@
                                                 data-target="#modal-deleteproduct2" class="btnchangeuser"
                                                 data-id="{{ $couponcart->idcoupon }}"
                                                 data-code="{{ $couponcart->code }}">
-                                                <i class="bi bi-trash-fill"></i> Delete</a>
+                                                <i class="bi bi-trash-fill"></i> {{ trans('messages.delete') }}</a>
                                         </td>
                                     </tr>
                                     @endif
@@ -185,7 +187,7 @@
                                             <a href="#" type="button" data-toggle="modal"
                                                 data-target="#modal-deleteproduct" class="btnchangeuser"
                                                 data-id="{{ $c->idcoupon }}" data-code="{{ $c->code }}">
-                                                <i class="bi bi-trash-fill"></i> Delete</a>
+                                                <i class="bi bi-trash-fill"></i> {{ trans('messages.delete') }}</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -221,13 +223,13 @@
                 <thead>
                     <tr>
                         <th class="product-name"></th>
-                        <th class="product-total">Total</th>
+                        <th class="product-total">{{ trans('messages.total') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="cart_item">
                         <td class="product-name">
-                            All product <strong class="product-quantity"></strong> </td>
+                            {{ trans('messages.allproduct') }} <strong class="product-quantity"></strong> </td>
                         <td class="product-total">
                             <span class="amount font-weight-bold">${{ number_format($order->totalprice, 2) }}</span>
                         </td>
@@ -236,24 +238,24 @@
                 <tfoot>
 
                     <tr class="cart-subtotal">
-                        <th>Add coupon product</th>
+                        <th>{{ trans('messages.addcouponproduct') }}</th>
                         <td><span class="amount font-weight-bold"> -
                                 ${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
                         </td>
                     </tr>
 
                     <tr class="cart-subtotal">
-                        <th>Add coupon cart</th>
+                        <th>{{ trans('messages.addcouponcart') }}</th>
                         <td><span class="amount font-weight-bold"> -
                                 ${{ number_format($order->totalprice2 - $order->beforecoupon, 2) }}</span>
                         </td>
                     </tr>
 
                     <tr class="shipping">
-                        <th>Shipping and Handling</th>
+                        <th>{{ trans('messages.shippingandhandle') }}</th>
                         <td>
 
-                            Free Shipping
+                            {{ trans('messages.freeshipping') }}
                             <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0"
                                 data-index="0" name="shipping_method[0]">
                         </td>
@@ -261,7 +263,7 @@
 
 
                     <tr class="order-total">
-                        <th>Order Total</th>
+                        <th>{{ trans('messages.ordertotal') }}</th>
                         <td><strong><span
                                     class="amount red">${{ number_format($order->beforecoupon, 2) }}</span></strong>
                         </td>
@@ -284,13 +286,13 @@
                                     <thead>
                                         <tr>
                                             <th class="product-thumbnail"></th>
-                                            <th class="product-name">Address</th>
-                                            <th class="product-price">state country</th>
-                                            <th class="product-quantity">country</th>
-                                            <th class="product-quantity">town city</th>
-                                            <th class="product-quantity">company name</th>
-                                            <th class="product-subtotal">post code</th>
-                                            <th class="product-subtotal">apartment</th>
+                                            <th class="product-name">{{ trans('messages.address') }}</th>
+                                            <th class="product-price">{{ trans('messages.statecountry') }}</th>
+                                            <th class="product-quantity">{{ trans('messages.country') }}</th>
+                                            <th class="product-quantity">{{ trans('messages.towncity') }}</th>
+                                            <th class="product-quantity">{{ trans('messages.companyname') }}</th>
+                                            <th class="product-subtotal">{{ trans('messages.postcode') }}</th>
+                                            <th class="product-subtotal">{{ trans('messages.apartment') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody id="capnhatdanhsachorder">
@@ -344,10 +346,9 @@
                     <li class="payment_method_bacs">
                         <input type="radio" data-order_button_text="" checked="checked" value="bank"
                             name="payment_method" class="input-radio" id="payment_method_bacs">
-                        <label for="payment_method_bacs">Direct Bank Transfer </label>
+                        <label for="payment_method_bacs">{{ trans('messages.bank') }} </label>
                         <div class="payment_box payment_method_bacs">
-                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment
-                                reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                            <p>{{ trans('messages.bank2') }}</p>
                         </div>
                     </li>
                     <input type="hidden" name="idorder" value="{{ request()->input('idorder') }}">
@@ -358,11 +359,11 @@
                                 src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"><a
                                 title="What is PayPal?"
                                 onclick="javascript:window.open('https://www.paypal.com/gb/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"
-                                class="about_paypal" href="https://www.paypal.com/gb/webapps/mpp/paypal-popup">What is
-                                PayPal?</a>
+                                class="about_paypal"
+                                href="https://www.paypal.com/gb/webapps/mpp/paypal-popup">{{ trans('messages.paypal') }}?</a>
                         </label>
                         <div style="display:none;" class="payment_box payment_method_paypal">
-                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                            <p>{{ trans('messages.paypal2') }}</p>
                         </div>
                     </li>
                     <!-- <li class="payment_method_cheque">
@@ -376,8 +377,8 @@
 
                 <div class="form-row place-order">
 
-                    <input type="submit" data-value="Place order" value="Place order" id="place_order"
-                        name="woocommerce_checkout_place_order" class="button alt">
+                    <input type="submit" data-value="Place order" value="{{ trans('messages.placeorder') }}"
+                        id="place_order" name="woocommerce_checkout_place_order" class="button alt">
 
 
                 </div>

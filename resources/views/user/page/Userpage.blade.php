@@ -519,39 +519,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delete product</h4>
+                <h4 class="modal-title">Delete address</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h3 style="color:red; font-weight: bold">Delete this product?</h3>
+                <h3 style="color:red; font-weight: bold">Delete this address?</h3>
                 <span name="nameproduct"></span>
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-danger" id="deleteproduct">Delete</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
-<div class="modal fade" id="modal-deleteproduct2">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Delete product</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h3 style="color:red; font-weight: bold">Delete this product?</h3>
-                <span name="nameproduct"></span>
-            </div>
-            <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-danger" id="deleteproduct2">Delete</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -628,13 +606,6 @@ $('#modal-deleteproduct').on('shown.bs.modal', function(event) {
     modal.find('span[name="nameproduct"]').text(name);
 });
 
-$('#modal-deleteproduct2').on('shown.bs.modal', function(event) {
-    var button = $(event.relatedTarget); // Nút "Change" được nhấn
-    var name = button.data('name');
-    var modal = $(this);
-    modal.find('span[name="nameproduct"]').text(name);
-});
-
 $('#deleteproduct').on('click', function(event) {
     var id = globalId;
     $.ajax({
@@ -653,20 +624,5 @@ $('#deleteproduct').on('click', function(event) {
     });
 });
 
-$('#deleteproduct2').on('click', function(event) {
-    $.ajax({
-        type: 'POST',
-        url: "{{ route('deletemainaddress') }}",
-        data: {
-            _token: '{{ csrf_token() }}',
-        },
-        success: function(response) {
-            // Xóa phần tử HTML của sản phẩm khỏi danh sách
-            $('#mainaddress').remove();
-            toastr.success('Delete address successful.');
-            $('#modal-deleteproduct2').modal('hide');
-        }
-    });
-});
 </script>
 @endsection

@@ -836,19 +836,19 @@ class UserController extends Controller
         return redirect()->back()->withInput()->withErrors(['suc' => 'Password changed successfully']);
     }
 
-    public function deletemainaddress(Request $request)
-    {
-        $user = Auth::user();
-        $user->postcode = null;
-        $user->country = null;
-        $user->address = null;
-        $user->companyname = null;
-        $user->town_city = null;
-        $user->state_country = null;
-        $user->ordernote = null;
-        $user->apartment = null;
-        $user->save();
-    }
+    // public function deletemainaddress(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     $user->postcode = null;
+    //     $user->country = null;
+    //     $user->address = null;
+    //     $user->companyname = null;
+    //     $user->town_city = null;
+    //     $user->state_country = null;
+    //     $user->ordernote = null;
+    //     $user->apartment = null;
+    //     $user->save();
+    // }
 
 
     public function deleteanotheraddress(Request $request)

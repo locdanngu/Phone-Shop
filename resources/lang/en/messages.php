@@ -88,5 +88,16 @@ return [
     'paypal2' => 'Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.',
     'freeshipping' => 'Free Shipping',
     'placeorder' => 'Place order',
+    'bankpayment' => 'Bank Payment',
+    'bill' => 'Bill',
+    'noteorder' => 'Note order',
+    'submit' => 'Submit',
+    'paypalpayment' => 'Paypal Payment',
+    'status' => 'Status',
+    'wait' => 'Wait for confirmation',
+    'deny' => 'Deny',
+    'success' => 'Success',
+    'delivery' => 'Delivery',
+
 
 ];

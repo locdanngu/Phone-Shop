@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>History order</h2>
+                    <h2>{{ trans('messages.historypage') }}</h2>
                 </div>
             </div>
         </div>
@@ -28,10 +28,10 @@
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
-                                        <th class="product-thumbnail">Id order</th>
-                                        <th class="product-name">Total price</th>
-                                        <th class="product-price">Date</th>
-                                        <th class="product-price">Status</th>
+                                        <th class="product-thumbnail">{{ trans('messages.idorder') }}</th>
+                                        <th class="product-name">{{ trans('messages.total') }}</th>
+                                        <th class="product-price">{{ trans('messages.date') }}</th>
+                                        <th class="product-price">{{ trans('messages.status') }}</th>
                                         <th class="product-quantity">&nbsp;</th>
                                     </tr>
                                 </thead>
@@ -50,24 +50,27 @@
                                         </td>
                                         @if($o->status == 'wait' || $o->status == 'paypal')
                                         <td>
-                                            <span class="amount" style="color:brown">Wait for confirmation</span>
+                                            <span class="amount" style="color:brown">{{ trans('messages.wait') }}</span>
                                         </td>
                                         @elseif($o->status == 'cancel')
                                         <td>
-                                            <span class="amount" style="color:red">Deny</span>
+                                            <span class="amount" style="color:red">{{ trans('messages.deny') }}</span>
                                         </td>
                                         @elseif($o->status == 'done')
                                         <td>
-                                            <span class="amount" style="color:green">Success</span>
+                                            <span class="amount"
+                                                style="color:green">{{ trans('messages.success') }}</span>
                                         </td>
                                         @elseif($o->status == 'ship')
                                         <td>
-                                            <span class="amount" style="color:green">Delivery</span>
+                                            <span class="amount"
+                                                style="color:green">{{ trans('messages.delivery') }}</span>
                                         </td>
                                         @endif
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="{{ route('historyorder.page', ['idorder' => $o->idorder]) }}"
-                                                class="btnchangeuser"><i class="bi bi-eye-fill"></i> Watch</a>
+                                                class="btnchangeuser"><i class="bi bi-eye-fill"></i>
+                                                {{ trans('messages.watch') }}</a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -93,7 +93,12 @@ return [
     'noteorder' => 'Ghi chú',
     'submit' => 'Đồng ý',
     'paypalpayment' => 'Thanh toán Paypal',
-    
+    'status' => 'Trạng thái',
+    'wait' => 'Chờ xác nhận',
+    'deny' => 'Từ chối',
+    'success' => 'Thành công',
+    'delivery' => 'Giao hàng',
+
 
 
 

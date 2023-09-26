@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>History order</h2>
+                    <h2>{{ trans('messages.historypage') }}</h2>
                 </div>
             </div>
         </div>
@@ -20,23 +20,23 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="">
-            <h3>Id order: {{ $order->idorder }}</h3>
-            <h3>Status:
+            <h3>{{ trans('messages.idorder') }}: {{ $order->idorder }}</h3>
+            <h3>{{ trans('messages.status') }}:
                 @if($order->status == 'wait' || $order->status == 'paypal')
-                <span style="color:brown">Wait for confirmation</span>
+                <span style="color:brown">{{ trans('messages.wait') }}</span>
                 @elseif($order->status == 'cancel')
-                <span style="color:red">Deny</span>
+                <span style="color:red">{{ trans('messages.deny') }}</span>
                 @elseif($order->status == 'done')
-                <span style="color:green">Success</span>
+                <span style="color:green">{{ trans('messages.success') }}</span>
                 @elseif($order->status == 'ship')
-                <span style="color:green">Delivery</span>
+                <span style="color:green">{{ trans('messages.delivery') }}</span>
                 @else
                 <span>Unknown</span> <!-- Hoặc bạn có thể sử dụng nội dung mặc định khác -->
                 @endif
             </h3>
             @if($order->pay != null)
             @if($order->pay == 'bank')
-            <h3>Payment: <span>Bank</span></h3>
+            <h3>Payment: <span>{{ trans('messages.bank') }}</span></h3>
             @else
             <h3>Payment: <span>Paypal</span></h3>
             @endif
@@ -50,13 +50,13 @@
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
-                                        <th class="product-thumbnail">Image</th>
-                                        <th class="product-name">Product</th>
-                                        <th class="product-price">Price</th>
-                                        <th class="product-quantity">Quantity</th>
-                                        <th class="product-quantity">Coupon</th>
-                                        <th class="product-subtotal">Price</th>
-                                        <th class="product-subtotal">Total</th>
+                                        <th class="product-thumbnail">{{ trans('messages.image') }}</th>
+                                        <th class="product-name">{{ trans('messages.product') }}</th>
+                                        <th class="product-price">{{ trans('messages.price') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.quantity') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.coupon') }}</th>
+                                        <th class="product-subtotal">{{ trans('messages.price') }}</th>
+                                        <th class="product-subtotal">{{ trans('messages.total') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="capnhatdanhsachorder">
@@ -85,7 +85,8 @@
                                             @if($c->idcoupon)
                                             <span class="amount" style="font-weight:bold">{{ $c->coupon->code }}</span>
                                             @else
-                                            <span class="amount" style="font-weight:bold">None</span>
+                                            <span class="amount"
+                                                style="font-weight:bold">{{ trans('messages.none') }}</span>
                                             @endif
                                         </td>
                                         <td class="product-price">
@@ -114,7 +115,7 @@
             </div>
 
 
-            <h3>Apply coupon: {{ $countcoupon }}</h3>
+            <h3>{{ trans('messages.apply') }} {{ trans('messages.coupon') }}: {{ $countcoupon }}</h3>
             <div class="col-md-12">
                 <div class="product-content-right">
                     <div class="card-body table-responsive p-0">
@@ -122,10 +123,10 @@
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
-                                        <th class="product-name">Apply</th>
-                                        <th class="product-price">Code</th>
-                                        <th class="product-quantity">Discount Amount</th>
-                                        <th class="product-quantity">Max discount</th>
+                                        <th class="product-name">{{ trans('messages.apply') }}</th>
+                                        <th class="product-price">{{ trans('messages.code') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.discountamount') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.maxdiscount') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="capnhatdanhsachcoupon">
@@ -190,7 +191,7 @@
 
 
 
-            <h3>Address:</h3>
+            <h3>{{ trans('messages.address') }}:</h3>
             <div class="col-md-12">
                 <div class="product-content-right">
                     <div class="card-body table-responsive p-0">
@@ -198,13 +199,13 @@
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
-                                        <th class="product-name">Address</th>
-                                        <th class="product-price">state country</th>
-                                        <th class="product-quantity">country</th>
-                                        <th class="product-quantity">town city</th>
-                                        <th class="product-quantity">company name</th>
-                                        <th class="product-subtotal">post code</th>
-                                        <th class="product-subtotal">apartment</th>
+                                        <th class="product-name">{{ trans('messages.address') }}</th>
+                                        <th class="product-price">{{ trans('messages.statecountry') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.country') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.towncity') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.companyname') }}</th>
+                                        <th class="product-subtotal">{{ trans('messages.postcode') }}</th>
+                                        <th class="product-subtotal">{{ trans('messages.apartment') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="capnhatdanhsachorder">
@@ -248,13 +249,13 @@
                 <thead>
                     <tr>
                         <th class="product-name"></th>
-                        <th class="product-total">Total</th>
+                        <th class="product-total">{{ trans('messages.total') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="cart_item">
                         <td class="product-name">
-                            All product <strong class="product-quantity"></strong> </td>
+                            {{ trans('messages.allproduct') }} <strong class="product-quantity"></strong> </td>
                         <td class="product-total">
                             <span class="amount font-weight-bold">${{ number_format($order->totalprice, 2) }}</span>
                         </td>
@@ -263,24 +264,24 @@
                 <tfoot>
 
                     <tr class="cart-subtotal">
-                        <th>Add coupon product</th>
+                        <th>{{ trans('messages.addcouponproduct') }}</th>
                         <td><span class="amount font-weight-bold"> -
                                 ${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
                         </td>
                     </tr>
 
                     <tr class="cart-subtotal">
-                        <th>Add coupon cart</th>
+                        <th>{{ trans('messages.addcouponcart') }}</th>
                         <td><span class="amount font-weight-bold"> -
                                 ${{ number_format($order->totalprice2 - $order->beforecoupon, 2) }}</span>
                         </td>
                     </tr>
 
                     <tr class="shipping">
-                        <th>Shipping and Handling</th>
+                        <th>{{ trans('messages.shippingandhandle') }}</th>
                         <td>
 
-                            Free Shipping
+                            {{ trans('messages.freeshipping') }}
                             <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0"
                                 data-index="0" name="shipping_method[0]">
                         </td>
@@ -288,7 +289,7 @@
 
 
                     <tr class="order-total">
-                        <th>Order Total</th>
+                        <th>{{ trans('messages.ordertotal') }}</th>
                         <td><strong><span
                                     class="amount red">${{ number_format($order->beforecoupon, 2) }}</span></strong>
                         </td>

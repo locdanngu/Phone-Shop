@@ -31,10 +31,10 @@
                                     class="key">{{ trans('messages.tientebtn') }}</span><span class="value">{{ trans('messages.tiente') }} </span><b
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">USD</a></li>
+                                <li><a href="{{ route('changeLocale', ['locale' => 'en']) }}">USD</a></li>
                                 <!-- <li><a href="#">INR</a></li>
                                     <li><a href="#">GBP</a></li> -->
-                                <li><a href="#">VND</a></li>
+                                <li><a href="{{ route('changeLocale', ['locale' => 'vi']) }}">VND</a></li>
                             </ul>
                         </li>
 

@@ -92,6 +92,7 @@ return [
     'bill' => 'Hóa đơn',
     'noteorder' => 'Ghi chú',
     'submit' => 'Đồng ý',
+    'paypalpayment' => 'Thanh toán Paypal',
     
 
 

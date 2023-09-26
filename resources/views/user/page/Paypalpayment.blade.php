@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Paypal payment</h2>
+                    <h2>{{ trans('messages.paypalpayment') }}</h2>
                 </div>
             </div>
         </div>
@@ -29,13 +29,14 @@
                                 <thead>
                                     <tr>
                                         <th class="product-name"></th>
-                                        <th class="product-total">Total</th>
+                                        <th class="product-total">{{ trans('messages.total') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="cart_item">
                                         <td class="product-name">
-                                            All product <strong class="product-quantity"></strong> </td>
+                                            {{ trans('messages.addproduct') }} <strong
+                                                class="product-quantity"></strong> </td>
                                         <td class="product-total">
                                             <span
                                                 class="amount font-weight-bold">${{ number_format($order->totalprice, 2) }}</span>
@@ -45,24 +46,24 @@
                                 <tfoot>
 
                                     <tr class="cart-subtotal">
-                                        <th>Add coupon product</th>
+                                        <th>{{ trans('messages.addcouponproduct') }}</th>
                                         <td><span class="amount font-weight-bold"> -
                                                 ${{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
                                         </td>
                                     </tr>
 
                                     <tr class="cart-subtotal">
-                                        <th>Add coupon cart</th>
+                                        <th>{{ trans('messages.addcouponcart') }}</th>
                                         <td><span class="amount font-weight-bold"> -
                                                 ${{ number_format($order->totalprice2 - $order->beforecoupon, 2) }}</span>
                                         </td>
                                     </tr>
 
                                     <tr class="shipping">
-                                        <th>Shipping and Handling</th>
+                                        <th>{{ trans('messages.shippingandhandle') }}</th>
                                         <td>
 
-                                            Free Shipping
+                                            {{ trans('messages.freeshipping') }}
                                             <input type="hidden" class="shipping_method" value="free_shipping"
                                                 id="shipping_method_0" data-index="0" name="shipping_method[0]">
                                         </td>
@@ -70,7 +71,7 @@
 
 
                                     <tr class="order-total">
-                                        <th>Order Total</th>
+                                        <th>{{ trans('messages.ordertotal') }}</th>
                                         <td><strong><span
                                                     class="amount red">${{ number_format($order->beforecoupon, 2) }}</span></strong>
                                         </td>
@@ -90,13 +91,19 @@
                                     <table cellspacing="0" class="shop_table cart">
                                         <thead>
                                             <tr>
-                                                <th class="product-name">Address</th>
-                                                <th class="product-price">state country</th>
-                                                <th class="product-quantity">country</th>
-                                                <th class="product-quantity">town city</th>
-                                                <th class="product-quantity">company name</th>
-                                                <th class="product-subtotal">post code</th>
-                                                <th class="product-subtotal">apartment</th>
+                                                <th class="product-name">{{ trans('messages.address') }}</th>
+                                                <th class="product-price">{{ trans('messages.statecountry') }}
+                                                </th>
+                                                <th class="product-quantity">{{ trans('messages.country') }}
+                                                </th>
+                                                <th class="product-quantity">{{ trans('messages.towncity') }}
+                                                </th>
+                                                <th class="product-quantity">{{ trans('messages.companyname') }}
+                                                </th>
+                                                <th class="product-subtotal">{{ trans('messages.postcode') }}
+                                                </th>
+                                                <th class="product-subtotal">{{ trans('messages.apartment') }}
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody id="capnhatdanhsachorder">
@@ -142,9 +149,9 @@
                         @csrf
                         <input type="hidden" value="{{ request()->input('idorder') }}" name="idorder">
                         <input type="hidden" value="{{ $order->beforecoupon }}" name="amount">
-                        <p>Note order: </p>
+                        <p>{{ trans('messages.noteorder') }}: </p>
                         <textarea id="" cols="30" rows="5" name="note" style="width:100%"></textarea>
-                        <input type="submit" data-value="Place order" value="Pay"
+                        <input type="submit" data-value="Place order" value="{{ trans('messages.submit') }}"
                             name="woocommerce_checkout_place_order" class="button alt">
                     </form>
                 </div>

@@ -62,6 +62,8 @@ return [
     'date' => 'Ngày đặt',
     'none' => 'Không',
     'watch' => 'Xem',
+    'deletecheckout' => 'Xóa thanh toán này',
+    'thisaction' => 'Thao tác này sẽ không thể khôi phục',
     
 
     

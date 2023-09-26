@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>List checkout</h2>
+                    <h2>{{ trans('messages.listcheckout') }}</h2>
                 </div>
             </div>
         </div>
@@ -28,10 +28,10 @@
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
-                                        <th class="product-thumbnail">Id order</th>
-                                        <th class="product-name">Total price</th>
-                                        <th class="product-price">Date</th>
-                                        <th class="product-price">Coupon</th>
+                                        <th class="product-thumbnail">{{ trans('messages.idorder') }}</th>
+                                        <th class="product-name">{{ trans('messages.total') }}</th>
+                                        <th class="product-price">{{ trans('messages.date') }}</th>
+                                        <th class="product-price">{{ trans('messages.coupon') }}</th>
                                         <th class="product-quantity">&nbsp;</th>
                                     </tr>
                                 </thead>
@@ -53,16 +53,16 @@
                                         </td>
                                         @else
                                         <td>
-                                            <span class="amount">None</span>
+                                            <span class="amount">{{ trans('messages.none') }}</span>
                                         </td>
                                         @endif
                                         <td class="actions" style="display: flex;justify-content:center">
                                             <a href="{{ route('checkout.page', ['idorder' => $o->idorder]) }}"
-                                                class="btnchangeuser"><i class="bi bi-eye-fill"></i> Watch</a>
+                                                class="btnchangeuser"><i class="bi bi-eye-fill"></i> {{ trans('messages.watch') }}</a>
                                             <a href="#" type="button" data-toggle="modal"
                                                 data-target="#modal-deleteproduct" class="btnchangeuser"
                                                 data-id="{{ $o->idorder }}">
-                                                <i class="bi bi-trash-fill"></i> Delete</a>
+                                                <i class="bi bi-trash-fill"></i> {{ trans('messages.delete') }}</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -84,18 +84,18 @@
         <form action="{{ route('deletecheckout') }}" method="post" class="modal-content">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Delete this checkout</h4>
+                <h4 class="modal-title">{{ trans('messages.deletecheckout') }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h3 style="color:red; font-weight: bold">This action cannot be undone</h3>
+                <h3 style="color:red; font-weight: bold">{{ trans('messages.thisaction') }}</h3>
                 <input type="hidden" name="idorder">
                 <span name="idorder"></span>
             </div>
             <div class="modal-footer justify-align-content-end">
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger">{{ trans('messages.delete') }}</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -111,7 +111,7 @@ $('#modal-deleteproduct').on('shown.bs.modal', function(event) {
     var button = $(event.relatedTarget); // Nút "Change" được nhấn
     var id = button.data('id');
     var modal = $(this);
-    modal.find('span[name="idorder"]').text('Id order: ' + id);
+    modal.find('span[name="idorder"]').text('{{ trans('messages.idorder') }}: ' + id);
     modal.find('input[name="idorder"]').val(id);
 });
 </script>

@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Checkout</h2>
+                    <h2>{{ trans('messages.checkoutbtn') }}</h2>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="">
-            <h3>Id order: {{ $order->idorder }}</h3>
+            <h3>{{ trans('messages.idorder') }}: {{ $order->idorder }}</h3>
             <div class="col-md-12">
                 <div class="product-content-right">
                     <div class="card-body table-responsive p-0">
@@ -28,13 +28,13 @@
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
-                                        <th class="product-thumbnail">Image</th>
-                                        <th class="product-name">Product</th>
-                                        <th class="product-price">Price</th>
-                                        <th class="product-quantity">Quantity</th>
-                                        <th class="product-quantity">Coupon</th>
-                                        <th class="product-subtotal">Price</th>
-                                        <th class="product-subtotal">Total</th>
+                                        <th class="product-thumbnail">{{ trans('messages.image') }}</th>
+                                        <th class="product-name">{{ trans('messages.product') }}</th>
+                                        <th class="product-price">{{ trans('messages.price') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.quantity') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.coupon') }}</th>
+                                        <th class="product-subtotal">{{ trans('messages.price') }}</th>
+                                        <th class="product-subtotal">{{ trans('messages.total') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="capnhatdanhsachorder">

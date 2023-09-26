@@ -127,5 +127,11 @@ return [
     'email2' => 'Email có thể sử dụng',
     'email3' => 'Vui lòng nhập đúng định dạng email',
     'password' => 'Mật khẩu',
-    
+    'username/email/phone' => 'Tên tài khoản, email hoặc số điện thoại',
+    'username1' => 'Tên người dùng đã tồn tại',
+    'username2' => 'Tên người dùng phải lớn hơn 5 và bé hơn 18 kí tự',
+    'username3' => 'Tên người dùng có thể sử dụng',
+    'password1' => 'Mật khẩu phải lớn hơn 6 và bé hơn 18 kí tự',
+    'password2' => 'Mật khẩu nhập lại không đúng',
+    'noaccount' => 'Không có tài khoản',
 ];

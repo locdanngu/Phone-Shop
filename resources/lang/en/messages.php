@@ -16,7 +16,7 @@ return [
     'typepage' => 'Type',
     'historypage' => 'History order',
     'contactpage' => 'Contact',
-    'shopnow' => 'Mua ngay',
+    'shopnow' => 'Shop now',
     '30dayreturn' => '30 Days return',
     'freeshipping' => 'Free shipping',
     'securepayments' => 'Secure payments',
@@ -126,6 +126,11 @@ return [
     'email1' => 'Email already exits',
     'email2' => 'Email can be used',
     'email3' => 'Please enter the correct email format',
-
-
+    'username/email/phone' => 'Username, email or phone',
+    'username1' => 'Username already exits',
+    'username2' => 'Username must be more than 5 and less than 18 characters',
+    'username3' => 'Username can be used',
+    'password1' => 'Password must be more than 6 and less than 18 characters',
+    'password2' => 'The re-entered password does not match',
+    'noaccount' => 'Do not have an account',
 ];

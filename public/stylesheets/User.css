@@ -1482,7 +1482,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 }
 
 .product-upper img {
-    object-fit: cover;
+    /* object-fit: cover; */
     height: 100%;
 }
 
@@ -1517,7 +1517,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 .gridlist {
     grid-template-columns: repeat(4, 1fr);
     /* Ba cột bằng nhau */
-    gap: 1em;
+    gap: 2em;
     display: grid;
 }
 

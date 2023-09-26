@@ -29,9 +29,17 @@
                         <div class="product-upper">
                             <img src="{{ $pr->imageproduct }}" alt="">
                         </div>
+                        @if(strlen($pr->nameproduct) > 30)
+                        <h2 class="text-center fixheight"><a
+                                href="{{ route('product.page', ['nameproduct' => $pr->nameproduct]) }}">{!!
+                                mb_substr(strip_tags($pr->nameproduct), 0, 30) !!}...</a>
+                        </h2>
+                        @else
                         <h2 class="text-center fixheight"><a
                                 href="{{ route('product.page', ['nameproduct' => $pr->nameproduct]) }}">{{ $pr->nameproduct }}</a>
                         </h2>
+                        @endif
+
                         <div class="product-carousel-price">
                             <ins>${{ $pr->price }}</ins> <del>${{ $pr->oldprice }}</del>
                         </div>

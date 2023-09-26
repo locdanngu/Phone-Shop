@@ -13,8 +13,15 @@
         @foreach($list as $l)
         <div class="thubmnail-recent">
             <img src="{{ $l->imageproduct }}" class="recent-thumb" alt="">
+            @if(strlen($l->nameproduct) > 30)
+            <h2><a href="{{ route('product.page', ['nameproduct' => $l->nameproduct]) }}">{!!
+                    mb_substr(strip_tags($l->nameproduct), 0, 30) !!}...</a>
+            </h2>
+            @else
             <h2><a href="{{ route('product.page', ['nameproduct' => $l->nameproduct]) }}">{{ $l->nameproduct }}</a>
             </h2>
+            @endif
+
             <div class="product-sidebar-price">
                 <ins>${{ $l->price }}</ins> <del>${{ $l->oldprice }}</del>
             </div>

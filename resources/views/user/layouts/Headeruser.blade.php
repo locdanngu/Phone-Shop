@@ -15,7 +15,7 @@
                                     class="bi bi-box-arrow-right"></i> Logout</a></li>
                         @else
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-login"><i
-                                    class="bi bi-person-fill"></i> Login</a></li>
+                                    class="bi bi-person-fill"></i> {{ trans('messages.dangnhapbtn') }}</a></li>
                         <li><a href="#" type="button" data-toggle="modal" data-target="#modal-register"><i
                                     class="bi bi-person-fill-add"></i> Register</a></li>
                         @endif
@@ -57,7 +57,6 @@
 </div> <!-- End header area -->
 
 {{ app()->getLocale() }}
-
 
 <div class="site-branding-area">
     <div class="container">

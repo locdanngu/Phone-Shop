@@ -1,6 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'Bank Payment')
+@section('title', trans('messages.bankpayment'))
 
 @section('body')
 <div class="product-big-title-area">

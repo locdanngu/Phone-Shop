@@ -1,6 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'History order')
+@section('title', trans('messages.historypage'))
 
 @section('body')
 <div class="product-big-title-area">

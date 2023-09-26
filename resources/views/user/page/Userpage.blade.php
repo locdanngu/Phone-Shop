@@ -1,6 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'User page')
+@section('title', trans('messages.user'))
 
 @section('body')
 <div class="product-big-title-area">

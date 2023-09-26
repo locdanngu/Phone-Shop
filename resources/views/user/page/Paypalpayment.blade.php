@@ -1,6 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'Paypal Payment')
+@section('title', trans('messages.paypalpayment'))
 
 @section('body')
 <div class="product-big-title-area">
@@ -35,7 +35,7 @@
                                 <tbody>
                                     <tr class="cart_item">
                                         <td class="product-name">
-                                            {{ trans('messages.addproduct') }} <strong
+                                            {{ trans('messages.allproduct') }} <strong
                                                 class="product-quantity"></strong> </td>
                                         <td class="product-total">
                                             <span

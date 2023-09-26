@@ -1,6 +1,6 @@
 @extends('user.layouts.Userlayout')
 
-@section('title', 'Checkout')
+@section('title', trans('messages.checkoutbtn'))
 
 @section('body')
 <div class="product-big-title-area">

@@ -40,6 +40,16 @@ return [
     'validproduct' => 'Sản phẩm phù hợp',
     'closebtn' => 'Đóng',
     'selectcategory' => 'Chọn danh mục',
+    'product' => 'Sản phẩm',
+    'recentpost' => 'Gần đây',
+    'youmaybe' => 'Bạn có thể hứng thú với',
+    'price' => 'Giá',
+    'add' => 'Ngày thêm',
+    'wishlistempty' => 'Mục yêu thích của bạn đang trống',
+    'gotoshopnow' => 'Đi tới cửa hàng ngay',
+    
+
+    
 
 
 ];

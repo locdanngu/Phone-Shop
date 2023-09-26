@@ -1,15 +1,15 @@
 <div class="col-md-4">
     <div class="single-sidebar">
-        <h2 class="sidebar-title">Search Products</h2>
+        <h2 class="sidebar-title">{{ trans('messages.searchproduct') }}</h2>
         <form action="{{ route('shop.search') }}" method="get">
-            <input type="text" placeholder="Search products..." value="{{ request('searchproduct') }}"
+            <input type="text" placeholder="{{ trans('messages.searchproduct') }}..." value="{{ request('searchproduct') }}"
                 name="searchproduct">
-            <input type="submit" value="Search">
+            <input type="submit" value="{{ trans('messages.search') }}">
         </form>
     </div>
 
     <div class="single-sidebar">
-        <h2 class="sidebar-title">Products</h2>
+        <h2 class="sidebar-title">{{ trans('messages.product') }}</h2>
         @foreach($list as $l)
         <div class="thubmnail-recent">
             <img src="{{ $l->imageproduct }}" class="recent-thumb" alt="">
@@ -30,7 +30,7 @@
     </div>
 
     <div class="single-sidebar">
-        <h2 class="sidebar-title">Recent Posts</h2>
+        <h2 class="sidebar-title">{{ trans('messages.recentpost') }}</h2>
         <ul>
             @foreach($recent as $re)
             <li><a href="{{ route('product.page', ['nameproduct' => $re->nameproduct]) }}">{{ $re->nameproduct }}</a>

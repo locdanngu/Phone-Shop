@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Wish list</h2>
+                    <h2>{{ trans('messages.wishlistbtn') }}</h2>
                 </div>
             </div>
         </div>
@@ -33,10 +33,10 @@
                                     <tr>
                                         <th class="product-remove">&nbsp;</th>
                                         <th class="product-thumbnail">&nbsp;</th>
-                                        <th class="product-name">Product</th>
-                                        <th class="product-price">Price</th>
-                                        <th class="product-quantity">Category</th>
-                                        <th class="product-quantity">Add</th>
+                                        <th class="product-name">{{ trans('messages.product') }}</th>
+                                        <th class="product-price">{{ trans('messages.price') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.categorypage') }}</th>
+                                        <th class="product-quantity">{{ trans('messages.add') }}</th>
                                         <th class="product-remove">&nbsp;</th>
                                     </tr>
                                 </thead>
@@ -76,7 +76,8 @@
                                         </td>
                                         <td class="product-subtotal">
                                             <a class="add_to_cart_button them-sp-vao-gio" href="#"
-                                                data-idproduct="{{ $l->idproduct }}"><i class="bi bi-cart-plus-fill"></i></a>
+                                                data-idproduct="{{ $l->idproduct }}"><i
+                                                    class="bi bi-cart-plus-fill"></i></a>
                                         </td>
                                     </tr>
 
@@ -88,21 +89,19 @@
 
                         <div class="cart-collaterals">
                             <div class="cross-sells">
-                                <h2>You may be interested in...</h2>
+                                <h2>{{ trans('messages.youmaybe') }}...</h2>
                                 <ul class="products">
                                     @foreach($random as $rd)
                                     <li class="product">
                                         <a href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}">
-                                            <img alt="T_4_front"
-                                                class="attachment-shop_catalog wp-post-image"
+                                            <img alt="T_4_front" class="attachment-shop_catalog wp-post-image"
                                                 src="{{ $rd->imageproduct }}">
                                             <h3 class="fixheight2">{{ $rd->nameproduct }}</h3>
                                             <span class="price"><span class="amount">${{ $rd->price }}</span></span>
                                         </a>
 
                                         <a class="add_to_cart_button" rel="nofollow"
-                                            href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}">Select
-                                            options</a>
+                                            href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}">{{ trans('messages.seedetail') }}</a>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -110,7 +109,7 @@
                         </div>
                         @else
                         <div class="box">
-                            <h2>Your wish list is empty! <a href="{{ route('shop.page') }}">Go to shop now</a></h2>
+                            <h2>{{ trans('messages.wishlistempty') }}! <a href="{{ route('shop.page') }}">{{ trans('messages.gotoshopnow') }}</a></h2>
                             <i class="bi bi-emoji-frown-fill"></i>
                         </div>
 

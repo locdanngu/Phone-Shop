@@ -118,8 +118,14 @@ return [
     'deleteaddress' => 'Xóa địa chỉ',
     'deleteaddress2' => 'Xóa địa chỉ này',
     'opti' => 'Tùy chỉnh',
-
-
-
-
+    'wanttoquit' => 'Bạn muốn rời đi',
+    'here' => 'tại đây',
+    'haveaccount' => 'Đã có tài khoản',
+    'phone1' => 'Số điện thoại đã tồn tại',
+    'phone2' => 'Số điện thoại có thể sử dụng',
+    'email1' => 'Email đã tồn tại',
+    'email2' => 'Email có thể sử dụng',
+    'email3' => 'Vui lòng nhập đúng định dạng email',
+    'password' => 'Mật khẩu',
+    
 ];

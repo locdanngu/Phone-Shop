@@ -46,12 +46,12 @@
                     </label>
                     <label>
                         <input required type="password" name="password" autocomplete="off">
-                        <span>Password</span>
+                        <span>{{ trans('messages.password') }}</span>
                     </label>
                 </div>
                 <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
                     <h5 style="margin:0">Don't have an account? <a href="#" type="button" data-toggle="modal"
-                            data-target="#modal-register">Register here</a></h5>
+                            data-target="#modal-register">{{ trans('messages.dangkybtn') }} {{ trans('messages.here') }}</a></h5>
                 </div>
             </div>
             <div class="modal-footer">
@@ -68,7 +68,7 @@
         <form action="{{ route('registeruser') }}" method="post" class="modal-content content__form">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">{{ trans('messages.danhkybtn') }}</h4>
+                <h4 class="modal-title">{{ trans('messages.dangkybtn') }}</h4>
             </div>
             <div style="display:flex;justify-content:center; margin-top:2em">
                 <h2>u<h2 style="color: #5a88ca">Stora</h2>
@@ -78,7 +78,7 @@
                 <div class="content__inputs">
                     <label>
                         <input required type="text" name="username" autocomplete="off" id="checkuser">
-                        <span>Username</span>
+                        <span>{{ trans('messages.username') }}</span>
                     </label>
                     <h6 class="h6 noti" id="username1"><i class="bi bi-exclamation-circle-fill"></i> Username already
                         exists</h6>
@@ -87,46 +87,45 @@
                     <h6 class="h6 noti" id="username3"><i class="bi bi-check-circle-fill"></i> Username can be used</h6>
                     <label>
                         <input required type="password" name="password" autocomplete="off" id="checkpassword">
-                        <span>Password</span>
+                        <span>{{ trans('messages.password') }}</span>
                     </label>
                     <h6 class="h6 noti" id="password"><i class="bi bi-exclamation-circle-fill"></i> Password must be
                         more than 6 and less than 18 characters</h6>
                     <label>
                         <input required type="password" name="repassword" autocomplete="off" id="checkrepassword">
-                        <span>Re-enter password</span>
+                        <span>{{ trans('messages.repassword') }}</span>
                     </label>
                     <h6 class="h6 noti" id="repassword"><i class="bi bi-exclamation-circle-fill"></i> The re-entered
                         password does not match</h6>
                     <div class="fixmobile">
                         <label>
                             <input required type="text" name="firstname" autocomplete="off">
-                            <span>First name</span>
+                            <span>{{ trans('messages.firstname') }}</span>
                         </label>
                         <label>
                             <input required type="text" name="lastname" autocomplete="off">
-                            <span>Last name</span>
+                            <span>{{ trans('messages.lastname') }}</span>
                         </label>
                     </div>
                     <label>
                         <input required type="text" name="email" autocomplete="off" id="checkemail">
                         <span>Email</span>
                     </label>
-                    <h6 class="h6 noti" id="email1"><i class="bi bi-exclamation-circle-fill"></i> Email already exists
+                    <h6 class="h6 noti" id="email1"><i class="bi bi-exclamation-circle-fill"></i> {{ trans('messages.email1') }}
                     </h6>
-                    <h6 class="h6 noti" id="email2"><i class="bi bi-check-circle-fill"></i> Email can be used</h6>
-                    <h6 class="h6 noti" id="email3"><i class="bi bi-exclamation-circle-fill"></i> Please enter the
-                        correct email format</h6>
+                    <h6 class="h6 noti" id="email2"><i class="bi bi-check-circle-fill"></i> {{ trans('messages.email2') }}</h6>
+                    <h6 class="h6 noti" id="email3"><i class="bi bi-exclamation-circle-fill"></i> {{ trans('messages.email3') }}</h6>
                     <label>
                         <input required type="text" name="phone" autocomplete="off" id="checkphone">
-                        <span>Phone</span>
+                        <span>{{ trans('messages.phone') }}</span>
                     </label>
-                    <h6 class="h6 noti" id="phone1"><i class="bi bi-exclamation-circle-fill"></i> Phone already exists
+                    <h6 class="h6 noti" id="phone1"><i class="bi bi-exclamation-circle-fill"></i> {{ trans('messages.phone1') }}
                     </h6>
-                    <h6 class="h6 noti" id="phone2"><i class="bi bi-check-circle-fill"></i> Phone can be used</h6>
+                    <h6 class="h6 noti" id="phone2"><i class="bi bi-check-circle-fill"></i> {{ trans('messages.phone2') }}</h6>
                 </div>
                 <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
-                    <h5 style="margin:0">Already have an account? <a href="#" type="button" data-toggle="modal"
-                            data-target="#modal-login">Login here</a></h5>
+                    <h5 style="margin:0">{{ trans('messages.haveaccount') }}? <a href="#" type="button" data-toggle="modal"
+                            data-target="#modal-login">{{ trans('messages.dangnhapbtn') }} {{ trans('messages.here') }}</a></h5>
                 </div>
             </div>
             <div class="modal-footer">
@@ -149,7 +148,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h3 style="color:red" class="font-weight-bold">You sure want to quit?</h3>
+                <h3 style="color:red" class="font-weight-bold">{{ trans('messages.wanttoquit') }}?</h3>
             </div>
             <div class="modal-footer justify-align-content-end">
                 <a href="{{ route('logoutuser') }}" class="btn btn-danger">{{ trans('messages.logoutbtn') }}</a>

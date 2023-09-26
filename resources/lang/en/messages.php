@@ -114,7 +114,18 @@ return [
     'lastname' => 'Last name',
     'username' => 'Username',
     'noaddress' => 'Your do not have a delivery address',
-    '1address' => 'Bạn cần ít nhất 1 địa chỉ giao hàng',
-    'deleteaddress' => 'Xóa địa chỉ',
-    'deleteaddress2' => 'Xóa địa chỉ này',
+    '1address' => 'You need at least 1 delivery address',
+    'deleteaddress' => 'Delete address',
+    'deleteaddress2' => 'Delete this address',
+    'opti' => 'Option',
+    'wanttoquit' => 'You sure want to quit?',
+    'here' => 'here',
+    'haveaccount' => 'Already have an account',
+    'phone1' => 'Phone already exits',
+    'phone2' => 'Phone can be used',
+    'email1' => 'Email already exits',
+    'email2' => 'Email can be used',
+    'email3' => 'Please enter the correct email format',
+
+
 ];

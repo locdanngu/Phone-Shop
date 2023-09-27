@@ -156,5 +156,9 @@ Route::prefix('/admin')->group(function () {
         //Contact
         Route::get('/contactpage', [ContactController::class, 'contactpage'])->name('admincontact.page');
         Route::post('/requestcontact', [ContactController::class, 'requestcontact'])->name('request.contact');
+
+        //Custom
+        Route::get('/custompage', [CustomController::class, 'custompage'])->name('custom.page');
+        Route::get('/custompage/search', [CustomController::class, 'custompage'])->name('staff.search');
     });
 });

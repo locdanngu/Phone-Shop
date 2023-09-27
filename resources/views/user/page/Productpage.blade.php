@@ -25,7 +25,7 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="product-breadcroumb">
-                        <a href="{{ route('home.page') }}">Home</a>
+                        <a href="{{ route('home.page') }}">{{ trans('messages.homepage') }}</a>
                         <a
                             href="{{ route('shop.search', ['searchproduct' => $product->category->namecategory]) }}">{{ $product->category->namecategory }}</a>
                         <span>{{ $product->nameproduct }}</span>
@@ -37,12 +37,6 @@
                                 <div class="product-main-img">
                                     <img src="{{ $product->imageproduct }}" alt="">
                                 </div>
-
-                                <!-- <div class="product-gallery">
-                                    <img src="img/product-thumb-1.jpg" alt="">
-                                    <img src="img/product-thumb-2.jpg" alt="">
-                                    <img src="img/product-thumb-3.jpg" alt="">
-                                </div> -->
                             </div>
                         </div>
 
@@ -61,23 +55,23 @@
                                     </div>
                                     @if($user)
                                     <button class="add_to_cart_button" id="btn-add-to-cart"
-                                        data-idproduct="{{ $product->idproduct }}">Add to cart</button>
+                                        data-idproduct="{{ $product->idproduct }}">{{ trans('messages.addtocart') }}</button>
                                     @else
                                     <button class="add_to_cart_button" type="button" data-toggle="modal"
-                                        data-target="#modal-login">Add to cart</button>
+                                        data-target="#modal-login">{{ trans('messages.addtocart') }}</button>
                                     @endif
                                 </div>
                                 @if($user)
                                 <button class="add_to_cart_button" id="btn-add-to-wishlist" style="margin:.5em 0"
-                                    data-idproduct="{{ $product->idproduct }}">Add to wishlist</button>
+                                    data-idproduct="{{ $product->idproduct }}">{{ trans('messages.addtowishlist') }}</button>
                                 @else
                                 <button class="add_to_cart_button" style="margin:.5em 0" type="button"
-                                    data-toggle="modal" data-target="#modal-login">Add to wishlist</button>
+                                    data-toggle="modal" data-target="#modal-login">{{ trans('messages.addtowishlist') }}</button>
                                 @endif
                                 <div class="product-inner-category">
-                                    <p>Category: <a
+                                    <p>{{ trans('messages.categorypage') }}: <a
                                             href="{{ route('shop.search', ['searchproduct' => $product->category->namecategory]) }}">{{ $product->category->namecategory }}</a>.
-                                        Type: <a
+                                        {{ trans('messages.typepage') }}: <a
                                             href="{{ route('shop.search', ['searchproduct' => $product->type->nametype]) }}">{{ $product->type->nametype }}</a>.
                                     </p>
                                 </div>
@@ -85,13 +79,14 @@
                                 <div role="tabpanel">
                                     <ul class="product-tab" role="tablist">
                                         <li role="presentation" class="active"><a href="#home" aria-controls="home"
-                                                role="tab" data-toggle="tab">Description</a></li>
+                                                role="tab" data-toggle="tab">{{ trans('messages.description') }}</a>
+                                        </li>
                                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                                                data-toggle="tab">Reviews</a></li>
+                                                data-toggle="tab">{{ trans('messages.review') }}</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                            <h2>Product Description</h2>
+                                            <h2>{{ trans('messages.productde') }}</h2>
                                             <?php
                                             // Lấy nội dung từ biến $product->detail và thực hiện xuống hàng sau mỗi dấu gạch ngang đầu câu
                                             $detail = $product->detail;
@@ -106,17 +101,17 @@
                                                 malesuada sem accumsan in. Morbi vel sodales libero.</p> -->
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
-                                            <h2>Reviews</h2>
+                                            <h2>{{ trans('messages.review') }}</h2>
                                             <div class="submit-review">
                                                 @if(!$user)
-                                                <p><label for="name">Name</label> <input name="name" type="text"
-                                                        id="namereview"></p>
+                                                <p><label for="name">{{ trans('messages.yourname') }}</label> <input
+                                                        name="name" type="text" id="namereview"></p>
                                                 <p><label for="email">Email</label> <input name="email" type="email"
                                                         id="emailreview">
                                                 </p>
                                                 @endif
                                                 <div class="rating">
-                                                    <p class="noidung3">Your Rating</p>
+                                                    <p class="noidung3">{{ trans('messages.yourrating') }}</p>
                                                     <div class="star-rating">
                                                         <input type="radio" id="5-stars" name="rating" value="5" />
                                                         <label for="5-stars" class="star">&#9733;</label>
@@ -132,12 +127,15 @@
                                                 </div>
                                                 <input type="hidden" value="{{ $product->idproduct }}"
                                                     id="idproductreview">
-                                                <p><label for="review">Your review</label> <textarea name="review"
-                                                        id="reviewreview" cols="30" rows="10"></textarea></p>
+                                                <p><label for="review"></label>{{ trans('messages.yourreview') }}
+                                                    <textarea name="review" id="reviewreview" cols="30"
+                                                        rows="10"></textarea></p>
                                                 @if(!$user)
-                                                <input type="submit" value="Submit" id="sendreview1">
+                                                <input type="submit" value="{{ trans('messages.submit') }}"
+                                                    id="sendreview1">
                                                 @else
-                                                <input type="submit" value="Submit" id="sendreview2">
+                                                <input type="submit" value="{{ trans('messages.submit') }}"
+                                                    id="sendreview2">
                                                 @endif
                                             </div>
                                         </div>
@@ -149,7 +147,7 @@
                     </div>
 
                     <div class="related-products-wrapper" id="review">
-                        <h2 class="related-products-title">All product reviews</h2>
+                        <h2 class="related-products-title">{{ trans('messages.allproductreview') }}</h2>
                         <div class="reviewlist" id="capnhatreview">
                             @foreach($review as $r)
                             <div class="review">
@@ -171,7 +169,7 @@
 
 
                     <div class="related-products-wrapper">
-                        <h2 class="related-products-title">Related Products</h2>
+                        <h2 class="related-products-title">{{ trans('messages.relatedproduct') }}</h2>
                         <div class="related-products-carousel">
                             @foreach($random as $rd)
                             <div class="single-product">
@@ -181,16 +179,15 @@
                                         @if($user)
                                         <a href="#" class="add-to-cart-link them-sp-vao-gio"
                                             data-idproduct="{{ $rd->idproduct }}"><i class="bi bi-cart"></i>
-                                            Add to
-                                            cart</a>
+                                            {{ trans('messages.addtocart') }}</a>
                                         @else
                                         <a href="#" class="add-to-cart-link" type="button" data-toggle="modal"
                                             data-target="#modal-login"><i class="bi bi-cart"></i>
-                                            Add to
-                                            cart</a>
+                                            {{ trans('messages.addtocart') }}</a>
                                         @endif
                                         <a href="{{ route('product.page', ['nameproduct' => $rd->nameproduct]) }}"
-                                            class="view-details-link"><i class="bi bi-share-fill"></i> See details</a>
+                                            class="view-details-link"><i class="bi bi-share-fill"></i>
+                                            {{ trans('messages.seedetail') }}</a>
                                     </div>
                                 </div>
 
@@ -236,11 +233,13 @@ $(document).ready(function() {
 
                 if (re == 1) {
                     toastr.success(
-                        '<b>{{ trans('messages.addtocarttoastrsuc2') }}</b>'
+                        '<b>{{ trans('
+                        messages.addtocarttoastrsuc2 ') }}</b>'
                     )
                 } else {
                     toastr.success(
-                        '<b>{{ trans('messages.addtocarttoastrsuc1') }}</b>'
+                        '<b>{{ trans('
+                        messages.addtocarttoastrsuc1 ') }}</b>'
                     )
                 }
 
@@ -264,11 +263,13 @@ $(document).ready(function() {
                 var re = response.re;
                 if (re == 1) {
                     toastr.error(
-                        '<b>{{ trans('messages.addproductwl1') }}</b>'
+                        '<b>{{ trans('
+                        messages.addproductwl1 ') }}</b>'
                     )
                 } else {
                     toastr.success(
-                        '<b>{{ trans('messages.addproductwl2') }}</b>'
+                        '<b>{{ trans('
+                        messages.addproductwl2 ') }}</b>'
                     )
                 }
             }
@@ -297,7 +298,8 @@ $(document).ready(function() {
         var selectedRating = $('input[name="rating"]:checked').val();
 
         if (reviewreview == null || selectedRating == null || name == null || email == null) {
-            toastr.error('{{ trans('messages.plsin4') }}');
+            toastr.error('{{ trans('
+                messages.plsin4 ') }}');
         }
 
         $.ajax({
@@ -314,7 +316,8 @@ $(document).ready(function() {
             success: function(response) {
                 var html = response.html;
                 $('#capnhatreview').prepend(html);
-                toastr.success('{{ trans('messages.reviewaddsuc') }}');
+                toastr.success('{{ trans('
+                    messages.reviewaddsuc ') }}');
                 $('#namereview').val('');
                 $('#emailreview').val('');
                 $('#reviewreview').val('');
@@ -330,7 +333,8 @@ $(document).ready(function() {
         var id = $('#idproductreview').val();
 
         if (reviewreview == null || selectedRating == null) {
-            toastr.error('{{ trans('messages.plsin4') }}');
+            toastr.error('{{ trans('
+                messages.plsin4 ') }}');
         }
 
         $.ajax({
@@ -345,7 +349,8 @@ $(document).ready(function() {
             success: function(response) {
                 var html = response.html;
                 $('#capnhatreview').prepend(html);
-                toastr.success('{{ trans('messages.reviewaddsuc') }}');
+                toastr.success('{{ trans('
+                    messages.reviewaddsuc ') }}');
                 $('#reviewreview').val('');
                 $('input[name="rating"]').prop('checked', false);
             }

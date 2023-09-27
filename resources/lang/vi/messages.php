@@ -150,5 +150,12 @@ return [
     'reviewaddsuc' => 'Thêm đánh giá thành công.',
     'deleteaddresssuc' => 'Xóa địa chỉ thành công.',
     'deleteproductsuc' => 'Xóa sản phẩm thành công.',
-
+    'relatedproduct' => 'Sản phẩm tương tự',
+    'allproductreview' => 'Tất cả đánh giá',
+    'yourreview' => 'Đánh giá của bạn',
+    'yourrating' => 'Xếp hạng của bạn',
+    'review' => 'Đánh giá',
+    'productde' => 'Mô tả sản phẩm',
+    'description' => 'Mô tả',
+    'addtowishlist' => 'Thêm vào yêu thích',
 ];

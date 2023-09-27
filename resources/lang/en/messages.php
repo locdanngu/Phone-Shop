@@ -149,4 +149,12 @@ return [
     'reviewaddsuc' => 'Review added successfully.',
     'deleteaddresssuc' => 'Delete address successful.',
     'deleteproductsuc' => 'Delete product successful.',
+    'relatedproduct' => 'Related Products',
+    'allproductreview' => 'All product reviews',
+    'yourreview' => 'Your review',
+    'yourrating' => 'Your Rating',
+    'review' => 'Review',
+    'productde' => 'Product Description',
+    'description' => 'Description',
+    'addtowishlist' => 'Add to wishlist',
 ];

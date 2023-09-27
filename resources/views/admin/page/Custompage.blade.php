@@ -39,11 +39,11 @@
                                     <tr>
                                         <th>Tài khoản</th>
                                         <th>Họ tên</th>
-                                        <th>Quản lý sản phẩm</th>
-                                        <th>Mã giảm giá</th>
-                                        <th>Người dùng</th>
-                                        <th>Đơn hàng</th>
-                                        <th>Doanh thu</th>
+                                        <th class="text-center">Quản lý sản phẩm</th>
+                                        <th class="text-center">Mã giảm giá</th>
+                                        <th class="text-center">Người dùng</th>
+                                        <th class="text-center">Đơn hàng</th>
+                                        <th class="text-center">Doanh thu</th>
                                         <th>CSKH</th>
                                         <th>Quyền</th>
                                     </tr>
@@ -53,32 +53,32 @@
                                     <tr>
                                         <td class="font-weight-bold">{{ $u->adminname }}</td>
                                         <td>{{ $u->name }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($u->product == 1)
                                             <i class="bi bi-check2"></i>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($u->coupon == 1)
                                             <i class="bi bi-check2"></i>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($u->user == 1)
                                             <i class="bi bi-check2"></i>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($u->order == 1)
                                             <i class="bi bi-check2"></i>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($u->revenue == 1)
                                             <i class="bi bi-check2"></i>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($u->contact == 1)
                                             <i class="bi bi-check2"></i>
                                             @endif

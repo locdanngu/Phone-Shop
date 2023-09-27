@@ -158,4 +158,8 @@ return [
     'productde' => 'Mô tả sản phẩm',
     'description' => 'Mô tả',
     'addtowishlist' => 'Thêm vào yêu thích',
+    'deletecoupon1' => 'Xóa mã giảm giá này?',
+    'deletecoupon2' => 'Điều này sẽ xóa lượng giảm giá trên tất cả sản phẩm',
+    'deletecoupon3' => 'Điều này sẽ xóa lượng giảm giá trên thanh toán của bạn',
+    
 ];

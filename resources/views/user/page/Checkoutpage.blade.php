@@ -398,19 +398,19 @@
         <form action="{{ route('deleteapplycoupon') }}" method="post" class="modal-content">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Delete this coupon</h4>
+                <h4 class="modal-title">{{ trans('messages.deletecoupon1') }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h3 style="color:red; font-weight: bold">This will remove discount codes on all products</h3>
+                <h3 style="color:red; font-weight: bold">{{ trans('messages.deletecoupon2') }}</h3>
                 <input type="hidden" name="idcoupon">
                 <input type="hidden" name="idorder" value="{{ request()->input('idorder') }}" id="iddonhang">
                 <span name="code" style="font-weight:bold;"></span>
             </div>
             <div class="modal-footer justify-align-content-end">
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger">{{ trans('messages.delete') }}</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -423,19 +423,19 @@
         <form action="{{ route('deleteapplycouponcart') }}" method="post" class="modal-content">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Delete this coupon</h4>
+                <h4 class="modal-title">{{ trans('messages.deletecoupon1') }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h3 style="color:red; font-weight: bold">This will remove discount codes on you checkout</h3>
+                <h3 style="color:red; font-weight: bold">{{ trans('messages.deletecoupon3') }}</h3>
                 <input type="hidden" name="idcoupon">
                 <input type="hidden" name="idorder" value="{{ request()->input('idorder') }}" id="iddonhang">
                 <span name="code" style="font-weight:bold;"></span>
             </div>
             <div class="modal-footer justify-align-content-end">
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger">{{ trans('messages.delete') }}</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -454,7 +454,7 @@ $('#modal-deleteproduct').on('shown.bs.modal', function(event) {
     var id = button.data('id');
     var code = button.data('code');
     var modal = $(this);
-    modal.find('span[name="code"]').text('Code coupon: ' + code);
+    modal.find('span[name="code"]').text('{{ trans('messages.coupon') }}: ' + code);
     modal.find('input[name="idcoupon"]').val(id);
 });
 
@@ -463,7 +463,7 @@ $('#modal-deleteproduct2').on('shown.bs.modal', function(event) {
     var id = button.data('id');
     var code = button.data('code');
     var modal = $(this);
-    modal.find('span[name="code"]').text('Code coupon: ' + code);
+    modal.find('span[name="code"]').text('{{ trans('messages.coupon') }}: ' + code);
     modal.find('input[name="idcoupon"]').val(id);
 });
 

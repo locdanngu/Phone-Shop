@@ -74,6 +74,27 @@ class ProductController extends Controller
         $type->product_count += 1;
         $type->save();
 
+        $allemail = Notificationemail::all();
+
+        $price = $product->price;
+        $nameproduct = $product->nameproduct;
+        $category = $product->category->namecategory;
+        $image = $product->imageproduct;
+
+        foreach ($allemail as $emailAddress) {
+            try {
+                $result = Mail::send('Thongbaosanphammoi', compact('nameproduct', 'category','price','image'), function ($email) use ($image,$nameproduct, $category, $emailAddress, $price) {
+                    $email->subject('Thông báo về sản phẩm mới: ' . $nameproduct);
+                    $email->to($emailAddress->email);
+                });
+            } catch (\Exception $e) {
+                continue; 
+            }
+        }
+
+
+
+
         return redirect()->route('listproduct.page');
     }
 

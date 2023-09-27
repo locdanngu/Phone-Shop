@@ -36,7 +36,7 @@ class AdminController extends Controller
         $cuser = User::count();
         $ccategory = Category::count(); 
         $doanhthuyear = Order::where('status', 'done')->whereYear('updated_at', now()->year)->sum('totalprice');
-        $doanhthumonth = Order::where('status', 'done')->whereYear('updated_at', now()->month)->sum('totalprice');
+        $doanhthumonth = Order::where('status', 'done')->whereMonth('updated_at', now()->month)->sum('totalprice');
 
         $dauvaoByMonth = Order::selectRaw('MONTH(created_at) as month, SUM(totalprice) as total_cost')
             ->where('status', 'done')

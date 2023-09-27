@@ -686,10 +686,15 @@ class UserController extends Controller
         $html2 = '<th>Order Total</th>';
         $html2 .= '<td><strong><span class="amount" style="font-weight:bold;color:red">' . $currencySymbol . ' ' . ($currencySymbol === 'VND' ? number_format($scart_product * 23000) : number_format($scart_product, 2)) . '</span></strong></td>';
 
+        $pro = Cart_product::where('idcart_product', $request['id'])->first();
+        
+        $html3 = '<span class="amount" style="color:red; font-weight:bold">' . $currencySymbol . ' ' . ($currencySymbol === 'VND' ? number_format($pro->quantity * $pro->product->price * 23000) : number_format($pro->quantity * $pro->product->price, 2)) . '</span>';
+                                                             
 
         return response()->json([
             'html' => $html,
             'html2' => $html2,
+            'html3' => $html3,
         ]);
     }
 

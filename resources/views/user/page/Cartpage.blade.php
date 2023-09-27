@@ -67,7 +67,8 @@
                                                 </td>
 
                                                 <td class="product-price">
-                                                    <span class="amount">{{ $currencySymbol }} @convertCurrency($c->product->price)</span>
+                                                    <span class="amount">{{ $currencySymbol }}
+                                                        @convertCurrency($c->product->price)</span>
                                                 </td>
 
                                                 <td class="product-quantity" style="padding:0 5px">
@@ -88,28 +89,23 @@
                                                     <span class="amount">{{ trans('messages.none') }}</span>
                                                     @endif
                                                 </td>
-                                                <td class="product-subtotal">
+                                                <td class="product-subtotal"
+                                                    id="capnhat1product-{{ $c->idcart_product }}">
                                                     <span class="amount"
-                                                        style="color:red; font-weight:bold">{{ $currencySymbol }} @convertCurrency(($c->quantity * $c->product->price))</span>
+                                                        style="color:red; font-weight:bold">{{ $currencySymbol }}
+                                                        @convertCurrency(($c->quantity * $c->product->price))</span>
                                                 </td>
                                             </tr>
 
                                             @endforeach
                                             <tr>
                                                 <td class="actions" colspan="7" style="text-align:end">
-                                                    <!-- <div class="coupon">
-                                                        <label for="coupon_code">Coupon:</label>
-                                                        <input type="text" placeholder="Coupon code" value=""
-                                                            id="coupon_code" class="input-text" name="coupon_code">
-                                                        <a href="#" class="btnchangeuser">APPLY COUPON</a>
-                                                    </div> -->
-                                                    <!-- <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
                                                     @if($countaddress == 0)
                                                     <a href="{{ route('chuyenhuong') }}"
                                                         class="btnchangeuser">{{ trans('messages.checkoutbtn') }}</a>
                                                     @else
-                                                    <input type="submit" value="{{ trans('messages.checkoutbtn') }}" name="proceed"
-                                                        class="checkout-button button alt wc-forward">
+                                                    <input type="submit" value="{{ trans('messages.checkoutbtn') }}"
+                                                        name="proceed" class="checkout-button button alt wc-forward">
                                                     @endif
                                                 </td>
                                             </tr>
@@ -131,7 +127,8 @@
                                     <tr class="order-total" id="capnhattotalprice">
                                         <th>{{ trans('messages.ordertotal') }}</th>
                                         <td><strong><span class="amount"
-                                                    style="font-weight:bold;color:red">{{ $currencySymbol }} @convertCurrency($scart_product)</span></strong>
+                                                    style="font-weight:bold;color:red">{{ $currencySymbol }}
+                                                    @convertCurrency($scart_product)</span></strong>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -150,7 +147,8 @@
                     </div>
                     @else
                     <div class="box">
-                        <h2>{{ trans('messages.cartempty') }}! <a href="{{ route('shop.page') }}">{{ trans('messages.gotoshopnow') }}</a></h2>
+                        <h2>{{ trans('messages.cartempty') }}! <a
+                                href="{{ route('shop.page') }}">{{ trans('messages.gotoshopnow') }}</a></h2>
                         <i class="bi bi-emoji-frown-fill"></i>
                     </div>
 
@@ -214,11 +212,13 @@ $('body').on('click', '.plus', function() {
                 $("#capnhatcart").html(html);
                 var html2 = response.html2;
                 $("#capnhattotalprice").html(html2);
+                var html3 = response.html3;
+                $("#capnhat1product-" + productId).html(html3);
             }
         });
     }
 
-    updateSubtotal(inputElement);
+    // updateSubtotal(inputElement);
 });
 
 // Xử lý sự kiện khi nhấn nút "minus"
@@ -245,20 +245,22 @@ $('body').on('click', '.minus', function() {
                 $("#capnhatcart").html(html);
                 var html2 = response.html2;
                 $("#capnhattotalprice").html(html2);
+                var html3 = response.html3;
+                $("#capnhat1product-" + productId).html(html3);
             }
         });
     }
 
-    updateSubtotal(inputElement);
+    // updateSubtotal(inputElement);
 });
 
-function updateSubtotal(inputElement) {
-    var quantity = parseInt(inputElement.val());
-    var price = parseFloat(inputElement.closest('tr').find('.product-price .amount').text().replace('$', ''));
+// function updateSubtotal(inputElement) {
+//     var quantity = parseInt(inputElement.val());
+//     var price = parseFloat(inputElement.closest('tr').find('.product-price .amount').text().replace('$', ''));
 
-    var subtotal = quantity * price;
-    inputElement.closest('tr').find('.product-subtotal .amount').text('$' + subtotal.toFixed(2));
-}
+//     var subtotal = quantity * price;
+//     inputElement.closest('tr').find('.product-subtotal .amount').text('$' + subtotal.toFixed(2));
+// }
 
 $('body').on('change', '.qty', function() {
     var inputElement = $(this);
@@ -285,12 +287,14 @@ $('body').on('change', '.qty', function() {
             $("#capnhatcart").html(html);
             var html2 = response.html2;
             $("#capnhattotalprice").html(html2);
+            var html3 = response.html3;
+            $("#capnhat1product-" + productId).html(html3);
         }
     });
 
 
-    var subtotal = quantity * price;
-    inputElement.closest('tr').find('.product-subtotal .amount').text('$' + subtotal.toFixed(2));
+    // var subtotal = quantity * price;
+    // inputElement.closest('tr').find('.product-subtotal .amount').text('$' + subtotal.toFixed(2));
 });
 
 

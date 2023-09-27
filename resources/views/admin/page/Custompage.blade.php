@@ -39,7 +39,7 @@
                                     <tr>
                                         <th>Tài khoản</th>
                                         <th>Họ tên</th>
-                                        <th>Sản phẩm, Danh mục, Loại hàng</th>
+                                        <th>Quản lý sản phẩm</th>
                                         <th>Mã giảm giá</th>
                                         <th>Người dùng</th>
                                         <th>Đơn hàng</th>

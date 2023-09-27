@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Shop</h2>
+                    <h2>{{ trans('messages.product') }}</h2>
                 </div>
             </div>
         </div>

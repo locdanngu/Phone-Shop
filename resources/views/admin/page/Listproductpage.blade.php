@@ -82,7 +82,7 @@
                                                 data-target="#modal-change" data-id="{{ $row->idproduct }}"
                                                 data-name="{{ $row->nameproduct }}" data-old="{{ $row->oldprice }}"
                                                 data-new="{{ $row->price }}" data-detail="{{ $row->detail }}"
-                                                data-type="{{ $row->idtype }}" data-cate="{{ $row->idcategory }}"
+                                                data-type="{{ $row->type->nametype }}" data-cate="{{ $row->idcategory }}"
                                                 data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-pencil"></i>
                                                 Sửa
@@ -91,7 +91,7 @@
                                                 data-target="#modal-delete" data-id="{{ $row->idproduct }}"
                                                 data-id2="{{ $row->idcategory }}" data-name="{{ $row->nameproduct }}"
                                                 data-old="{{ $row->oldprice }}" data-new="{{ $row->price }}"
-                                                data-detail="{{ $row->detail }}" data-type="{{ $row->idtype }}"
+                                                data-detail="{{ $row->detail }}" data-type="{{ $row->type->nametype }}"
                                                 data-cate="{{ $row->category->namecategory }}"
                                                 data-image="{{ $row->imageproduct }}">
                                                 <i class="bi bi-trash"></i> Xóa

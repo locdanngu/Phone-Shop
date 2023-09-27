@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Coupon;
 use App\Models\Spend;
 use App\Models\Product_coupon;
+use App\Models\Notificationemail;
 use App\Models\Order;
 use App\Models\Type;
 use App\Models\Order_product;
@@ -83,7 +84,7 @@ class ProductController extends Controller
 
         foreach ($allemail as $emailAddress) {
             try {
-                $result = Mail::send('Thongbaosanphammoi', compact('nameproduct', 'category','price','image'), function ($email) use ($image,$nameproduct, $category, $emailAddress, $price) {
+                $result = Mail::send('admin/page/Thongbaosanphammoi', compact('nameproduct', 'category','price','image'), function ($email) use ($image,$nameproduct, $category, $emailAddress, $price) {
                     $email->subject('Thông báo về sản phẩm mới: ' . $nameproduct);
                     $email->to($emailAddress->email);
                 });
@@ -144,12 +145,19 @@ class ProductController extends Controller
     {
         $admin = Auth::guard('admin')->user();
         $product = Product::where('idproduct', $request['idproduct'])->first();
+
+        $type = Type::where('idtype', $product->idtype)->first();
+        $type->product_count = $type->product_count - 1;
+        $type->save();
+
         $product->delete();
         
         $category = Category::where('idcategory', $request['idcategory'])->first();
 
         $category->product_count = $category->product_count - 1;
         $category->save();
+
+        
 
         return redirect()->route('listproduct.page');
     }

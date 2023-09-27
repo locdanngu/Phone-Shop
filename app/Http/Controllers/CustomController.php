@@ -33,4 +33,36 @@ class CustomController extends Controller
         $staff = Admin::where('idadmin', $request['iduser'])->delete();
         return redirect()->back();
     }
+
+    public function staffphanquyen(Request $request)
+    {   
+        $staff = Admin::where('idadmin', $request['iduser'])->first();
+        $staff->product = 0;
+        $staff->coupon = 0;
+        $staff->user = 0;
+        $staff->order = 0;
+        $staff->revenue = 0;
+        $staff->contact = 0;
+        if($request['product'] == 1){
+            $staff->product = 1;
+        }
+        if($request['coupon'] == 1){
+            $staff->coupon = 1;
+        }
+        if($request['user'] == 1){
+            $staff->user = 1;
+        }
+        if($request['order'] == 1){
+            $staff->order = 1;
+        }
+        if($request['revenue'] == 1){
+            $staff->revenue = 1;
+        }
+        if($request['contact'] == 1){
+            $staff->contact = 1;
+        }
+
+        $staff->save();
+        return redirect()->back();
+    }
 }

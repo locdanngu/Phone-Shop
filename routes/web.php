@@ -161,5 +161,6 @@ Route::prefix('/admin')->group(function () {
         Route::get('/custompage', [CustomController::class, 'custompage'])->name('custom.page');
         Route::get('/custompage/search', [CustomController::class, 'custompage'])->name('staff.search');
         Route::post('/staffdelete', [CustomController::class, 'staffdelete'])->name('staff.delete');
+        Route::post('/staffphanquyen', [CustomController::class, 'staffphanquyen'])->name('staffphanquyen');
     });
 });

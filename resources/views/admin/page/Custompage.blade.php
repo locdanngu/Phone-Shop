@@ -85,8 +85,8 @@
                                         </td>
                                         <td>
                                             <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-change" data-id="{{ $u->iduser }}"
-                                                data-name="{{ $u->username }}">
+                                                data-target="#modal-change" data-id="{{ $u->idadmin }}"
+                                                data-name="{{ $u->adminname }}">
                                                 <i class="bi bi-wrench"></i> Quyền hạn
                                             </button>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
@@ -119,7 +119,7 @@
 @section('popup')
 <div class="modal fade" id="modal-change">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('user.changepass') }}" method="post" id="formchangepass">
+        <form class="modal-content" action="{{ route('staffphanquyen') }}" method="post" id="formchangepass">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Chỉnh sửa quyền hạn</h4>
@@ -133,23 +133,56 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Tên tài khoản</span>
                     <span name="username" class="spanpopup font-weight-bold" style="color:red"></span>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Mật khẩu mới</span>
-                    <input type="password" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="password" autocomplete="off"
-                        id="pass">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Nhập lại mật khẩu</span>
-                    <input type="password" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required name="repassword" autocomplete="off"
-                        id="repass">
-                </div>
-
+                <table class="table table-head-fixed text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Quyền hạn</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Quản lý sản phẩm, danh mục, loại hàng</td>
+                            <td>
+                                <input type="checkbox" name="product" id="" value="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Quản lý mã giảm giá</td>
+                            <td>
+                                <input type="checkbox" name="coupon" id="" value="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Quản lý tài khoản người dùng</td>
+                            <td>
+                                <input type="checkbox" name="user" id="" value="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Quản lý đơn hàng</td>
+                            <td>
+                                <input type="checkbox" name="order" id="" value="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Quản lý doanh thu</td>
+                            <td>
+                                <input type="checkbox" name="revenue" id="" value="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Liên hệ khách hàng</td>
+                            <td>
+                                <input type="checkbox" name="contact" id="" value="1">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-success">Đổi mật khẩu</button>
+                <button type="submit" class="btn btn-success">Lưu</button>
             </div>
         </form>
         <!-- /.modal-content -->

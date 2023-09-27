@@ -86,7 +86,10 @@
                                         <td>
                                             <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-change" data-id="{{ $u->idadmin }}"
-                                                data-name="{{ $u->adminname }}">
+                                                data-name="{{ $u->adminname }}" data-product="{{ $u->product }}"
+                                                data-coupon="{{ $u->coupon }}" data-user="{{ $u->user }}"
+                                                data-order="{{ $u->order }}" data-revenue="{{ $u->revenue }}"
+                                                data-contact="{{ $u->contact }}">
                                                 <i class="bi bi-wrench"></i> Quyền hạn
                                             </button>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
@@ -227,19 +230,50 @@ $(document).ready(function() {
         var button = $(event.relatedTarget); // Nút "Change" được nhấn
         var id = button.data('id');
         var name = button.data('name');
+        var product = button.data('product');
+        var coupon = button.data('coupon');
+        var user = button.data('user');
+        var order = button.data('order');
+        var revenue = button.data('revenue');
+        var contact = button.data('contact');
         var modal = $(this);
         modal.find('input[name="iduser"]').val(id);
         modal.find('span[name="username"]').text(name);
+        if (product == 1) {
+            modal.find('input[name="product"]').prop('checked', true);
+        } else {
+            modal.find('input[name="product"]').prop('checked', false);
+        }
 
-        $("#formchangepass").submit(function(event) {
-            if (modal.find('input[name="password"]').val() != modal.find(
-                    'input[name="repassword"]').val()) {
-                event.preventDefault();
-                toastr.error(
-                    '<b>Mật khẩu nhập lại không khớp</b>'
-                )
-            }
-        });
+        if (coupon == 1) {
+            modal.find('input[name="coupon"]').prop('checked', true);
+        } else {
+            modal.find('input[name="coupon"]').prop('checked', false);
+        }
+
+        if (user == 1) {
+            modal.find('input[name="user"]').prop('checked', true);
+        } else {
+            modal.find('input[name="user"]').prop('checked', false);
+        }
+
+        if (order == 1) {
+            modal.find('input[name="order"]').prop('checked', true);
+        } else {
+            modal.find('input[name="order"]').prop('checked', false);
+        }
+
+        if (revenue == 1) {
+            modal.find('input[name="revenue"]').prop('checked', true);
+        } else {
+            modal.find('input[name="revenue"]').prop('checked', false);
+        }
+
+        if (contact == 1) {
+            modal.find('input[name="contact"]').prop('checked', true);
+        } else {
+            modal.find('input[name="contact"]').prop('checked', false);
+        }
     });
 
     $('#modal-lock').on('shown.bs.modal', function(event) {

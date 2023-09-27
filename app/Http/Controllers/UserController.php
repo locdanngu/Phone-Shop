@@ -15,6 +15,7 @@ use App\Models\Wishlist;
 use App\Models\Product_coupon;
 use App\Models\Address;
 use App\Models\Review;
+use App\Models\Notificationemail;
 use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Order_product;
@@ -1025,9 +1026,13 @@ class UserController extends Controller
 
     public function notiemail(Request $request)
     {
-        
+        $check = Notificationemail::where('email', $request['email'])->first();
+
+        if(!$check){
+            $email = new Notificationemail();
+            $email->email = $request['email'];
+            $email->save();
+        }
     }
-
-
 
 }

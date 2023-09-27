@@ -17,6 +17,15 @@ class AdminSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('admin')->insert([
+            'name' => 'admin123',
+            'adminname' => 'admin123',
+            'password' => Hash::make('123456'), // Hãy thay thế bằng mật khẩu thật
+            'role' => 'staff',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
 

@@ -27,4 +27,10 @@ class CustomController extends Controller
         
         return view('admin/page/Custompage', compact('admin','staff','searchstaff','countstaff'));
     }
+
+    public function staffdelete(Request $request)
+    {
+        $staff = Admin::where('idadmin', $request['iduser'])->delete();
+        return redirect()->back();
+    }
 }

@@ -56,9 +56,8 @@
                                                 <i class="bi bi-wrench"></i> Quyền hạn
                                             </button>
                                             <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
-                                                data-target="#modal-lock" data-id="{{ $u->iduser }}"
-                                                data-name="{{ $u->username }}"
-                                                data-status="{{ $u->status }}">
+                                                data-target="#modal-lock" data-id="{{ $u->idadmin }}"
+                                                data-name="{{ $u->adminname }}">
                                                 <i class="bi bi-trash"></i>Xóa tài khoản
                                             </button>
                                         </td>
@@ -126,7 +125,7 @@
 
 <div class="modal fade" id="modal-lock">
     <div class="modal-dialog">
-        <form class="modal-content" action="{{ route('user.changestatus') }}" method="post" id="formchangepass">
+        <form class="modal-content" action="{{ route('staff.delete') }}" method="post" id="formchangepass">
             @csrf
             <div class="modal-header">
                 <h4 class="modal-title">Đổi trạng thái user</h4>
@@ -140,17 +139,10 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Tên tài khoản</span>
                     <span name="username" class="spanpopup font-weight-bold" style="color:red"></span>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Mật khẩu mới</span>
-                    <select name="status" id="" class="ml-3">
-                        <option value="lock">Khóa</option>
-                        <option value="ok">Bình thường</option>
-                    </select>
-                </div>
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-success">Thay đổi</button>
+                <button type="submit" class="btn btn-success">Xóa</button>
             </div>
         </form>
         <!-- /.modal-content -->

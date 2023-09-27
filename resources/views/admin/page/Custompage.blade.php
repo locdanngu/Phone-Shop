@@ -53,12 +53,36 @@
                                     <tr>
                                         <td class="font-weight-bold">{{ $u->adminname }}</td>
                                         <td>{{ $u->name }}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>
+                                            @if($u->product == 1)
+                                            <i class="bi bi-check2"></i>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($u->coupon == 1)
+                                            <i class="bi bi-check2"></i>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($u->user == 1)
+                                            <i class="bi bi-check2"></i>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($u->order == 1)
+                                            <i class="bi bi-check2"></i>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($u->revenue == 1)
+                                            <i class="bi bi-check2"></i>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($u->contact == 1)
+                                            <i class="bi bi-check2"></i>
+                                            @endif
+                                        </td>
                                         <td>
                                             <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-change" data-id="{{ $u->iduser }}"

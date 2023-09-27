@@ -12,7 +12,7 @@ class Admin extends Authenticatable
     protected $table = 'admin'; // Tên bảng trong CSDL
     protected $primaryKey = 'idadmin'; // Tên trường khóa chính
     protected $fillable = [
-        'name', 'adminname', 'password', 'role',
+        'name', 'adminname', 'password', 'role','product','coupon','user','order','revenue','contact'
     ];
 
     protected $hidden = [

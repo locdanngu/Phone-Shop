@@ -99,7 +99,7 @@
 
                                             @endforeach
                                             <tr>
-                                                <td class="actions" colspan="7" style="text-align:end">
+                                                <td class="actions" colspan="7" style="text-align:end" id="hidecheckout">
                                                     @if($countaddress == 0)
                                                     <a href="{{ route('chuyenhuong') }}"
                                                         class="btnchangeuser">{{ trans('messages.checkoutbtn') }}</a>
@@ -324,6 +324,10 @@ $('#deleteproduct').on('click', function(event) {
             $("#capnhatcart").html(html);
             var html2 = response.html2;
             $("#capnhattotalprice").html(html2);
+            var sum = response.scart_product;
+            if(sum == 0){
+                $('#hidecheckout').hide();
+            }
             // Xóa phần tử HTML của sản phẩm khỏi danh sách
             $('#capnhatdanhsachcart tr[data-product-id="' + id + '"]').remove();
             toastr.success('Delete product successful.');

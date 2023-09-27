@@ -639,6 +639,7 @@ class UserController extends Controller
         return response()->json([
             'html' => $html,
             'html2' => $html2,
+            'scart_product' => $scart_product,
         ]);
     }
 

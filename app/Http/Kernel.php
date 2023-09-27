@@ -68,5 +68,12 @@ class Kernel extends HttpKernel
 
         'user' => \App\Http\Middleware\UserMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'product' => \App\Http\Middleware\ProductMiddleware::class,
+        'coupon' => \App\Http\Middleware\CouponMiddleware::class,
+        'customuser' => \App\Http\Middleware\CustomuserMiddleware::class,
+        'order' => \App\Http\Middleware\OrderMiddleware::class,
+        'revenue' => \App\Http\Middleware\RevenueMiddleware::class,
+        'contact' => \App\Http\Middleware\ContactMiddleware::class,
+        'phanquyen' => \App\Http\Middleware\PhanquyenMiddleware::class,
     ];
 }

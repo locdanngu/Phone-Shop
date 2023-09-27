@@ -134,4 +134,6 @@ return [
     'password1' => 'Mật khẩu phải lớn hơn 6 và bé hơn 18 kí tự',
     'password2' => 'Mật khẩu nhập lại không đúng',
     'noaccount' => 'Không có tài khoản',
+    'addtocarttoastrsuc1' => 'Thêm sản phẩm vào giỏ hàng thành công',
+    'addtocarttoastrsuc2' => 'Sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng sản phẩm',
 ];

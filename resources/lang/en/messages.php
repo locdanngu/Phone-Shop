@@ -133,4 +133,6 @@ return [
     'password1' => 'Password must be more than 6 and less than 18 characters',
     'password2' => 'The re-entered password does not match',
     'noaccount' => 'Do not have an account',
+    'addtocarttoastrsuc1' => 'Product added to cart',
+    'addtocarttoastrsuc2' => 'The product already exists, the quantity has been updated',
 ];

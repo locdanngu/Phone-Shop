@@ -134,11 +134,11 @@ $(document).ready(function() {
                 var html = response.html;
                 if (re == 1) {
                     toastr.success(
-                        '<b>The product already exists, the quantity has been updated</b>'
+                        '<b>{{ trans('messages.addtocarttoastrsuc2') }}</b>'
                     )
                 } else {
                     toastr.success(
-                        '<b>Product added to cart</b>'
+                        '<b>{{ trans('messages.addtocarttoastrsuc1') }}</b>'
                     )
                 }
                 $("#capnhatcart").html(html);

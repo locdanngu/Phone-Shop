@@ -128,17 +128,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delete product</h4>
+                <h4 class="modal-title">{{ trans('messages.deleteproduct') }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h3 style="color:red; font-weight: bold">Delete this product?</h3>
+                <h3 style="color:red; font-weight: bold">{{ trans('messages.deleteproduct2') }}?</h3>
                 <span name="nameproduct"></span>
             </div>
             <div class="modal-footer justify-align-content-end">
-                <button type="button" class="btn btn-danger" id="deleteproduct">Delete</button>
+                <button type="button" class="btn btn-danger" id="deleteproduct">{{ trans('messages.delete') }}</button>
             </div>
         </div>
         <!-- /.modal-content -->

@@ -39,7 +39,12 @@
                                     <tr>
                                         <th>Tài khoản</th>
                                         <th>Họ tên</th>
-                                        <th>Ngày tham gia</th>
+                                        <th>Sản phẩm, Danh mục, Loại hàng</th>
+                                        <th>Mã giảm giá</th>
+                                        <th>Người dùng</th>
+                                        <th>Đơn hàng</th>
+                                        <th>Doanh thu</th>
+                                        <th>CSKH</th>
                                         <th>Quyền</th>
                                     </tr>
                                 </thead>
@@ -48,7 +53,12 @@
                                     <tr>
                                         <td class="font-weight-bold">{{ $u->adminname }}</td>
                                         <td>{{ $u->name }}</td>
-                                        <td>{{ $u->created_at }}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
                                             <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
                                                 data-target="#modal-change" data-id="{{ $u->iduser }}"
@@ -88,7 +98,7 @@
         <form class="modal-content" action="{{ route('user.changepass') }}" method="post" id="formchangepass">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Đổi mật khẩu người dùng</h4>
+                <h4 class="modal-title">Chỉnh sửa quyền hạn</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -128,7 +138,7 @@
         <form class="modal-content" action="{{ route('staff.delete') }}" method="post" id="formchangepass">
             @csrf
             <div class="modal-header">
-                <h4 class="modal-title">Đổi trạng thái user</h4>
+                <h4 class="modal-title">Xóa tài khoản nhân viên</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -142,7 +152,7 @@
             </div>
             <div class="modal-footer justify-align-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-success">Xóa</button>
+                <button type="submit" class="btn btn-danger">Xóa</button>
             </div>
         </form>
         <!-- /.modal-content -->

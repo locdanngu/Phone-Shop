@@ -41,9 +41,9 @@
                                         <td>
                                             <span class="amount">{{ $o->idorder }}</span>
                                         </td>
-                                        <td>
+                                        <td> 
                                             <span
-                                                class="amount font-weight-bold red">{{ $currencySymbol }} {{ number_format($o->beforecoupon, 2) }}</span>
+                                                class="amount font-weight-bold red">{{ $currencySymbol }} @convertCurrency($o->beforecoupon)</span>
                                         </td>
                                         <td>
                                             <span class="amount">{{ $o->created_at }}</span>

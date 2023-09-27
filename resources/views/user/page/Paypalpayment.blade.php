@@ -39,7 +39,7 @@
                                                 class="product-quantity"></strong> </td>
                                         <td class="product-total">
                                             <span
-                                                class="amount font-weight-bold">{{ $currencySymbol }} {{ number_format($order->totalprice, 2) }}</span>
+                                                class="amount font-weight-bold">{{ $currencySymbol }} @convertCurrency($order->totalprice)</span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -48,14 +48,14 @@
                                     <tr class="cart-subtotal">
                                         <th>{{ trans('messages.addcouponproduct') }}</th>
                                         <td><span class="amount font-weight-bold"> -
-                                                {{ $currencySymbol }} {{ number_format($order->totalprice - $order->totalprice2, 2) }}</span>
+                                                {{ $currencySymbol }} @convertCurrency(($order->totalprice - $order->totalprice2))</span>
                                         </td>
                                     </tr>
 
                                     <tr class="cart-subtotal">
                                         <th>{{ trans('messages.addcouponcart') }}</th>
                                         <td><span class="amount font-weight-bold"> -
-                                                {{ $currencySymbol }} {{ number_format($order->totalprice2 - $order->beforecoupon, 2) }}</span>
+                                                {{ $currencySymbol }} @convertCurrency(($order->totalprice2 - $order->beforecoupon))</span>
                                         </td>
                                     </tr>
 
@@ -73,7 +73,7 @@
                                     <tr class="order-total">
                                         <th>{{ trans('messages.ordertotal') }}</th>
                                         <td><strong><span
-                                                    class="amount red">{{ $currencySymbol }} {{ number_format($order->beforecoupon, 2) }}</span></strong>
+                                                    class="amount red">{{ $currencySymbol }} @convertCurrency($order->beforecoupon)</span></strong>
                                         </td>
                                     </tr>
 

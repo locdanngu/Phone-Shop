@@ -23,7 +23,7 @@
             @endif
 
             <div class="product-sidebar-price">
-                <ins>${{ $l->price }}</ins> <del>${{ $l->oldprice }}</del>
+                <ins>{{ $currencySymbol }} @convertCurrency($l->price)</ins> <del>{{ $currencySymbol }} @convertCurrency($l->oldprice)</del>
             </div>
         </div>
         @endforeach

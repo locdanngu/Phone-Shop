@@ -50,7 +50,8 @@
                             <div class="product-inner">
                                 <h2 class="product-name">{{ $product->nameproduct }}</h2>
                                 <div class="product-inner-price">
-                                    <ins>{{ $currencySymbol }} {{ $product->price }}</ins> <del>{{ $currencySymbol }} {{ $product->oldprice }}</del>
+                                    <ins>{{ $currencySymbol }} @convertCurrency($product->price)</ins>
+                                    <del>{{ $currencySymbol }} @convertCurrency($product->oldprice)</del>
                                 </div>
 
                                 <div class="cart">
@@ -76,8 +77,9 @@
                                 <div class="product-inner-category">
                                     <p>Category: <a
                                             href="{{ route('shop.search', ['searchproduct' => $product->category->namecategory]) }}">{{ $product->category->namecategory }}</a>.
-                                        <!-- Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a
-                                            href="">shoes</a>. </p> -->
+                                        Type: <a
+                                            href="{{ route('shop.search', ['searchproduct' => $product->type->nametype]) }}">{{ $product->type->nametype }}</a>.
+                                    </p>
                                 </div>
 
                                 <div role="tabpanel">
@@ -197,7 +199,8 @@
                                 </h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>{{ $currencySymbol }} {{ $rd->price }}</ins> <del>{{ $currencySymbol }} {{ $rd->oldprice }}</del>
+                                    <ins>{{ $currencySymbol }} @convertCurrency($rd->price)</ins>
+                                    <del>{{ $currencySymbol }} @convertCurrency($rd->oldprice)</del>
                                 </div>
                             </div>
                             @endforeach

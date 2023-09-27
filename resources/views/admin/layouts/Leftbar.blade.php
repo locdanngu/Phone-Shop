@@ -28,6 +28,7 @@
                         <p>Trang điều hành</p>
                     </a>
                 </li>
+                @if($admin->product == 1)
                 <li class="nav-item">
                     <a href="{{ route('listproduct.page') }}"
                         class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
@@ -37,15 +38,6 @@
                             <!-- <i class="bi bi-arrow-left right"></i> -->
                         </p>
                     </a>
-                    <!-- <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('listproduct.page') }}"
-                                class="nav-link {{ request()->routeIs('listproduct.page', 'searchproduct') ? 'active' : '' }}">
-                                <i class="bi-card-list nav-icon"></i>
-                                <p>Danh sách sản phẩm</p>
-                            </a>
-                        </li>
-                    </ul> -->
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('listcategory.page') }}"
@@ -56,15 +48,6 @@
                             <!-- <i class="bi bi-arrow-left right"></i> -->
                         </p>
                     </a>
-                    <!-- <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('listcategory.page') }}"
-                                class="nav-link {{ request()->routeIs('listcategory.page', 'searchcategory') ? 'active' : '' }}">
-                                <i class="bi bi-list-columns nav-icon"></i>
-                                <p>Danh sách danh mục</p>
-                            </a>
-                        </li>
-                    </ul> -->
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('listtype.page') }}"
@@ -75,6 +58,8 @@
                         </p>
                     </a>
                 </li>
+                @endif
+                @if($admin->coupon == 1)
                 <li class="nav-item">
                     <a href="#"
                         class="nav-link {{ request()->routeIs('listcoupon.page', 'searchcoupon', 'listexpiredcoupon.page', 'searchcouponexpired') ? 'active' : '' }}">
@@ -101,6 +86,8 @@
                         </li>
                     </ul>
                 </li>
+                @endif
+                @if($admin->user == 1)
                 <li class="nav-item">
                     <a href="{{ route('listuser.page') }}"
                         class="nav-link {{ request()->routeIs('listuser.page', 'searchuser') ? 'active' : '' }}">
@@ -110,6 +97,8 @@
                         </p>
                     </a>
                 </li>
+                @endif
+                @if($admin->order ==1)
                 <li class="nav-item">
                     <a href="#"
                         class="nav-link {{ request()->routeIs('listorder.page', 'order.search','listordership.page', 'ordership.search','listordercancel.page', 'ordercancel.search') ? 'active' : '' }}">
@@ -147,6 +136,8 @@
 
                     </ul>
                 </li>
+                @endif
+                @if($admin->revenue == 1)
                 <li class="nav-item">
                     <a href="#"
                         class="nav-link {{ request()->routeIs('listrevenue.page', 'revenue.search','listspend.page', 'spend.search') ? 'active' : '' }}">
@@ -174,6 +165,8 @@
                         </li>
                     </ul>
                 </li>
+                @endif
+                @if($admin->contact ==1)
                 <li class="nav-item">
                     <a href="{{ route('admincontact.page') }}"
                         class="nav-link {{ request()->routeIs('admincontact.page') ? 'active' : '' }}">
@@ -183,6 +176,8 @@
                         </p>
                     </a>
                 </li>
+                @endif
+                @if($admin->role == 'admin')
                 <li class="nav-item">
                     <a href="{{ route('custom.page') }}"
                         class="nav-link {{ request()->routeIs('custom.page', 'staff.search') ? 'active' : '' }}">
@@ -192,6 +187,7 @@
                         </p>
                     </a>
                 </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

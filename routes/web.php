@@ -26,6 +26,8 @@ Route::prefix('/')->group(function () {
     Route::post('/loginuser', [UserController::class, 'loginuser'])->name('loginuser');
     Route::post('/registeruser', [UserController::class, 'registeruser'])->name('registeruser');
 
+    Route::post('/notiemail', [UserController::class, 'notiemail'])->name('notiemail');
+
     Route::get('/change-locale', [LocaleController::class, 'changeLocale'])->name('changeLocale');
 
     Route::middleware(['user'])->group(function () {

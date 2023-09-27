@@ -160,4 +160,6 @@ return [
     'deletecoupon1' => 'Delete this coupon?',
     'deletecoupon2' => 'This will remove discount codes on all products',
     'deletecoupon3' => 'This will remove discount codes on you checkout',
+    'wrongemail' => 'Please enter the correct email format',
+    'addemailsuc' => 'Add email notification successful',
 ];

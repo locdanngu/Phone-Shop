@@ -61,10 +61,10 @@
                     <h2 class="footer-wid-title">{{ trans('messages.newletter') }}</h2>
                     <p>{{ trans('messages.newletter2') }}</p>
                     <div class="newsletter-form">
-                        <form action="#">
-                            <input type="email" placeholder="{{ trans('messages.typeemail') }}">
-                            <input type="submit" value="{{ trans('messages.subscribe') }}">
-                        </form>
+                        <div>
+                            <input type="email" placeholder="{{ trans('messages.typeemail') }}" id="registeremailnoti">
+                            <input type="submit" value="{{ trans('messages.subscribe') }}" id="sendregisteremailnoti">
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1023,6 +1023,11 @@ class UserController extends Controller
         return redirect()->back()->withErrors(['suc' => 'submitted successfully!!!']);
     }
 
+    public function notiemail(Request $request)
+    {
+        
+    }
+
 
 
 }

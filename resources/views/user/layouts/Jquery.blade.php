@@ -146,8 +146,29 @@ $(document).ready(function() {
         });
     });
 
+    $('#sendregisteremailnoti').on('click', function(event) {
+        var email = $('#registeremailnoti').val();
 
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
+        if (emailPattern.test(email)) {
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('notiemail') }}",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    email: email,
+                },
+                success: function(response) {
+                    toastr.success('<b>{{ trans('messages.addemailsuc') }}</b>')
+                    $("#registeremailnoti").val('');
+                }
+            });
+        }else{
+            toastr.error('<b>{{ trans('messages.wrongemail') }}</b>')
+        }
+    });
 
 
 

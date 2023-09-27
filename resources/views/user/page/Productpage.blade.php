@@ -66,7 +66,8 @@
                                     data-idproduct="{{ $product->idproduct }}">{{ trans('messages.addtowishlist') }}</button>
                                 @else
                                 <button class="add_to_cart_button" style="margin:.5em 0" type="button"
-                                    data-toggle="modal" data-target="#modal-login">{{ trans('messages.addtowishlist') }}</button>
+                                    data-toggle="modal"
+                                    data-target="#modal-login">{{ trans('messages.addtowishlist') }}</button>
                                 @endif
                                 <div class="product-inner-category">
                                     <p>{{ trans('messages.categorypage') }}: <a
@@ -129,7 +130,8 @@
                                                     id="idproductreview">
                                                 <p><label for="review"></label>{{ trans('messages.yourreview') }}
                                                     <textarea name="review" id="reviewreview" cols="30"
-                                                        rows="10"></textarea></p>
+                                                        rows="10"></textarea>
+                                                </p>
                                                 @if(!$user)
                                                 <input type="submit" value="{{ trans('messages.submit') }}"
                                                     id="sendreview1">
@@ -232,14 +234,10 @@ $(document).ready(function() {
                 var html = response.html;
 
                 if (re == 1) {
-                    toastr.success(
-                        '<b>{{ trans('
-                        messages.addtocarttoastrsuc2 ') }}</b>'
+                    toastr.success('<b>{{ trans('messages.addtocarttoastrsuc2') }}</b>'
                     )
                 } else {
-                    toastr.success(
-                        '<b>{{ trans('
-                        messages.addtocarttoastrsuc1 ') }}</b>'
+                    toastr.success('<b>{{ trans('messages.addtocarttoastrsuc1') }}</b>'
                     )
                 }
 
@@ -262,14 +260,10 @@ $(document).ready(function() {
             success: function(response) {
                 var re = response.re;
                 if (re == 1) {
-                    toastr.error(
-                        '<b>{{ trans('
-                        messages.addproductwl1 ') }}</b>'
+                    toastr.error('<b>{{ trans('messages.addproductwl1') }}</b>'
                     )
                 } else {
-                    toastr.success(
-                        '<b>{{ trans('
-                        messages.addproductwl2 ') }}</b>'
+                    toastr.success('<b>{{ trans('messages.addproductwl2') }}</b>'
                     )
                 }
             }
@@ -298,8 +292,7 @@ $(document).ready(function() {
         var selectedRating = $('input[name="rating"]:checked').val();
 
         if (reviewreview == null || selectedRating == null || name == null || email == null) {
-            toastr.error('{{ trans('
-                messages.plsin4 ') }}');
+            toastr.error('{{ trans('messages.plsin4') }}');
         }
 
         $.ajax({
@@ -316,8 +309,7 @@ $(document).ready(function() {
             success: function(response) {
                 var html = response.html;
                 $('#capnhatreview').prepend(html);
-                toastr.success('{{ trans('
-                    messages.reviewaddsuc ') }}');
+                toastr.success('{{ trans('messages.reviewaddsuc') }}');
                 $('#namereview').val('');
                 $('#emailreview').val('');
                 $('#reviewreview').val('');
@@ -327,14 +319,14 @@ $(document).ready(function() {
 
     });
 
-    $('#sendreview2').on('click', function() { //ĐÃ đăng nhập
+    $('#sendreview2').on('click', function() { //Đã đăng nhập
+        console.log('a');
         var reviewreview = $('#reviewreview').val();
         var selectedRating = $('input[name="rating"]:checked').val();
         var id = $('#idproductreview').val();
 
         if (reviewreview == null || selectedRating == null) {
-            toastr.error('{{ trans('
-                messages.plsin4 ') }}');
+            toastr.error('{{ trans('messages.plsin4') }}');
         }
 
         $.ajax({
@@ -349,8 +341,7 @@ $(document).ready(function() {
             success: function(response) {
                 var html = response.html;
                 $('#capnhatreview').prepend(html);
-                toastr.success('{{ trans('
-                    messages.reviewaddsuc ') }}');
+                toastr.success('{{ trans('messages.reviewaddsuc') }}');
                 $('#reviewreview').val('');
                 $('input[name="rating"]').prop('checked', false);
             }

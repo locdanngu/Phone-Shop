@@ -618,7 +618,7 @@ $('#deleteproduct').on('click', function(event) {
         success: function(response) {
             // Xóa phần tử HTML của sản phẩm khỏi danh sách
             $('#capnhatdanhsachdiachi tr[data-product-id="' + id + '"]').remove();
-            toastr.success('Delete address successful.');
+            toastr.success('{{ trans('messages.deleteaddresssuc') }}');
             $('#modal-deleteproduct').modal('hide');
         }
     });

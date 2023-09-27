@@ -474,7 +474,7 @@ $('#checkcoupon').on('click', function(event) {
 
     if (couponcode.length < 6 || couponcode.length > 18) {
         toastr.error(
-            '<b>Coupon must not be less than 6 characters and more than 18</b>'
+            '<b>{{ trans('messages.checkcoupon1') }}</b>'
         )
     } else {
         $.ajax({
@@ -489,23 +489,18 @@ $('#checkcoupon').on('click', function(event) {
 
                 var re = response.re;
                 if (re == 0) {
-                    toastr.error('Coupon does not exist.');
+                    toastr.error('{{ trans('messages.checkcoupon2') }}</b>');
                 } else if (re == 1) {
-                    toastr.error('This coupon has not started yet.');
+                    toastr.error('{{ trans('messages.checkcoupon3') }}</b>');
                 } else if (re == 2) {
-                    toastr.error('This coupon has expired.');
+                    toastr.error('{{ trans('messages.checkcoupon4') }}</b>');
                 } else if (re == 3) {
-                    toastr.error('This coupon does not apply to you.');
+                    toastr.error('{{ trans('messages.checkcoupon5') }}</b>');
                 } else if (re == 4) {
-                    toastr.error('The order does not meet the specified price.');
+                    toastr.error('{{ trans('messages.checkcoupon6') }}</b>');
                 } else if (re == 6) {
-                    toastr.error('No applicable products.');
+                    toastr.error('{{ trans('messages.checkcoupon7') }}</b>');
                 } else {
-                    // var html = response.html;
-                    // var html2 = response.html2;
-                    // $("#capnhatdanhsachcoupon").html(html);
-                    // $("#capnhatdanhsachorder").html(html2);
-                    // toastr.success('Apply discount coupon successfully.');
                     window.location.href = "{{ route('checkout.page') }}?idorder=" + iddonhang;
                 }
             }

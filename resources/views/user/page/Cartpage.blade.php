@@ -330,7 +330,7 @@ $('#deleteproduct').on('click', function(event) {
             }
             // Xóa phần tử HTML của sản phẩm khỏi danh sách
             $('#capnhatdanhsachcart tr[data-product-id="' + id + '"]').remove();
-            toastr.success('Delete product successful.');
+            toastr.success('{{ trans('messages.deleteproductformcart') }}');
             $('#modal-deleteproduct').modal('hide');
         }
     });

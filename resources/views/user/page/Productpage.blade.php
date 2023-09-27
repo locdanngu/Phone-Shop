@@ -236,11 +236,11 @@ $(document).ready(function() {
 
                 if (re == 1) {
                     toastr.success(
-                        '<b>The product already exists, the quantity has been updated</b>'
+                        '<b>{{ trans('messages.addtocarttoastrsuc2') }}</b>'
                     )
                 } else {
                     toastr.success(
-                        '<b>Product added to cart</b>'
+                        '<b>{{ trans('messages.addtocarttoastrsuc1') }}</b>'
                     )
                 }
 
@@ -264,11 +264,11 @@ $(document).ready(function() {
                 var re = response.re;
                 if (re == 1) {
                     toastr.error(
-                        '<b>The product already exists</b>'
+                        '<b>{{ trans('messages.addproductwl1') }}</b>'
                     )
                 } else {
                     toastr.success(
-                        '<b>Product added to wish list</b>'
+                        '<b>{{ trans('messages.addproductwl2') }}</b>'
                     )
                 }
             }
@@ -297,7 +297,7 @@ $(document).ready(function() {
         var selectedRating = $('input[name="rating"]:checked').val();
 
         if (reviewreview == null || selectedRating == null || name == null || email == null) {
-            toastr.error('Please complete all information.');
+            toastr.error('{{ trans('messages.plsin4') }}');
         }
 
         $.ajax({
@@ -314,7 +314,7 @@ $(document).ready(function() {
             success: function(response) {
                 var html = response.html;
                 $('#capnhatreview').prepend(html);
-                toastr.success('Review added successfully');
+                toastr.success('{{ trans('messages.reviewaddsuc') }}');
                 $('#namereview').val('');
                 $('#emailreview').val('');
                 $('#reviewreview').val('');
@@ -330,7 +330,7 @@ $(document).ready(function() {
         var id = $('#idproductreview').val();
 
         if (reviewreview == null || selectedRating == null) {
-            toastr.error('Please complete all information.');
+            toastr.error('{{ trans('messages.plsin4') }}');
         }
 
         $.ajax({
@@ -345,7 +345,7 @@ $(document).ready(function() {
             success: function(response) {
                 var html = response.html;
                 $('#capnhatreview').prepend(html);
-                toastr.success('Review added successfully');
+                toastr.success('{{ trans('messages.reviewaddsuc') }}');
                 $('#reviewreview').val('');
                 $('input[name="rating"]').prop('checked', false);
             }

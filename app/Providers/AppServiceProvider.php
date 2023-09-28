@@ -9,6 +9,7 @@ use App\Models\Type; // Import model Friend
 use App\Models\Cart; // Import model Friend
 use Illuminate\Support\Facades\Blade; // Import the Blade facade
 use App\Models\Cart_product; // Import model Friend
+// use Illuminate\Support\Facades\Artisan;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -48,6 +49,8 @@ class AppServiceProvider extends ServiceProvider
                             
             $countorder = Order::where('status', 'wait')->count();
             $countorder2 = Order::where('status', 'ship')->count();
+
+            // Artisan::call('view:clear');
 
             $view->with([
                 'countorder' => $countorder,
@@ -93,7 +96,8 @@ class AppServiceProvider extends ServiceProvider
                 $currencySymbol = '$';
             }
 
-             
+            // Artisan::call('view:clear');
+
 
             $view->with([
                 'category' => $category,

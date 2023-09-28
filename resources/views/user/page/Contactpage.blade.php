@@ -46,7 +46,7 @@
                                 <input type="text" name="phone" class="w-100 mb-2" required>
                                 <h4>{{ trans('messages.content') }}:</h4>
                                 <textarea name="content" id="" cols="30" rows="10" class="w-100" required></textarea>
-                                <input type="submit" class="add_to_cart_button" value="Send" style="float:right">
+                                <input type="submit" class="add_to_cart_button" value="{{ trans('messages.submit') }}" style="float:right">
                             </form>
                             @else
                             <form action="{{ route('contact.add') }}" method="post">

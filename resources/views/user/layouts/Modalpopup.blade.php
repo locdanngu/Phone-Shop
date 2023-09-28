@@ -167,3 +167,41 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade" id="modal-wrongpassword">
+    <div class="modal-dialog">
+        <form action="{{ route('loginuser') }}" method="post" class="modal-content content__form">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title">{{ trans('messages.dangnhapbtn') }}</h4>
+            </div>
+            <div style="display:flex;justify-content:center; margin-top:2em">
+                <h2>u<h2 style="color: #5a88ca">Stora</h2>
+                </h2>
+            </div>
+            <div class="modal-body">
+                <div class="content__inputs">
+                    <label>
+                        <input required type="text" name="username" autocomplete="off">
+                        <span>{{ trans('messages.username/email/phone') }}</span>
+                    </label>
+                    <label>
+                        <input required type="password" name="password" autocomplete="off">
+                        <span>{{ trans('messages.password') }}</span>
+                    </label>
+                </div>
+                <p class="red font-weight-bold" style="margin-top: .5em">{{ trans('messages.wrongin4') }}</p>
+                <div style="display: flex; width:100%; justify-content: center;margin-top:1em">
+                    <h5 style="margin:0">{{ trans('messages.noaccount') }}? <a href="#" type="button" data-toggle="modal"
+                            data-target="#modal-register">{{ trans('messages.dangkybtn') }}
+                            {{ trans('messages.here') }}</a></h5>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" style="width: 100%;">{{ trans('messages.dangnhapbtn') }}</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

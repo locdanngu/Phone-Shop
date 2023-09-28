@@ -1,3 +1,12 @@
+@if ($errors->has('login') || $errors->has('login2'))
+<script>
+$(document).ready(function() {
+    $("#modal-wrongpassword").modal("show");
+});
+</script>
+@endif
+
+
 <script>
 $(document).ready(function() {
     $('.move-on-top-btn').hide();

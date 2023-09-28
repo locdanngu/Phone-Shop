@@ -162,4 +162,5 @@ return [
     'deletecoupon3' => 'This will remove discount codes on you checkout',
     'wrongemail' => 'Please enter the correct email format',
     'addemailsuc' => 'Add email notification successful',
+    'wrongin4' => 'Login information is incorrect!',
 ];

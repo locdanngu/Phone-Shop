@@ -449,7 +449,7 @@ class UserController extends Controller
             }
         } else {
             // Không tìm thấy người dùng với thông tin đăng nhập
-            return redirect()->back()->withErrors(['login' => 'Không tìm thấy người dùng với thông tin đăng nhập đã nhập!!!']);
+            return redirect()->back()->withErrors(['login2' => 'Không tìm thấy người dùng với thông tin đăng nhập đã nhập!!!']);
         }
     }
 

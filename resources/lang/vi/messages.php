@@ -163,4 +163,6 @@ return [
     'deletecoupon3' => 'Điều này sẽ xóa lượng giảm giá trên thanh toán của bạn',
     'wrongemail' => 'Vui lòng nhập đúng định dạng email',
     'addemailsuc' => 'Thêm email nhận thông báo thành công',
+    'wrongin4' => 'Thông tin đăng nhập không chính xác!',
+    
 ];

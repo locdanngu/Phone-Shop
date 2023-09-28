@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::prefix('/')->group(function () {
     Route::get('/', [UserController::class, 'homepage'])->name('home.page');
     Route::get('/shoppage', [UserController::class, 'shoppage'])->name('shop.page');

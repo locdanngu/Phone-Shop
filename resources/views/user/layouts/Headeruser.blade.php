@@ -32,8 +32,6 @@
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('changeLocale', ['locale' => 'en']) }}">USD</a></li>
-                                <!-- <li><a href="#">INR</a></li>
-                                    <li><a href="#">GBP</a></li> -->
                                 <li><a href="{{ route('changeLocale', ['locale' => 'vi']) }}">VND</a></li>
                             </ul>
                         </li>
@@ -44,8 +42,6 @@
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('changeLocale', ['locale' => 'en']) }}">English</a></li>
-                                <!-- <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li> -->
                                 <li><a href="{{ route('changeLocale', ['locale' => 'vi']) }}">Vietnamese</a></li>
                             </ul>
                         </li>
@@ -96,7 +92,6 @@
                             href="{{ route('home.page') }}">{{ trans('messages.homepage') }}</a></li>
                     <li class="{{ request()->routeIs('shop.page','shop.search') ? 'active' : '' }}"><a
                             href="{{ route('shop.page') }}">{{ trans('messages.shoppage') }}</a></li>
-                    <!-- <li><a href="{{ route('product.page') }}">Single product</a></li> -->
                     <li>
                         <a href="#" class="dropbtn" type="button" data-toggle="modal"
                             data-target="#modal-category">{{ trans('messages.categorypage') }}</a>
@@ -112,8 +107,6 @@
                         </ul>
                     </li>
                     @if($user)
-                    <!-- <li class="{{ request()->routeIs('checkout.page') ? 'active' : '' }}"><a
-                            href="{{ route('checkout.page') }}">Checkout</a></li> -->
                     <li class="{{ request()->routeIs('wishlist.page') ? 'active' : '' }}"><a
                             href="{{ route('wishlist.page') }}">{{ trans('messages.wishlistbtn') }}</a></li>
                     <li class="{{ request()->routeIs('cart.page') ? 'active' : '' }}"><a

@@ -20,16 +20,16 @@
                     <h2 class="footer-wid-title">{{ trans('messages.usernavigation') }} </h2>
                     <ul>
                         <li>
-                            <a href="#">{{ trans('messages.myaccount') }}</a>
+                            <a href="{{ route('user.page') }}">{{ trans('messages.myaccount') }}</a>
                         </li>
                         <li>
-                            <a href="#">{{ trans('messages.historypage') }}</a>
+                            <a href="{{ route('listhistoryorder.page') }}">{{ trans('messages.historypage') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('wishlist.page') }}">{{ trans('messages.wishlistbtn') }}</a>
                         </li>
                         <li>
-                            <a href="#">{{ trans('messages.contactpage') }}</a>
+                            <a href="{{ route('usercontact.page') }}">{{ trans('messages.contactpage') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('home.page') }}">{{ trans('messages.homepage') }}</a>

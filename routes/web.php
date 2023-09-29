@@ -25,6 +25,7 @@ Route::prefix('/')->group(function () {
     Route::post('/notiemail', [UserController::class, 'notiemail'])->name('notiemail');
 
     Route::get('/change-locale', [LocaleController::class, 'changeLocale'])->name('changeLocale');
+    Route::post('/contact', [UserController::class, 'addcontact'])->name('contact.add');
 
     Route::middleware(['user'])->group(function () {
         Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
@@ -64,7 +65,7 @@ Route::prefix('/')->group(function () {
         Route::get('/listhistoryorder', [UserController::class, 'listhistoryorder'])->name('listhistoryorder.page');
         Route::get('/historyorder', [UserController::class, 'historyorder'])->name('historyorder.page');
         
-        Route::post('/contact', [UserController::class, 'addcontact'])->name('contact.add');
+        
     });
 });
 

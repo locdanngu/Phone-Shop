@@ -54,11 +54,11 @@ class UserController extends Controller
                     ->orWhereHas('type', function($query) use ($searchproduct) {
                         $query->where('nametype', 'like', '%' . $searchproduct . '%');
                     })
-                    ->orderBy('idproduct', 'desc');
+                    ->orderBy('idproduct', 'desc')->where('isdelete', 0);
         }
         $countproduct = $product->count();
 
-        $product = $product->orderBy('idproduct', 'desc')->paginate($limit);
+        $product = $product->orderBy('idproduct', 'desc')->where('isdelete', 0)->paginate($limit);
 
         return view('user/page/Shoppage', compact('user','product','countproduct','searchproduct'));
 

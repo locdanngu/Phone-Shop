@@ -34,11 +34,11 @@ class ProductController extends Controller
                 ->orWhereHas('type', function($query) use ($searchproduct) {
                     $query->where('nametype', 'like', '%' . $searchproduct . '%');
                 })
-                ->orderBy('idproduct', 'desc');
+                ->orderBy('idproduct', 'desc')->where('isdelete', 0);
         }
         $countproduct = $product->count();
 
-        $product = $product->orderBy('idproduct', 'desc')->paginate($limit);
+        $product = $product->orderBy('idproduct', 'desc')->where('isdelete', 0)->paginate($limit);
         $category = Category::all();
         $type = Type::all();
 
@@ -150,7 +150,8 @@ class ProductController extends Controller
         $type->product_count = $type->product_count - 1;
         $type->save();
 
-        $product->delete();
+        $product->isdelete = 1;
+        $product->save();
         
         $category = Category::where('idcategory', $request['idcategory'])->first();
 

@@ -295,7 +295,8 @@ $(document).ready(function() {
             toastr.error('{{ trans('messages.plsin4') }}');
         }
 
-        $.ajax({
+        if (reviewreview != null && selectedRating != null && name != null && email != null ){
+            $.ajax({
             type: 'POST',
             url: "{{ route('addreview') }}",
             data: {
@@ -316,11 +317,13 @@ $(document).ready(function() {
                 $('input[name="rating"]').prop('checked', false);
             }
         });
+        }
+
+        
 
     });
 
     $('#sendreview2').on('click', function() { //Đã đăng nhập
-        console.log('a');
         var reviewreview = $('#reviewreview').val();
         var selectedRating = $('input[name="rating"]:checked').val();
         var id = $('#idproductreview').val();

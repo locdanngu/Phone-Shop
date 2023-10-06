@@ -720,14 +720,13 @@ class UserController extends Controller
         $user = Auth::user();
         $add = new Review();
         $add->idproduct = $request['id']; 
-
+        // dd($request);
         if($user){
             $add->name = $user->firstname . ' ' . $user->lastname;
             $add->email = $user->email; 
             $add->rating = $request['rating']; 
             $add->review = $request['review']; 
             $add->save();
-            
         }else{
             $add->name = $request['name']; 
             $add->email = $request['email']; 

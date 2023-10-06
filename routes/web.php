@@ -26,6 +26,7 @@ Route::prefix('/')->group(function () {
 
     Route::get('/change-locale', [LocaleController::class, 'changeLocale'])->name('changeLocale');
     Route::post('/contact', [UserController::class, 'addcontact'])->name('contact.add');
+    Route::post('/addreview', [UserController::class, 'addreview'])->name('addreview');
 
     Route::middleware(['user'])->group(function () {
         Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
@@ -38,7 +39,6 @@ Route::prefix('/')->group(function () {
         Route::post('/addcart', [UserController::class, 'addcart'])->name('addcart');
         Route::post('/deleteproductcart', [UserController::class, 'deleteproductcart'])->name('deleteproductcart');
         Route::post('/updateproductcart', [UserController::class, 'updateproductcart'])->name('updateproductcart');
-        Route::post('/addreview', [UserController::class, 'addreview'])->name('addreview');
         Route::post('/morereview', [UserController::class, 'morereview'])->name('morereview');
         Route::get('/wishlistpage', [UserController::class, 'wishlistpage'])->name('wishlist.page');
         Route::post('/deleteproductwishlist', [UserController::class, 'deleteproductwishlist'])->name('deleteproductwishlist');

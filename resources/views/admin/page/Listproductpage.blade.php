@@ -102,7 +102,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination">
-                                {{ $product->links() }}
+                            {{ $product->appends(['searchproduct' => request('searchproduct')])->links() }}
                             </div>
                         </div>
                     </div>

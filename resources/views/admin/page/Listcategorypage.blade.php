@@ -93,7 +93,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination">
-                                {{ $category->links() }}
+                                {{ $category->appends(['searchcategory' => request('searchcategory')])->links() }}
                             </div>
                         </div>
                     </div>

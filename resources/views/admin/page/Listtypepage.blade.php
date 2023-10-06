@@ -86,7 +86,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination">
-                                {{ $type->links() }}
+                                {{ $type->appends(['searchtype' => request('searchtype')])->links() }}
                             </div>
                         </div>
                     </div>

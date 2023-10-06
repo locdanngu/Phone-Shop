@@ -119,7 +119,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination">
-                                {{ $coupon->links() }}
+                                {{ $coupon->appends(['searchcoupon' => request('searchcoupon')])->links() }}
                             </div>
                         </div>
                     </div>

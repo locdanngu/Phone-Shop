@@ -1060,7 +1060,7 @@ class UserController extends Controller
 
         $toPhoneNumber = $request->input('numberphone');
         $message = $request->input('message');
-        $randomNumber = Str::random(6); // Tạo một số ngẫu nhiên 6 chữ số
+        $randomNumber = random_int(100000, 999999);// Tạo một số ngẫu nhiên 6 chữ số
 
         $message = 'Mã xác nhận của bạn là: ' . $randomNumber;
 

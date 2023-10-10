@@ -72,7 +72,8 @@ class AppServiceProvider extends ServiceProvider
                         'user/page/Listhistoryorder',
                         'user/page/Historyorder',
                         'user/page/Userpage',
-                        'user/page/Contactpage', ], function ($view) {
+                        'user/page/Contactpage', 
+                        'user/page/Test'], function ($view) {
 
             $ccart_product = 0;
             $scart_product = 0;

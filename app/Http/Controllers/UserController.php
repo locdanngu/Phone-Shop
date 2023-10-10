@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Hash;
+use Twilio\Rest\Client;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
@@ -1038,6 +1040,37 @@ class UserController extends Controller
             $email->email = $request['email'];
             $email->save();
         }
+    }
+
+    public function testpage(Request $request)
+    {
+        $user = Auth::user();
+
+        return view('user/page/Test', compact('user'));
+    }
+
+    public function sendSMS(Request $request)
+    {
+        $twilioSid = env('TWILIO_SID');
+        $twilioAuthToken = env('TWILIO_AUTH_TOKEN');
+        $twilioPhoneNumber = env('TWILIO_PHONE_NUMBER');
+
+
+        $client = new Client($twilioSid, $twilioAuthToken);
+
+        $toPhoneNumber = $request->input('numberphone');
+        $message = $request->input('message');
+        $randomNumber = Str::random(6); // Tạo một số ngẫu nhiên 6 chữ số
+
+        $message = 'Mã xác nhận của bạn là: ' . $randomNumber;
+
+        $client->messages->create(
+            $toPhoneNumber,
+            [
+                'from' => $twilioPhoneNumber,
+                'body' => $message,
+            ]
+        );  
     }
 
 }

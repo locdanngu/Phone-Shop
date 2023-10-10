@@ -12,8 +12,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/testpage', [UserController::class, 'testpage'])->name('test.page');
+Route::post('/sendsms', [UserController::class, 'sendSMS'])->name('sendSMS');
 
 Route::prefix('/')->group(function () {
+    
+
+
     Route::get('/', [UserController::class, 'homepage'])->name('home.page');
     Route::get('/shoppage', [UserController::class, 'shoppage'])->name('shop.page');
     Route::get('/shoppage/search', [UserController::class, 'shoppage'])->name('shop.search');
